@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+echo "Setup Proxy..."
+  https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+
+echo "Homebrew Updating..."
+  brew update
+  brew upgrade
+
+echo " "
+echo "Rustup Updating..."
+  rustup update
+
+echo " "
+echo "Updating Complete!"
