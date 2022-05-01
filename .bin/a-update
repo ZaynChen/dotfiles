@@ -2,6 +2,9 @@
 
 echo "Setup Proxy..."
   https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+  echo https_proxy=$https_proxy
+  echo http_proxy=$http_proxy
+  echo all_proxy=$all_proxy
 
 echo "Homebrew Updating..."
   brew update

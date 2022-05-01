@@ -34,7 +34,12 @@ vim.o.tabline = "%M %t"
 vim.o.cursorline = true
 
 -- Colorscheme
-vim.cmd("colorscheme base16-onedark")
+if vim.fn.filereadable(HOME.."/.vimrc_background") then
+    base16colorspace=256
+    vim.cmd("source "..HOME.."/.vimrc_background")
+else
+    vim.cmd("colorscheme base16-onedark")
+end
 vim.o.background = "dark"
 vim.o.termguicolors = true
 
@@ -78,6 +83,8 @@ vim.o.swapfile = false
 vim.o.wildmenu = true
 vim.o.wildmode= "list:longest"
 vim.o.wildignore = ".hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.o"
+
+-- macos
 vim.cmd("source $NVIMRUNTIME/delmenu.vim")
 vim.cmd("source $NVIMRUNTIME/menu.vim")
 

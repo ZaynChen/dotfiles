@@ -192,7 +192,7 @@ draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night)
 import:
- - ~/.config/alacritty/config/color.yml
+ - ~/.config/alacritty/color.yml
 #colors:
   # Default colors
   #primary:
