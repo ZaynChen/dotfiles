@@ -5,3 +5,6 @@
 .config/wireshark
 .config/nvim/plugins
 .config/nvim/temp_dirs/*
+.config/gtk-3.0
+.config/Code
+.config/dconf

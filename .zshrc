@@ -2,7 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/zaynchen/.oh-my-zsh"
+# export ZSH="/Users/zaynchen/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -76,7 +77,7 @@ CASE_SENSITIVE="false"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # osx unsupported in the alacritty terminal
-plugins=(autojump zsh-autosuggestions git rust cargo vscode cp npm brew node dotenv dash ripgrep zsh_reload docker docker-compose docker-machine)
+plugins=(autojump zsh-autosuggestions git rust vscode rust cp npm brew node dotenv dash ripgrep docker docker-compose docker-machine)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -158,10 +159,13 @@ export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PA
 # export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
 # export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
 # export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
-export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.0/share/nvim/runtime"
+# TODO brew linux
+# export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.0/share/nvim/runtime"
+export NVIMRUNTIME="/usr/share/nvim/runtime"
 export SKLEARNEX_VERBOSE=INFO
 
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+# TODO macos
+# [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
