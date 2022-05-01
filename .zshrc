@@ -139,6 +139,7 @@ alias readelfrv64="riscv64-unknown-elf-readelf"
 alias striprv64="riscv64-unknown-elf-strip"
 # -- qemu riscv alias
 alias qemurv64="qemu-system-riscv64"
+alias aura="sudo aura"
 
 # export http_proxy=http://127.0.0.1:1087
 # export https_proxy=http://127.0.0.1:1087
@@ -159,6 +160,7 @@ export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PA
 # export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
 # export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
 # export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
+
 # TODO brew linux
 # export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.0/share/nvim/runtime"
 export NVIMRUNTIME="/usr/share/nvim/runtime"
@@ -194,4 +196,6 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 # export PATH="/Applications/factor:$PATH"
+#
+neofetch
 
