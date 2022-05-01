@@ -9,3 +9,8 @@
 .config/Code
 .config/dconf
 .config/fcitx5
+.config/google-chrome
+.config/libfm
+.config/pcmanfm
+
+.config/mimeapps.list
