@@ -1,6 +1,7 @@
 #!/bin/sh
 
 sxhkd &
+picom &
 nitrogen --restore &
 /usr/bin/xsettingsd &
 # [ -x ~/.config/polybar/launch.sh ] && ~/.config/polybar/launch.sh &
