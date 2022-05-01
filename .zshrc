@@ -2,7 +2,6 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-# export ZSH="/Users/zaynchen/.oh-my-zsh"
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -107,14 +106,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias zshconfig="nvim ~/.zshrc"
-
-alias ala="nvim ~/.config/alacritty/"
-alias alaconfig="nvim ~/.config/alacritty/alacritty.yml"
-# alias alacolor="nvim ~/.config/alacritty/config/3colorscheme.yml"
-# alias alafont="nvim ~/.config/alacritty/config/2font.yml"
-# alias alamouse="nvim ~/.config/alacritty/config/8mouse.yml"
-# alias alakey="nvim ~/.config/alacritty/config/10key.yml"
+alias zshrc="nvim ~/.zshrc"
+alias alarc="nvim ~/.config/alacritty.yml"
 
 # -- exa alias
 alias ls="exa"
@@ -145,30 +138,22 @@ alias aura="sudo aura"
 # export http_proxy=http://127.0.0.1:1087
 # export https_proxy=http://127.0.0.1:1087
 
-# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
-# export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
-# export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
-# export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
 export PATH="$HOME/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-# export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
-export PATH="/usr/local/Cellar/llvm/12.0.1/bin:$PATH"
+
 export PATH="/opt/metasploit-framework/bin:$PATH"
 export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
-# export PATH="/usr/local/opt/python@3.9/bin:$PATH"
 
-# export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
-# export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
-# export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
+if [ -x "$(command -v brew)" ] ; then
+    # nvim install by brew
+    export PATH="/usr/local/Cellar/llvm/12.0.1/bin:$PATH"
+    export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.0/share/nvim/runtime"
+else
+    export NVIMRUNTIME="/usr/share/nvim/runtime"
+fi
 
-# TODO brew linux
-# export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.0/share/nvim/runtime"
-export NVIMRUNTIME="/usr/share/nvim/runtime"
 export SKLEARNEX_VERBOSE=INFO
-
-# TODO check if macos needed
-# [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
