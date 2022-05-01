@@ -107,7 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias zshrc="nvim ~/.zshrc"
-alias alarc="nvim ~/.config/alacritty.yml"
+alias alarc="nvim ~/.config/alacritty/alacritty.yml"
 
 # -- exa alias
 alias ls="exa"
