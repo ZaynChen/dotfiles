@@ -121,6 +121,7 @@ alias ls="exa"
 alias lll="exa -la"
 # -- nvim alias
 alias e="nvim"
+alias n="neofetch"
 alias py="python"
 
 # -- riscv-gnu-toolchain alias
