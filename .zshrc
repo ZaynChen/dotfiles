@@ -164,7 +164,7 @@ export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PA
 export NVIMRUNTIME="/usr/share/nvim/runtime"
 export SKLEARNEX_VERBOSE=INFO
 
-# TODO macos
+# TODO check if macos needed
 # [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # Base16 Shell

@@ -10,7 +10,7 @@ require('crates').setup {
         prerelease = "   %s",
         yanked     = "   %s",
         nomatch    = "   No match",
-        update     = "   %s",
+        upgrade    = "   %s",
         error      = "   Error fetching crate",
     },
     highlight = {
@@ -19,7 +19,7 @@ require('crates').setup {
         prerelease = "CratesNvimPreRelease",
         yanked     = "CratesNvimYanked",
         nomatch    = "CratesNvimNoMatch",
-        update     = "CratesNvimUpdate",
+        upgrade    = "CratesNvimUpdate",
         error      = "CratesNvimError",
     },
     popup = {
@@ -46,16 +46,16 @@ require('crates').setup {
         keys = {
             hide = { "q", "<esc>" },
             select = { "<cr>" },
-            select_dumb = { "s" },
+            -- select_dumb = { "s" },
             copy_version = { "yy" },
         },
     },
-    cmp = {
-        text = {
-            prerelease = "  pre-release ",
-            yanked     = "  yanked ",
-        },
-    },
+    -- cmp = {
+    --     text = {
+    --         prerelease = "  pre-release ",
+    --         yanked     = "  yanked ",
+    --     },
+    -- },
 }
 
 
