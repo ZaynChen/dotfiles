@@ -116,6 +116,7 @@ alias lll="exa -la"
 alias e="nvim"
 alias n="neofetch"
 alias py="python"
+alias u="aupdate"
 
 # -- riscv-gnu-toolchain alias
 alias addr2linerv64="riscv64-unknown-elf-addr2line"
