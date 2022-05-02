@@ -110,4 +110,15 @@ vim.cmd([[
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 ]])
 
+-- 退出插入模式时禁用输入法
+-- 创建 Buf 时禁用输入法
+-- 进入 Buf 时禁用输入法
+-- 离开 Buf 时禁用输入法
+vim.cmd([[
+    autocmd InsertLeave * :silent !fcitx5-remote -c
+    autocmd BufCreate *  :silent !fcitx5-remote -c
+    autocmd BufEnter *  :silent !fcitx5-remote -c
+    autocmd BufLeave *  :silent !fcitx5-remote -c
+]])
+
 -- TODO visual mode select current selection
