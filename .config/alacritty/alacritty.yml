@@ -443,7 +443,7 @@ shell:
  args:
    - -l
    - -c
-   - '[[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1'
+   - '([[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1) || zsh -l'
 
 # Startup directory
 #
