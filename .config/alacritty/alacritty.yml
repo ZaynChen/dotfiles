@@ -441,10 +441,9 @@ live_config_reload: true
 shell:
  program: /bin/zsh
  args:
-   # - --login
    - -l
    - -c
-   - "tmux attach || tmux"
+   - '[[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1'
 
 # Startup directory
 #
