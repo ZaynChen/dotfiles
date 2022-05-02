@@ -15,5 +15,6 @@
 .config/nitrogen
 .config/ibus
 .config/netease-cloud-music
+.config/cef_user_data
 
 .config/mimeapps.list
