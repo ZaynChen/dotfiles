@@ -27,8 +27,8 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   false
 bspc config gapless_monocle      false
 
-bspc rule -a firefoxdeveloperedition desktop='^1'
-bspc rule -a google-chrome-stable desktop='^1' state=titled
+bspc rule -a firefoxdeveloperedition desktop='^1' state=tiled
+bspc rule -a google-chrome-stable desktop='^1' state=tiled
 
 # https://github.com/baskerville/bspwm/issues/291
 # only works due to https://github.com/dasJ/spotifywm
