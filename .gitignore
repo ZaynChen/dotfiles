@@ -18,5 +18,6 @@
 .config/cef_user_data
 .config/Kingsoft
 .config/htop
+.config/pulse
 
 .config/mimeapps.list

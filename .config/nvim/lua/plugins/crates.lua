@@ -47,7 +47,7 @@ require('crates').setup {
             hide = { "q", "<esc>" },
             select = { "<cr>" },
             -- select_dumb = { "s" },
-            copy_version = { "yy" },
+            copy_value = { "yy" },
         },
     },
     -- cmp = {

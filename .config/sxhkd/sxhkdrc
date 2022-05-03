@@ -8,7 +8,7 @@ super + a
 
 # program launcher
 super + @space
-	$HOME/.config/polybar/docky/scripts/launcher.sh
+	$HOME/.config/rofi/bin/launcher_lrtech
 	# dmenu_run
 
 # make sxhkd reload its configuration files:

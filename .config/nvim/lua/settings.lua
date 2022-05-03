@@ -72,7 +72,7 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
 vim.opt.list = true
-vim.opt.listchars = { nbsp = "¬", extends = "»", precedes = "«", trail = "•" }
+vim.opt.listchars = { tab = "•\\ ", nbsp = "¬", extends = "»", precedes = "«", trail = "•" }
 
 -- Backup files
 vim.o.backup = false
