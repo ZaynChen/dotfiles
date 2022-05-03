@@ -440,11 +440,11 @@ live_config_reload: true
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
- program: /bin/zsh
- args:
+  program: /bin/zsh
+  args:
    - -l
    - -c
-   - '([[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1) || zsh -l'
+   - '([[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1) || ([ -x "$(command -v zsh)" ] && zsh -l)'
 
 # Startup directory
 #

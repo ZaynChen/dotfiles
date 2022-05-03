@@ -43,7 +43,8 @@ CASE_SENSITIVE="false"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# zsh cmd echos: https://stackoverflow.com/questions/30940299/zsh-repeats-command-in-output
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -137,6 +138,7 @@ alias qemurv64="qemu-system-riscv64"
 alias aura="sudo aura"
 alias mux="tmuxinator"
 alias macode="tmuxinator macode"
+alias tmuxconf="nvim ~/.tmux.conf"
 
 # export http_proxy=http://127.0.0.1:1087
 # export https_proxy=http://127.0.0.1:1087
