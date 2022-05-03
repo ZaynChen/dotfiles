@@ -21,8 +21,9 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: alacritty
-  # TERM: screen-256color
+  # TERM: alacritty
+  # TERM: xterm-256color
+  TERM: screen-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -441,10 +442,9 @@ live_config_reload: true
 shell:
  program: /bin/zsh
  args:
-   # - --login
    - -l
    - -c
-   - "tmux attach || tmux"
+   - '([[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1) || zsh -l'
 
 # Startup directory
 #

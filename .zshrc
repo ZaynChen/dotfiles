@@ -76,7 +76,7 @@ CASE_SENSITIVE="false"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # osx unsupported in the alacritty terminal
-plugins=(autojump zsh-autosuggestions git rust vscode rust cp npm brew node dotenv dash ripgrep docker docker-compose docker-machine)
+plugins=(autojump zsh-autosuggestions git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -135,6 +135,8 @@ alias striprv64="riscv64-unknown-elf-strip"
 # -- qemu riscv alias
 alias qemurv64="qemu-system-riscv64"
 alias aura="sudo aura"
+alias mux="tmuxinator"
+alias macode="tmuxinator macode"
 
 # export http_proxy=http://127.0.0.1:1087
 # export https_proxy=http://127.0.0.1:1087
@@ -162,6 +164,9 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
+
+export EDITOR="nvim"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -183,6 +188,4 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 # export PATH="/Applications/factor:$PATH"
-#
-neofetch
 

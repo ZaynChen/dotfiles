@@ -1,0 +1,13 @@
+name: code
+root: ~/
+windows:
+  - nvim:
+      layout: f34b,176x54,0,0{117x54,0,0[117x40,0,0,34,117x13,0,41,37],58x54,118,0,36}
+      panes:
+        - clear 
+        - 
+        - 
+  - zsh: 
+      layout: c13d,176x54,0,0,0
+      panes:
+        - 
