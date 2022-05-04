@@ -2,58 +2,57 @@ local lsp_status = require("lsp-status")
 lsp_status.register_progress()
 
 local nmap = require("mappings").nmap
-local nbmap = require("mappings").nbmap
 
--- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
 
 local lspconfig = require("lspconfig")
 
 local on_attach = function(client, bufnr)
-  -- Enable completioon triggered by <c-x><c-o>
+  -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  opts = { buffer = bufnr, silent = true}
 
-  nbmap(bufnr, "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
-  nbmap(bufnr, "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
-  nbmap(bufnr, "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
-  nbmap(bufnr, "gr", "<cmd>lua vim.lsp.buf.references()<cr>")
+  nmap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+  nmap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+  nmap("K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+  nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+  nmap("gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
   -- origin map: go to sleep for N seconds (default 1)
-  nbmap(bufnr, "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+  nmap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
   -- origin map: go to the next tab page, using <leader>tl instead
-  nbmap(bufnr, "gt", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
-  nbmap(bufnr, "<leader>h", "<cmd>lua vim.lsp.buf.hover()<cr>")
+  nmap("gt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
 
-  nbmap(bufnr, "gwa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>")
-  nbmap(bufnr, "gwr", "<cmd>lua vim.lsp.buf.remove_workspace_ffolder()<cr>")
-  nbmap(bufnr, "gwl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>")
+  nmap("gwa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", opts)
+  nmap("gwr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", opts)
+  nmap("gwl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
   -- Quick-fix
-  nbmap(bufnr, "gca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+  nmap("gca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 
-  nbmap(bufnr, "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>")
-  nbmap(bufnr, "<leader>m", "<cmd>lua vim.lsp.buf.formatting()<cr>")
+  nmap("<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  nmap("<leader>m", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
 
   lsp_status.on_attach(client)
 end
 
 -- Enable rust-tools
 require("rust-tools").setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    tools = {
-      inlay_hints = {
-        show_variable_name = true,
-      }
-    },
-    server = {
-      standalone = true,
-    },
-    -- dap = {
-    --   adapter = {
-    --     type = "executable",
-    --     command = "lldb-vscode",
-    --     name = "rt_lldb"
-    --   }
-    -- }
+  on_attach = on_attach,
+  capabilities = capabilities,
+  tools = {
+    inlay_hints = {
+      show_variable_name = true,
+    }
+  },
+  server = {
+    standalone = true,
+  },
+  -- dap = {
+  --   adapter = {
+  --     type = "executable",
+  --     command = "lldb-vscode",
+  --     name = "rt_lldb"
+  --   }
+  -- }
 })
 
 -- Enable pyright
@@ -137,4 +136,3 @@ vim.cmd([[
 -- Goto previous/next diagnostic warning/error
 nmap("g[", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
 nmap("g]", "<cmd>lua vim.diagnostic.goto_next()<cr>")
-

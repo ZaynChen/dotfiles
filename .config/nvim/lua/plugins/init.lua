@@ -3,13 +3,15 @@ local plug_path = vim.fn.expand("<sfile>:p:h").."/plugins"
 
 vim.call("plug#begin", plug_path)
 
--- Status Line
-Plug "itchyny/lightline.vim"
+-- Color Scheme
+Plug "RRethy/nvim-base16"
 
--- LSP
+-- Status Line
+Plug "nvim-lualine/lualine.nvim"
+
+-- -- LSP
 Plug "neovim/nvim-lspconfig"
 Plug "nvim-lua/lsp-status.nvim"
--- Plug "nvim-lua/lsp_extensions.nvim"
 
 -- Completion
 Plug "hrsh7th/cmp-nvim-lsp"
@@ -17,7 +19,6 @@ Plug "hrsh7th/cmp-buffer"
 Plug "hrsh7th/cmp-path"
 Plug "hrsh7th/cmp-cmdline"
 Plug "hrsh7th/nvim-cmp"
-
 Plug "windwp/nvim-autopairs"
 
 -- Snippets
@@ -43,7 +44,7 @@ Plug "nvim-lua/plenary.nvim"
 Plug "JuliaEditorSupport/julia-vim"
 
 -- Search
-Plug "eugen0329/vim-esearch"
+-- Plug "eugen0329/vim-esearch"
 Plug "kevinhwang91/nvim-hlslens"
 
 -- Web apis
@@ -54,9 +55,15 @@ Plug "mattn/webapi-vim"
 -- Plug "mg979/vim/visual-multi"
 
 -- Display
-Plug "kien/rainbow_parentheses.vim"
+-- Plug "kien/rainbow_parentheses.vim"
+-- Plug "luochen1990/rainbow"
+--
+Plug "p00f/nvim-ts-rainbow"
 Plug "lukas-reineke/indent-blankline.nvim"
-Plug "sheerun/vim-polyglot"
+
+-- Syntax Highlight
+-- Plug "sheerun/vim-polyglot"
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 
 -- Editorconfig
 Plug "editorconfig/editorconfig-vim"
@@ -69,7 +76,8 @@ Plug "sakhnik/nvim-gdb"
 -- Plug "iamcco/markdown-preview.nvim"
 
 Plug("lervag/vimtex", { ["for"] = "tex" })
-Plug "rlue/vim-barbaric"
+-- this if for im switch, lick fcitx switch, but has bug on macos
+-- Plug "rlue/vim-barbaric"
 
 -- Tool
 Plug "wakatime/vim-wakatime"
@@ -77,21 +85,38 @@ Plug "folke/which-key.nvim"
 
 vim.call("plug#end")
 
+local g = vim.g
+local o = vim.o
+local HOME = vim.env.HOME
+
+
+-- need "RRethy/nvim-base16" first
+if vim.fn.filereadable(HOME .. "/.vimrc_background") then
+    base16colorspace = 256
+    vim.cmd("source " .. HOME .. "/.vimrc_background")
+else
+    vim.cmd("colorscheme base16-onedark")
+end
+o.background = "dark"
+o.termguicolors = true
+
+g.rainbow_active = 1
+
 require("nvim-web-devicons").setup({})
 
+require("plugins/lualine")
 require("plugins/nvim-tree")
 require("plugins/nvim-cmp")
 require("plugins/lspconfig")
 require("plugins/crates")
 require("plugins/vimtex")
-
-local g = vim.g
+require("plugins/treesitter")
 
 -- barbaric
-g.barbaric_ime = "macos"
-g.barbaric_default = 0
-g.barbaric_scope = "buffer"
-g.barbaric_timeout = -1
+-- g.barbaric_ime = "macos"
+-- g.barbaric_default = 0
+-- g.barbaric_scope = "buffer"
+-- g.barbaric_timeout = -1
 
 
 -- autoparis

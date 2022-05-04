@@ -139,8 +139,9 @@ shell:
  program: /bin/zsh
  args:
    - -l
-   - -c
-   - '([[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1) || ([ -x "$(command -v zsh)" ] && zsh -l)'
+   # tmux does not support CSI u yet
+   # - -c
+   # - '([[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1) || ([ -x "$(command -v zsh)" ] && zsh -l)'
 
 ipc_socket: true
 

@@ -1,45 +1,33 @@
-local map = function(mode, lhs, rhs)
-    opt = { noremap = true, silent = true }
-    -- >= 0.7.0
-    vim.keymap.set(mode, lhs, rhs, opt)
-    -- < 0.7.0
-    -- vim.api.nvim_set_keymap(mode, lhs, rhs, opt)
+local map = function(mode, lhs, rhs, opts)
+    -- vim.keymap.set sets noremap by default
+    vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-local bmap = function(bufnr, mode, lhs, rhs)
-    opt = { noremap = true, silent = true }
-    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opt)
+
+local nmap = function(lhs, rhs, opts)
+    map('n', lhs, rhs, opts)
 end
 
-local nmap = function(lhs, rhs)
-    map('n', lhs, rhs)
+local imap = function(lhs, rhs, opts)
+    map('i', lhs, rhs, opts)
 end
 
-local nbmap = function(bufnr, lhs, rhs)
-    bmap(bufnr, 'n', lhs, rhs)
+local vmap = function(lhs, rhs, opts)
+    map('v', lhs, rhs, opts)
 end
 
-local imap = function(lhs, rhs)
-    map('i', lhs, rhs)
+local cmap = function(lhs, rhs, opts)
+    map('c', lhs, rhs, opts)
 end
 
-local vmap = function(lhs, rhs)
-    map('v', lhs, rhs)
-end
-
-local cmap = function(lhs, rhs)
-    map('c', lhs, rhs)
-end
-
-local tmap = function(lhs, rhs)
-    map('t', lhs, rhs)
+local tmap = function(lhs, rhs, opts)
+    map('t', lhs, rhs, opts)
 end
 
 
 nmap("<leader>w", "<cmd>w<cr>")
 
--- nmap("<leader>e", ':e <C-R>=expand("%:p:h")."/"<cr>')
-vim.cmd('nmap <leader>e :e <C-R>=expand("%:p:h")."/"<cr>')
+nmap("<leader>e", ':e <C-R>=expand("%:p:h")."/"<cr>')
 
 nmap("<leader>q", "<cmd>q<cr>")
 nmap("<leader>Q", "<cmd>q!<cr>")
@@ -47,8 +35,8 @@ nmap("<leader>wq", "<cmd>wq<cr>")
 
 nmap("<leader><cr>", "<cmd>noh<cr>")
 
-nmap("<leader>l", "<cmd>bnext<cr>")
-nmap("<leader>h", "<cmd>bprevious<cr>")
+-- nmap("<leader>l", "<cmd>bnext<cr>")
+-- nmap("<leader>h", "<cmd>bprevious<cr>")
 
 nmap("<leader>tn", "<cmd>tabnew<cr>")
 nmap("<leader>to", "<cmd>tabonly<cr>")
@@ -57,8 +45,7 @@ nmap("<leader>tm", "<cmd>tabmove<cr>")
 nmap("<leader>th", "<cmd>tabprevious<cr>")
 nmap("<leader>tl", "<cmd>tabnext<cr>")
 
--- nmap("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>')
-vim.cmd('nmap <leader>te :tabedit <C-R>=expand("%:p:h")."/"<cr>')
+nmap("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>')
 
 -- Spell Check
 nmap("<leader>ss", "<cmd>setlocal spell!<cr>")
@@ -70,24 +57,25 @@ nmap("<leader>ss", "<cmd>setlocal spell!<cr>")
 
 -- Paste Mode
 nmap("<leader>pp", "<cmd>setlocal paste!<cr>")
-
 -- nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>:pwd<cr>')
 
 -- cursor up-down
 nmap("<C-j>", "<C-e>")
 nmap("<C-k>", "<C-y>")
 
--- <M-h>
-imap("˙", "<S-Left>")
--- <M-l>
-imap("¬", "<S-Right>")
-
--- cursor line
-imap("<C-g>h", "<Home>")
-imap("<C-g>l", "<End>")
+-- tmux doesn't support <C-h> <BS> distinguish yet.
+-- alacritty: using https://github.com/alexherbo2/alacritty-extended-keys
+imap("<C-h>", "<Left>")
+imap("<C-l>", "<Right>")
+imap("<M-h>", "<S-Left>")
+imap("<M-l>", "<S-Right>")
 
 cmap("<C-a>", "<Home>")
-cmap("<C-e>", "<End>")
+-- cmap("<C-e>", "<End>")
+cmap("<C-h>", "<Left>")
+cmap("<C-l>", "<Right>")
+cmap("<M-h>", "<S-Left>")
+cmap("<M-l>", "<S-Right>")
 
 -- tmap("<C-s>", "<C-\\><C-n>")
 -- tmap("<Esc><Esc>", "<C-\\><C-n>")
@@ -95,14 +83,10 @@ cmap("<C-e>", "<End>")
 -- nmap("vv", "<C-w>v")
 -- nmap("ss", "<C-w>s")
 
-vim.o.splitbelow = true
-vim.o.splitright = true
-
 return {
     nmap = nmap,
     imap = imap,
     vmap = vmap,
     cmap = cmap,
     tmap = tmap,
-    nbmap = nbmap
 }
