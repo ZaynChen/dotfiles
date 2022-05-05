@@ -112,6 +112,7 @@ require("plugins/lualine")
 require("plugins/nvim-tree")
 require("plugins/nvim-cmp")
 require("plugins/treesitter")
+require("plugins/whichkey")
 require("plugins/lspconfig")
 require("plugins/telescope")
 require("plugins/gitsigns")
@@ -148,6 +149,4 @@ cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = 
 cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
 
 require("indent_blankline").setup({ show_end_of_line = true })
-
-require("which-key").setup {}
 

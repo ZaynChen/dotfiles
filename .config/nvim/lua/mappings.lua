@@ -38,14 +38,13 @@ nmap("<leader><cr>", "<cmd>noh<cr>")
 -- nmap("<leader>l", "<cmd>bnext<cr>")
 -- nmap("<leader>h", "<cmd>bprevious<cr>")
 
-nmap("<leader>tn", "<cmd>tabnew<cr>")
-nmap("<leader>to", "<cmd>tabonly<cr>")
 nmap("<leader>tc", "<cmd>tabclose<cr>")
-nmap("<leader>tm", "<cmd>tabmove<cr>")
+nmap("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>')
 nmap("<leader>th", "<cmd>tabprevious<cr>")
 nmap("<leader>tl", "<cmd>tabnext<cr>")
-
-nmap("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>')
+nmap("<leader>tm", "<cmd>tabmove<cr>")
+nmap("<leader>tn", "<cmd>tabnew<cr>")
+nmap("<leader>to", "<cmd>tabonly<cr>")
 
 -- Spell Check
 nmap("<leader>ss", "<cmd>setlocal spell!<cr>")

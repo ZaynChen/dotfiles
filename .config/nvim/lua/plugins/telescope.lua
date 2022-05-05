@@ -2,13 +2,13 @@ local nmap = require('mappings').nmap
 
 local builtin = require("telescope.builtin")
 
-nmap("<leader>ff", builtin.find_files)
-nmap("<leader>fg", builtin.live_grep)
-nmap("<leader>fb", builtin.buffers)
-nmap("<leader>fh", builtin.help_tags)
+nmap("<leader>ff", builtin.find_files, { desc = "Telescope find_files" })
+nmap("<leader>fg", builtin.live_grep, { desc = "Telescope live_grep" })
+nmap("<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+nmap("<leader>fh", builtin.help_tags, { desc = "Telescope help_tags" })
 -- nmap("<leader>fj", builtin.jumplist)
 
-require('telescope').setup{
+require('telescope').setup {
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,

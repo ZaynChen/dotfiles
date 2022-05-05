@@ -26,7 +26,7 @@ local on_attach = function(client, bufnr)
   nmap("gwr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", opts)
   nmap("gwl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
   -- Quick-fix
-  nmap("gca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  -- nmap("gca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 
   nmap("<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
   nmap("<leader>m", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
