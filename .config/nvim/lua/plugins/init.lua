@@ -81,7 +81,7 @@ Plug "JuliaEditorSupport/julia-vim"
 -- Debug
 -- TODO
 -- Plug "mfussenegger/nvim-dap"
-Plug "sakhnik/nvim-gdb"
+-- Plug "sakhnik/nvim-gdb"
 
 -- TODO
 -- Plug "iamcco/markdown-preview.nvim"

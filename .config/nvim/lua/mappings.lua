@@ -32,6 +32,8 @@ nmap("<leader>w", "<cmd>w<cr>")
 -- nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>:pwd<cr>')
 
 nmap("<leader>q", "<cmd>q<cr>")
+nmap("ZZ", function() vim.api.nvim_command("wa"); vim.api.nvim_command(":q") end)
+nmap("0", "virtcol('.') == indent('.')+1 ? '0': '^'", { expr = true })
 -- ZZ -> :wq
 -- ZQ -> :q!
 
@@ -40,7 +42,7 @@ nmap("<leader><cr>", "<cmd>noh<cr>")
 -- Buffer
 nmap("<leader>l", "<cmd>bnext<cr>", { desc = "Go to next buffer" })
 nmap("<leader>h", "<cmd>bprevious<cr>", { desc = "Go to previous buffer" })
-nmap("<leader>bd", "<cmd>bdelete<cr>", { desc = "Unload current buffer" })
+nmap("<leader>d", "<cmd>bdelete<cr>", { desc = "Delete current buffer from buffer list" })
 
 -- Tab
 -- nmap("<leader>tc", "<cmd>tabclose<cr>")
@@ -68,10 +70,10 @@ nmap("<M-Down>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 nmap("<M-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 nmap("<M-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
-nmap("<C-h>", "<C-w>h", {desc = "Go to the left window"})
-nmap("<C-j>", "<C-w>j", {desc = "Go to the down window"})
-nmap("<C-k>", "<C-w>k", {desc = "Go to the up window"})
-nmap("<C-l>", "<C-w>l", {desc = "Go to the right window"})
+nmap("<C-h>", "<C-w>h", { desc = "Go to the left window" })
+nmap("<C-j>", "<C-w>j", { desc = "Go to the down window" })
+nmap("<C-k>", "<C-w>k", { desc = "Go to the up window" })
+nmap("<C-l>", "<C-w>l", { desc = "Go to the right window" })
 
 -- tmux doesn't support <C-h> <BS> distinguish yet.
 -- alacritty: using https://github.com/alexherbo2/alacritty-extended-keys

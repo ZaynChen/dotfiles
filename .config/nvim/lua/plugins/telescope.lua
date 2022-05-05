@@ -3,12 +3,6 @@ local nmap = require('mappings').nmap
 local telescope = require("telescope")
 local builtin   = require("telescope.builtin")
 
-nmap("<leader>f", builtin.find_files, { desc = "Telescope find_files" })
-nmap("<leader>s", builtin.live_grep, { desc = "Telescope live_grep" })
-nmap("<leader>bl", builtin.buffers, { desc = "Telescope buffers" })
-nmap("<leader>/", builtin.help_tags, { desc = "Telescope help_tags" })
--- nmap("<leader>fj", builtin.jumplist)
-
 require('telescope').setup {
   defaults = {
     -- Default configuration for telescope goes here:
@@ -82,3 +76,9 @@ telescope.load_extension("fzf")
 -- telescope.load_extension("ui-select")
 -- telescope.load_extension("dap")
 -- telescope.load_extension("vim_bookmarks")
+--
+nmap("<leader>e", builtin.find_files, { desc = "Telescope find_files" })
+nmap("<leader>/", builtin.live_grep, { desc = "Telescope live_grep" })
+-- nmap("<leader>b", builtin.buffers, { desc = "Telescope buffers" })
+nmap("<leader>z", builtin.help_tags, { desc = "Telescope help_tags" })
+-- nmap("<leader>fj", builtin.jumplist)
