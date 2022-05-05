@@ -63,10 +63,15 @@ nmap("<leader>bd", "<cmd>bdelete<cr>", { desc = "Unload current buffer" })
 -- nmap("<leader>pp", "<cmd>setlocal paste!<cr>")
 
 -- resize window
-nmap("<C-h>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
-nmap("<C-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-nmap("<C-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-nmap("<C-l>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+nmap("<M-Up>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+nmap("<M-Down>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+nmap("<M-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+nmap("<M-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
+nmap("<C-h>", "<C-w>h", {desc = "Go to the left window"})
+nmap("<C-j>", "<C-w>j", {desc = "Go to the down window"})
+nmap("<C-k>", "<C-w>k", {desc = "Go to the up window"})
+nmap("<C-l>", "<C-w>l", {desc = "Go to the right window"})
 
 -- tmux doesn't support <C-h> <BS> distinguish yet.
 -- alacritty: using https://github.com/alexherbo2/alacritty-extended-keys

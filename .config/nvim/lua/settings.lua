@@ -70,8 +70,8 @@ opt.list = true
 opt.listchars = { tab = "•\\ ", nbsp = "¬", extends = "»", precedes = "«", trail = "•" }
 
 -- Window
-o.splitbelow = true
-o.splitright = true
+-- o.splitbelow = true
+-- o.splitright = true
 
 -- Backup files
 o.writebackup = false
