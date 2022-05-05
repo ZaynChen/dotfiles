@@ -44,7 +44,7 @@ CASE_SENSITIVE="false"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # zsh cmd echos: https://stackoverflow.com/questions/30940299/zsh-repeats-command-in-output
-DISABLE_AUTO_TITLE="true"
+# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"

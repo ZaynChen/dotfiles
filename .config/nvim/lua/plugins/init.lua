@@ -1,5 +1,5 @@
 local Plug = vim.fn["plug#"]
-local plug_path = vim.fn.expand("<sfile>:p:h").."/plugins"
+local plug_path = vim.fn.expand("<sfile>:p:h") .. "/plugins"
 
 vim.call("plug#begin", plug_path)
 
@@ -31,6 +31,7 @@ Plug("kyazdani42/nvim-tree.lua", { on = "NvimTreeToggle" })
 
 -- Finder
 Plug "nvim-telescope/telescope.nvim"
+Plug("nvim-telescope/telescope-fzf-native.nvim", { ["do"] = "make" })
 
 -- Search
 -- Plug "eugen0329/vim-esearch"
@@ -96,10 +97,10 @@ local HOME = vim.env.HOME
 
 -- need "RRethy/nvim-base16" first
 if vim.fn.filereadable(HOME .. "/.vimrc_background") then
-    base16colorspace = 256
-    vim.cmd("source " .. HOME .. "/.vimrc_background")
+  base16colorspace = 256
+  vim.cmd("source " .. HOME .. "/.vimrc_background")
 else
-    vim.cmd("colorscheme base16-onedark")
+  vim.cmd("colorscheme base16-onedark")
 end
 o.background = "dark"
 o.termguicolors = true
@@ -146,7 +147,6 @@ local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local cmp = require('cmp')
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 
-cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
+cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
 
 require("indent_blankline").setup({ show_end_of_line = true })
-

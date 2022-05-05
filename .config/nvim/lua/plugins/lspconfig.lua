@@ -18,7 +18,7 @@ local on_attach = function(client, bufnr)
   nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
   nmap("gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
   -- origin map: go to sleep for N seconds (default 1)
-  nmap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+  nmap("K", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
   -- origin map: go to the next tab page, using <leader>tl instead
   nmap("gt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
 

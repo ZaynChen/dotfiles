@@ -72,10 +72,15 @@ wk.register {
 }
 
 -- Gitsigns
-wk.register({
+wk.register {
   ["<leader>g"] = { name = "+gitsigns" },
   ["<leader>gt"] = { name = "+toggle" }
-})
+}
+
+-- Buffer
+wk.register {
+  ["<leader>b"] = { name = "+buffer" }
+}
 
 -- Tab
 wk.register {
