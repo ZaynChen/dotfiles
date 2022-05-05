@@ -3,10 +3,10 @@ local nmap = require('mappings').nmap
 local telescope = require("telescope")
 local builtin   = require("telescope.builtin")
 
-nmap("<leader>e", builtin.find_files, { desc = "Telescope find_files" })
-nmap("<leader>fg", builtin.live_grep, { desc = "Telescope live_grep" })
+nmap("<leader>f", builtin.find_files, { desc = "Telescope find_files" })
+nmap("<leader>s", builtin.live_grep, { desc = "Telescope live_grep" })
 nmap("<leader>bl", builtin.buffers, { desc = "Telescope buffers" })
-nmap("<leader>fh", builtin.help_tags, { desc = "Telescope help_tags" })
+nmap("<leader>/", builtin.help_tags, { desc = "Telescope help_tags" })
 -- nmap("<leader>fj", builtin.jumplist)
 
 require('telescope').setup {
@@ -55,7 +55,7 @@ require('telescope').setup {
     },
     live_grep = {
       theme = "dropdown",
-    },
+  },
     help_tags = {
       theme = "dropdown",
     }

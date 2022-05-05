@@ -66,11 +66,6 @@ wk.setup {
   },
 }
 
--- Telescope
-wk.register {
-  ["<leader>f"] = { name = "+telescope" }
-}
-
 -- Gitsigns
 wk.register {
   ["<leader>g"] = { name = "+gitsigns" },

@@ -29,10 +29,11 @@ end
 nmap("<leader>w", "<cmd>w<cr>")
 
 -- nmap("<leader>e", ':e <C-R>=expand("%:p:h")."/"<cr>')
+-- nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>:pwd<cr>')
 
 nmap("<leader>q", "<cmd>q<cr>")
-nmap("<leader>Q", "<cmd>q!<cr>")
-nmap("<leader>wq", "<cmd>wq<cr>")
+-- ZZ -> :wq
+-- ZQ -> :q!
 
 nmap("<leader><cr>", "<cmd>noh<cr>")
 
@@ -51,7 +52,7 @@ nmap("<leader>bd", "<cmd>bdelete<cr>", { desc = "Unload current buffer" })
 -- nmap("<leader>to", "<cmd>tabonly<cr>")
 
 -- Spell Check
-nmap("<leader>ss", "<cmd>setlocal spell!<cr>")
+-- nmap("<leader>ss", "<cmd>setlocal spell!<cr>")
 
 -- nmap("<leader>sn", "]s")
 -- nmap("<leader>sp", "[s")
@@ -59,14 +60,13 @@ nmap("<leader>ss", "<cmd>setlocal spell!<cr>")
 -- nmap("<leader>s?", "z=")
 
 -- Paste Mode
-nmap("<leader>pp", "<cmd>setlocal paste!<cr>")
--- nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>:pwd<cr>')
+-- nmap("<leader>pp", "<cmd>setlocal paste!<cr>")
 
 -- resize window
-nmap("<C-h>", "<cmd>vertical resize +2<cr>", { desc = "Move window border left" })
-nmap("<C-j>", "<cmd>resize -2<cr>", { desc = "Move window border down" })
-nmap("<C-k>", "<cmd>resize +2<cr>", { desc = "Move window border up" })
-nmap("<C-l>", "<cmd>vertical resize -2<cr>", { desc = "Move window border right" })
+nmap("<C-h>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+nmap("<C-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+nmap("<C-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+nmap("<C-l>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 
 -- tmux doesn't support <C-h> <BS> distinguish yet.
 -- alacritty: using https://github.com/alexherbo2/alacritty-extended-keys

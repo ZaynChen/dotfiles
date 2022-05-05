@@ -85,7 +85,7 @@ o.wildignore = ".hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.o"
 -- vim.cmd("source $NVIMRUNTIME/menu.vim")
 
 -- Completion
-opt.completeopt = { "menuone", "noinsert", "noselect" }
+opt.completeopt = { "menuone", "noselect" }
 o.shortmess = o.shortmess .. 'c'
 
 o.mouse = "a"
