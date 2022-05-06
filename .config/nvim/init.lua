@@ -1,5 +1,6 @@
-require("settings")
-require("mappings")
-require("autocmd")
-require("plugins")
+require "utils"
+require "settings"
+require "plugins"
+require "mappings"
+require "autocmd"
 

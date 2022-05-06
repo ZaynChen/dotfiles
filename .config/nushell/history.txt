@@ -1,0 +1,60 @@
+ls
+l
+echo $nu.env-path
+nvim 
+nvim $nu.env-path
+nvim $nu.config-path
+ls
+cd .config
+ls
+help
+help config
+j
+jump
+help list
+cd '/Users/zaynchen/Library/Application Support/nushell/env.nu'
+cd '/Users/zaynchen/Library/Application Support/nushell/'
+ls
+nvim history.txt
+cd ..
+ls
+cd
+ls
+cd Cellar
+cd .config
+ls
+mkdir nu
+cd
+ls
+ls -a
+config
+config set
+help config
+help config set 
+config set path $nu.path
+echo $nu
+-
+cd '/Users/zaynchen/Library/Application Support/nushell/'
+ls
+cd ..
+ls
+e config.nu
+cd '/Library/Application Support/nushell'
+cd '/Library/Application Support/'
+ls
+cd nushell
+cd ..
+ls
+cd
+cd './Library/Application Support/nushell/'
+ls
+ee 
+ls
+nvim config.nu
+nu --help
+nvim config.nu
+ls
+nvim config.nu
+help vi
+help path
+path

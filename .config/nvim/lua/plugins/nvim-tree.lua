@@ -157,7 +157,7 @@ require("nvim-tree").setup {
   },
 }
 
-local nmap = require('mappings').nmap
+local nmap = require('utils.keymap').nmap
 nmap("<leader>n", "<cmd>NvimTreeToggle<cr>")
 -- nmap("<leader>r", "<cmd>NvimTreeRefresh<cr>")
 -- nmap("<leader>", "<cmd>NvimTreeFindFileToggle<cr>")

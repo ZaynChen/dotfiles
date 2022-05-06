@@ -1,7 +1,7 @@
+local nmap = require("utils.keymap").nmap
+
 local lsp_status = require("lsp-status")
 lsp_status.register_progress()
-
-local nmap = require("mappings").nmap
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
 
@@ -10,26 +10,26 @@ local lspconfig = require("lspconfig")
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  opts = { buffer = bufnr, silent = true}
+  opts = { buffer = bufnr }
 
   nmap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
   nmap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
   nmap("K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
   nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-  nmap("gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-  -- origin map: go to sleep for N seconds (default 1)
-  nmap("K", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-  -- origin map: go to the next tab page, using <leader>tl instead
-  nmap("gt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+  nmap("<leader>in", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
+  -- nmap("gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+  nmap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 
-  nmap("gwa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", opts)
-  nmap("gwr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", opts)
-  nmap("gwl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
   -- Quick-fix
-  -- nmap("gca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-
-  nmap("<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  nmap("<M-cr>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  nmap("<M-r>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
   nmap("<leader>m", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
+
+  nmap("g[", "<cmd>lua vim.diagnostic.goto_prev({border = 'rounded'})<cr>", opts)
+  nmap("g]", "<cmd>lua vim.diagnostic.goto_next({border = 'rounded'})<cr>", opts)
+
+  nmap("gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+  -- nmap("<leader>dq", "<cmd>lua vim.diagnostic.setloclist()<cr>", opts)
 
   lsp_status.on_attach(client)
 end
@@ -90,49 +90,80 @@ lspconfig.sumneko_lua.setup {
           "?/init.lua",
           vim.fn.expand("~/.luarocks/share/lua/5.4/?.lua"),
           vim.fn.expand("~/.luarocks/share/lua/5.4/?/init.lua"),
-          "/usr/share/lua/5.4/?.lua",
-          "/usr/share/lua/5.4/?/init.lua"
+          -- "/usr/share/lua/5.4/?.lua",
+          -- "/usr/share/lua/5.4/?/init.lua"
         }
       },
       workspace = {
-        -- library = vim.api.nvim_get_runtime_file("", true)
         library = {
           vim.fn.expand("~/.luarocks/share/lua/5.4"),
-          "/usr/share/lua/5.4"
+          -- "/usr/share/lua/5.4",
         }
+        -- library = vim.tbl_extend("keep",
+        --   vim.api.nvim_get_runtime_file("", true), {
+        --   -- vim.fn.expand(vim.env.NVIMRUNTIME .. "/lua"),
+        --   vim.fn.expand("~/.luarocks/share/lua/5.4"),
+        --   -- "/usr/share/lua/5.4",
+        -- })
+      },
+      format = {
+        enable = true,
+        -- defaultConfig = {
+        --   indent_style = "space",
+        --   indent_size = "2",
+        -- }
       },
       completion = {
-        keywordSnippet = "Enable"
+        keywordSnippet = "Enable",
         -- callSnippet = "Replace",
       },
       diagnostics = {
         enable = true,
         globals = { "vim", "hs", "it", "describe", "before_eac", "after_each" },
-        disable = { "lowercase-global" }
+        disable = { "lowercase-global" },
+        -- neededFileStatus = {
+        --   ["codestyle-check"] = "Any",
+        -- }
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
         enable = false,
       }
-    }
+    },
   }
 }
 
--- -- Enable diagnostics
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---   vim.lsp.diagnostic.on_publish_diagnostics, {
---     virtual_text = false,
---     signs = true,
---     update_in_insert = true,
---   }
--- )
+local signs = {
+  { name = "DiagnosticSignError", text = "" },
+  { name = "DiagnosticSignWarn", text = "" },
+  { name = "DiagnosticSignHint", text = "" },
+  { name = "DiagnosticSignInfo", text = "" },
+}
+
+for _, sign in ipairs(signs) do
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+end
+
+vim.diagnostic.config {
+  virtual_text = false,
+  signs = {
+    active = signs
+  },
+  update_in_insert = true,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+}
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
 vim.o.updatetime = 300
 
--- Show diagnostic popup on cursor hover
-vim.cmd([[
-  autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]])
--- Goto previous/next diagnostic warning/error
-nmap("g[", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
-nmap("g]", "<cmd>lua vim.diagnostic.goto_next()<cr>")
