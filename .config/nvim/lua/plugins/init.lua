@@ -102,7 +102,6 @@ g.rainbow_active = 1
 require("nvim-web-devicons").setup {}
 require("cmp_nvim_ultisnips").setup {}
 
-require("plugins/nvim-base16")
 require("plugins/lualine")
 require("plugins/nvim-tree")
 require("plugins/treesitter")

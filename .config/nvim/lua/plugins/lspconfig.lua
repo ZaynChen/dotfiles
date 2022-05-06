@@ -119,7 +119,7 @@ lspconfig.sumneko_lua.setup {
       },
       diagnostics = {
         enable = true,
-        globals = { "vim", "hs", "it", "describe", "before_eac", "after_each" },
+        globals = { "vim", "hs", "it", "describe", "before_each", "after_each" },
         disable = { "lowercase-global" },
         -- neededFileStatus = {
         --   ["codestyle-check"] = "Any",
@@ -165,5 +165,4 @@ vim.diagnostic.config {
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
-vim.o.updatetime = 300
 

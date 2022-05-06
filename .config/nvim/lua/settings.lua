@@ -17,8 +17,8 @@ o.history = 500
 opt.fileformats = { "unix", "mac", "dos" }
 opt.clipboard = { "unnamed", "unnamedplus" }
 
--- Mapping waiting time
 o.timeoutlen = 500
+o.updatetime = 300
 
 -- Display
 o.showmatch = true
@@ -50,10 +50,6 @@ else
 end
 o.background = "dark"
 o.termguicolors = true
-
-g.lightline = {
-    colorscheme = 'onedark',
-}
 
 -- Search
 o.ignorecase = true
