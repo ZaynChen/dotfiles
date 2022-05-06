@@ -81,9 +81,6 @@ o.swapfile = false
 o.wildmode = "list:longest"
 o.wildignore = ".hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.o"
 
--- vim.cmd("source $NVIMRUNTIME/delmenu.vim")
--- vim.cmd("source $NVIMRUNTIME/menu.vim")
-
 -- Completion
 opt.completeopt = { "menuone", "noselect" }
 o.shortmess = o.shortmess .. 'c'

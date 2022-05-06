@@ -5,14 +5,14 @@ local cmap = keymap.cmap
 
 nmap("<leader>w", "<cmd>w<cr>")
 
--- nmap("<leader>e", ':e <C-R>=expand("%:p:h")."/"<cr>')
+nmap("<leader>e", ':e <C-R>=expand("%:p:h")."/"<cr>')
 -- nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>:pwd<cr>')
 
 nmap("<leader>q", "<cmd>q<cr>")
 nmap("ZZ", function() vim.api.nvim_command("wa"); vim.api.nvim_command(":q") end)
-nmap("0", "virtcol('.') == indent('.')+1 ? '0': '^'", { expr = true })
--- ZZ -> :wq
 -- ZQ -> :q!
+
+nmap("0", "virtcol('.') == indent('.')+1 ? '0': '^'", { expr = true })
 
 nmap("<leader><cr>", "<cmd>noh<cr>")
 

@@ -73,14 +73,14 @@ wk.register {
 }
 
 -- Buffer
-wk.register {
-  ["<leader>b"] = { name = "+buffer" }
-}
+-- wk.register {
+--   ["<leader>b"] = { name = "+buffer" }
+-- }
 
 -- Tab
-wk.register {
-  ["<leader>t"] = { name = "+tab" },
-}
+-- wk.register {
+--   ["<leader>t"] = { name = "+tab" },
+-- }
 
 -- Commentary
 wk.register {

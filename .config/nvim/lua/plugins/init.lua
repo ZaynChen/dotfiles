@@ -32,10 +32,7 @@ Plug "nvim-telescope/telescope.nvim"
 Plug("nvim-telescope/telescope-fzf-native.nvim", { ["do"] = "make" })
 
 -- Search
--- Plug "eugen0329/vim-esearch"
 Plug "kevinhwang91/nvim-hlslens"
--- TODO
--- Plug "mg979/vim/visual-multi"
 
 -- Completion
 Plug "hrsh7th/nvim-cmp"
@@ -109,13 +106,13 @@ require("plugins/nvim-base16")
 require("plugins/lualine")
 require("plugins/nvim-tree")
 require("plugins/treesitter")
-require("indent_blankline").setup({ show_end_of_line = true })
+require("indent_blankline").setup { show_end_of_line = true }
+require("plugins/telescope")
 
 require("plugins/nvim-cmp")
 require("plugins/nvim-autopairs")
 
 require("plugins/lspconfig")
-require("plugins/telescope")
 require("plugins/gitsigns")
 require("plugins/crates")
 require("plugins/vimtex")
