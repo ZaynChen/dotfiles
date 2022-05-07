@@ -11,6 +11,7 @@ env.LANG = "en_US.UTF-8"
 
 -- Basic settings
 o.encoding = "utf-8"
+opt.fileencodings = { "ucs-bom", "utf-8", "gbk", "default", "latin1" }
 opt.backspace = { "indent", "eol", "start" }
 o.whichwrap = o.whichwrap .. "<,>,h,l"
 o.history = 500
@@ -43,10 +44,10 @@ o.numberwidth = 3
 
 -- Color Scheme
 if vim.fn.filereadable(HOME .. "/.vimrc_background") then
-    base16colorspace = 256
-    vim.cmd("source " .. HOME .. "/.vimrc_background")
+  base16colorspace = 256
+  vim.cmd("source " .. HOME .. "/.vimrc_background")
 else
-    vim.cmd("colorscheme base16-onedark")
+  vim.cmd("colorscheme base16-onedark")
 end
 o.background = "dark"
 o.termguicolors = true
