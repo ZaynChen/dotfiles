@@ -7,25 +7,26 @@ Plug "nvim-lua/plenary.nvim"
 -- Web apis
 Plug "mattn/webapi-vim"
 
--- Color Scheme
+-- Colorscheme
 Plug "RRethy/nvim-base16"
 
--- Status Line
+-- Statusline
 Plug "nvim-lualine/lualine.nvim"
 
--- Display
--- Plug "kien/rainbow_parentheses.vim"
--- Plug "luochen1990/rainbow"
-Plug "p00f/nvim-ts-rainbow"
+-- Indent
 Plug "lukas-reineke/indent-blankline.nvim"
 
--- Syntax Highlight
+-- Syntax
 -- Plug "sheerun/vim-polyglot"
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug "nvim-treesitter/nvim-treesitter-refactor"
+Plug "nvim-treesitter/nvim-treesitter-textobjects"
+Plug "RRethy/nvim-treesitter-textsubjects"
+
+-- Icon
+Plug "kyazdani42/nvim-web-devicons"
 
 -- File Explorer
-Plug "kyazdani42/nvim-web-devicons"
 Plug("kyazdani42/nvim-tree.lua", { on = "NvimTreeToggle" })
 
 -- Finder
@@ -38,8 +39,6 @@ Plug "kevinhwang91/nvim-hlslens"
 -- Completion
 Plug "hrsh7th/nvim-cmp"
 Plug "onsails/lspkind.nvim"
-
-Plug "windwp/nvim-autopairs"
 
 -- Sources
 Plug "hrsh7th/cmp-buffer"
@@ -60,6 +59,14 @@ Plug "hrsh7th/cmp-nvim-lua"
 Plug "SirVer/ultisnips"
 Plug "honza/vim-snippets"
 Plug "quangnguyen30192/cmp-nvim-ultisnips"
+
+-- Editing Support
+Plug "romgrk/nvim-treesitter-context"
+Plug "windwp/nvim-autopairs"
+Plug "p00f/nvim-ts-rainbow"
+Plug "RRethy/nvim-treesitter-endwise"
+-- Plug "kien/rainbow_parentheses.vim"
+-- Plug "luochen1990/rainbow"
 
 -- Comment
 Plug "tpope/vim-commentary"
@@ -113,11 +120,13 @@ require("cmp_nvim_ultisnips").setup {}
 require("plugins/lualine")
 require("plugins/nvim-tree")
 require("plugins/treesitter")
+
 require("indent_blankline").setup { show_end_of_line = true }
 require("plugins/telescope")
 
 require("plugins/nvim-cmp")
 require("plugins/nvim-autopairs")
+require("plugins/treesitter-context")
 
 require("plugins/lspconfig")
 require("plugins/lsp_signature")

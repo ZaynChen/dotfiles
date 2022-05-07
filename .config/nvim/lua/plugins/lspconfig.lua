@@ -9,36 +9,53 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capa
 local lspconfig = require("lspconfig")
 
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
   -- desc for which_key hints
   local opts = function(desc)
-    local opts = { buffer = bufnr }
+    local opts = { buffer = true }
     opts.desc = desc
     return opts
   end
 
-  -- lua lsp not support declaration & implementation & incomming_calls
   -- nmap("gD", vim.lsp.buf.declaration, opts("lsp.buf.declaration"))
-  nmap("gd", vim.lsp.buf.definition, opts("lsp.buf.definition"))
-  nmap("K", vim.lsp.buf.hover, opts("lsp.buf.hover"))
+  nmap("K", vim.lsp.buf.hover, opts("[LSP]Hover info"))
+  nmap("<C-s>", vim.lsp.buf.signature_help, opts("[LSP]Signature info"))
 
-  -- nmap("gi", vim.lsp.buf.implementation, opts("lsp.buf.implementation"))
-  nmap("<leader>in", vim.lsp.buf.incoming_calls, opts("lsp.buf.incoming_calls"))
-  -- nmap("gr", vim.lsp.buf.references, opts("lsp.buf.references"))
-  -- nmap("<C-k>", vim.lsp.buf.signature_help, opts("lsp.buf.signature_help"))
+  nmap("<C-]>", vim.lsp.buf.definition, opts("[LSP]Go to definition"))
+  nmap("gd", vim.lsp.buf.type_definition, opts("[LSP]Go to type definition"))
 
-  -- Quick-fix
-  nmap("<M-cr>", vim.lsp.buf.code_action, opts("lsp.buf.code_action"))
-  nmap("<M-r>", vim.lsp.buf.rename, opts("lsp.buf.rename"))
-  nmap("<leader>m", vim.lsp.buf.formatting, opts("lsp.buf.formatting"))
+  nmap("gi", vim.lsp.buf.implementation, opts("[LSP]List Implementations"))
+  -- nmap("<leader>in", vim.lsp.buf.incoming_calls, opts("[LSP]List calls"))
+  nmap("gr", vim.lsp.buf.references, opts("[LSP]List References"))
 
-  nmap("g[", vim.diagnostic.goto_prev, opts("diagnostic.goto_prev"))
-  nmap("g]", vim.diagnostic.goto_next, opts("diagnostic.goto_next"))
+  nmap("<M-r>", vim.lsp.buf.rename, opts("[LSP]Rename"))
+  nmap("<leader>m", vim.lsp.buf.formatting, opts("[LSP]Formatting"))
+  nmap("<M-cr>", vim.lsp.buf.code_action, opts("[LSP]Code action"))
 
-  nmap("gl", vim.diagnostic.open_float, opts("diagnostic.open_float"))
+  nmap("\\d", vim.diagnostic.open_float, opts("[Diagnostic]Open float"))
+  nmap("]d", vim.diagnostic.goto_next, opts("[Diagnostic]Goto next"))
+  nmap("[d", vim.diagnostic.goto_prev, opts("[Diagnostic]Goto prev"))
   -- nmap("<leader>dq", vim.diagnostic.setloclist, opts("diagnostic.setloclist"))
+
+  -- Enable completion triggered by <c-x><c-o>
+  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+  -- FormatOnSave
+  local lsp_augroup = vim.api.nvim_create_augroup("lsp_augroup" .. bufnr, { clear = true })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = lsp_augroup,
+    buffer = bufnr,
+    desc = "[LSP]FormatOnSave",
+    callback = function() vim.lsp.buf.formatting_sync(nil, 3000) end
+  })
+
+  -- Show diagnostic popup on cursor hover
+  vim.api.nvim_create_autocmd("CursorHold", {
+    group = lsp_augroup,
+    buffer = bufnr,
+    desc = "[Diagnostic]Open float when cursor hold",
+    callback = function() vim.diagnostic.open_float(nil, { focusable = false }) end
+  })
 
   lsp_status.on_attach(client)
   -- lsp_format.on_attach(client)
