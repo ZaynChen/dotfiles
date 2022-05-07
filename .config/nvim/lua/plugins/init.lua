@@ -65,8 +65,6 @@ Plug "romgrk/nvim-treesitter-context"
 Plug "windwp/nvim-autopairs"
 Plug "p00f/nvim-ts-rainbow"
 Plug "RRethy/nvim-treesitter-endwise"
--- Plug "kien/rainbow_parentheses.vim"
--- Plug "luochen1990/rainbow"
 
 -- Comment
 Plug "tpope/vim-commentary"

@@ -1,5 +1,7 @@
-local nmap = require("utils.keymap").nmap
+local lsp = vim.lsp
+local diagnostic = vim.diagnostic
 
+local nmap = require("utils.keymap").nmap
 -- local lsp_format = require("lsp-format") -- autocmd
 local lsp_status = require("lsp-status")
 lsp_status.register_progress()
@@ -16,29 +18,29 @@ local on_attach = function(client, bufnr)
     return opts
   end
 
-  -- nmap("gD", vim.lsp.buf.declaration, opts("lsp.buf.declaration"))
-  nmap("K", vim.lsp.buf.hover, opts("[LSP]Hover info"))
-  nmap("<C-s>", vim.lsp.buf.signature_help, opts("[LSP]Signature info"))
+  -- nmap("gD", lsp.buf.declaration, opts("lsp.buf.declaration"))
+  nmap("K", lsp.buf.hover, opts("[LSP]Hover info"))
+  nmap("<C-s>", lsp.buf.signature_help, opts("[LSP]Signature info"))
 
-  nmap("<C-]>", vim.lsp.buf.definition, opts("[LSP]Go to definition"))
-  nmap("gd", vim.lsp.buf.type_definition, opts("[LSP]Go to type definition"))
+  nmap("<C-]>", lsp.buf.definition, opts("[LSP]Go to definition"))
+  nmap("gd", lsp.buf.type_definition, opts("[LSP]Go to type definition"))
 
-  nmap("gi", vim.lsp.buf.implementation, opts("[LSP]List Implementations"))
-  -- nmap("<leader>in", vim.lsp.buf.incoming_calls, opts("[LSP]List calls"))
-  nmap("gr", vim.lsp.buf.references, opts("[LSP]List References"))
+  nmap("gi", lsp.buf.implementation, opts("[LSP]List Implementations"))
+  -- nmap("<leader>in", lsp.buf.incoming_calls, opts("[LSP]List calls"))
+  nmap("gr", lsp.buf.references, opts("[LSP]List References"))
 
-  nmap("<M-r>", vim.lsp.buf.rename, opts("[LSP]Rename"))
-  nmap("<leader>m", vim.lsp.buf.formatting, opts("[LSP]Formatting"))
-  nmap("<M-cr>", vim.lsp.buf.code_action, opts("[LSP]Code action"))
+  nmap("<M-r>", lsp.buf.rename, opts("[LSP]Rename"))
+  nmap("<leader>m", lsp.buf.formatting, opts("[LSP]Formatting"))
+  nmap("<M-cr>", lsp.buf.code_action, opts("[LSP]Code action"))
 
-  nmap("\\d", vim.diagnostic.open_float, opts("[Diagnostic]Open float"))
-  nmap("]d", vim.diagnostic.goto_next, opts("[Diagnostic]Goto next"))
-  nmap("[d", vim.diagnostic.goto_prev, opts("[Diagnostic]Goto prev"))
-  -- nmap("<leader>dq", vim.diagnostic.setloclist, opts("diagnostic.setloclist"))
+  nmap("\\d", diagnostic.open_float, opts("[Diagnostic]Open float"))
+  nmap("]d", diagnostic.goto_next, opts("[Diagnostic]Goto next"))
+  nmap("[d", diagnostic.goto_prev, opts("[Diagnostic]Goto prev"))
+  -- nmap("<leader>dq", diagnostic.setloclist, opts("diagnostic.setloclist"))
 
   -- Enable completion triggered by <c-x><c-o>
-  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.lsp.omnifunc")
+  vim.bo.omnifunc = "v:lua.lsp.omnifunc"
 
   -- FormatOnSave
   local lsp_augroup = vim.api.nvim_create_augroup("lsp_augroup" .. bufnr, { clear = true })
@@ -46,7 +48,7 @@ local on_attach = function(client, bufnr)
     group = lsp_augroup,
     buffer = bufnr,
     desc = "[LSP]FormatOnSave",
-    callback = function() vim.lsp.buf.formatting_sync(nil, 3000) end
+    callback = function() lsp.buf.formatting_sync(nil, 3000) end
   })
 
   -- Show diagnostic popup on cursor hover
@@ -54,7 +56,7 @@ local on_attach = function(client, bufnr)
     group = lsp_augroup,
     buffer = bufnr,
     desc = "[Diagnostic]Open float when cursor hold",
-    callback = function() vim.diagnostic.open_float(nil, { focusable = false }) end
+    callback = function() diagnostic.open_float(nil, { focusable = false }) end
   })
 
   lsp_status.on_attach(client)
@@ -167,7 +169,7 @@ for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
-vim.diagnostic.config {
+diagnostic.config {
   virtual_text = false,
   signs = {
     active = signs
@@ -185,4 +187,37 @@ vim.diagnostic.config {
   },
 }
 
--- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }) vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+lsp.handlers["textDocument/hover"] = lsp.with(
+  lsp.handlers.hover,
+  { border = "rounded" }
+)
+
+lsp.handlers["textDocument/signatureHelp"] = lsp.with(
+  lsp.handlers.signature_help,
+  { border = "rounded" }
+)
+
+lsp.handlers["textDocument/references"] = lsp.with(
+  lsp.handlers["textDocument/references"],
+  { loclist = true }
+)
+
+lsp.handlers['textDocument/typeDefinition'] = lsp.with(
+  lsp.handlers['textDocument/typeDefinition'],
+  { loclist = true, }
+)
+
+lsp.handlers['textDocument/declaration'] = lsp.with(
+  lsp.handlers['textDocument/declaration'],
+  { loclist = true }
+)
+
+lsp.handlers['textDocument/definition'] = lsp.with(
+  lsp.handlers['textDocument/definition'],
+  { loclist = true }
+)
+
+lsp.handlers['textDocument/implementation'] = lsp.with(
+  lsp.handlers['textDocument/implementation'],
+  { loclist = true, }
+)

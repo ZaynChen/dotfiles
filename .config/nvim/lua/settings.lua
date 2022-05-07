@@ -18,6 +18,12 @@ o.history = 500
 opt.fileformats = { "unix", "mac", "dos" }
 opt.clipboard = { "unnamed", "unnamedplus" }
 
+-- TODO
+o.foldmethod = "expr"
+o.foldexpr = "nvim_treesitter#foldexpr"
+o.grepprg = "rg --smart-case --vimgrep $*"
+o.grepformat = "%f:%l:%c:%m"
+
 o.timeoutlen = 500
 o.updatetime = 300
 
