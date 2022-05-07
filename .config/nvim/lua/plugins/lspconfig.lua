@@ -12,24 +12,24 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   opts = { buffer = bufnr }
 
-  nmap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-  nmap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-  nmap("K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-  nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-  nmap("<leader>in", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
-  -- nmap("gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-  nmap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+  nmap("gD", vim.lsp.buf.declaration, opts)
+  nmap("gd", vim.lsp.buf.definition, opts)
+  nmap("K", vim.lsp.buf.hover, opts)
+  nmap("gi", vim.lsp.buf.implementation, opts)
+  nmap("<leader>in", vim.lsp.buf.incoming_calls, opts)
+  -- nmap("gr", vim.lsp.buf.references, opts)
+  nmap("<C-k>", vim.lsp.buf.signature_help, opts)
 
   -- Quick-fix
-  nmap("<M-cr>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-  nmap("<M-r>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  nmap("<leader>m", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
+  nmap("<M-cr>", vim.lsp.buf.code_action, opts)
+  nmap("<M-r>", vim.lsp.buf.rename, opts)
+  nmap("<leader>m", vim.lsp.buf.formatting, opts)
 
-  nmap("g[", "<cmd>lua vim.diagnostic.goto_prev({border = 'rounded'})<cr>", opts)
-  nmap("g]", "<cmd>lua vim.diagnostic.goto_next({border = 'rounded'})<cr>", opts)
+  nmap("g[", vim.diagnostic.goto_prev, opts)
+  nmap("g]", vim.diagnostic.goto_next, opts)
 
-  nmap("gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
-  -- nmap("<leader>dq", "<cmd>lua vim.diagnostic.setloclist()<cr>", opts)
+  nmap("gl", vim.diagnostic.open_float, opts)
+  -- nmap("<leader>dq", vim.diagnostic.setloclist, opts)
 
   lsp_status.on_attach(client)
 end
@@ -55,32 +55,28 @@ require("rust-tools").setup({
   -- }
 })
 
--- Enable pyright
-lspconfig.pyright.setup {
-  cmd = { "pyright-langserver", "--stdio" },
+-- Enable clangd
+lspconfig.clangd.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "python" },
-  signle_file_support = true,
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = "workspace",
-        useLibraryCodeForTypes = true
-      }
-    }
-  },
+}
+
+-- Enable cmake
+lspconfig.cmake.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+-- Enable pyright
+lspconfig.pyright.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 -- Enable sumneko_lua
 lspconfig.sumneko_lua.setup {
-  cmd = { "lua-language-server" },
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "lua" },
-  log_level = 2,
-  signle_file_support = true,
   settings = {
     Lua = {
       runtime = {
@@ -164,5 +160,3 @@ vim.diagnostic.config {
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
-

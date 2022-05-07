@@ -152,7 +152,7 @@ export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PA
 
 if [ -x "$(command -v brew)" ] ; then
     # nvim install by brew
-    export PATH="/usr/local/Cellar/llvm/12.0.1/bin:$PATH"
+    export PATH="/usr/local/Cellar/llvm/13.0.1_1/bin:$PATH"
     export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.0/share/nvim/runtime"
 else
     export NVIMRUNTIME="/usr/share/nvim/runtime"
