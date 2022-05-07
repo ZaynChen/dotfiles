@@ -1,5 +1,6 @@
 local nmap = require("utils.keymap").nmap
 
+-- local lsp_format = require("lsp-format") -- autocmd
 local lsp_status = require("lsp-status")
 lsp_status.register_progress()
 
@@ -10,28 +11,35 @@ local lspconfig = require("lspconfig")
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  opts = { buffer = bufnr }
 
-  nmap("gD", vim.lsp.buf.declaration, opts)
-  nmap("gd", vim.lsp.buf.definition, opts)
-  nmap("K", vim.lsp.buf.hover, opts)
-  nmap("gi", vim.lsp.buf.implementation, opts)
-  nmap("<leader>in", vim.lsp.buf.incoming_calls, opts)
-  -- nmap("gr", vim.lsp.buf.references, opts)
-  nmap("<C-k>", vim.lsp.buf.signature_help, opts)
+  -- desc for which_key hints
+  local opts = function(desc)
+    local opts = { buffer = bufnr }
+    opts.desc = desc
+    return opts
+  end
+
+  nmap("gD", vim.lsp.buf.declaration, opts("lsp.buf.declaration"))
+  nmap("gd", vim.lsp.buf.definition, opts("lsp.buf.definition"))
+  nmap("K", vim.lsp.buf.hover, opts("lsp.buf.hover"))
+  nmap("gi", vim.lsp.buf.implementation, opts("lsp.buf.implementation"))
+  nmap("<leader>in", vim.lsp.buf.incoming_calls, opts("lsp.buf.incoming_calls"))
+  -- nmap("gr", vim.lsp.buf.references, opts("lsp.buf.references"))
+  nmap("<C-k>", vim.lsp.buf.signature_help, opts("lsp.buf.signature_help"))
 
   -- Quick-fix
-  nmap("<M-cr>", vim.lsp.buf.code_action, opts)
-  nmap("<M-r>", vim.lsp.buf.rename, opts)
-  nmap("<leader>m", vim.lsp.buf.formatting, opts)
+  nmap("<M-cr>", vim.lsp.buf.code_action, opts("lsp.buf.code_action"))
+  nmap("<M-r>", vim.lsp.buf.rename, opts("lsp.buf.rename"))
+  nmap("<leader>m", vim.lsp.buf.formatting, opts("lsp.buf.formatting"))
 
-  nmap("g[", vim.diagnostic.goto_prev, opts)
-  nmap("g]", vim.diagnostic.goto_next, opts)
+  nmap("g[", vim.diagnostic.goto_prev, opts("diagnostic.goto_prev"))
+  nmap("g]", vim.diagnostic.goto_next, opts("diagnostic.goto_next"))
 
-  nmap("gl", vim.diagnostic.open_float, opts)
-  -- nmap("<leader>dq", vim.diagnostic.setloclist, opts)
+  nmap("gl", vim.diagnostic.open_float, opts("diagnostic.open_float"))
+  -- nmap("<leader>dq", vim.diagnostic.setloclist, opts("diagnostic.setloclist"))
 
   lsp_status.on_attach(client)
+  -- lsp_format.on_attach(client)
 end
 
 -- Enable rust-tools

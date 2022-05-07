@@ -61,14 +61,9 @@ Plug "quangnguyen30192/cmp-nvim-ultisnips"
 -- Comment
 Plug "tpope/vim-commentary"
 
--- Editorconfig
+-- Formatting
 Plug "editorconfig/editorconfig-vim"
-
--- Tool
-Plug "wakatime/vim-wakatime"
-Plug "folke/which-key.nvim"
--- this if for im switch, lick fcitx switch, but has bug on macos
--- Plug "rlue/vim-barbaric"
+-- Plug "lukas-reineke/lsp-format.nvim"
 
 -- Git
 Plug "lewis6991/gitsigns.nvim"
@@ -89,6 +84,12 @@ Plug "JuliaEditorSupport/julia-vim"
 -- Plug "mfussenegger/nvim-dap"
 -- Plug "sakhnik/nvim-gdb"
 
+-- Tool
+Plug "wakatime/vim-wakatime"
+Plug "folke/which-key.nvim"
+
+-- this if for im switch, lick fcitx switch, but has bug on macos
+-- Plug "rlue/vim-barbaric"
 -- TODO
 -- Plug "iamcco/markdown-preview.nvim"
 

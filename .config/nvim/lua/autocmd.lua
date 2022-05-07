@@ -24,11 +24,11 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 
 -- FormatOnSave
--- vim.api.nvim_create_autocmd("BufWritePre", {
---   group = format,
---   pattern = "*",
---   callback = function() vim.lsp.buf.formatting_sync() end
--- })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = format,
+  pattern = "<buffer>",
+  callback = function() vim.lsp.buf.formatting_sync() end
+})
 
 -- 退出插入模式时禁用输入法
 -- 创建 Buf 时禁用输入法
