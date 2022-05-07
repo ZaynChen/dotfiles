@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("BufRead", {
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = format,
   pattern = "<buffer>",
-  callback = function() vim.lsp.buf.formatting_sync() end
+  callback = vim.lsp.buf.formatting_sync
 })
 
 -- 退出插入模式时禁用输入法

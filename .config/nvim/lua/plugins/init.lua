@@ -22,6 +22,7 @@ Plug "lukas-reineke/indent-blankline.nvim"
 -- Syntax Highlight
 -- Plug "sheerun/vim-polyglot"
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug "nvim-treesitter/nvim-treesitter-refactor"
 
 -- File Explorer
 Plug "kyazdani42/nvim-web-devicons"
@@ -51,6 +52,8 @@ Plug "ray-x/cmp-treesitter"
 Plug "hrsh7th/cmp-nvim-lsp"
 Plug "hrsh7th/cmp-nvim-lsp-signature-help"
 Plug "hrsh7th/cmp-nvim-lua"
+-- Plug "jsfaint/gen_tags.vim"
+-- Plug "c0r73x/neotags.lua"
 -- Plug "rcarriga/cmp-dap"
 
 -- Snippets
@@ -60,6 +63,7 @@ Plug "quangnguyen30192/cmp-nvim-ultisnips"
 
 -- Comment
 Plug "tpope/vim-commentary"
+-- Plug "JoosepAlviste/nvim-ts-context-commentstring"
 
 -- Formatting
 Plug "editorconfig/editorconfig-vim"
@@ -71,6 +75,9 @@ Plug "lewis6991/gitsigns.nvim"
 -- LSP
 Plug "neovim/nvim-lspconfig"
 Plug "nvim-lua/lsp-status.nvim"
+Plug "ray-x/lsp_signature.nvim"
+-- Plug("ray-x/guihua.lua", { ["do"] = "cd lua/fzy && make" })
+-- Plug("ray-x/navigator.lua")
 
 -- Rust
 Plug "simrat39/rust-tools.nvim"
@@ -113,6 +120,9 @@ require("plugins/nvim-cmp")
 require("plugins/nvim-autopairs")
 
 require("plugins/lspconfig")
+require("plugins/lsp_signature")
+-- require("plugins/navigator")
+
 require("plugins/gitsigns")
 require("plugins/crates")
 require("plugins/vimtex")

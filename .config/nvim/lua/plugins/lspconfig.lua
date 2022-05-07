@@ -19,13 +19,15 @@ local on_attach = function(client, bufnr)
     return opts
   end
 
-  nmap("gD", vim.lsp.buf.declaration, opts("lsp.buf.declaration"))
+  -- lua lsp not support declaration & implementation & incomming_calls
+  -- nmap("gD", vim.lsp.buf.declaration, opts("lsp.buf.declaration"))
   nmap("gd", vim.lsp.buf.definition, opts("lsp.buf.definition"))
   nmap("K", vim.lsp.buf.hover, opts("lsp.buf.hover"))
-  nmap("gi", vim.lsp.buf.implementation, opts("lsp.buf.implementation"))
+
+  -- nmap("gi", vim.lsp.buf.implementation, opts("lsp.buf.implementation"))
   nmap("<leader>in", vim.lsp.buf.incoming_calls, opts("lsp.buf.incoming_calls"))
   -- nmap("gr", vim.lsp.buf.references, opts("lsp.buf.references"))
-  nmap("<C-k>", vim.lsp.buf.signature_help, opts("lsp.buf.signature_help"))
+  -- nmap("<C-k>", vim.lsp.buf.signature_help, opts("lsp.buf.signature_help"))
 
   -- Quick-fix
   nmap("<M-cr>", vim.lsp.buf.code_action, opts("lsp.buf.code_action"))
@@ -166,5 +168,4 @@ vim.diagnostic.config {
   },
 }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }) vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
