@@ -5,30 +5,30 @@ local cmap = keymap.cmap
 
 nmap("<leader>w", "<cmd>w<cr>")
 
-nmap("<leader>e", ':e <C-R>=expand("%:p:h")."/"<cr>', { silent = false })
+nmap("<leader>e", ':e <C-R>=expand("%:p:h")."/"<cr>', { silent = false, desc = "e" })
 -- nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>:pwd<cr>')
 
 nmap("<leader>q", "<cmd>q<cr>")
-nmap("ZZ", function() vim.api.nvim_command("wa"); vim.api.nvim_command(":q") end)
+nmap("ZZ", function() vim.api.nvim_command("wa"); vim.api.nvim_command(":q") end, { desc = "Save all buffers & quit" })
 -- ZQ -> :q!
 
-nmap("0", "virtcol('.') == indent('.')+1 ? '0': '^'", { expr = true })
+nmap("0", "virtcol('.') == indent('.')+1 ? '0': '^'", { expr = true, desc = "Start of line (smart)" })
 
-nmap("<leader><cr>", "<cmd>noh<cr>")
+nmap("<leader>l", "<cmd>noh<cr>")
 
 -- Buffer
-nmap("<leader>l", "<cmd>bnext<cr>", { desc = "Go to next buffer" })
-nmap("<leader>h", "<cmd>bprevious<cr>", { desc = "Go to previous buffer" })
-nmap("<leader>d", "<cmd>bdelete<cr>", { desc = "Delete current buffer from buffer list" })
+nmap("<leader>bl", "<cmd>bnext<cr>", { desc = "[Buffer]Next" })
+nmap("<leader>bh", "<cmd>bprevious<cr>", { desc = "[Buffer]Prev" })
+nmap("<leader>bd", "<cmd>bdelete<cr>", { desc = "[Buffer]Delete from list" })
 
 -- Tab
--- nmap("<leader>tc", "<cmd>tabclose<cr>")
--- nmap("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>', { silent = false })
--- nmap("<leader>th", "<cmd>tabprevious<cr>")
--- nmap("<leader>tl", "<cmd>tabnext<cr>")
--- nmap("<leader>tm", "<cmd>tabmove<cr>")
--- nmap("<leader>tn", "<cmd>tabnew<cr>")
--- nmap("<leader>to", "<cmd>tabonly<cr>")
+nmap("<leader>tc", "<cmd>tabclose<cr>", { desc = "[Tab]Close" })
+nmap("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>', { silent = false, desc = "[Tap]Edit" })
+nmap("<leader>th", "<cmd>tabprevious<cr>", { desc = "[Tap]Prev" })
+nmap("<leader>tl", "<cmd>tabnext<cr>", { desc = "[Tap]Next" })
+nmap("<leader>tm", "<cmd>tabmove<cr>", { desc = "[Tap]Move" })
+nmap("<leader>tn", "<cmd>tabnew<cr>", { desc = "[Tap]New" })
+nmap("<leader>to", "<cmd>tabonly<cr>", { desc = "[Tap]Only" })
 
 -- Spell Check
 -- nmap("<leader>ss", "<cmd>setlocal spell!<cr>")
@@ -42,29 +42,29 @@ nmap("<leader>d", "<cmd>bdelete<cr>", { desc = "Delete current buffer from buffe
 -- nmap("<leader>pp", "<cmd>setlocal paste!<cr>")
 
 -- resize window
-nmap("<M-Up>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-nmap("<M-Down>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-nmap("<M-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-nmap("<M-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+nmap("<M-Up>", "<cmd>resize -2<cr>", { desc = "[Window]Height Descrease" })
+nmap("<M-Down>", "<cmd>resize +2<cr>", { desc = "[Window]Height Increase" })
+nmap("<M-Left>", "<cmd>vertical resize -2<cr>", { desc = "[Window]Width decrease" })
+nmap("<M-Right>", "<cmd>vertical resize +2<cr>", { desc = "[Window]Width Increase" })
 
-nmap("<C-h>", "<C-w>h", { desc = "Go to the left window" })
-nmap("<C-j>", "<C-w>j", { desc = "Go to the down window" })
-nmap("<C-k>", "<C-w>k", { desc = "Go to the up window" })
-nmap("<C-l>", "<C-w>l", { desc = "Go to the right window" })
+nmap("<C-h>", "<C-w>h", { desc = "[Window]Left" })
+nmap("<C-j>", "<C-w>j", { desc = "[Window]Down" })
+nmap("<C-k>", "<C-w>k", { desc = "[Window]Up" })
+nmap("<C-l>", "<C-w>l", { desc = "[Window]Right" })
 
 -- tmux doesn't support <C-h> <BS> distinguish yet.
 -- alacritty: using https://github.com/alexherbo2/alacritty-extended-keys
-imap("<C-h>", "<Left>")
-imap("<C-l>", "<Right>")
-imap("<M-h>", "<S-Left>")
-imap("<M-l>", "<S-Right>")
+imap("<C-h>", "<Left>", { desc = "Cursor one character left" })
+imap("<C-l>", "<Right>", { desc = "Cursor one character right" })
+imap("<M-h>", "<S-Left>", { desc = "Cursor one word left" })
+imap("<M-l>", "<S-Right>", { desc = "Cursor one word right" })
 
-cmap("<C-a>", "<Home>")
+cmap("<C-a>", "<Home>", { desc = "Cursor to start of line" })
 -- cmap("<C-e>", "<End>")
-cmap("<C-h>", "<Left>")
-cmap("<C-l>", "<Right>")
-cmap("<M-h>", "<S-Left>")
-cmap("<M-l>", "<S-Right>")
+cmap("<C-h>", "<Left>", { desc = "Cursor one character left" })
+cmap("<C-l>", "<Right>", { desc = "Cursor one character right" })
+cmap("<M-h>", "<S-Left>", { desc = "Cursor one word left" })
+cmap("<M-l>", "<S-Right>", { desc = "Cursor one word right" })
 
 -- tmap("<C-s>", "<C-\\><C-n>")
 -- tmap("<Esc><Esc>", "<C-\\><C-n>")

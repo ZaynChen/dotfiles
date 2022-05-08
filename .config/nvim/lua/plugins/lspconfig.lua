@@ -19,23 +19,23 @@ local on_attach = function(client, bufnr)
   end
 
   -- nmap("gD", lsp.buf.declaration, opts("lsp.buf.declaration"))
-  nmap("K", lsp.buf.hover, opts("[LSP]Hover info"))
-  nmap("<C-s>", lsp.buf.signature_help, opts("[LSP]Signature info"))
+  nmap("K", function() lsp.buf.hover() end, opts("[LSP]Hover"))
+  nmap("<leader>s", function() lsp.buf.signature_help() end, opts("[LSP]Signature"))
 
-  nmap("<C-]>", lsp.buf.definition, opts("[LSP]Go to definition"))
-  nmap("gd", lsp.buf.type_definition, opts("[LSP]Go to type definition"))
+  nmap("gd", function() lsp.buf.definition() end, opts("[LSP]Definition"))
+  nmap("gD", function() lsp.buf.type_definition() end, opts("[LSP]Type definition"))
 
-  nmap("gi", lsp.buf.implementation, opts("[LSP]List Implementations"))
+  nmap("gi", function() lsp.buf.implementation() end, opts("[LSP]Implementations"))
   -- nmap("<leader>in", lsp.buf.incoming_calls, opts("[LSP]List calls"))
-  nmap("gr", lsp.buf.references, opts("[LSP]List References"))
+  nmap("gr", function() lsp.buf.references() end, opts("[LSP]References"))
 
-  nmap("<M-r>", lsp.buf.rename, opts("[LSP]Rename"))
-  nmap("<leader>m", lsp.buf.formatting, opts("[LSP]Formatting"))
-  nmap("<M-cr>", lsp.buf.code_action, opts("[LSP]Code action"))
+  nmap("<leader>r", function() lsp.buf.rename() end, opts("[LSP]Rename"))
+  nmap("<leader>m", function() lsp.buf.formatting() end, opts("[LSP]Formatting"))
+  nmap("<leader><cr>", function() lsp.buf.code_action() end, opts("[LSP]Code action"))
 
-  nmap("\\d", diagnostic.open_float, opts("[Diagnostic]Open float"))
-  nmap("]d", diagnostic.goto_next, opts("[Diagnostic]Goto next"))
-  nmap("[d", diagnostic.goto_prev, opts("[Diagnostic]Goto prev"))
+  nmap("\\d", function() diagnostic.open_float() end, opts("[Diagnostic]Open"))
+  nmap("]d", function() diagnostic.goto_next() end, opts("[Diagnostic]Next"))
+  nmap("[d", function() diagnostic.goto_prev() end, opts("[Diagnostic]Prev"))
   -- nmap("<leader>dq", diagnostic.setloclist, opts("diagnostic.setloclist"))
 
   -- Enable completion triggered by <c-x><c-o>

@@ -9,7 +9,7 @@ require('telescope').setup {
     -- config_key = value,
     mappings = {
       i = {
-        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- map actions.which_key to <C-h> (default: <C-_>)
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<ESC>"] = "close",
@@ -30,6 +30,7 @@ require('telescope').setup {
         ["<C-e>"] = { "<End>", type = "command" },
         -- ["<C-w>"] = { "<c-s-w>", type = "command" },
 
+        -- ["<C-h>"] = "which_key",
       },
     }
   },
@@ -77,8 +78,8 @@ telescope.load_extension("fzf")
 -- telescope.load_extension("dap")
 -- telescope.load_extension("vim_bookmarks")
 --
-nmap("<leader>f", builtin.find_files, { desc = "Telescope find_files" })
-nmap("<leader>/", builtin.live_grep, { desc = "Telescope live_grep" })
--- nmap("<leader>b", builtin.buffers, { desc = "Telescope buffers" })
-nmap("<leader>z", builtin.help_tags, { desc = "Telescope help_tags" })
+nmap("<leader>f", function() builtin.find_files() end, { desc = "[Telescope]find_files" })
+nmap("<leader>/", function() builtin.live_grep() end, { desc = "[Telescope]live_grep" })
+-- nmap("<leader>b", builtin.buffers, { desc = "[Telescope]buffers" })
+nmap("<leader>h", function() builtin.help_tags() end, { desc = "[Telescope]help_tags" })
 -- nmap("<leader>fj", builtin.jumplist)

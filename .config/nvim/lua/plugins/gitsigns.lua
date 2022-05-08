@@ -50,31 +50,30 @@ require('gitsigns').setup {
     -- Navigation
     map('n', ']c', function()
       if vim.wo.diff then return ']c' end
-      vim.schedule(function() gs.next_hunk() end)
+      vim.schedule(gs.next_hunk)
       return '<Ignore>'
-    end, { expr = true, desc = "Gitsigns next_hunk" })
+    end, { expr = true, desc = "[Gitsigns]Hunk next" })
 
     map('n', '[c', function()
       if vim.wo.diff then return '[c' end
-      vim.schedule(function() gs.prev_hunk() end)
+      vim.schedule(gs.prev_hunk)
       return '<Ignore>'
-    end, { expr = true, desc = "Gitsigns prev_hunk" })
+    end, { expr = true, desc = "[Gitsigns]Hunk prev" })
 
     -- Actions
-    map({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>')
-    map({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>')
-    map('n', '<leader>gu', gs.undo_stage_hunk, { desc = "Gitsigns undo_stage_hunk" })
-    map('n', '<leader>gp', gs.preview_hunk, { desc = "Gitsigns preview_hunk" })
-    map('n', '<leader>gS', gs.stage_buffer, { desc = "Gitsigns stage_buffer" })
-    map('n', '<leader>gR', gs.reset_buffer, { desc = "Gitsigns reset_buffer" })
-    map('n', '<leader>gb', function() gs.blame_line { full = true } end, { desc = "Gitsigns blame_line" })
-    map('n', '<leader>gd', gs.diffthis, { desc = "Gitsigns diffthis" })
-    map('n', '<leader>gD', function() gs.diffthis('~') end, { desc = "Gitsigns diffthis~" })
-    map('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = "Gitsigns toggle_current_line_blame" })
-    map('n', '<leader>gtd', gs.toggle_deleted, { desc = "Gitsigns toggle_deleted" })
+    map({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = "[Gitsigns]Hunk stage " })
+    map({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = "[Gitsigns]Hunk reset" })
+    map('n', '<leader>gu', function() gs.undo_stage_hunk() end, { desc = "[Gitsigns]Hunk stage undo" })
+    map('n', '<leader>gp', function() gs.preview_hunk() end, { desc = "[Gitsigns]Hunk preview" })
+    map('n', '<leader>gS', function() gs.stage_buffer() end, { desc = "[Gitsigns]Buffer stage" })
+    map('n', '<leader>gR', function() gs.reset_buffer() end, { desc = "[Gitsigns]Buffer reset" })
+    map('n', '<leader>gb', function() gs.blame_line { full = true } end, { desc = "[Gitsigns]Blame line" })
+    map('n', '<leader>gd', function() gs.diffthis() end, { desc = "[Gitsigns]Diffthis" })
+    map('n', '<leader>gD', function() gs.diffthis('~') end, { desc = "[Gitsigns]Diffthis~" })
+    map('n', '<leader>gtb', function() gs.toggle_current_line_blame() end, { desc = "[Gitsigns]Toggle line blame" })
+    map('n', '<leader>gtd', function() gs.toggle_deleted() end, { desc = "[Gitsigns]Toggle deleted" })
 
     -- Text object
-    map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+    map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = "[Gitsigns]Hunk select" })
   end
 }
-

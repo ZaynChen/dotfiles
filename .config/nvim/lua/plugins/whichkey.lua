@@ -25,10 +25,17 @@ wk.setup {
   operators = { gc = "Comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
-    -- For example:
-    -- ["<space>"] = "SPC",
-    -- ["<cr>"] = "RET",
-    -- ["<tab>"] = "TAB",
+    ["<M-Up>"] = "<M-↑>",
+    ["<M-Right>"] = "<M-→>",
+    ["<M-Down>"] = "<M-↓>",
+    ["<M-Left>"] = "<M-←>",
+    ["<M-CR>"] = "<M-↵>",
+    ["<Up>"] = "<↑>",
+    ["<Right>"] = "→",
+    ["<Down>"] = "↓",
+    ["<Left>"] = "←",
+    ["<CR>"] = "↵",
+    ["<NL>"] = "<C-J>",
   },
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -66,23 +73,32 @@ wk.setup {
   },
 }
 
--- Gitsigns
+for _, mode in ipairs { "n", "i", "c", "v" } do
+  vim.keymap.set(mode, "<C-_>", "<cmd>WhichKey '' " .. mode .. "<cr>", { silent = true })
+end
+
+
 wk.register {
-  ["<leader>g"] = { name = "+gitsigns" },
-  ["<leader>gt"] = { name = "+toggle" }
+  ["<leader>b"] = { name = "buffer" },
+  ["<leader>t"] = { name = "tab" },
+  ["<leader>g"] = { name = "gitsigns" },
+  ["<leader>gt"] = { name = "toggle" },
+  ["gc"] = { name = "commentary" }
 }
 
--- Buffer
--- wk.register {
---   ["<leader>b"] = { name = "+buffer" }
--- }
-
--- Tab
--- wk.register {
---   ["<leader>t"] = { name = "+tab" },
--- }
-
--- Commentary
 wk.register {
-  ["gc"] = { name = "+commentary" }
+  ["<M-]>"] = "[TS]Function next",
+  ["<M-[>"] = "[TS]Function prev",
+  ["<M-l>"] = "[TS]Parameter swap next",
+  ["<M-h>"] = "[TS]Parameter swap prev",
+  ["<M-j>"] = "[TS]Definition navigation next",
+  ["<M-k>"] = "[TS]Definition navigation prev",
+  ["<leader>R"] = "[TS]Rename(smart)"
 }
+
+wk.register({
+  [","] = "[TS]Selection prev",
+  ["."] = "[TS]Selection smart",
+  [";"] = "[TS]Selection container outer",
+  ["i;"] = "[TS]Selection container inner",
+}, { mode = "v" })

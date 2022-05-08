@@ -1,7 +1,7 @@
 -- The nvim-treesitter.ts_utils.get_node_text is deprecated
 -- TODO
-local ts_utils = require("nvim-treesitter.ts_utils")
-ts_utils.get_node_text = vim.treesitter.query.get_node_text
+-- local ts_utils = require("nvim-treesitter.ts_utils")
+-- ts_utils.get_node_text = vim.treesitter.query.get_node_text
 
 require("nvim-treesitter.configs").setup {
   ensure_installed = { "c", "lua", "python", "rust", "ruby", "yaml", "json", "markdown" },
@@ -12,9 +12,9 @@ require("nvim-treesitter.configs").setup {
     additional_vim_regex_highlighting = false,
   },
   incremental_selection = {
-    enable = true,
+    enable = false,
     keymaps = {
-      init_selection = "<M-i>",
+      -- init_selection = "<M-i>",
     }
   },
   textobjects = {
@@ -70,7 +70,7 @@ require("nvim-treesitter.configs").setup {
     smart_rename = {
       enable = true,
       keymaps = {
-        smart_rename = "<leader>r",
+        smart_rename = "<leader>R",
       },
     },
     navigation = {

@@ -38,5 +38,5 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   group = reload_snippets,
   pattern = { "*.snippets" },
   desc = "Reload Snippets",
-  callback = function() cmp_nvim_ultisnips.reload_snippets() end
+  callback = function() cmp_nvim_ultisnips.reload_snippets() end,
 })

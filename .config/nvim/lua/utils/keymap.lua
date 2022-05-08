@@ -26,6 +26,7 @@ local tmap = function(lhs, rhs, opts)
 end
 
 return {
+  map = map,
   nmap = nmap,
   imap = imap,
   vmap = vmap,

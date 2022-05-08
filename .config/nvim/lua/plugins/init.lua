@@ -47,7 +47,7 @@ Plug "hrsh7th/cmp-cmdline"
 Plug "hrsh7th/cmp-calc"
 Plug "hrsh7th/cmp-omni"
 Plug "f3fora/cmp-spell"
-Plug "ray-x/cmp-treesitter"
+-- Plug "ray-x/cmp-treesitter" -- to much content
 Plug "hrsh7th/cmp-nvim-lsp"
 Plug "hrsh7th/cmp-nvim-lsp-signature-help"
 Plug "hrsh7th/cmp-nvim-lua"

@@ -5,7 +5,7 @@ import:
 env:
   # use screen-256color with tmux the cursor will be always block
   # TERM: screen-256color
-  TERM: xterm-256color
+  TERM: alacritty
 
 window:
   #dimensions:
