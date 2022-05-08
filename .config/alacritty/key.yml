@@ -194,7 +194,13 @@ key_bindings:
   - { key: Period, mods: Alt|Shift, chars: "\x1b>" }
   - { key: Slash, mods: Alt|Shift, chars: "\x1b?" }
 
-  - { key: Back,  action: ReceiveChar }
+  # # { key: Back,  action: ReceiveChar }
+  # #    cause the backspace not working in some terminal apps, e.g. neovim
+  # #    especially when the CSI u is using.
+  # # `inline im` maybe a correct solution as the native macos terminal
+  # # alacritty does not support inline im yet, WIP.
+  # # https://github.com/alacritty/alacritty/pull/5790
+  # #
   # - { key: Space, mods: Alt, chars: " " }
   # - { key: Back, mods: Command, chars: "\x15" } # delete word/line
   # - { key: Left, mods: Alt, chars: "\x1bb" } # one word left
