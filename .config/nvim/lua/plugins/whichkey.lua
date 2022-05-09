@@ -22,7 +22,7 @@ wk.setup {
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  operators = { gc = "Comments" },
+  operators = { gc = "Comments", ["<leader>e"] = "Run" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     ["<M-Up>"] = "<M-↑>",
@@ -101,17 +101,6 @@ wk.register {
 }
 
 wk.register({
-  ["<M-k>"] = "[LSP]Signature toggle"
-}, { mode = "i" })
-
-wk.register({
-  [","] = "[TS]Selection prev",
-  ["."] = "[TS]Selection smart",
-  [";"] = "[TS]Selection container outer",
-  ["i;"] = "[TS]Selection container inner",
-}, { mode = "v" })
-
-wk.register({
   b = "buffer",
   g = {
     name = "gitsigns",
@@ -149,3 +138,14 @@ wk.register({
     u = { function() trouble.open("lsp_references") end, "[Trouble]Usage(LSP)" },
   },
 }, { prefix = "<leader>" })
+
+wk.register({
+  ["<M-k>"] = "[LSP]Signature toggle"
+}, { mode = "i" })
+
+wk.register({
+  [","] = "[TS]Selection prev",
+  ["."] = "[TS]Selection smart",
+  [";"] = "[TS]Selection container outer",
+  ["i;"] = "[TS]Selection container inner",
+}, { mode = "v" })

@@ -5,7 +5,7 @@ local cmap = keymap.cmap
 
 nmap("<leader>w", "<cmd>w<cr>")
 
-nmap("<leader>e", ':e <C-R>=expand("%:p:h")."/"<cr>', { silent = false, desc = "e" })
+nmap("<leader>c", ':e <C-R>=expand("%:p:h")."/"<cr>', { silent = false, desc = "e" })
 -- nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>:pwd<cr>')
 
 nmap("<leader>q", "<cmd>q<cr>")
