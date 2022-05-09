@@ -83,7 +83,10 @@ wk.register {
   ["<leader>t"] = { name = "tab" },
   ["<leader>g"] = { name = "gitsigns" },
   ["<leader>gt"] = { name = "toggle" },
-  ["gc"] = { name = "commentary" }
+  ["gc"] = { name = "commentary" },
+  ["]"] = { name = "next" },
+  ["["] = { name = "prev" },
+  ["\\"] = { name = "toggle" }
 }
 
 wk.register {
