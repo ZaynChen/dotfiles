@@ -48,13 +48,13 @@ require('gitsigns').setup {
     end
 
     -- Navigation
-    map('n', ']c', function()
+    map('n', '<leader>g]', function()
       if vim.wo.diff then return ']c' end
       vim.schedule(gs.next_hunk)
       return '<Ignore>'
     end, { expr = true, desc = "[Gitsigns]Hunk next" })
 
-    map('n', '[c', function()
+    map('n', '<leader>g[', function()
       if vim.wo.diff then return '[c' end
       vim.schedule(gs.prev_hunk)
       return '<Ignore>'

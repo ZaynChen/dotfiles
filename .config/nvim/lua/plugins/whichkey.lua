@@ -78,11 +78,12 @@ for _, mode in ipairs { "n", "i", "c", "v" } do
 end
 
 
+local trouble = require("trouble")
+local diagnostic = vim.diagnostic
+local telescope = require("telescope.builtin")
+
+-- group
 wk.register {
-  ["<leader>b"] = { name = "buffer" },
-  ["<leader>t"] = { name = "tab" },
-  ["<leader>g"] = { name = "gitsigns" },
-  ["<leader>gt"] = { name = "toggle" },
   ["gc"] = { name = "commentary" },
   ["]"] = { name = "next" },
   ["["] = { name = "prev" },
@@ -96,7 +97,7 @@ wk.register {
   ["<M-h>"] = "[TS]Parameter swap prev",
   ["<M-j>"] = "[TS]Definition navigation next",
   ["<M-k>"] = "[TS]Definition navigation prev",
-  ["<leader>R"] = "[TS]Rename(smart)"
+  ["<M-t>"] = "[Terminal]Toggle",
 }
 
 wk.register({
@@ -109,3 +110,42 @@ wk.register({
   [";"] = "[TS]Selection container outer",
   ["i;"] = "[TS]Selection container inner",
 }, { mode = "v" })
+
+wk.register({
+  b = "buffer",
+  g = {
+    name = "gitsigns",
+    t = "toggle"
+  },
+  h = {
+    name = 'help',
+    c = { function() telescope.colorscheme() end, "[Telescope]Colorscheme" },
+    C = { function() telescope.commands() end, "[Telescope]Commands" },
+    h = { function() telescope.help_tags() end, "[Telescope]Help" },
+    k = { function() telescope.keymaps() end, "[Telescope]Keymaps" },
+    m = { function() telescope.man_pages() end, "[Telescope]Man Pages" },
+    r = { function() telescope.registers() end, "[Telescope]Registers" },
+  },
+  l = {
+    name = "LSP",
+    ["]"] = { function() diagnostic.goto_next() end, "[Diagnostic]Next" },
+    ["["] = { function() diagnostic.goto_prev() end, "[Diagnostic]Prev" },
+    d = { function() telescope.lsp_document_diagnostics() end, "[LSP]Diagnostics Document(Telescope)" },
+    i = { "<cmd>LspInfo<cr>", "[LSP]Info" },
+    I = { "<cmd>LspInstalInfo", "[LSP]Installer Info" },
+    q = { function() diagnostic.set_loclist() end, "[Diagnostic]Quickfix" },
+    s = { function() telescope.lsp_dynamic_workspace_symbols() end, "[LSP]Symbols Document(Telescope)" },
+    S = { function() telescope.lsp_document_symbols() end, "[LSP]Symbols Workspace(Telescope)" },
+    w = { function() telescope.lsp_workspace_diagnostics() end, "[LSP]Diagnostics Workspace(Telescope)" },
+  },
+  R = "[TS]Rename(smart)",
+  -- t = "tab",
+  T = {
+    name = "trouble",
+    t = { function() trouble.open() end, "[Trouble]Toggle" },
+    d = { function() trouble.open("document_diagnostics") end, "[Trouble]Diagnostics Document" },
+    w = { function() trouble.open("workspace_diagnostics") end, "[Trouble]Diagnostics Workspace" },
+    q = { function() trouble.open("quickfix") end, "[Trouble]Quick Fix" },
+    u = { function() trouble.open("lsp_references") end, "[Trouble]Usage(LSP)" },
+  },
+}, { prefix = "<leader>" })

@@ -22,13 +22,13 @@ nmap("<leader>bh", "<cmd>bprevious<cr>", { desc = "[Buffer]Prev" })
 nmap("<leader>bd", "<cmd>bdelete<cr>", { desc = "[Buffer]Delete from list" })
 
 -- Tab
-nmap("<leader>tc", "<cmd>tabclose<cr>", { desc = "[Tab]Close" })
-nmap("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>', { silent = false, desc = "[Tap]Edit" })
-nmap("<leader>th", "<cmd>tabprevious<cr>", { desc = "[Tap]Prev" })
-nmap("<leader>tl", "<cmd>tabnext<cr>", { desc = "[Tap]Next" })
-nmap("<leader>tm", "<cmd>tabmove<cr>", { desc = "[Tap]Move" })
-nmap("<leader>tn", "<cmd>tabnew<cr>", { desc = "[Tap]New" })
-nmap("<leader>to", "<cmd>tabonly<cr>", { desc = "[Tap]Only" })
+-- nmap("<leader>tc", "<cmd>tabclose<cr>", { desc = "[Tab]Close" })
+-- nmap("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>', { silent = false, desc = "[Tap]Edit" })
+-- nmap("<leader>th", "<cmd>tabprevious<cr>", { desc = "[Tap]Prev" })
+-- nmap("<leader>tl", "<cmd>tabnext<cr>", { desc = "[Tap]Next" })
+-- nmap("<leader>tm", "<cmd>tabmove<cr>", { desc = "[Tap]Move" })
+-- nmap("<leader>tn", "<cmd>tabnew<cr>", { desc = "[Tap]New" })
+-- nmap("<leader>to", "<cmd>tabonly<cr>", { desc = "[Tap]Only" })
 
 -- Spell Check
 -- nmap("<leader>ss", "<cmd>setlocal spell!<cr>")

@@ -33,6 +33,9 @@ Plug("kyazdani42/nvim-tree.lua", { on = "NvimTreeToggle" })
 Plug "nvim-telescope/telescope.nvim"
 Plug("nvim-telescope/telescope-fzf-native.nvim", { ["do"] = "make" })
 
+-- Pretty list
+Plug "folke/trouble.nvim"
+
 -- Search
 Plug "kevinhwang91/nvim-hlslens"
 
@@ -69,11 +72,15 @@ Plug "andymass/vim-matchup"
 
 -- Comment
 Plug "tpope/vim-commentary"
+Plug "folke/todo-comments.nvim"
 -- Plug "JoosepAlviste/nvim-ts-context-commentstring"
 
 -- Formatting
 Plug "editorconfig/editorconfig-vim"
 -- Plug "lukas-reineke/lsp-format.nvim"
+
+-- Terminal integration
+Plug("akinsho/toggleterm.nvim", { tag = "v1.*" })
 
 -- Git
 Plug "lewis6991/gitsigns.nvim"
@@ -116,9 +123,11 @@ require("cmp_nvim_ultisnips").setup {}
 require("plugins/lualine")
 require("plugins/nvim-tree")
 require("plugins/treesitter")
-
 require("plugins/indent_blankline")
+require("plugins/todo-comments")
+
 require("plugins/telescope")
+require("plugins/toggleterm")
 
 require("plugins/nvim-cmp")
 require("plugins/nvim-autopairs")

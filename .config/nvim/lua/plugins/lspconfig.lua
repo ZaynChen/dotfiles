@@ -17,26 +17,24 @@ local on_attach = function(client, bufnr)
     return opts
   end
 
+
   -- nmap("gD", lsp.buf.declaration, opts("lsp.buf.declaration"))
-  nmap("K", function() lsp.buf.hover() end, opts("[LSP]Hover"))
-  nmap("<leader>s", function() lsp.buf.signature_help() end, opts("[LSP]Signature"))
+  nmap("<leader>la", function() lsp.buf.code_action() end, opts("[LSP]Code Action"))
+  nmap("<leader>lK", function() lsp.buf.hover() end, opts("[LSP]Hover"))
+  nmap("<leader>lf", function() lsp.buf.formatting() end, opts("[LSP]Formatting"))
+  nmap("<leader>lr", function() lsp.buf.rename() end, opts("[LSP]Rename"))
 
-  nmap("gd", function() lsp.buf.definition() end, opts("[LSP]Definition"))
-  nmap("gD", function() lsp.buf.type_definition() end, opts("[LSP]Type definition"))
+  -- nmap("\\d", function() diagnostic.open_float() end, opts("[Diagnostic]Open"))
+  -- nmap("<leader>s", function() lsp.buf.signature_help() end, opts("[LSP]Signature"))
 
-  nmap("gi", function() lsp.buf.implementation() end, opts("[LSP]Implementations"))
+  -- nmap("gd", function() lsp.buf.definition() end, opts("[LSP]Definition"))
+  -- nmap("gD", function() lsp.buf.type_definition() end, opts("[LSP]Type definition"))
+
+  -- nmap("gi", function() lsp.buf.implementation() end, opts("[LSP]Implementations"))
   -- nmap("<leader>in", lsp.buf.incoming_calls, opts("[LSP]List calls"))
-  nmap("gr", function() lsp.buf.references() end, opts("[LSP]References"))
+  -- nmap("gr", function() lsp.buf.references() end, opts("[LSP]References"))
 
-  nmap("<leader>r", function() lsp.buf.rename() end, opts("[LSP]Rename"))
-  nmap("<leader>m", function() lsp.buf.formatting() end, opts("[LSP]Formatting"))
-  nmap("<leader><cr>", function() lsp.buf.code_action() end, opts("[LSP]Code action"))
-
-  nmap("\\d", function() diagnostic.open_float() end, opts("[Diagnostic]Open"))
-  nmap("]d", function() diagnostic.goto_next() end, opts("[Diagnostic]Next"))
-  nmap("[d", function() diagnostic.goto_prev() end, opts("[Diagnostic]Prev"))
-  -- nmap("<leader>dq", diagnostic.setloclist, opts("diagnostic.setloclist"))
-
+  --
   -- Enable completion triggered by <c-x><c-o>
   -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.lsp.omnifunc")
   vim.bo.omnifunc = "v:lua.lsp.omnifunc"
