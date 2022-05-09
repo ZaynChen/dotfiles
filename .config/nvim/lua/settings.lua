@@ -70,7 +70,7 @@ o.tabstop = 2
 o.shiftwidth = 2
 o.expandtab = true
 opt.list = true
-opt.listchars = { tab = "•\\ ", nbsp = "¬", extends = "»", precedes = "«", trail = "•" }
+opt.listchars = { tab = "⋅⋅", nbsp = "¬", extends = "»", precedes = "«", trail = "•", eol = "↴" }
 
 -- Window
 -- o.splitbelow = true

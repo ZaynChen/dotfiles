@@ -6,10 +6,9 @@ local nmap = require("utils.keymap").nmap
 local lsp_status = require("lsp-status")
 lsp_status.register_progress()
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
-
 local lspconfig = require("lspconfig")
 
+local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
 local on_attach = function(client, bufnr)
   -- desc for which_key hints
   local opts = function(desc)

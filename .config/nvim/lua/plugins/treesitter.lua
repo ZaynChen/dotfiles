@@ -85,6 +85,12 @@ require("nvim-treesitter.configs").setup {
   endwise = {
     enable = true,
   },
+
+  matchup = {
+    enable = true,
+    disable_virtual_text = { "python" },
+    include_match_words = {},
+  },
   -- rainbow brackets
   rainbow = {
     enable = true,

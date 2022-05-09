@@ -100,6 +100,10 @@ wk.register {
 }
 
 wk.register({
+  ["<M-k>"] = "[LSP]Signature toggle"
+}, { mode = "i" })
+
+wk.register({
   [","] = "[TS]Selection prev",
   ["."] = "[TS]Selection smart",
   [";"] = "[TS]Selection container outer",

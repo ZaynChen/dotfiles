@@ -65,6 +65,7 @@ Plug "romgrk/nvim-treesitter-context"
 Plug "windwp/nvim-autopairs"
 Plug "p00f/nvim-ts-rainbow"
 Plug "RRethy/nvim-treesitter-endwise"
+Plug "andymass/vim-matchup"
 
 -- Comment
 Plug "tpope/vim-commentary"
@@ -100,9 +101,6 @@ Plug "JuliaEditorSupport/julia-vim"
 Plug "wakatime/vim-wakatime"
 Plug "folke/which-key.nvim"
 
--- this if for im switch, lick fcitx switch, but has bug on macos
--- Plug "rlue/vim-barbaric"
--- TODO
 -- Plug "iamcco/markdown-preview.nvim"
 
 Plug("lervag/vimtex", { ["for"] = "tex" })
@@ -119,7 +117,7 @@ require("plugins/lualine")
 require("plugins/nvim-tree")
 require("plugins/treesitter")
 
-require("indent_blankline").setup { show_end_of_line = true }
+require("plugins/indent_blankline")
 require("plugins/telescope")
 
 require("plugins/nvim-cmp")
@@ -135,9 +133,3 @@ require("plugins/crates")
 require("plugins/vimtex")
 
 require("plugins/whichkey")
-
--- barbaric
--- g.barbaric_ime = "macos"
--- g.barbaric_default = 0
--- g.barbaric_scope = "buffer"
--- g.barbaric_timeout = -1
