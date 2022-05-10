@@ -125,7 +125,7 @@ wk.register({
   },
   l = {
     name = "LSP",
-    i = { function() telescope.lsp_implementations() end, "[LSP]Implementations(Telescope)" },
+    i = { function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)" },
     s = { function() telescope.lsp_dynamic_workspace_symbols() end, "[LSP]Symbols Document(Telescope)" },
     S = { function() telescope.lsp_document_symbols() end, "[LSP]Symbols Workspace(Telescope)" },
     u = { function() trouble.open("lsp_references") end, "[LSP]References(Trouble)" },
