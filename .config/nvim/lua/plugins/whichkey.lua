@@ -101,7 +101,15 @@ wk.register {
 }
 
 wk.register({
-  b = "buffer",
+  b = { name = "buffer" },
+  d = {
+    name = "diagnostic",
+    ["]"] = { function() diagnostic.goto_next() end, "[Diagnostic]Next" },
+    ["["] = { function() diagnostic.goto_prev() end, "[Diagnostic]Prev" },
+    d = { function() trouble.open("document_diagnostics") end, "[Diagnostics]Document(Trouble)" },
+    w = { function() trouble.open("workspace_diagnostics") end, "[Diagnostics]Workspace(Trouble)" },
+    q = { function() trouble.open("quickfix") end, "[Diagnostic]Quick Fix(Trouble)" },
+  },
   g = {
     name = "gitsigns",
     t = "toggle"
@@ -117,26 +125,14 @@ wk.register({
   },
   l = {
     name = "LSP",
-    ["]"] = { function() diagnostic.goto_next() end, "[Diagnostic]Next" },
-    ["["] = { function() diagnostic.goto_prev() end, "[Diagnostic]Prev" },
-    d = { function() telescope.lsp_document_diagnostics() end, "[LSP]Diagnostics Document(Telescope)" },
-    i = { "<cmd>LspInfo<cr>", "[LSP]Info" },
-    I = { "<cmd>LspInstalInfo", "[LSP]Installer Info" },
-    q = { function() diagnostic.set_loclist() end, "[Diagnostic]Quickfix" },
+    i = { function() telescope.lsp_implementations() end, "[LSP]Implementations(Telescope)" },
     s = { function() telescope.lsp_dynamic_workspace_symbols() end, "[LSP]Symbols Document(Telescope)" },
     S = { function() telescope.lsp_document_symbols() end, "[LSP]Symbols Workspace(Telescope)" },
-    w = { function() telescope.lsp_workspace_diagnostics() end, "[LSP]Diagnostics Workspace(Telescope)" },
+    u = { function() trouble.open("lsp_references") end, "[LSP]References(Trouble)" },
   },
-  R = "[TS]Rename(smart)",
-  -- t = "tab",
-  T = {
-    name = "trouble",
-    t = { function() trouble.open() end, "[Trouble]Toggle" },
-    d = { function() trouble.open("document_diagnostics") end, "[Trouble]Diagnostics Document" },
-    w = { function() trouble.open("workspace_diagnostics") end, "[Trouble]Diagnostics Workspace" },
-    q = { function() trouble.open("quickfix") end, "[Trouble]Quick Fix" },
-    u = { function() trouble.open("lsp_references") end, "[Trouble]Usage(LSP)" },
-  },
+  r = "[TS]Rename(smart)",
+  t = { name = "tab" },
+  x = { function() trouble.open() end, "[Trouble]Toggle" },
 }, { prefix = "<leader>" })
 
 wk.register({

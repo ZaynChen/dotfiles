@@ -2,6 +2,7 @@ local nmap = require('utils.keymap').nmap
 
 local telescope = require("telescope")
 local builtin   = require("telescope.builtin")
+local trouble   = require("trouble.providers.telescope")
 
 require('telescope').setup {
   defaults = {
@@ -31,6 +32,7 @@ require('telescope').setup {
         -- ["<C-w>"] = { "<c-s-w>", type = "command" },
 
         -- ["<C-h>"] = "which_key",
+        ["<C-t>"] = trouble.open_with_trouble,
       },
     }
   },

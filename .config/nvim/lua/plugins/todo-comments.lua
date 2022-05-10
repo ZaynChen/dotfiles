@@ -62,8 +62,6 @@ require("todo-comments").setup {
 -- WARN:
 -- PERF:
 -- NOTE:
-local telescope_cmd = require("telescope.command")
 local trouble = require("trouble")
 local nmap = require("utils.keymap").nmap
-nmap("<leader>O", function() telescope_cmd.load_command("todo-comments", "todo") end, { desc = "[TODO]List" })
-nmap("<leader>o", function() trouble.open("todo") end, { desc = "[TODO]List" })
+nmap("<leader>o", function() trouble.open("todo") end, { desc = "[TODO]List(Trouble)" })
