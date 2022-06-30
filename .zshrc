@@ -21,7 +21,7 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
-CASE_SENSITIVE="false"
+# CASE_SENSITIVE="false"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -153,7 +153,7 @@ export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PA
 if [ -x "$(command -v brew)" ] ; then
     # nvim install by brew
     export PATH="/usr/local/Cellar/llvm/13.0.1_1/bin:$PATH"
-    export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.0/share/nvim/runtime"
+    export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2/share/nvim/runtime"
 else
     export NVIMRUNTIME="/usr/share/nvim/runtime"
 fi

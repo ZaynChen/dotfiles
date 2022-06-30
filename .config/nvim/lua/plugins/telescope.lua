@@ -1,18 +1,13 @@
-local nmap = require('utils.keymap').nmap
+local nmap = require("utils.keymap").nmap
 
 local telescope = require("telescope")
 local builtin   = require("telescope.builtin")
 local trouble   = require("trouble.providers.telescope")
 
-require('telescope').setup {
+require("telescope").setup {
   defaults = {
-    -- Default configuration for telescope goes here:
-    -- config_key = value,
     mappings = {
       i = {
-        -- map actions.which_key to <C-h> (default: <C-_>)
-        -- actions.which_key shows the mappings for your picker,
-        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<ESC>"] = "close",
         ["<C-n>"] = "cycle_history_next",
         ["<C-p>"] = "cycle_history_prev",
@@ -38,10 +33,6 @@ require('telescope').setup {
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
     find_files = {
@@ -60,11 +51,6 @@ require('telescope').setup {
     }
   },
   extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
     fzf = {
       fuzzy = true, -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
@@ -82,6 +68,4 @@ telescope.load_extension("fzf")
 --
 nmap("<leader>f", function() builtin.find_files() end, { desc = "[Telescope]find_files" })
 nmap("<leader>/", function() builtin.live_grep() end, { desc = "[Telescope]live_grep" })
--- nmap("<leader>b", builtin.buffers, { desc = "[Telescope]buffers" })
--- nmap("<leader>z", function() builtin.help_tags() end, { desc = "[Telescope]help_tags" })
--- nmap("<leader>fj", builtin.jumplist)
+nmap("<leader>bb", function() builtin.buffers() end, { desc = "[Buffer]List" })

@@ -52,14 +52,16 @@ scrolling:
 
 font:
   normal:
-    family: 'JetBrainsMono Nerd Font Mono'
+    # family: 'JetBrainsMono Nerd Font Mono'
+    family: 'FiraCode Nerd Font Mono'
 
-    style: Medium
+    style: Retina
 
   bold:
-    family: 'JetBrainsMono Nerd Font Mono'
+    # family: 'JetBrainsMono Nerd Font Mono'
+    family: 'FiraCode Nerd Font Mono'
 
-    style: Extra Bold
+    style: Bold
 
   italic:
     family: 'JetBrainsMono Nerd Font Mono'
@@ -140,8 +142,8 @@ shell:
  args:
    - -l
    # tmux does not support CSI u yet
-   # - -c
-   # - '([[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1) || ([ -x "$(command -v zsh)" ] && zsh -l)'
+   - -c
+   - '([[ "$OSTYPE" == "darwin"* ]] && [ -x "$(command -v tmux)" ] && { tmux attach || tmux; } >/dev/null 2>&1) || ([ -x "$(command -v zsh)" ] && zsh -l)'
 
 ipc_socket: true
 

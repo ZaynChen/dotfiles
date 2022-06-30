@@ -31,7 +31,7 @@ nmap("<leader>tn", "<cmd>tabnew<cr>", { desc = "[Tap]New" })
 nmap("<leader>to", "<cmd>tabonly<cr>", { desc = "[Tap]Only" })
 
 -- Spell Check
--- nmap("<leader>ss", "<cmd>setlocal spell!<cr>")
+nmap("<leader>ss", "<cmd>setlocal spell!<cr>")
 
 -- nmap("<leader>sn", "]s")
 -- nmap("<leader>sp", "[s")
