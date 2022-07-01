@@ -30,16 +30,19 @@ bspc config gapless_monocle      false
 
 bspc rule -a firefoxdeveloperedition desktop='^1' state=tiled
 bspc rule -a google-chrome-stable desktop='^1' state=tiled
-
 # https://github.com/baskerville/bspwm/issues/291
 # only works due to https://github.com/dasJ/spotifywm
 # bspc rule -a Spotify desktop='^6' state=pseudo_tiled
-bspc rule -a dingtalk desktop='^5'
-# bspc rule -a wps desktop='^4'
 bspc rule -a code desktop='^3'
-bspc rule -a netease-cloud-music desktop='^6' state=pseudo_tiled
-bspc rule -a virtualbox desktop='^4'
 bspc rule -a anaconda-navigator desktop='^3'
+bspc rule -a wps desktop='^4'
+bspc rule -a wpspdf desktop='^4'
+bspc rule -a dingtalk desktop='^5'
+bspc rule -a netease-cloud-music desktop='^6' state=pseudo_tiled
+bspc rule -a virtualbox desktop='^8'
+bspc rule -a steam desktop='^9' state=tiled
+bspc rule -a steam-runtime desktop='^9' state=tiled
+
 # bspc rule -a ulauncher focus=on
 # bspc rule -a sxiv state=floating center=true
 bspc rule -a polybar border=off manage=off
