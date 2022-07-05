@@ -135,3 +135,7 @@ super + {Left,Down,Up,Right}
 # betterlock
 super + x
 	betterlockscreen -l dimblur
+
+# firefox
+super + b
+  firefox-developer-edition
