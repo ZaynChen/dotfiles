@@ -247,4 +247,4 @@ keycode 253 = XF86DisplayOff NoSymbol XF86DisplayOff
 keycode 254 = XF86WWAN NoSymbol XF86WWAN
 keycode 255 = XF86RFKill NoSymbol XF86RFKill
 
-pointer = 1 2 3 5 4 7 6 8 9 10 11 12
+pointer = 1 2 3 4 5 7 6 8 9 10 11 12
