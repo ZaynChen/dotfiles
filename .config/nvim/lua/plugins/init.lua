@@ -9,6 +9,7 @@ Plug "mattn/webapi-vim"
 
 -- Colorscheme
 Plug "RRethy/nvim-base16"
+Plug "norcalli/nvim-colorizer.lua"
 
 -- Statusline
 Plug "nvim-lualine/lualine.nvim"
@@ -125,6 +126,7 @@ require("plugins/nvim-tree")
 require("plugins/treesitter")
 require("plugins/indent_blankline")
 require("plugins/todo-comments")
+require("plugins/nvim-colorizer")
 
 require("plugins/telescope")
 require("plugins/toggleterm")
