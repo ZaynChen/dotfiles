@@ -20,6 +20,7 @@
 .config/kingsoft
 .config/htop
 .config/pulse
+.config/font-manager
 
 .config/mimeapps.list
 .config/QtProject.conf
