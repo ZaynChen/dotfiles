@@ -2,7 +2,7 @@
 
 # Add this script to your wm startup file.
 
-DIR="$HOME/.config/polybar/docky"
+DIR="$HOME/.config/polybar/cust"
 
 # Terminate already running bar instances
 killall -q polybar
