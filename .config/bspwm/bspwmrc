@@ -3,6 +3,8 @@
 sxhkd &
 picom &
 nitrogen --restore &
+volumeicon &
+nm-applet &
 /usr/bin/xsettingsd &
 # [ -x ~/.config/polybar/launch.sh ] && ~/.config/polybar/launch.sh &
 # $HOME/.config/polybar/docky/scripts/pywal.sh $HOME/Pictures/wallpaper &
