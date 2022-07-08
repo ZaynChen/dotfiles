@@ -109,6 +109,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias zshconf="nvim ~/.zshrc"
 alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
+alias tmuxconf="nvim ~/.tmux.conf"
 
 # -- exa alias
 alias ls="exa"
@@ -118,6 +119,11 @@ alias e="nvim"
 alias n="neofetch"
 alias py="python"
 alias u="aupdate"
+alias mux="tmuxinator"
+alias aura="sudo aura"
+alias c="cargo"
+
+alias macode="tmuxinator macode"
 
 # -- riscv-gnu-toolchain alias
 alias addr2linerv64="riscv64-unknown-elf-addr2line"
@@ -136,10 +142,6 @@ alias striprv64="riscv64-unknown-elf-strip"
 # -- qemu riscv alias
 alias qemusysrv64="qemu-system-riscv64"
 alias qemurv64="qemu-riscv64"
-alias aura="sudo aura"
-alias mux="tmuxinator"
-alias macode="tmuxinator macode"
-alias tmuxconf="nvim ~/.tmux.conf"
 
 # export http_proxy=http://127.0.0.1:1087
 # export https_proxy=http://127.0.0.1:1087
