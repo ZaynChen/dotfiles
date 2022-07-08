@@ -121,7 +121,6 @@ alias py="python"
 alias u="aupdate"
 alias mux="tmuxinator"
 alias aura="sudo aura"
-alias c="cargo"
 
 alias macode="tmuxinator macode"
 
