@@ -152,11 +152,12 @@ export PATH="/opt/metasploit-framework/bin:$PATH"
 export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
 
 if [ -x "$(command -v brew)" ] ; then
-    # nvim install by brew
-    export PATH="/usr/local/Cellar/llvm/13.0.1_1/bin:$PATH"
-    export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2/share/nvim/runtime"
+  # nvim install by brew
+  export PATH="/usr/local/Cellar/llvm/13.0.1_1/bin:$PATH"
+  export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2/share/nvim/runtime"
+  export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
 else
-    export NVIMRUNTIME="/usr/share/nvim/runtime"
+  export NVIMRUNTIME="/usr/share/nvim/runtime"
 fi
 
 export SKLEARNEX_VERBOSE=INFO
