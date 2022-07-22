@@ -45,10 +45,16 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
+beautiful.init(theme_path)
+beautiful.useless_gap = 5
 
 -- This is used later as the default terminal and editor to run.
+-- terminal = "xterm"
 terminal = "alacritty"
+browser = "firefox-developer-edition"
+locker = "light-locker-command -l"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -58,22 +64,23 @@ editor_cmd = terminal .. " -e " .. editor
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+alt = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-  awful.layout.suit.floating,
   awful.layout.suit.tile,
-  awful.layout.suit.tile.left,
-  awful.layout.suit.tile.bottom,
-  awful.layout.suit.tile.top,
-  awful.layout.suit.fair,
-  awful.layout.suit.fair.horizontal,
-  awful.layout.suit.spiral,
-  awful.layout.suit.spiral.dwindle,
+  awful.layout.suit.floating,
+  -- awful.layout.suit.tile.left,
+  -- awful.layout.suit.tile.bottom,
+  -- awful.layout.suit.tile.top,
+  -- awful.layout.suit.fair,
+  -- awful.layout.suit.fair.horizontal,
+  -- awful.layout.suit.spiral,
+  -- awful.layout.suit.spiral.dwindle,
   awful.layout.suit.max,
-  awful.layout.suit.max.fullscreen,
+  -- awful.layout.suit.max.fullscreen,
   awful.layout.suit.magnifier,
-  awful.layout.suit.corner.nw,
+  -- awful.layout.suit.corner.nw,
   -- awful.layout.suit.corner.ne,
   -- awful.layout.suit.corner.sw,
   -- awful.layout.suit.corner.se,
@@ -169,7 +176,12 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+  -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+  -- local names = { "main", "www", "3", "office", "5", "media", "proxy", "steam", "game" }
+  local names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
+  local l = awful.layout.suit
+  local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile }
+  awful.tag(names, s, layouts)
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -189,11 +201,11 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create a tasklist widget
-  s.mytasklist = awful.widget.tasklist {
-    screen  = s,
-    filter  = awful.widget.tasklist.filter.currenttags,
-    buttons = tasklist_buttons
-  }
+  -- s.mytasklist = awful.widget.tasklist {
+  --   screen = s,
+  --   filter = awful.widget.tasklist.filter.currenttags,
+  --   buttons = tasklist_buttons
+  -- }
 
   -- Create the wibox
   s.mywibox = awful.wibar({ position = "top", screen = s })
@@ -203,16 +215,16 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
-      mylauncher,
+      -- mylauncher,
+      mytextclock,
       s.mytaglist,
       s.mypromptbox,
     },
     s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      mykeyboardlayout,
+      -- mykeyboardlayout,
       wibox.widget.systray(),
-      mytextclock,
       s.mylayoutbox,
     },
   }
@@ -274,12 +286,16 @@ globalkeys = gears.table.join(
     { description = "go back", group = "client" }),
 
   -- Standard program
-  awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
+  awful.key({ modkey, }, "a", function() awful.spawn(terminal) end,
     { description = "open a terminal", group = "launcher" }),
-  awful.key({ modkey, "Control" }, "r", awesome.restart,
+  awful.key({ modkey, }, "b", function() awful.spawn(browser) end,
+    { description = "open a browser", group = "launcher" }),
+  awful.key({ modkey, alt }, "r", awesome.restart,
     { description = "reload awesome", group = "awesome" }),
-  awful.key({ modkey, "Shift" }, "q", awesome.quit,
+  awful.key({ modkey, alt }, "q", awesome.quit,
     { description = "quit awesome", group = "awesome" }),
+  awful.key({ modkey, }, "x", function() awful.spawn(locker) end,
+    { description = "lock the screen", group = "awesome" }),
 
   awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
     { description = "increase master width factor", group = "layout" }),
@@ -293,7 +309,7 @@ globalkeys = gears.table.join(
     { description = "increase the number of columns", group = "layout" }),
   awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
     { description = "decrease the number of columns", group = "layout" }),
-  awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
+  awful.key({ modkey, }, "Return", function() awful.layout.inc(1) end,
     { description = "select next", group = "layout" }),
   awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
     { description = "select previous", group = "layout" }),
@@ -311,19 +327,19 @@ globalkeys = gears.table.join(
     { description = "restore minimized", group = "client" }),
 
   -- Prompt
-  awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
+  awful.key({ modkey }, "space", function() awful.screen.focused().mypromptbox:run() end,
     { description = "run prompt", group = "launcher" }),
 
-  awful.key({ modkey }, "x",
-    function()
-      awful.prompt.run {
-        prompt       = "Run Lua code: ",
-        textbox      = awful.screen.focused().mypromptbox.widget,
-        exe_callback = awful.util.eval,
-        history_path = awful.util.get_cache_dir() .. "/history_eval"
-      }
-    end,
-    { description = "lua execute prompt", group = "awesome" }),
+  -- awful.key({ modkey }, "x",
+  --   function()
+  --     awful.prompt.run {
+  --       prompt       = "Run Lua code: ",
+  --       textbox      = awful.screen.focused().mypromptbox.widget,
+  --       exe_callback = awful.util.eval,
+  --       history_path = awful.util.get_cache_dir() .. "/history_eval"
+  --     }
+  --   end,
+  --   { description = "lua execute prompt", group = "awesome" }),
   -- Menubar
   awful.key({ modkey }, "p", function() menubar.show() end,
     { description = "show the menubar", group = "launcher" })
@@ -336,7 +352,7 @@ clientkeys = gears.table.join(
       c:raise()
     end,
     { description = "toggle fullscreen", group = "client" }),
-  awful.key({ modkey, "Shift" }, "c", function(c) c:kill() end,
+  awful.key({ modkey }, "q", function(c) c:kill() end,
     { description = "close", group = "client" }),
   awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
     { description = "toggle floating", group = "client" }),
@@ -474,7 +490,8 @@ awful.rules.rules = {
       "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
       "Wpa_gui",
       "veromix",
-      "xtightvncviewer" },
+      "xtightvncviewer"
+    },
 
     -- Note that the name property shown in xprop might be set slightly after creation of the client
     -- and the name shown there might not match defined rules here.
@@ -489,13 +506,28 @@ awful.rules.rules = {
   }, properties = { floating = true } },
 
   -- Add titlebars to normal clients and dialogs
-  { rule_any = { type = { "normal", "dialog" }
-  }, properties = { titlebars_enabled = true }
+  { rule_any = { type = { "normal", "dialog" } },
+    properties = { titlebars_enabled = false }
   },
 
   -- Set Firefox to always map on the tag named "2" on screen 1.
-  -- { rule = { class = "Firefox" },
-  --   properties = { screen = 1, tag = "2" } },
+  { rule = { class = "firefox-developer-edition" },
+    properties = { screen = 1, tag = "1" } },
+
+  { rule = { class = "netease-cloud-music" },
+    properties = { screen = 1, tag = "6" } },
+
+  { rule = { class = "Cfw" },
+    properties = { screen = 1, tag = "7" } },
+
+  { rule = { class = "Steam" },
+    properties = { screen = 1, tag = "8" } },
+
+  { rule = { class = "dota2" },
+    properties = { screen = 1, tag = "9", } },
+
+  { rule = { class = "citra" },
+    properties = { creen = 1, tag = "9" } },
 }
 -- }}}
 
@@ -563,3 +595,4 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")

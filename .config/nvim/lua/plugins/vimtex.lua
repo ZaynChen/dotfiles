@@ -5,7 +5,6 @@ g.vimtex_view_method = "zathura"
 g.vimtex_view_skim_sync = 1
 g.vimtex_view_skim_activate = 1
 
-g.vimtex_compiler_progname = "nvr"
 g.vimtex_quickfix_mode = 0
 
 vim.o.conceallevel = 1

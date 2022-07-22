@@ -77,7 +77,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # osx unsupported in the alacritty terminal
-plugins=(autojump zsh-autosuggestions git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine)
+plugins=(autojump zsh-autosuggestions zsh-syntax-highlighting git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,14 +86,15 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=zh_CN.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  # export EDITOR='mvim'
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -111,16 +112,13 @@ alias zshconf="nvim ~/.zshrc"
 alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
 alias tmuxconf="nvim ~/.tmux.conf"
 
-# -- exa alias
 alias ls="exa"
 alias lll="exa -la"
-# -- nvim alias
 alias e="nvim"
 alias n="neofetch"
 alias py="python"
 alias u="aupdate"
 alias mux="tmuxinator"
-alias aura="sudo aura"
 
 alias macode="tmuxinator macode"
 
@@ -170,21 +168,21 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 
-export EDITOR="nvim"
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+source /opt/miniconda/etc/profile.d/conda.sh
+
+# __conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/usr/local/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/usr/local/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 # export HOMEBREW_GITHUB_API_TOKEN=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
@@ -194,3 +192,6 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 # export PATH="/Applications/factor:$PATH"
 
+neofetch
+#screenfetch
+#alsi

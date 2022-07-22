@@ -5,13 +5,14 @@ picom &
 nitrogen --restore &
 volumeicon &
 nm-applet &
-/usr/bin/xsettingsd &
+# /usr/bin/xsettingsd &
 # [ -x ~/.config/polybar/launch.sh ] && ~/.config/polybar/launch.sh &
 # $HOME/.config/polybar/docky/scripts/pywal.sh $HOME/Pictures/wallpaper &
 # $HOME/.config/polybar/launch.sh --docky &
 $HOME/.config/polybar/launch.sh --cust &
 # pcmanfm --desktop & # display desktop dirs & files
-docker-compose -f $HOME/.config/clash/docker-compose.yaml up -d &
+# docker-compose -f $HOME/.config/clash/docker-compose.yaml up -d &
+cfw &
 fcitx5 &
 # [ -x ~/.cargo-target/release/buzz ] && ~/.cargo-target/release/buzz &
 # if [ -x ~/.cargo-target/release/keybase-chat-notifier ]; then
@@ -58,6 +59,7 @@ bspc rule -a wps desktop='^4'
 bspc rule -a wpspdf desktop='^4'
 bspc rule -a dingtalk desktop='^5'
 bspc rule -a netease-cloud-music desktop='^6' state=pseudo_tiled
+bspc rule -a cfw desktop='^7' state=pseudo_tiled
 bspc rule -a virtualbox desktop='^8'
 bspc rule -a Steam desktop='^9' state=tiled
 bspc rule -a Dota2 desktop='^10'

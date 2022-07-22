@@ -1,6 +1,7 @@
 .DS_Store
 
 .config/clash
+.config/clash_win
 .config/exercism
 .config/wireshark
 .config/nvim/plugins
