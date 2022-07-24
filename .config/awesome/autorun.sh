@@ -11,5 +11,5 @@ run picom
 run volumeicon
 run cfw
 run fcitx5
-run light-locker
+# run light-locker
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
