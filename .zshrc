@@ -117,7 +117,7 @@ alias lll="exa -la"
 alias e="nvim"
 alias n="neofetch"
 alias py="python"
-alias u="aupdate"
+alias u="aupdate.sh"
 alias mux="tmuxinator"
 
 alias macode="tmuxinator macode"
