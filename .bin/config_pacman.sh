@@ -10,11 +10,11 @@ $REPLACEMENT" /etc/pacman.conf
 # Add archlinuxcn repo
 if [ -z "$(cat /etc/pacman.conf | grep -i archlinuxcn)" ]
 then
-  sudo sed -i '$a\
-[archlinuxcn]\
-Server = https://repo.archlinuxcn.org/$arch' /etc/pacman.conf
+  echo '[archlinuxcn]
+Server = https://repo.archlinuxcn.org/$arch' | sudo tee -a /etc/pacman.conf
+ 
 fi
 
-# setup mirrors
+# Setup mirrors
 sudo pacman -S reflector --noconfirm --needed
 sudo reflector --sort rate --threads 100 -c China --save /etc/pacman.d/mirrorlist
