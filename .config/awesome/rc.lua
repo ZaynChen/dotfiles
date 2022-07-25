@@ -637,7 +637,7 @@ awful.rules.rules = {
   { rule = { class = "netease-cloud-music" },
     properties = { screen = 1, tag = "6" } },
 
-  { rule = { class = "cfw" },
+  { rule = { class = "Clash for Windows" },
     properties = { screen = 1, tag = "7" } },
 
   { rule_any = { class = { "Steam", "citra" }, },
