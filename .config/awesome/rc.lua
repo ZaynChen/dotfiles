@@ -628,6 +628,9 @@ awful.rules.rules = {
   { rule = { class = browser },
     properties = { screen = 1, tag = "1" } },
 
+  { rule = { class = "Code" },
+    properties = { screen = 1, tag = "3" } },
+
   { rule_any = { class = { "wps", "et", "wpp", "wpspdf" }, },
     properties = { screen = 1, tag = "4" } },
 

@@ -98,6 +98,7 @@ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+export SKLEARNEX_VERBOSE=INFO
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -147,19 +148,25 @@ export PATH="$HOME/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-export PATH="/opt/metasploit-framework/bin:$PATH"
-export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# export PATH="/opt/metasploit-framework/bin:$PATH"
 
 if [ -x "$(command -v brew)" ] ; then
   # nvim install by brew
   export PATH="/usr/local/Cellar/llvm/13.0.1_1/bin:$PATH"
+  export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
   export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2/share/nvim/runtime"
-  export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
+  export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# export PATH="/Applications/factor:$PATH"
+# export HOMEBREW_GITHUB_API_TOKEN=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
 else
   export NVIMRUNTIME="/usr/share/nvim/runtime"
 fi
 
-export SKLEARNEX_VERBOSE=INFO
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -170,8 +177,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-source /opt/miniconda/etc/profile.d/conda.sh
-
 # __conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 # if [ $? -eq 0 ]; then
 #     eval "$__conda_setup"
@@ -185,13 +190,4 @@ source /opt/miniconda/etc/profile.d/conda.sh
 # unset __conda_setup
 # <<< conda initialize <<<
 
-# export HOMEBREW_GITHUB_API_TOKEN=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
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-# export PATH="/Applications/factor:$PATH"
-
 neofetch
-#screenfetch
-#alsi
