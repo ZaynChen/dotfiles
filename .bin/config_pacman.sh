@@ -6,8 +6,7 @@ REPLACEMENT="Color"
 sudo sed -i "s/$PATTERN/$REPLACEMENT/g" /etc/pacman.conf
 
 # Add archlinuxcn repo
-if [ -z "$(cat /etc/pacman.conf | grep -i archlinuxcn)" ]
-then
+if [ -z "$(grep -i "archlinuxcn" /etc/pacman.conf)" ]; then
   echo '[archlinuxcn]
 Server = https://repo.archlinuxcn.org/$arch' | sudo tee -a /etc/pacman.conf
 fi
