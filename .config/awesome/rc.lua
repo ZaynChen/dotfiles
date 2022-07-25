@@ -291,11 +291,11 @@ local function at_screen_connect(s)
   }
 
   -- Create a tasklist widget
-  -- s.mytasklist = awful.widget.tasklist {
-  --   screen = s,
-  --   filter = awful.widget.tasklist.filter.currenttags,
-  --   buttons = tasklist_buttons
-  -- }
+  s.mytasklist = awful.widget.tasklist {
+    screen = s,
+    filter = awful.widget.tasklist.filter.currenttags,
+    buttons = tasklist_buttons
+  }
 
   -- Create the wibox
   s.mywibox = awful.wibar({ position = "top", screen = s })
@@ -631,7 +631,7 @@ awful.rules.rules = {
   { rule = { class = "Code" },
     properties = { screen = 1, tag = "3" } },
 
-  { rule_any = { class = { "wps", "et", "wpp", "wpspdf" }, },
+  { rule_any = { class = { "wps", "et", "wpp", "pdf" }, },
     properties = { screen = 1, tag = "4" } },
 
   { rule = { class = "netease-cloud-music" },
