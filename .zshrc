@@ -152,21 +152,19 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # export PATH="/opt/metasploit-framework/bin:$PATH"
+if [ "$(uname)" = "Linux" ] ; then
+  alias open="xdg-open"
 
-if [ -x "$(command -v brew)" ] ; then
-  # nvim install by brew
+  export NVIMRUNTIME="/usr/share/nvim/runtime"
+  [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
+elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
   export PATH="/usr/local/Cellar/llvm/13.0.1_1/bin:$PATH"
   export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
   export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2/share/nvim/runtime"
   export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 # export PATH="/Applications/factor:$PATH"
-# export HOMEBREW_GITHUB_API_TOKEN=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
-else
-  export NVIMRUNTIME="/usr/share/nvim/runtime"
 fi
-
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
-
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
