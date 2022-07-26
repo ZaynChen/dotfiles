@@ -125,15 +125,20 @@ wk.register({
   },
   l = {
     name = "LSP",
-    i = { function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)" },
+    -- i = { function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)" },
     s = { function() telescope.lsp_dynamic_workspace_symbols() end, "[LSP]Symbols Document(Telescope)" },
     S = { function() telescope.lsp_document_symbols() end, "[LSP]Symbols Workspace(Telescope)" },
-    u = { function() trouble.open("lsp_references") end, "[LSP]References(Trouble)" },
+    -- u = { function() trouble.open("lsp_references") end, "[LSP]References(Trouble)" },
   },
   r = "[TS]Rename(smart)",
   t = { name = "tab" },
   x = { function() trouble.open() end, "[Trouble]Toggle" },
 }, { prefix = "<leader>" })
+
+wk.register {
+  ["gI"] = { function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)" },
+  ["gr"] = { function() trouble.open("lsp_references") end, "[LSP]References(Trouble)" },
+}
 
 wk.register({
   ["<M-k>"] = "[LSP]Signature toggle"
