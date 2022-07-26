@@ -137,6 +137,7 @@ require("plugins/nvim-autopairs")
 require("plugins/treesitter-context")
 
 require("plugins/lspconfig")
+require("plugins/null-ls")
 require("plugins/lsp_signature")
 -- require("plugins/navigator")
 

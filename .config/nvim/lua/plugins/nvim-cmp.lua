@@ -73,7 +73,8 @@ cmp.setup {
     documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert {
-    ["<Tab>"] = cmp.mapping(function(fallback) cmp_ultisnips_mappings.expand_or_jump_forwards(fallback) end, { "i", "c", }),
+    ["<Tab>"] = cmp.mapping(function(fallback) cmp_ultisnips_mappings.expand_or_jump_forwards(fallback) end,
+      { "i", "c", }),
     ["<S-Tab>"] = cmp.mapping(function(fallback) cmp_ultisnips_mappings.jump_backwards(fallback) end, { "i", "c" }),
     ['<CR>'] = {
       c = cmp.confirm({ select = true }),
@@ -81,7 +82,6 @@ cmp.setup {
     },
   },
   sources = cmp.config.sources({
-    { name = "omni" },
     { name = "cmp-nvim-lsp-signature-help" },
   }, {
     { name = "path" },
