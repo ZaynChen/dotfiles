@@ -17,12 +17,12 @@ local on_attach = function(client, bufnr)
     return opts
   end
 
-  -- nmap("gD", lsp.buf.declaration, opts("lsp.buf.declaration"))
+  nmap("gD", lsp.buf.declaration, opts("[LSP]Declaration"))
+  nmap("gd", function() lsp.buf.definition() end, opts("[LSP]Definition"))
+  nmap("K", function() lsp.buf.hover() end, opts("[LSP]Hover"))
   nmap("<leader>la", function() lsp.buf.code_action() end, opts("[LSP]Code Action"))
-  nmap("<leader>lk", function() lsp.buf.hover() end, opts("[LSP]Hover"))
   nmap("<leader>lf", function() lsp.buf.formatting() end, opts("[LSP]Formatting"))
   nmap("<leader>lr", function() lsp.buf.rename() end, opts("[LSP]Rename"))
-  nmap("<leader>ld", function() lsp.buf.definition() end, opts("[LSP]Definition"))
   nmap("<leader>lD", function() lsp.buf.type_definition() end, opts("[LSP]Type definition"))
 
   -- nmap("\\d", function() diagnostic.open_float() end, opts("[Diagnostic]Open"))
