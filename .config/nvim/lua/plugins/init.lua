@@ -87,6 +87,7 @@ Plug("akinsho/toggleterm.nvim", { tag = "v1.*" })
 Plug "lewis6991/gitsigns.nvim"
 
 -- LSP
+Plug "jose-elias-alvarez/null-ls.nvim"
 Plug "neovim/nvim-lspconfig"
 Plug "nvim-lua/lsp-status.nvim"
 Plug "ray-x/lsp_signature.nvim"
