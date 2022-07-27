@@ -151,7 +151,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-# export PATH="/opt/metasploit-framework/bin:$PATH"
 if [ "$(uname)" = "Linux" ] ; then
   alias open="xdg-open"
 
@@ -164,6 +163,7 @@ elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
   export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2/share/nvim/runtime"
   export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 # export PATH="/Applications/factor:$PATH"
+# export PATH="/opt/metasploit-framework/bin:$PATH"
 fi
 
 # Base16 Shell
