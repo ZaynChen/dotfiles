@@ -1,3 +1,4 @@
+sudo pacman -S pacman-contrib --noconfirm --needed
 sudo pacman -S paru --noconfirm --needed
 
 paru -S archlinuxcn-keyring --noconfirm --needed

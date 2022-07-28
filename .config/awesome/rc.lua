@@ -129,6 +129,17 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
+-- Checkupdates
+-- local function checkupdates()
+--   awful.spawn.easy_async("checkupdates", function(stdout)
+--     local n = 0
+--     for i in stdout:gmatch("\n") do
+--       n = n + 1
+--     end
+--     naughty.notify({ title = n .. " updates available:", text = "\n" .. stdout })
+--   end)
+-- end
+
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
