@@ -96,6 +96,8 @@ else
   export EDITOR='nvim'
 fi
 
+bindkey -v
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 export SKLEARNEX_VERBOSE=INFO

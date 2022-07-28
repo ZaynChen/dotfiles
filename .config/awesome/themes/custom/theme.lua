@@ -125,8 +125,8 @@ theme.gap_single_client = true
 -- theme.hotkeys_modifiers_fg = nil
 -- theme.hotkeys_label_bg = nil
 -- theme.hotkeys_label_fg = nil
--- theme.hotkeys_font = nil
--- theme.hotkeys_description_font = nil
+theme.hotkeys_font = theme.font
+theme.hotkeys_description_font = theme.font
 -- theme.hotkeys_group_margin = nil
 
 -- icon
