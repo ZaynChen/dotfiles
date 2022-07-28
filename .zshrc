@@ -77,7 +77,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # osx unsupported in the alacritty terminal
-plugins=(autojump zsh-autosuggestions zsh-syntax-highlighting git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine)
+plugins=(autojump zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,6 +97,8 @@ else
 fi
 
 bindkey -v
+# ZVM_KEYTIMEOUT=0.05
+# ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
