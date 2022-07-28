@@ -77,7 +77,7 @@ theme.taglist_shape_border_color_volatile = nil
 
 -- calendar
 -- theme.calendar_style = nil
--- theme.calendar_font = nil
+theme.calendar_font = theme.font
 -- theme.calendar_spacing = nil
 -- theme.calendar_week_numbers = nil
 -- theme.calendar_start_sunday = nil
@@ -157,9 +157,9 @@ theme.layout_cornerse   = theme_dir .. "layouts/cornersew.png"
 -- theme.layoutlist_bg_selected = nil
 -- theme.layoutlist_disable_icon = nil
 -- theme.layoutlist_disable_name = nil
--- theme.layoutlist_font = nil
+theme.layoutlist_font = theme.font
 -- theme.layoutlist_align = nil
--- theme.layoutlist_font_selected = nil
+theme.layoutlist_font_selected = theme.font
 -- theme.layoutlist_spacing = nil
 -- theme.layoutlist_shape = nil
 -- theme.layoutlist_shape_border_width = nil
@@ -178,7 +178,7 @@ theme.layout_cornerse   = theme_dir .. "layouts/cornersew.png"
 -- theme.maximized_hide_border = nil
 
 -- menu
--- theme.menu_font = nil
+theme.menu_font = theme.font
 theme.menu_height = dpi(16)
 theme.menu_width = dpi(140)
 -- theme.menu_border_color = nil
@@ -199,7 +199,7 @@ theme.menu_width = dpi(140)
 -- theme.menubar_bg_normal = nil
 
 -- notification\
--- theme.notification_font = nil
+theme.notification_font = theme.font
 -- theme.notification_bg = nil
 -- theme.notification_fg = nil
 -- theme.notification_border_width = nil
@@ -233,7 +233,7 @@ theme.menu_width = dpi(140)
 -- prompt
 -- theme.prompt_fg_cursor = nil
 -- theme.prompt_bg_cursor = nil
--- theme.prompt_font = nil
+theme.prompt_font = theme.font
 -- theme.prompt_fg = nil
 -- theme.prompt_bg = nil
 
@@ -394,7 +394,7 @@ theme.systray_icon_spacing = dpi(5)
 -- theme.tooltip_border_color = nil
 -- theme.tooltip_bg = nil
 -- theme.tooltip_fg = nil
--- theme.tooltip_font = nil
+theme.tooltip_font = theme.font
 -- theme.tooltip_border_width = nil
 -- theme.tooltip_opacity = nil
 -- theme.tooltip_shape = nil
