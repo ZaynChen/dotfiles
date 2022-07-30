@@ -97,8 +97,9 @@ else
 fi
 
 bindkey -v
-# ZVM_KEYTIMEOUT=0.05
-# ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
+ZVM_KEYTIMEOUT=0.05
+ZVM_ESCAPE_KEYTIMEOUT=0.04
+ZVM_INIT_MODE=sourcing
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

@@ -7,7 +7,7 @@ run() {
   fi
 }
 
-run picom
+run picom --experimental-backends
 run volumeicon
 run cfw
 run fcitx5

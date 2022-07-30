@@ -15,11 +15,11 @@ if [ -x "$(command -v brew)" ] ; then
   echo ""
 elif [ -x "$(command -v paru)" ] ; then
   echo "Paru Updating..."
-  paru
+  paru -Syyu --noconfirm
   echo
 elif [ -x "$(command -v pacman)" ] ; then
   echo "Pacman Updating..."
-  sudo pacman -Syu
+  sudo pacman -Syyu --noconfirm
   echo
 fi
 

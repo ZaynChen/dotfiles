@@ -24,7 +24,7 @@ window:
 
   decorations: none
 
-  opacity: .95
+  opacity: .9
 
   startup_mode: Windowed
 
