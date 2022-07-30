@@ -3,7 +3,7 @@ sudo pacman -S paru --noconfirm --needed
 
 paru -S archlinuxcn-keyring --noconfirm --needed
 
-paru -S picom --noconfirm --needed
+paru -S picom-jonaburg-git --noconfirm --needed
 
 paru -S lightdm lightdm-webkit-theme-litarvan --noconfirm --needed
 PATTERN="antergos"
