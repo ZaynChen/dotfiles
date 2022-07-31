@@ -1,17 +1,19 @@
-local opts = { clear = true }
-local reload_buf = vim.api.nvim_create_augroup("reload_buf", opts)
-local restore_cursor = vim.api.nvim_create_augroup("restore_cursor", opts)
-local im_switch = vim.api.nvim_create_augroup("im_switch", opts)
-local reload_snippets = vim.api.nvim_create_augroup("reload_snippets", opts)
+local api = vim.api
 
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+local opts = { clear = true }
+local reload_buf = api.nvim_create_augroup("reload_buf", opts)
+local restore_cursor = api.nvim_create_augroup("restore_cursor", opts)
+local im_switch = api.nvim_create_augroup("im_switch", opts)
+local reload_snippets = api.nvim_create_augroup("reload_snippets", opts)
+
+api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   group = reload_buf,
   pattern = { "*" },
   desc = "Reload buffer",
-  callback = function() vim.api.nvim_command("checktime") end
+  callback = function() api.nvim_command("checktime") end
 })
 
-vim.api.nvim_create_autocmd("BufRead", {
+api.nvim_create_autocmd("BufRead", {
   group = restore_cursor,
   pattern = "*",
   desc = "Restore cursor",
@@ -26,7 +28,7 @@ vim.api.nvim_create_autocmd("BufRead", {
 -- 创建 Buf 时禁用输入法
 -- 进入 Buf 时禁用输入法
 -- 离开 Buf 时禁用输入法
-vim.api.nvim_create_autocmd({ "InsertLeave", "BufCreate", "BufEnter", "BufLeave" }, {
+api.nvim_create_autocmd({ "InsertLeave", "BufCreate", "BufEnter", "BufLeave" }, {
   group = im_switch,
   pattern = "*",
   desc = "Auto switch im",
@@ -34,7 +36,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "BufCreate", "BufEnter", "BufLeave"
 })
 
 local cmp_nvim_ultisnips = require("cmp_nvim_ultisnips")
-vim.api.nvim_create_autocmd("BufWritePost", {
+api.nvim_create_autocmd("BufWritePost", {
   group = reload_snippets,
   pattern = { "*.snippets" },
   desc = "Reload Snippets",

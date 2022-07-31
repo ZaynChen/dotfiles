@@ -1,3 +1,5 @@
+local api = vim.api
+
 local keymap = require("utils.keymap")
 local nmap = keymap.nmap
 local imap = keymap.imap
@@ -9,7 +11,7 @@ nmap("<leader>c", ':e <C-R>=expand("%:p:h")."/"<cr>', { silent = false, desc = "
 -- nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>:pwd<cr>')
 
 nmap("<leader>q", "<cmd>q<cr>")
-nmap("ZZ", function() vim.api.nvim_command("wa"); vim.api.nvim_command(":q") end, { desc = "Save all buffers & quit" })
+nmap("ZZ", function() api.nvim_command("wa"); api.nvim_command(":q") end, { desc = "Save all buffers & quit" })
 -- ZQ -> :q!
 
 nmap("0", "virtcol('.') == indent('.')+1 ? '0': '^'", { expr = true, desc = "Start of line (smart)" })
