@@ -2,6 +2,8 @@ sudo pacman -S pacman-contrib --noconfirm --needed
 sudo pacman -S paru --noconfirm --needed
 
 paru -S archlinuxcn-keyring --noconfirm --needed
+paru -S nftables --noconfirm --needed
+sudo systemctl enable nftables
 
 paru -S picom-jonaburg-git --noconfirm --needed
 

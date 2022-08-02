@@ -645,7 +645,7 @@ awful.rules.rules = {
   { rule_any = { class = { "wps", "et", "wpp", "pdf" }, },
     properties = { screen = 1, tag = "4" } },
 
-  { rule = { class = "netease-cloud-music" },
+  { rule_any = { class = { "netease-cloud-music", "listen1" } },
     properties = { screen = 1, tag = "6" } },
 
   { rule = { class = "Clash for Windows" },
