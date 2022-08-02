@@ -22,6 +22,7 @@ paru -S lain-git --noconfirm --needed
 paru -S xdg-utils --noconfirm --needed
 paru -S alsa-utils --noconfirm --needed
 paru -S volumeicon --noconfirm --needed
+paru -S nm-applet --noconfirm --needed
 paru -S pcmanfm --noconfirm --needed
 paru -S fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki fcitx5-material-color --noconfirm --needed
 
