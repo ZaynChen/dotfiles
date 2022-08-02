@@ -26,7 +26,7 @@ chs.txt
 0
 
 [Initial dir for file/archive browser]
-/
+/usr/share/backgrounds/archlinux/
 
 [default archiving format]
 18
@@ -84,7 +84,7 @@ chs.txt
 
 [save history of recent archives]
 1
-
+/usr/share/backgrounds/archlinux/archlinux.stw
 
 
 
@@ -409,8 +409,8 @@ PeaZip
 0
 
 [save history of recent directories]
+/usr/share/backgrounds/archlinux/
 /
-
 
 
 

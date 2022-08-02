@@ -12,7 +12,8 @@ local theme = {}
 
 -- default variables
 theme.font = "FiraCode Nerd Font Mono 10"
-theme.wallpaper = "/usr/share/backgrounds/archlinux/awesome.png"
+-- theme.wallpaper = "/usr/share/backgrounds/archlinux/awesome.png"
+theme.wallpaper = theme_dir .. "wallpaper/purple-space-light.jpg"
 
 -- arcchart
 -- theme.arcchart_border_color = nil
@@ -36,8 +37,8 @@ theme.fg_minimize = nil
 
 -- border
 theme.border_width = dpi(3)
-theme.border_normal = "#000000"
-theme.border_focus = "#535d6c"
+theme.border_normal = "#222222"
+theme.border_focus = "#535d6c" -- "#31004a" "#4c00a4" "#f4511e" "#8300c4"
 theme.border_marked = "#91231c"
 
 -- taglist
