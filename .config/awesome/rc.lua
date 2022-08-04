@@ -298,7 +298,7 @@ local function at_screen_connect(s)
   s.mytaglist = awful.widget.taglist {
     screen  = s,
     filter  = awful.widget.taglist.filter.all,
-    buttons = taglist_buttons
+    buttons = taglist_buttons,
   }
 
   -- Create a tasklist widget
@@ -309,7 +309,7 @@ local function at_screen_connect(s)
   -- }
 
   -- Create the wibox
-  s.mywibox = awful.wibar({ position = "top", screen = s })
+  s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal_transparent })
 
   -- Add widgets to the wibox
   s.mywibox:setup {

@@ -49,9 +49,9 @@ o.numberwidth = 3
 -- o.modelines = 0
 
 -- Color Scheme
-if vim.fn.filereadable(HOME .. "/.vimrc_background") then
+if vim.fn.filereadable(HOME .. "/.config/nvim/vimrc_background") then
   base16colorspace = 256
-  vim.cmd("source " .. HOME .. "/.vimrc_background")
+  vim.cmd("source " .. HOME .. "/.config/nvim/vimrc_background")
 else
   vim.cmd("colorscheme base16-onedark")
 end

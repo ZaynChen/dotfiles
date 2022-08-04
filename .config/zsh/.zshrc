@@ -1,8 +1,20 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# XDG base directories
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+# export XDG_RUNTIME_DIR=
+
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
+
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
+#
+export ZSH=$XDG_DATA_HOME/oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -66,7 +78,7 @@ ZSH_THEME="robbyrussell"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# ZSH_CUSTOM=$ZSH/custom
 
 # tmux conf
 # ZSH_TMUX_AUTOSTART=true
@@ -114,7 +126,9 @@ export SKLEARNEX_VERBOSE=INFO
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias zshconf="nvim ~/.zshrc"
+# alias zshconf="nvim ~/.zshrc"
+alias zshconf="nvim $ZDOTDIR/.zshrc"
+alias sourcezsh="source $ZDOTDIR/.zshrc"
 alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
 alias tmuxconf="nvim ~/.tmux.conf"
 
@@ -149,9 +163,19 @@ alias qemurv64="qemu-riscv64"
 # export http_proxy=http://127.0.0.1:1087
 # export https_proxy=http://127.0.0.1:1087
 
+
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export LESSHISTFILE=$XDG_CACHE_HOME/less/history
+export RUSTUP_HOME=$XDG_DATA_HOME/rustup
+export HISTFILE=$XDG_STATE_HOME/zsh/history
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export ERRFILE=$XDG_CACHE_HOME/X11/xsession-errors
+export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
+export WAKATIME_HOME=$XDG_CONFIG_HOME/wakatime
+
 export PATH="$HOME/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$CARGO_HOME/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

@@ -26,6 +26,7 @@
 .config/htop
 .config/pulse
 .config/font-manager
+.config/wakatime
 
 .config/mimeapps.list
 .config/QtProject.conf

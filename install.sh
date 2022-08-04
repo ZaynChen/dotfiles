@@ -1,7 +1,9 @@
-ln -s ./config ~/.config
-ln -s ./bin ~/.bin
-ln -s .zshrc ~/.zshrc
-ln -s .vimrc_background ~/.vimrc_background
-ln -s .tmux.conf ~/.tmux.conf
-ln -s .pam_enviroment ~/.pam_environment
+# Directies and files should not exist before running this script
+ln -s .config $XDG_CONFIG_HOME
+ln -s .bin $HOME/.bin
+ln -s .pam_enviroment $HOME/.pam_environment
+ln -s .config/zsh/.zshenv $HOME/.zshenv
 
+# oh-my-zsh
+# compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+# zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache

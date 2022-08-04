@@ -22,12 +22,14 @@ theme.wallpaper = theme_dir .. "wallpaper/purple-space-light.jpg"
 -- theme.arcchart_paddings = nil
 -- theme.arcchart_thickness = nil
 
+theme.bg_transparent = "50"
+
 -- bg
-theme.bg_normal = "#1f1f1f"
-theme.bg_focus = "#535d6c"
-theme.bg_urgent = "#e53935"
+theme.bg_normal = "#1f1f1f" .. theme.bg_transparent
+theme.bg_focus = "#535d6c" .. theme.bg_transparent
+theme.bg_urgent = "#e53935" .. theme.bg_transparent
 theme.bg_minimize = nil
-theme.bg_systray = theme.bg_normal
+theme.bg_systray = theme.bg_normal .. theme.bg_transparent
 
 -- fg
 theme.fg_normal = "#fefefe"
