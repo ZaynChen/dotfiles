@@ -27,6 +27,8 @@
 .config/pulse
 .config/font-manager
 .config/wakatime
+.config/zsh/.zcompdump*
+.config/zsh/tmux*
 
 .config/mimeapps.list
 .config/QtProject.conf
