@@ -29,6 +29,7 @@
 .config/wakatime
 .config/zsh/.zcompdump*
 .config/zsh/tmux*
+.config/git
 
 .config/mimeapps.list
 .config/QtProject.conf
