@@ -309,7 +309,7 @@ local function at_screen_connect(s)
   -- }
 
   -- Create the wibox
-  s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal_transparent })
+  s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal })
 
   -- Add widgets to the wibox
   s.mywibox:setup {

@@ -29,7 +29,7 @@ theme.bg_normal = "#1f1f1f" .. theme.bg_transparent
 theme.bg_focus = "#535d6c" .. theme.bg_transparent
 theme.bg_urgent = "#e53935" .. theme.bg_transparent
 theme.bg_minimize = nil
-theme.bg_systray = theme.bg_normal .. theme.bg_transparent
+theme.bg_systray = theme.bg_normal
 
 -- fg
 theme.fg_normal = "#fefefe"
