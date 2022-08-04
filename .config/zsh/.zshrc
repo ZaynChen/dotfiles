@@ -1,19 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# XDG base directories
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
-# export XDG_RUNTIME_DIR=
-
-export XDG_DATA_DIRS=/usr/local/share:/usr/share
-export XDG_CONFIG_DIRS=/etc/xdg
+#
 
 # Path to your oh-my-zsh installation.
 # export ZSH="$HOME/.oh-my-zsh"
-#
 export ZSH=$XDG_DATA_HOME/oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
@@ -89,7 +79,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # osx unsupported in the alacritty terminal
-plugins=(autojump zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine)
+plugins=(git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine autojump zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,7 +98,7 @@ else
   export EDITOR='nvim'
 fi
 
-bindkey -v
+# bindkey -v
 ZVM_KEYTIMEOUT=0.05
 ZVM_ESCAPE_KEYTIMEOUT=0.04
 ZVM_INIT_MODE=sourcing
@@ -128,6 +118,7 @@ export SKLEARNEX_VERBOSE=INFO
 
 # alias zshconf="nvim ~/.zshrc"
 alias zshconf="nvim $ZDOTDIR/.zshrc"
+alias zshenv="nvim $ZDOTDIR/.zshenv"
 alias sourcezsh="source $ZDOTDIR/.zshrc"
 alias alaconf="nvim $XDG_CONFIG_HOME/alacritty/alacritty.yml"
 alias tmuxconf="nvim $XDG_CONFIG_HOME/tmux/.tmux.conf"
@@ -162,15 +153,6 @@ alias qemurv64="qemu-riscv64"
 
 # export http_proxy=http://127.0.0.1:1087
 # export https_proxy=http://127.0.0.1:1087
-
-export CARGO_HOME=$XDG_DATA_HOME/cargo
-export LESSHISTFILE=$XDG_CACHE_HOME/less/history
-export RUSTUP_HOME=$XDG_DATA_HOME/rustup
-export HISTFILE=$XDG_STATE_HOME/zsh/history
-export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
-export ERRFILE=$XDG_CACHE_HOME/X11/xsession-errors
-export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
-export WAKATIME_HOME=$XDG_CONFIG_HOME/wakatime
 
 export PATH="$HOME/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
