@@ -129,8 +129,8 @@ export SKLEARNEX_VERBOSE=INFO
 # alias zshconf="nvim ~/.zshrc"
 alias zshconf="nvim $ZDOTDIR/.zshrc"
 alias sourcezsh="source $ZDOTDIR/.zshrc"
-alias alaconf="nvim ~/.config/alacritty/alacritty.yml"
-alias tmuxconf="nvim ~/.tmux.conf"
+alias alaconf="nvim $XDG_CONFIG_HOME/alacritty/alacritty.yml"
+alias tmuxconf="nvim $XDG_CONFIG_HOME/tmux/.tmux.conf"
 
 alias ls="exa"
 alias lll="exa -la"
@@ -162,7 +162,6 @@ alias qemurv64="qemu-riscv64"
 
 # export http_proxy=http://127.0.0.1:1087
 # export https_proxy=http://127.0.0.1:1087
-
 
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export LESSHISTFILE=$XDG_CACHE_HOME/less/history
