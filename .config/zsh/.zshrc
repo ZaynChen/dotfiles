@@ -155,7 +155,7 @@ alias qemurv64="qemu-riscv64"
 # export https_proxy=http://127.0.0.1:1087
 
 export PATH="$HOME/.bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+# export PATH="/usr/local/sbin:$PATH"
 export PATH="$CARGO_HOME/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
