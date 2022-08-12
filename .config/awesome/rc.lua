@@ -60,8 +60,8 @@ local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.ge
 beautiful.init(theme_path)
 
 terminal = "alacritty"
--- browser = "firefox-developer-edition"
-browser = "brave"
+browser = "firefox-developer-edition"
+-- browser = "brave"
 -- locker = "light-locker-command -l"
 locker = "betterlockscreen -l dimblur"
 editor = os.getenv("EDITOR") or "nvim"
