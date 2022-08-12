@@ -40,5 +40,6 @@ paru -S neovim --noconfirm --needed
 paru -S tmux --noconfirm --needed
 
 paru -S firefox-developer-edition firefox-developer-edition-i18n-zh-cn --noconfirm --needed
+paru -S brave-bin --noconfirm --needed
 
 paru -S clash-for-windows-chinese --noconfirm --needed

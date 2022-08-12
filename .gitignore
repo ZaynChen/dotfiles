@@ -14,6 +14,7 @@
 .config/dconf
 .config/fcitx
 .config/google-chrome
+.config/BraveSoftware
 .config/libfm
 .config/pcmanfm
 .config/nitrogen
