@@ -28,6 +28,7 @@ paru -S fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki fcitx5-material-col
 
 paru -S peazip --noconfirm --needed
 paru -S fd --noconfirm --needed
+paru -S tree --noconfirm --needed
 paru -S ranger --noconfirm --needed
 paru -S exa --noconfirm --needed
 paru -S ripgrep --noconfirm --needed
