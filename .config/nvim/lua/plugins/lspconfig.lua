@@ -56,16 +56,34 @@ local on_attach = function(client, bufnr)
 end
 
 -- Enable rust-tools
-require("rust-tools").setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  tools = {
-    inlay_hints = {
-      show_variable_name = true,
-    }
-  },
+require("rust-tools").setup {
+  -- tools = {
+  --   inlay_hints = {
+  --     show_variable_name = true,
+  --   }
+  -- },
   server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
     standalone = true,
+    settings = {
+      ["rust-analyzer"] = {
+        -- imports = {
+        --   granularity = {
+        --     group = "module",
+        --   },
+        --   prefix = "self",
+        -- },
+        cargo = {
+          buildScripts = {
+            enable = true,
+          },
+        },
+        procMacro = {
+          enable = true
+        },
+      }
+    }
   },
   -- dap = {
   --   adapter = {
@@ -74,7 +92,7 @@ require("rust-tools").setup({
   --     name = "rt_lldb"
   --   }
   -- }
-})
+}
 
 -- Enable clangd
 lspconfig.clangd.setup {
