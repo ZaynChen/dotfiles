@@ -80,7 +80,7 @@ export ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # osx unsupported in the alacritty terminal
-plugins=(git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine autojump zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -200,3 +200,5 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # <<< conda initialize <<<
 
 neofetch
+
+eval "$(zoxide init zsh --cmd j)"
