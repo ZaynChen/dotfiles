@@ -10,6 +10,8 @@ cmp.setup {
   experimental = {
     ghost_text = true,
   },
+  -- rust lsp https://github.com/hrsh7th/cmp-nvim-lsp/issues/29
+  preselect = cmp.PreselectMode.None,
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format {
