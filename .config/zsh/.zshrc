@@ -72,6 +72,7 @@ ZSH_THEME="robbyrussell"
 
 # tmux conf
 # ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -121,7 +122,7 @@ alias zshconf="nvim $ZDOTDIR/.zshrc"
 alias zshenv="nvim $ZDOTDIR/.zshenv"
 alias sourcezsh="source $ZDOTDIR/.zshrc"
 alias alaconf="nvim $XDG_CONFIG_HOME/alacritty/alacritty.yml"
-alias tmuxconf="nvim $XDG_CONFIG_HOME/tmux/.tmux.conf"
+# alias tmuxconf="nvim $XDG_CONFIG_HOME/tmux/tmux.conf"
 
 alias ls="exa"
 alias lll="exa -la"
