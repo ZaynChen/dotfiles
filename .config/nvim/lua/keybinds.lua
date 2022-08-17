@@ -19,8 +19,8 @@ nmap("0", "virtcol('.') == indent('.')+1 ? '0': '^'", { expr = true, desc = "Sta
 nmap("<leader><cr>", "<cmd>noh<cr>")
 
 -- Buffer
-nmap("<leader>j", "<cmd>bnext<cr>", { desc = "[Buffer]Next" })
-nmap("<leader>k", "<cmd>bprevious<cr>", { desc = "[Buffer]Prev" })
+nmap("<leader>bj", "<cmd>bnext<cr>", { desc = "[Buffer]Next" })
+nmap("<leader>bk", "<cmd>bprevious<cr>", { desc = "[Buffer]Prev" })
 nmap("<leader>bd", "<cmd>bdelete<cr>", { desc = "[Buffer]Delete from list" })
 
 -- Tab
