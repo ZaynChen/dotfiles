@@ -68,4 +68,4 @@ telescope.load_extension("fzf")
 --
 nmap("<leader>f", function() builtin.find_files() end, { desc = "[Telescope]find_files" })
 nmap("<leader>/", function() builtin.live_grep() end, { desc = "[Telescope]live_grep" })
-nmap("<leader>bb", function() builtin.buffers() end, { desc = "[Buffer]List" })
+nmap("<leader>bl", function() builtin.buffers() end, { desc = "[Buffer]List" })

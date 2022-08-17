@@ -9,6 +9,8 @@ Plug "mattn/webapi-vim"
 
 -- Colorscheme
 Plug "RRethy/nvim-base16"
+-- Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
+-- Plug "navarasu/onedark.nvim"
 Plug "norcalli/nvim-colorizer.lua"
 
 -- Statusline
@@ -39,6 +41,8 @@ Plug "folke/trouble.nvim"
 
 -- Search
 Plug "kevinhwang91/nvim-hlslens"
+-- TODO: hop easy motion
+-- Plug "phaazon/hop.nvim"
 
 -- Completion
 Plug "hrsh7th/nvim-cmp"
@@ -103,7 +107,7 @@ Plug "saecki/crates.nvim"
 Plug "JuliaEditorSupport/julia-vim"
 
 -- Debug
--- TODO
+-- TODO: debugging
 -- Plug "mfussenegger/nvim-dap"
 -- Plug "sakhnik/nvim-gdb"
 
@@ -123,6 +127,8 @@ g.rainbow_active = 1
 require("nvim-web-devicons").setup {}
 require("cmp_nvim_ultisnips").setup {}
 
+-- require("plugins/catppuccin")
+-- require("plugins/onedark")
 require("plugins/lualine")
 require("plugins/nvim-tree")
 require("plugins/treesitter")

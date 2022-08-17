@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
   nmap("<leader>la", function() lsp.buf.code_action() end, opts("[LSP]Code Action"))
   nmap("<leader>lf", function() lsp.buf.formatting() end, opts("[LSP]Formatting"))
   nmap("<leader>lr", function() lsp.buf.rename() end, opts("[LSP]Rename"))
-  nmap("<leader>lD", function() lsp.buf.type_definition() end, opts("[LSP]Type definition"))
+  -- nmap("<leader>lD", function() lsp.buf.type_definition() end, opts("[LSP]Type definition"))
 
   -- nmap("\\d", function() diagnostic.open_float() end, opts("[Diagnostic]Open"))
   -- nmap("<leader>s", function() lsp.buf.signature_help() end, opts("[LSP]Signature"))

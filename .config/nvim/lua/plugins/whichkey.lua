@@ -109,8 +109,8 @@ wk.register({
   b = { name = "buffer" },
   d = {
     name = "diagnostic",
-    ["]"] = { function() diagnostic.goto_next() end, "[Diagnostic]Next" },
-    ["["] = { function() diagnostic.goto_prev() end, "[Diagnostic]Prev" },
+    j = { function() diagnostic.goto_next() end, "[Diagnostic]Next" },
+    k = { function() diagnostic.goto_prev() end, "[Diagnostic]Prev" },
     d = { function() trouble.open("document_diagnostics") end, "[Diagnostics]Document(Trouble)" },
     w = { function() trouble.open("workspace_diagnostics") end, "[Diagnostics]Workspace(Trouble)" },
     q = { function() trouble.open("quickfix") end, "[Diagnostic]Quick Fix(Trouble)" },
@@ -131,6 +131,7 @@ wk.register({
   l = {
     name = "LSP",
     -- i = { function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)" },
+    d = { function() trouble.open("lsp_type_definitions") end, "[LSP]Type definition(Trouble)" },
     s = { function() telescope.lsp_dynamic_workspace_symbols() end, "[LSP]Symbols Document(Telescope)" },
     S = { function() telescope.lsp_document_symbols() end, "[LSP]Symbols Workspace(Telescope)" },
     -- u = { function() trouble.open("lsp_references") end, "[LSP]References(Trouble)" },
@@ -141,7 +142,7 @@ wk.register({
 }, { prefix = "<leader>" })
 
 wk.register {
-  ["gI"] = { function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)" },
+  ["gi"] = { function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)" },
   ["gr"] = { function() trouble.open("lsp_references") end, "[LSP]References(Trouble)" },
 }
 
