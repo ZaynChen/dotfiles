@@ -5,15 +5,14 @@ local nmap = keymap.nmap
 local imap = keymap.imap
 local cmap = keymap.cmap
 
-nmap("<leader>w", "<cmd>w<cr>")
+nmap("<leader>w", "<cmd>w<cr>", { desc = "Write to a file" })
 
 nmap("<leader>e", ':e <C-R>=expand("%:p:h")."/"<cr>', { silent = false, desc = "Edit a file" })
-nmap("<leader>c", "<cmd>close<cr>", { desc = "Close current window" })
--- nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>:pwd<cr>')
+nmap("<leader>clo", "<cmd>close<cr>", { desc = "Close current window" })
+-- nmap("<leader>cw", "<cmd>cwindow<cr>", { desc = "Open or close quickfix window" })
+nmap("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>', { silent = false, desc = "Change directory" })
 
-nmap("<leader>q", "<cmd>q<cr>")
-nmap("ZZ", function() api.nvim_command("wa"); api.nvim_command(":q") end, { desc = "Save all buffers & quit" })
--- ZQ -> :q!
+nmap("<leader>q", "<cmd>q<cr>", { desc = "Quit current window (when one window quit Vim)" })
 
 nmap("0", "virtcol('.') == indent('.')+1 ? '0': '^'", { expr = true, desc = "Start of line (smart)" })
 

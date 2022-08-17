@@ -22,7 +22,7 @@ wk.setup {
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  operators = { gc = "Comments", ["<leader>e"] = "Run" },
+  operators = { gc = "Comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     ["<M-Up>"] = "<M-↑>",
@@ -81,6 +81,11 @@ end
 local trouble = require("trouble")
 local diagnostic = vim.diagnostic
 local telescope = require("telescope.builtin")
+
+wk.register {
+  ["ZZ"] = "Write if buffer changed and close window",
+  ["ZQ"] = "Close window without writing",
+}
 
 -- group
 wk.register {
