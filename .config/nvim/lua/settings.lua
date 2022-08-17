@@ -91,7 +91,8 @@ o.shortmess = o.shortmess .. 'c'
 o.mouse = "a"
 
 o.lazyredraw = true
-o.undodir = HOME .. "/.config/nvim/temp_dirs/undodir"
+-- o.undodir = HOME .. "/.config/nvim/temp_dirs/undodir"
+-- o.undodir = vim.fn.stdpath("data") .. "/undo"
 o.undofile = true
 
 -- filetype

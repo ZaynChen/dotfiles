@@ -4,9 +4,6 @@
 .config/clash_win
 .config/exercism
 .config/wireshark
-.config/nvim/plugins
-.config/nvim/colors/base16-*.vim
-.config/nvim/temp_dirs/*
 .config/gtk-3.0
 .config/Electron
 .config/Code

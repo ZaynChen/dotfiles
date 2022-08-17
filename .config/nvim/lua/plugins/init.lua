@@ -1,7 +1,8 @@
 local Plug = vim.fn["plug#"]
-local plug_path = vim.fn.expand("<sfile>:p:h") .. "/plugins"
+-- local plug_path = vim.fn.stdpath("data") .. "/plugged"
+-- local plug_path = vim.fn.expand("<sfile>:p:h") .. "/plugins"
 
-vim.call("plug#begin", plug_path)
+vim.call("plug#begin")
 
 Plug "nvim-lua/plenary.nvim"
 -- Web apis
