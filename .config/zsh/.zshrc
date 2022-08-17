@@ -152,6 +152,7 @@ alias striprv64="riscv64-unknown-elf-strip"
 alias qemusysrv64="qemu-system-riscv64"
 alias qemurv64="qemu-riscv64"
 
+alias gdb=gdb -n -x $XDG_CONFIG_HOME/gdb/init
 # export http_proxy=http://127.0.0.1:1087
 # export https_proxy=http://127.0.0.1:1087
 
