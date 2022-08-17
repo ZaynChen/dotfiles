@@ -84,7 +84,7 @@ local telescope = require("telescope.builtin")
 
 -- group
 wk.register {
-  ["gc"] = { name = "commentary" },
+  -- ["gc"] = { name = "commentary" },
   ["]"] = { name = "next" },
   ["["] = { name = "prev" },
   ["\\"] = { name = "toggle" }

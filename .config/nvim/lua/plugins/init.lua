@@ -72,7 +72,8 @@ Plug "RRethy/nvim-treesitter-endwise"
 Plug "andymass/vim-matchup"
 
 -- Comment
-Plug "tpope/vim-commentary"
+-- Plug "tpope/vim-commentary"
+Plug "numToStr/Comment.nvim"
 Plug "folke/todo-comments.nvim"
 -- Plug "JoosepAlviste/nvim-ts-context-commentstring"
 
@@ -127,6 +128,7 @@ require("plugins/nvim-tree")
 require("plugins/treesitter")
 require("plugins/indent_blankline")
 require("plugins/todo-comments")
+require("plugins/comment")
 require("plugins/nvim-colorizer")
 
 require("plugins/telescope")
