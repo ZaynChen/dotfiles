@@ -27,7 +27,7 @@ api.nvim_create_autocmd("BufRead", {
 -- 退出插入模式时禁用输入法
 -- 创建 Buf 时禁用输入法
 -- 进入 Buf 时禁用输入法
--- 离开 Buf 时禁用输入法
+--离开 Buf 时禁用输入法
 api.nvim_create_autocmd({ "InsertLeave", "BufCreate", "BufEnter", "BufLeave" }, {
   group = im_switch,
   pattern = "*",

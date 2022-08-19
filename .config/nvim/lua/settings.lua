@@ -85,8 +85,9 @@ o.wildmode = "list:longest"
 o.wildignore = ".hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.o"
 
 -- Completion
-opt.completeopt = { "menuone", "noselect" }
-o.shortmess = o.shortmess .. 'c'
+opt.completeopt = { "menuone", "noselect", "noinsert" }
+-- o.shortmess = o.shortmess .. 'c'
+opt.shortmess = opt.shortmess + { c = true }
 
 o.mouse = "a"
 

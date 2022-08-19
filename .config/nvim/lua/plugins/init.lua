@@ -93,6 +93,8 @@ Plug("akinsho/toggleterm.nvim", { tag = "v1.*" })
 Plug "lewis6991/gitsigns.nvim"
 
 -- LSP
+Plug "williamboman/mason.nvim"
+Plug "williamboman/mason-lspconfig.nvim"
 Plug "jose-elias-alvarez/null-ls.nvim"
 Plug "neovim/nvim-lspconfig"
 Plug "nvim-lua/lsp-status.nvim"
@@ -109,10 +111,11 @@ Plug "JuliaEditorSupport/julia-vim"
 
 -- Debug
 -- TODO: debugging
--- Plug "mfussenegger/nvim-dap"
+Plug "mfussenegger/nvim-dap"
 -- Plug "sakhnik/nvim-gdb"
 
 -- Tool
+Plug "lewis6991/impatient.nvim"
 Plug "wakatime/vim-wakatime"
 Plug "folke/which-key.nvim"
 
@@ -122,36 +125,42 @@ Plug("lervag/vimtex", { ["for"] = "tex" })
 
 vim.call("plug#end")
 
+-- To use impatient,
+-- you need only to include it near the top of your init.lua or init.vim.
+require("plugins.impatient")
+require("plugins.whichkey")
+
 local g = vim.g
 g.rainbow_active = 1
 
 require("nvim-web-devicons").setup {}
 require("cmp_nvim_ultisnips").setup {}
 
--- require("plugins/catppuccin")
--- require("plugins/onedark")
-require("plugins/lualine")
-require("plugins/nvim-tree")
-require("plugins/treesitter")
-require("plugins/indent_blankline")
-require("plugins/todo-comments")
-require("plugins/comment")
-require("plugins/nvim-colorizer")
+require("plugins.lualine")
+require("plugins.nvim-tree")
+require("plugins.treesitter")
+require("plugins.indent_blankline")
+require("plugins.todo-comments")
+require("plugins.comment")
+require("plugins.nvim-colorizer")
 
-require("plugins/telescope")
-require("plugins/toggleterm")
+require("plugins.nvim-cmp")
+require("plugins.nvim-autopairs")
+require("plugins.treesitter-context")
 
-require("plugins/nvim-cmp")
-require("plugins/nvim-autopairs")
-require("plugins/treesitter-context")
+require("plugins.mason")
+require("plugins.mason-lspconfig")
+require("plugins.lspconfig")
+require("plugins.null-ls")
+require("plugins.lsp_signature")
 
-require("plugins/lspconfig")
-require("plugins/null-ls")
-require("plugins/lsp_signature")
+require("plugins.gitsigns")
+require("plugins.crates")
+require("plugins.vimtex")
+
+require("plugins.telescope")
+require("plugins.nvim-trouble")
 -- require("plugins/navigator")
+require("plugins.toggleterm")
 
-require("plugins/gitsigns")
-require("plugins/crates")
-require("plugins/vimtex")
-
-require("plugins/whichkey")
+require("plugins.whichkey.integration")

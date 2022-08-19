@@ -161,7 +161,7 @@ export PATH="$HOME/.bin:$PATH"
 export PATH="$CARGO_HOME/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
 
 if [ "$(uname)" = "Linux" ] ; then
   alias open="xdg-open"

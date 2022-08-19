@@ -1,7 +1,4 @@
-local nmap = require("utils.keymap").nmap
-
 local telescope = require("telescope")
-local builtin   = require("telescope.builtin")
 local trouble   = require("trouble.providers.telescope")
 
 require("telescope").setup {
@@ -66,6 +63,3 @@ telescope.load_extension("fzf")
 -- telescope.load_extension("dap")
 -- telescope.load_extension("vim_bookmarks")
 --
-nmap("<leader>f", function() builtin.find_files() end, { desc = "[Telescope]find_files" })
-nmap("<leader>/", function() builtin.live_grep() end, { desc = "[Telescope]live_grep" })
-nmap("<leader>bb", function() builtin.buffers() end, { desc = "[Buffer]List" })

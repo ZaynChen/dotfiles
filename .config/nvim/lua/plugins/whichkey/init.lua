@@ -1,11 +1,16 @@
 local wk = require("which-key")
 
+require("which-key.plugins.spelling").actions = {
+  { trigger = "z=", mode = "n" },
+  { trigger = "<leader>s=", mode = "n" },
+}
+
 wk.setup {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     spelling = {
-      enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+      enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
       suggestions = 20, -- how many suggestions should be shown in the list?
     },
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
@@ -17,12 +22,12 @@ wk.setup {
       windows = true, -- default bindings on <c-w>
       nav = true, -- misc bindings to work with windows
       z = true, -- bindings for folds, spelling and others prefixed with z
-      g = true, -- bindings for prefixed with g
+      g = false, -- bindings for prefixed with g
     },
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  operators = { gc = "Comments" },
+  operators = {},
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     ["<M-Up>"] = "<M-↑>",
@@ -77,82 +82,17 @@ for _, mode in ipairs { "n", "i", "c", "v" } do
   vim.keymap.set(mode, "<C-_>", "<cmd>WhichKey '' " .. mode .. "<cr>", { silent = true })
 end
 
+--[[
+wk.register(mappings, opts)
+{
+  mode = "n", -- NORMAL mode
+  -- prefix: use "<leader>f" for example for mapping everything related to finding files
+  -- the prefix is prepended to every mapping part of `mappings`
+  prefix = "",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = false, -- use `nowait` when creating keymaps
+} ]]
 
-local trouble = require("trouble")
-local diagnostic = vim.diagnostic
-local telescope = require("telescope.builtin")
-
-wk.register {
-  ["ZZ"] = "Write if buffer changed and close window",
-  ["ZQ"] = "Close window without writing",
-}
-
--- group
-wk.register {
-  -- ["gc"] = { name = "commentary" },
-  ["]"] = { name = "next" },
-  ["["] = { name = "prev" },
-  ["\\"] = { name = "toggle" }
-}
-
-wk.register {
-  ["<M-]>"] = "[TS]Function next",
-  ["<M-[>"] = "[TS]Function prev",
-  ["<M-l>"] = "[TS]Parameter swap next",
-  ["<M-h>"] = "[TS]Parameter swap prev",
-  ["<M-j>"] = "[TS]Definition navigation next",
-  ["<M-k>"] = "[TS]Definition navigation prev",
-  ["<M-t>"] = "[Terminal]Toggle",
-}
-
-wk.register({
-  b = { name = "buffer" },
-  d = {
-    name = "diagnostic",
-    j = { function() diagnostic.goto_next() end, "[Diagnostic]Next" },
-    k = { function() diagnostic.goto_prev() end, "[Diagnostic]Prev" },
-    d = { function() trouble.open("document_diagnostics") end, "[Diagnostics]Document(Trouble)" },
-    w = { function() trouble.open("workspace_diagnostics") end, "[Diagnostics]Workspace(Trouble)" },
-    q = { function() trouble.open("quickfix") end, "[Diagnostic]Quick Fix(Trouble)" },
-  },
-  g = {
-    name = "gitsigns",
-    t = "toggle"
-  },
-  h = {
-    name = 'help',
-    c = { function() telescope.colorscheme() end, "[Telescope]Colorscheme" },
-    C = { function() telescope.commands() end, "[Telescope]Commands" },
-    h = { function() telescope.help_tags() end, "[Telescope]Help" },
-    k = { function() telescope.keymaps() end, "[Telescope]Keymaps" },
-    m = { function() telescope.man_pages() end, "[Telescope]Man Pages" },
-    r = { function() telescope.registers() end, "[Telescope]Registers" },
-  },
-  l = {
-    name = "LSP",
-    -- i = { function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)" },
-    d = { function() trouble.open("lsp_type_definitions") end, "[LSP]Type definition(Trouble)" },
-    s = { function() telescope.lsp_dynamic_workspace_symbols() end, "[LSP]Symbols Document(Telescope)" },
-    S = { function() telescope.lsp_document_symbols() end, "[LSP]Symbols Workspace(Telescope)" },
-    -- u = { function() trouble.open("lsp_references") end, "[LSP]References(Trouble)" },
-  },
-  r = "[TS]Rename(smart)",
-  t = { name = "tab" },
-  x = { function() trouble.open() end, "[Trouble]Toggle" },
-}, { prefix = "<leader>" })
-
-wk.register {
-  ["gi"] = { function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)" },
-  ["gr"] = { function() trouble.open("lsp_references") end, "[LSP]References(Trouble)" },
-}
-
-wk.register({
-  ["<M-k>"] = "[LSP]Signature toggle"
-}, { mode = "i" })
-
-wk.register({
-  [","] = "[TS]Selection prev",
-  ["."] = "[TS]Selection smart",
-  [";"] = "[TS]Selection container outer",
-  ["i;"] = "[TS]Selection container inner",
-}, { mode = "v" })
+require("plugins.whichkey.basic")

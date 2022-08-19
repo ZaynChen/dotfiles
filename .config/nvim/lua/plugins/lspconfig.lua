@@ -1,7 +1,6 @@
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 
-local nmap = require("utils.keymap").nmap
 -- local lsp_format = require("lsp-format") -- autocmd
 local lsp_status = require("lsp-status")
 lsp_status.register_progress()
@@ -10,29 +9,17 @@ local lspconfig = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
 local on_attach = function(client, bufnr)
-  -- desc for which_key hints
-  local opts = function(desc)
-    local opts = { buffer = true }
-    opts.desc = desc
-    return opts
-  end
-
-  nmap("gD", lsp.buf.declaration, opts("[LSP]Declaration"))
-  nmap("gd", function() lsp.buf.definition() end, opts("[LSP]Definition"))
-  nmap("K", function() lsp.buf.hover() end, opts("[LSP]Hover"))
-  nmap("<leader>la", function() lsp.buf.code_action() end, opts("[LSP]Code Action"))
-  nmap("<leader>lf", function() lsp.buf.formatting() end, opts("[LSP]Formatting"))
-  nmap("<leader>lr", function() lsp.buf.rename() end, opts("[LSP]Rename"))
-  -- nmap("<leader>lD", function() lsp.buf.type_definition() end, opts("[LSP]Type definition"))
-
-  -- nmap("\\d", function() diagnostic.open_float() end, opts("[Diagnostic]Open"))
-  -- nmap("<leader>s", function() lsp.buf.signature_help() end, opts("[LSP]Signature"))
-
-  -- nmap("<leader>li", lsp.buf.incoming_calls, opts("[LSP]List calls"))
+  require("which-key").register({
+    ["gD"] = { function() lsp.buf.declaration() end, "[LSP]Declaration" },
+    ["gd"] = { function() lsp.buf.definition() end, "[LSP]Definition" },
+    K = { function() lsp.buf.hover() end, "[LSP]Hover" },
+    ["<leader>la"] = { function() lsp.buf.code_action() end, "[LSP]Code Action" },
+    ["<leader>lf"] = { function() lsp.buf.formatting() end, "[LSP]Formatting" },
+    ["<leader>lr"] = { function() lsp.buf.rename() end, "[LSP]Rename" },
+  }, { buffer = bufnr })
 
   -- Enable completion triggered by <c-x><c-o>
-  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.lsp.omnifunc")
-  vim.bo.omnifunc = "v:lua.lsp.omnifunc"
+  -- vim.bo.omnifunc = "v:lua.lsp.omnifunc"
 
   -- FormatOnSave
   local lsp_augroup = vim.api.nvim_create_augroup("lsp_augroup" .. bufnr, { clear = true })
@@ -55,6 +42,10 @@ local on_attach = function(client, bufnr)
   -- lsp_format.on_attach(client)
 end
 
+local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.6.7/'
+local codelldb_path = extension_path .. 'adapter/codelldb'
+local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
+
 -- Enable rust-tools
 require("rust-tools").setup {
   -- tools = {
@@ -74,24 +65,21 @@ require("rust-tools").setup {
         --   },
         --   prefix = "self",
         -- },
-        cargo = {
-          buildScripts = {
-            enable = true,
-          },
-        },
-        procMacro = {
-          enable = true
+        checkOnSave = {
+          command = "clippy",
         },
       }
     }
   },
-  -- dap = {
-  --   adapter = {
-  --     type = "executable",
-  --     command = "lldb-vscode",
-  --     name = "rt_lldb"
-  --   }
-  -- }
+  dap = {
+    adapter = require('rust-tools.dap').get_codelldb_adapter(
+      codelldb_path, liblldb_path)
+    -- adapter = {
+    --   type = "executable",
+    --   command = "lldb-vscode",
+    --   name = "rt_lldb"
+    -- }
+  }
 }
 
 -- Enable clangd
@@ -168,6 +156,14 @@ lspconfig.sumneko_lua.setup {
   }
 }
 
+local sign_define = function(opts)
+  vim.fn.sign_define(opts.name, {
+    texthl = opts.name,
+    text = opts.text,
+    numhl = ""
+  })
+end
+
 local signs = {
   { name = "DiagnosticSignError", text = "" },
   { name = "DiagnosticSignWarn", text = "" },
@@ -176,14 +172,13 @@ local signs = {
 }
 
 for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  sign_define(sign)
+  -- vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
 diagnostic.config {
   virtual_text = false,
-  signs = {
-    active = signs
-  },
+  signs = true,
   update_in_insert = true,
   underline = true,
   severity_sort = true,
@@ -197,37 +192,37 @@ diagnostic.config {
   },
 }
 
-lsp.handlers["textDocument/hover"] = lsp.with(
-  lsp.handlers.hover,
-  { border = "rounded" }
-)
-
-lsp.handlers["textDocument/signatureHelp"] = lsp.with(
-  lsp.handlers.signature_help,
-  { border = "rounded" }
-)
-
-lsp.handlers["textDocument/references"] = lsp.with(
-  lsp.handlers["textDocument/references"],
-  { loclist = true }
-)
-
-lsp.handlers['textDocument/typeDefinition'] = lsp.with(
-  lsp.handlers['textDocument/typeDefinition'],
-  { loclist = true, }
-)
-
-lsp.handlers['textDocument/declaration'] = lsp.with(
-  lsp.handlers['textDocument/declaration'],
-  { loclist = true }
-)
-
-lsp.handlers['textDocument/definition'] = lsp.with(
-  lsp.handlers['textDocument/definition'],
-  { loclist = true }
-)
-
-lsp.handlers['textDocument/implementation'] = lsp.with(
-  lsp.handlers['textDocument/implementation'],
-  { loclist = true, }
-)
+-- lsp.handlers["textDocument/hover"] = lsp.with(
+--   lsp.handlers.hover,
+--   { border = "rounded" }
+-- )
+--
+-- lsp.handlers["textDocument/signatureHelp"] = lsp.with(
+--   lsp.handlers.signature_help,
+--   { border = "rounded" }
+-- )
+--
+-- lsp.handlers["textDocument/references"] = lsp.with(
+--   lsp.handlers["textDocument/references"],
+--   { loclist = true }
+-- )
+--
+-- lsp.handlers['textDocument/typeDefinition'] = lsp.with(
+--   lsp.handlers['textDocument/typeDefinition'],
+--   { loclist = true, }
+-- )
+--
+-- lsp.handlers['textDocument/declaration'] = lsp.with(
+--   lsp.handlers['textDocument/declaration'],
+--   { loclist = true }
+-- )
+--
+-- lsp.handlers['textDocument/definition'] = lsp.with(
+--   lsp.handlers['textDocument/definition'],
+--   { loclist = true }
+-- )
+--
+-- lsp.handlers['textDocument/implementation'] = lsp.with(
+--   lsp.handlers['textDocument/implementation'],
+--   { loclist = true, }
+-- )

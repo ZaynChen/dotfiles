@@ -62,6 +62,3 @@ require("todo-comments").setup {
 -- WARN:
 -- PERF:
 -- NOTE:
-local trouble = require("trouble")
-local nmap = require("utils.keymap").nmap
-nmap("<leader>o", function() trouble.open("todo") end, { desc = "[TODO]List(Trouble)" })

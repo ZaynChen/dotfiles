@@ -1,4 +1,3 @@
-CalledProcessError(128, "fatal: No tags can describe '20ea9d5a7a658ab95acd2abcd5b7484f11686110'.\nTry --always, or create some tags.\n")
 # ######################################################
 # ##              Channel Configuration               ##
 # ######################################################
@@ -8,8 +7,9 @@ CalledProcessError(128, "fatal: No tags can describe '20ea9d5a7a658ab95acd2abcd5
 # #   env var string delimiter: ','
 # #   The list of conda channels to include for relevant operations.
 # # 
-# channels:
-#   - defaults
+channels:
+  - conda-forge
+  - defaults
 
 # # channel_alias (str)
 # #   The prepended url location to associate with channel names.
@@ -200,7 +200,9 @@ CalledProcessError(128, "fatal: No tags can describe '20ea9d5a7a658ab95acd2abcd5
 # #   are of the form 'scheme://[user:password@]host[:port]'. The optional
 # #   'user:password' inclusion enables HTTP Basic Auth with your proxy.
 # # 
-# proxy_servers: {}
+proxy_servers:
+  http: socks5://localhost:7890
+  https: socks5://localhost:7890
 
 # # remote_connect_timeout_secs (float)
 # #   The number seconds conda will wait for your client to establish a
@@ -271,7 +273,7 @@ CalledProcessError(128, "fatal: No tags can describe '20ea9d5a7a658ab95acd2abcd5
 # #   previous versions of conda, this parameter was configured as either
 # #   True or False. True is now an alias to 'flexible'.
 # # 
-# channel_priority: flexible
+channel_priority: strict
 
 # # create_default_packages (sequence: primitive)
 # #   env var string delimiter: ','
@@ -528,7 +530,7 @@ CalledProcessError(128, "fatal: No tags can describe '20ea9d5a7a658ab95acd2abcd5
 # # show_channel_urls (NoneType, bool)
 # #   Show channel URLs when displaying what is going to be downloaded.
 # # 
-# show_channel_urls:
+show_channel_urls: True
 
 # # verbosity (int)
 # #   aliases: verbose

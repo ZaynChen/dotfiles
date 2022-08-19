@@ -4,9 +4,10 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 ts_utils.get_node_text = vim.treesitter.query.get_node_text
 
 require("nvim-treesitter.configs").setup {
-  ensure_installed = { "c", "lua", "python", "rust", "ruby", "yaml", "json", "markdown" },
+  ensure_installed = { "c", "lua", "python", "rust", "ruby", "yaml", "toml", "json", "markdown" },
   sync_install = false,
-  ignore_install = { "" },
+  auto_install = true,
+  ignore_install = {},
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -20,21 +21,28 @@ require("nvim-treesitter.configs").setup {
   textobjects = {
     select = {
       enable = false,
+      disable = {},
       lookahead = true,
       lookbehind = true,
       keymaps = {},
+      selection_modes = {},
     },
     move = {
       enable = true,
+      disable = {},
+      set_jumps = true,
       goto_next_start = {
         ["<M-]>"] = "@function.outer",
       },
+      goto_next_end = {},
       goto_previous_start = {
         ["<M-[>"] = "@function.outer",
       },
+      goto_previous_end = {},
     },
     swap = {
       enable = true,
+      disable = {},
       swap_next = {
         ["<M-l>"] = "@parameter.inner",
       },
@@ -45,17 +53,19 @@ require("nvim-treesitter.configs").setup {
     lsp_interop = {
       enable = false,
       border = "none",
+      disable = {},
       peek_definition_code = {},
     }
   },
   -- smart selection
   textsubjects = {
     enable = true,
+    disable = {},
     prev_selection = ",",
     keymaps = {
-      ['.'] = 'textsubjects-smart',
-      [';'] = 'textsubjects-container-outer',
-      ['i;'] = 'textsubjects-container-inner',
+      ["."] = 'textsubjects-smart',
+      [";"] = 'textsubjects-container-outer',
+      ["i;"] = 'textsubjects-container-inner',
     },
   },
   -- highlight & navigating definition
@@ -70,7 +80,7 @@ require("nvim-treesitter.configs").setup {
     smart_rename = {
       enable = true,
       keymaps = {
-        smart_rename = "<leader>R",
+        smart_rename = "<leader>r",
       },
     },
     navigation = {
@@ -88,7 +98,7 @@ require("nvim-treesitter.configs").setup {
 
   matchup = {
     enable = true,
-    disable_virtual_text = { "python" },
+    disable_virtual_text = {},
     include_match_words = {},
   },
   -- rainbow brackets
@@ -108,3 +118,7 @@ require("nvim-treesitter.configs").setup {
     -- }
   },
 }
+
+-- local wo = vim.wo
+-- wo.foldmethod = "expr"
+-- wo.foldexpr = "nvim_treesitter#foldexpr()"
