@@ -5,6 +5,7 @@
 # Path to your oh-my-zsh installation.
 # export ZSH="$HOME/.oh-my-zsh"
 export ZSH=$XDG_DATA_HOME/oh-my-zsh
+export HISTFILE=$XDG_STATE_HOME/zsh/history
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
