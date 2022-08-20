@@ -38,42 +38,5 @@ require('gitsigns').setup {
   yadm                         = {
     enable = false
   },
-  on_attach                    = function(bufnr)
-    local gs = package.loaded.gitsigns
-
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
-
-    -- Navigation
-    map('n', '<leader>g]', function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(gs.next_hunk)
-      return '<Ignore>'
-    end, { expr = true, desc = "[Gitsigns]Hunk next" })
-
-    map('n', '<leader>g[', function()
-      if vim.wo.diff then return '[c' end
-      vim.schedule(gs.prev_hunk)
-      return '<Ignore>'
-    end, { expr = true, desc = "[Gitsigns]Hunk prev" })
-
-    -- Actions
-    map({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = "[Gitsigns]Hunk stage " })
-    map({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = "[Gitsigns]Hunk reset" })
-    map('n', '<leader>gu', function() gs.undo_stage_hunk() end, { desc = "[Gitsigns]Hunk stage undo" })
-    map('n', '<leader>gp', function() gs.preview_hunk() end, { desc = "[Gitsigns]Hunk preview" })
-    map('n', '<leader>gS', function() gs.stage_buffer() end, { desc = "[Gitsigns]Buffer stage" })
-    map('n', '<leader>gR', function() gs.reset_buffer() end, { desc = "[Gitsigns]Buffer reset" })
-    map('n', '<leader>gb', function() gs.blame_line { full = true } end, { desc = "[Gitsigns]Blame line" })
-    map('n', '<leader>gd', function() gs.diffthis() end, { desc = "[Gitsigns]Diffthis" })
-    map('n', '<leader>gD', function() gs.diffthis('~') end, { desc = "[Gitsigns]Diffthis~" })
-    map('n', '<leader>gtb', function() gs.toggle_current_line_blame() end, { desc = "[Gitsigns]Toggle line blame" })
-    map('n', '<leader>gtd', function() gs.toggle_deleted() end, { desc = "[Gitsigns]Toggle deleted" })
-
-    -- Text object
-    map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = "[Gitsigns]Hunk select" })
-  end
+  on_attach                    = require("keymap.integration.gitsigns").on_attach
 }

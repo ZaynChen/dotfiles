@@ -1,4 +1,5 @@
 require "settings"
-require "plugins"
--- require "keybinds"
+require "keymap"
 require "autocmd"
+require "plugins"
+require "keymap.integration"

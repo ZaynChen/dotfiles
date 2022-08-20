@@ -27,7 +27,10 @@ wk.setup {
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  operators = {},
+  operators = {
+    -- gb = "Comment toggle blockwise",
+    -- gc = "Comment toggle linewise",
+  },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     ["<M-Up>"] = "<M-↑>",
@@ -95,4 +98,49 @@ wk.register(mappings, opts)
   nowait = false, -- use `nowait` when creating keymaps
 } ]]
 
-require("plugins.whichkey.basic")
+wk.register({
+  ["<M-k>"] = "[LSP]Toggle signature"
+}, { mode = "i" })
+
+wk.register({
+  [","] = "[TS]Selection prev",
+  ["."] = "[TS]Selection smart",
+  [";"] = "[TS]Selection container outer",
+  ["i;"] = "[TS]Selection container inner",
+}, { mode = "o" })
+
+wk.register {
+  -- Treesitter
+  ["<M-]>"] = "[TS]Function next",
+  ["<M-[>"] = "[TS]Function prev",
+  ["<M-l>"] = "[TS]Parameter swap next",
+  ["<M-h>"] = "[TS]Parameter swap prev",
+  ["<M-j>"] = "[TS]Definition navigation next",
+  ["<M-k>"] = "[TS]Definition navigation prev",
+  ["<M-t>"] = "[Terminal]Toggle",
+  g = {
+    n = {
+      d = "[TS]Go to definition",
+      D = "[TS]List definitions",
+    },
+    O = "[TS]List definitions toc",
+  },
+  Z = {
+    Z = "Write if buffer changed and close window",
+    Q = "Close window without writing",
+  },
+}
+
+wk.register({
+  b = { name = "buffer" },
+  d = { name = "diagnostic" },
+  g = {
+    name = "gitsigns",
+    t = "toggle",
+  },
+  h = { name = "help" },
+  l = { name = "lsp" },
+  r = "[TS]Rename(smart)",
+  s = { name = "spell" },
+  t = { name = "tab" },
+}, { prefix = "<leader>" })

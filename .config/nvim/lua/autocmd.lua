@@ -4,7 +4,7 @@ local opts = { clear = true }
 local reload_buf = api.nvim_create_augroup("reload_buf", opts)
 local restore_cursor = api.nvim_create_augroup("restore_cursor", opts)
 local im_switch = api.nvim_create_augroup("im_switch", opts)
-local reload_snippets = api.nvim_create_augroup("reload_snippets", opts)
+-- local reload_snippets = api.nvim_create_augroup("reload_snippets", opts)
 
 api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   group = reload_buf,
@@ -35,10 +35,10 @@ api.nvim_create_autocmd({ "InsertLeave", "BufCreate", "BufEnter", "BufLeave" }, 
   callback = function() vim.cmd([[ :silent !fcitx5-remote -c ]]) end
 })
 
-local cmp_nvim_ultisnips = require("cmp_nvim_ultisnips")
-api.nvim_create_autocmd("BufWritePost", {
-  group = reload_snippets,
-  pattern = { "*.snippets" },
-  desc = "Reload Snippets",
-  callback = function() cmp_nvim_ultisnips.reload_snippets() end,
-})
+-- local cmp_nvim_ultisnips = require("cmp_nvim_ultisnips")
+-- api.nvim_create_autocmd("BufWritePost", {
+--   group = reload_snippets,
+--   pattern = { "*.snippets" },
+--   desc = "Reload Snippets",
+--   callback = function() cmp_nvim_ultisnips.reload_snippets() end,
+-- })

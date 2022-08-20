@@ -128,7 +128,6 @@ vim.call("plug#end")
 -- To use impatient,
 -- you need only to include it near the top of your init.lua or init.vim.
 require("plugins.impatient")
-require("plugins.whichkey")
 
 local g = vim.g
 g.rainbow_active = 1
@@ -163,4 +162,4 @@ require("plugins.nvim-trouble")
 -- require("plugins/navigator")
 require("plugins.toggleterm")
 
-require("plugins.whichkey.integration")
+require("plugins.whichkey")

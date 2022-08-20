@@ -9,14 +9,7 @@ local lspconfig = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
 local on_attach = function(client, bufnr)
-  require("which-key").register({
-    ["gD"] = { function() lsp.buf.declaration() end, "[LSP]Declaration" },
-    ["gd"] = { function() lsp.buf.definition() end, "[LSP]Definition" },
-    K = { function() lsp.buf.hover() end, "[LSP]Hover" },
-    ["<leader>la"] = { function() lsp.buf.code_action() end, "[LSP]Code Action" },
-    ["<leader>lf"] = { function() lsp.buf.formatting() end, "[LSP]Formatting" },
-    ["<leader>lr"] = { function() lsp.buf.rename() end, "[LSP]Rename" },
-  }, { buffer = bufnr })
+  require("keymap.integration.lsp").on_attach(bufnr)
 
   -- Enable completion triggered by <c-x><c-o>
   -- vim.bo.omnifunc = "v:lua.lsp.omnifunc"
@@ -191,38 +184,3 @@ diagnostic.config {
     prefix = "",
   },
 }
-
--- lsp.handlers["textDocument/hover"] = lsp.with(
---   lsp.handlers.hover,
---   { border = "rounded" }
--- )
---
--- lsp.handlers["textDocument/signatureHelp"] = lsp.with(
---   lsp.handlers.signature_help,
---   { border = "rounded" }
--- )
---
--- lsp.handlers["textDocument/references"] = lsp.with(
---   lsp.handlers["textDocument/references"],
---   { loclist = true }
--- )
---
--- lsp.handlers['textDocument/typeDefinition'] = lsp.with(
---   lsp.handlers['textDocument/typeDefinition'],
---   { loclist = true, }
--- )
---
--- lsp.handlers['textDocument/declaration'] = lsp.with(
---   lsp.handlers['textDocument/declaration'],
---   { loclist = true }
--- )
---
--- lsp.handlers['textDocument/definition'] = lsp.with(
---   lsp.handlers['textDocument/definition'],
---   { loclist = true }
--- )
---
--- lsp.handlers['textDocument/implementation'] = lsp.with(
---   lsp.handlers['textDocument/implementation'],
---   { loclist = true, }
--- )
