@@ -1,4 +1,9 @@
-require("lsp_signature").setup {
+local signature_ok, signature = pcall(require, "lsp_signature")
+if not signature then
+  return
+end
+
+signature.setup {
   debug = false, -- set to true to enable debug logging
   log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
   -- default is  ~/.cache/nvim/lsp_signature.log

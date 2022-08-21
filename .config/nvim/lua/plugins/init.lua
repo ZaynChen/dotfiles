@@ -132,8 +132,10 @@ require("plugins.impatient")
 local g = vim.g
 g.rainbow_active = 1
 
-require("nvim-web-devicons").setup {}
-require("cmp_nvim_ultisnips").setup {}
+local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
+if devicons_ok then
+  devicons.setup {}
+end
 
 require("plugins.lualine")
 require("plugins.nvim-tree")
@@ -141,24 +143,24 @@ require("plugins.treesitter")
 require("plugins.indent_blankline")
 require("plugins.todo-comments")
 require("plugins.comment")
-require("plugins.nvim-colorizer")
+local colorizer_ok, colorizer = pcall(require, "colorizer")
+if colorizer_ok then
+  colorizer.setup()
+end
 
 require("plugins.nvim-cmp")
 require("plugins.nvim-autopairs")
 require("plugins.treesitter-context")
 
-require("plugins.mason")
-require("plugins.mason-lspconfig")
-require("plugins.lspconfig")
+require("plugins.lsp")
 require("plugins.null-ls")
-require("plugins.lsp_signature")
 
 require("plugins.gitsigns")
 require("plugins.crates")
 require("plugins.vimtex")
 
 require("plugins.telescope")
-require("plugins.nvim-trouble")
+require("plugins.trouble")
 -- require("plugins/navigator")
 require("plugins.toggleterm")
 

@@ -1,6 +1,10 @@
 local path = require("mason-core.path")
+local status_ok, mason = pcall(require, "mason")
+if not status_ok then
+  return
+end
 
-require("mason").setup {
+local mason_config = {
   ui = {
     -- Whether to automatically check for new versions when opening the :Mason window.
     check_outdated_packages_on_open = true,
@@ -71,4 +75,26 @@ require("mason").setup {
     -- 3. The asset name (e.g. "rust-analyzer-v0.3.0-x86_64-unknown-linux-gnu.tar.gz")
     download_url_template = "https://github.com/%s/releases/download/%s/%s",
   },
+}
+
+mason.setup(mason_config)
+
+local status_ok_1, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not status_ok_1 then
+  return
+end
+
+mason_lspconfig.setup {
+  -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
+  -- This setting has no relation with the `automatic_installation` setting.
+  ensure_installed = { "sumneko_lua", "rust_analyzer" },
+
+  -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+  -- This setting has no relation with the `ensure_installed` setting.
+  -- Can either be:
+  --   - false: Servers are not automatically installed.
+  --   - true: All servers set up via lspconfig are automatically installed.
+  --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+  --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+  automatic_installation = false,
 }

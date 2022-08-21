@@ -2,6 +2,9 @@ local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 
 -- local lsp_format = require("lsp-format") -- autocmd
+require("plugins.lsp.lsp_signature")
+require("plugins.lsp.mason")
+
 local lsp_status = require("lsp-status")
 lsp_status.register_progress()
 

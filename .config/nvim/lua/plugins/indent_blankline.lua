@@ -1,4 +1,9 @@
-require("indent_blankline").setup {
+local ibl_ok, ibl = pcall(require, "indent_blankline")
+if not ibl_ok then
+  return
+end
+
+ibl.setup {
   space_char_blankline = " ",
   show_end_of_line = true,
   show_current_context = true,

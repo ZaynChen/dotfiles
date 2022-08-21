@@ -1,7 +1,9 @@
-local telescope = require("telescope")
-local trouble   = require("trouble.providers.telescope")
+local telescope_ok, telescope = pcall(require, "telescope")
+if not telescope_ok then
+  return
+end
 
-require("telescope").setup {
+local config = {
   defaults = {
     mappings = {
       i = {
@@ -24,7 +26,6 @@ require("telescope").setup {
         -- ["<C-w>"] = { "<c-s-w>", type = "command" },
 
         -- ["<C-h>"] = "which_key",
-        ["<C-t>"] = trouble.open_with_trouble,
       },
     }
   },
@@ -57,6 +58,21 @@ require("telescope").setup {
 
   }
 }
+
+local trouble_ok, trouble = pcall(require, "trouble.providers.telescope")
+if trouble_ok then
+  config = vim.tbl_deep_extend("force", config, {
+    defaults = {
+      mappings = {
+        i = {
+          ["<C-t>"] = trouble.open_with_trouble
+        },
+      }
+    },
+  })
+end
+
+telescope.setup(config)
 
 telescope.load_extension("fzf")
 -- telescope.load_extension("ui-select")

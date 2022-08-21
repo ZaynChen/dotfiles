@@ -41,7 +41,12 @@
 --   { key = "U", action = "toggle_custom" },
 -- }
 
-require("nvim-tree").setup {
+local nvimtree_ok, nvimtree = pcall(require, "nvim-tree")
+if not nvimtree_ok then
+  return
+end
+
+nvimtree.setup {
   auto_reload_on_write = true,
   disable_netrw = false,
   hijack_cursor = false,

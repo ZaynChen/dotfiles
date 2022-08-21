@@ -1,3 +1,8 @@
+local null_ls_ok, null_ls = pcall(require, "null-ls")
+if not null_ls_ok then
+  return
+end
+
 local u = require("null-ls.utils")
 
 local defaults = {
@@ -21,4 +26,4 @@ local defaults = {
   update_in_insert = false,
 }
 
-require("null-ls").setup(defaults)
+null_ls.setup(defaults)

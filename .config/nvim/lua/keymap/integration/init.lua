@@ -1,7 +1,7 @@
 local map = require("keymap.util").map
 
-local telescope = require("telescope.builtin")
-if telescope then
+local telescope_ok, telescope = pcall(require, "telescope.builtin")
+if telescope_ok then
   map("<leader>/", function() telescope.live_grep() end, "[Telescope]live_grep")
   map("<leader>bb", function() telescope.buffers() end, "[Buffer]List")
   map("<leader>f", function() telescope.find_files() end, "[Telescope]find_files")
@@ -15,8 +15,8 @@ if telescope then
   map("<leader>lS", function() telescope.lsp_dynamic_workspace_symbols() end, "[LSP]Symbols Document(Telescope)")
 end
 
-local trouble = require("trouble")
-if trouble then
+local trouble_ok, trouble = pcall(require, "trouble")
+if trouble_ok then
   map("gi", function() trouble.open("lsp_implementations") end, "[LSP]Implementations(Trouble)")
   map("gr", function() trouble.open("lsp_references") end, "[LSP]References(Trouble)")
   map("<leader>dd", function() trouble.open("document_diagnostics") end, "[Diagnostic]Document(Trouble)")
@@ -27,5 +27,7 @@ if trouble then
   map("<leader>x", function() trouble.open() end, "[Trouble]Toggle")
 end
 
-map("<leader>n", "<cmd>NvimTreeToggle<cr>", "[NvimTree]Toggle")
-
+local nvimtree_ok, _ = pcall(require, "nvim-tree")
+if nvimtree_ok then
+  map("<leader>n", "<cmd>NvimTreeToggle<cr>", "[NvimTree]Toggle")
+end

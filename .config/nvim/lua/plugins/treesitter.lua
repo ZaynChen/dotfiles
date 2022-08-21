@@ -2,8 +2,12 @@
 -- TODO
 -- local ts_utils = require("nvim-treesitter.ts_utils")
 -- ts_utils.get_node_text = vim.treesitter.query.get_node_text
+local treesitter_ok, treesitter = pcall(require, "nvim-treesitter.configs")
+if not treesitter_ok then
+  return
+end
 
-require("nvim-treesitter.configs").setup {
+treesitter.setup {
   ensure_installed = { "c", "lua", "python", "rust", "ruby", "yaml", "toml", "json", "markdown" },
   sync_install = false,
   auto_install = true,
