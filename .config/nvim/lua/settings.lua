@@ -46,14 +46,7 @@ o.numberwidth = 3
 -- o.columns = 100
 -- o.modelines = 0
 
--- Color Scheme
-local bgfile = vim.fn.stdpath("config") .. "/vimrc_background"
-if vim.fn.filereadable(bgfile) then
-  base16colorspace = 256
-  vim.cmd("source " .. bgfile)
-else
-  vim.cmd("colorscheme base16-onedark")
-end
+vim.cmd("colorscheme base16-onedark")
 o.background = "dark"
 o.termguicolors = true
 
