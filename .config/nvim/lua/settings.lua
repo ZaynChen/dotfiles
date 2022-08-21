@@ -1,9 +1,8 @@
 local o = vim.o
+local wo = vim.wo
 local opt = vim.opt
 local g = vim.g
 local env = vim.env
-
-HOME = env.HOME
 
 g.mapleader = " "
 
@@ -13,14 +12,13 @@ env.LANG = "en_US.UTF-8"
 o.encoding = "utf-8"
 opt.fileencodings = { "ucs-bom", "utf-8", "gbk", "default", "latin1" }
 opt.backspace = { "indent", "eol", "start" }
-o.whichwrap = o.whichwrap .. "<,>,h,l"
+opt.whichwrap = opt.whichwrap + { ["<"] = true, [">"] = true, h = true, l = true }
 o.history = 500
 opt.fileformats = { "unix", "mac", "dos" }
 opt.clipboard = { "unnamed", "unnamedplus" }
 
--- TODO
-o.foldmethod = "expr"
-o.foldexpr = "nvim_treesitter#foldexpr"
+wo.foldmethod = "expr"
+wo.foldexpr = "nvim_treesitter#foldexpr()"
 o.grepprg = "rg --smart-case --vimgrep $*"
 o.grepformat = "%f:%l:%c:%m"
 
@@ -49,9 +47,10 @@ o.numberwidth = 3
 -- o.modelines = 0
 
 -- Color Scheme
-if vim.fn.filereadable(HOME .. "/.config/nvim/vimrc_background") then
+local bgfile = vim.fn.stdpath("config") .. "/vimrc_background"
+if vim.fn.filereadable(bgfile) then
   base16colorspace = 256
-  vim.cmd("source " .. HOME .. "/.config/nvim/vimrc_background")
+  vim.cmd("source " .. bgfile)
 else
   vim.cmd("colorscheme base16-onedark")
 end
@@ -86,7 +85,6 @@ o.wildignore = ".hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.o"
 
 -- Completion
 opt.completeopt = { "menuone", "noselect", "noinsert" }
--- o.shortmess = o.shortmess .. 'c'
 opt.shortmess = opt.shortmess + { c = true }
 
 o.mouse = "a"

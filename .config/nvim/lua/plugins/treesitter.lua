@@ -1,7 +1,7 @@
 -- The nvim-treesitter.ts_utils.get_node_text is deprecated
 -- TODO
-local ts_utils = require("nvim-treesitter.ts_utils")
-ts_utils.get_node_text = vim.treesitter.query.get_node_text
+-- local ts_utils = require("nvim-treesitter.ts_utils")
+-- ts_utils.get_node_text = vim.treesitter.query.get_node_text
 
 require("nvim-treesitter.configs").setup {
   ensure_installed = { "c", "lua", "python", "rust", "ruby", "yaml", "toml", "json", "markdown" },
@@ -118,7 +118,3 @@ require("nvim-treesitter.configs").setup {
     -- }
   },
 }
-
--- local wo = vim.wo
--- wo.foldmethod = "expr"
--- wo.foldexpr = "nvim_treesitter#foldexpr()"
