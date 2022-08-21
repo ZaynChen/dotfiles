@@ -87,7 +87,7 @@ Plug "editorconfig/editorconfig-vim"
 -- Plug "lukas-reineke/lsp-format.nvim"
 
 -- Terminal integration
-Plug("akinsho/toggleterm.nvim", { tag = "v1.*" })
+Plug("akinsho/toggleterm.nvim")
 
 -- Git
 Plug "lewis6991/gitsigns.nvim"
