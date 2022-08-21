@@ -12,7 +12,7 @@ env.LANG = "en_US.UTF-8"
 o.encoding = "utf-8"
 opt.fileencodings = { "ucs-bom", "utf-8", "gbk", "default", "latin1" }
 opt.backspace = { "indent", "eol", "start" }
-opt.whichwrap = opt.whichwrap + { ["<"] = true, [">"] = true, h = true, l = true }
+o.whichwrap = o.whichwrap .. ",<,>,h,l"
 o.history = 500
 opt.fileformats = { "unix", "mac", "dos" }
 opt.clipboard = { "unnamed", "unnamedplus" }

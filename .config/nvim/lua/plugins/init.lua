@@ -9,7 +9,7 @@ Plug "nvim-lua/plenary.nvim"
 Plug "mattn/webapi-vim"
 
 -- Colorscheme
-Plug "RRethy/nvim-base16"
+-- Plug "RRethy/nvim-base16"
 -- Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
 -- Plug "navarasu/onedark.nvim"
 Plug "norcalli/nvim-colorizer.lua"
