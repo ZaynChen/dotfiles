@@ -42,9 +42,9 @@ if lspkind_ok then
       buffer = "[Buffer]",
       nvim_lsp = "[LSP]",
       cmp_nvim_lsp_signature_help = "[Signature]",
-      ultisnips = "[UltiSnips]",
+      ultisnips = "[Snips]",
       nvim_lua = "[Lua]",
-      latex_symbols = "[Latex]",
+      latex_symbols = "[Tex]",
       treesitter = "[TS]",
       path = "[Path]",
       cmdline = "[Cmd]",
@@ -62,24 +62,23 @@ if lspkind_ok then
 end
 
 local mappings = {
-  ['<CR>'] = {
-    c = cmp.confirm({ select = true }),
-    i = cmp.confirm({ select = false })
+  ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item, { "i", "c" }),
+  ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item, { "i", "c" }),
+  ["<CR>"] = {
+    i = cmp.mapping.confirm({ select = false })
   },
 }
 
-
 local snips_ok, snips = pcall(require, "cmp_nvim_ultisnips")
 if snips_ok then
-  snips.setup {}
+  snips.setup {} -- redundant; setup only required when customization
   local snips_mappings = require("cmp_nvim_ultisnips.mappings")
   mappings = vim.tbl_deep_extend("force", mappings, {
     ["<Tab>"] = cmp.mapping(function(fallback) snips_mappings.expand_or_jump_forwards(fallback) end,
-      { "i", "c", }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback) snips_mappings.jump_backwards(fallback) end, { "i", "c" }),
+      { "i", "s", }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback) snips_mappings.jump_backwards(fallback) end, { "i", "s" }),
   })
 end
-mappings = cmp.mapping.preset.insert(mappings)
 
 cmp.setup {
   snippet = {
@@ -101,7 +100,7 @@ cmp.setup {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
-  mapping = mappings,
+  mapping = cmp.mapping.preset.insert(mappings),
   sources = cmp.config.sources({
     { name = "cmp-nvim-lsp-signature-help" },
   }, {
@@ -122,7 +121,7 @@ cmp.setup {
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmp.mapping.preset.cmdline(mappings),
   sources = {
     { name = 'buffer' }
   }
@@ -130,7 +129,7 @@ cmp.setup.cmdline('/', {
 
 -- Use buffer source for `?`.
 cmp.setup.cmdline('?', {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmp.mapping.preset.cmdline(mappings),
   sources = {
     { name = 'buffer' }
   }
@@ -138,7 +137,7 @@ cmp.setup.cmdline('?', {
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmp.mapping.preset.cmdline(mappings),
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
