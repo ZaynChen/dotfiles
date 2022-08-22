@@ -12,7 +12,7 @@ local lspconfig = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
 local on_attach = function(client, bufnr)
-  require("keymap.integration.lsp").on_attach(bufnr)
+  require("keymap.lsp").on_attach(bufnr)
 
   -- Enable completion triggered by <c-x><c-o>
   -- vim.bo.omnifunc = "v:lua.lsp.omnifunc"

@@ -9,7 +9,6 @@ end
 
 
 require "settings"
+require "plugins"
 require "keymap"
 require "autocmd"
-require "plugins"
-require "keymap.integration"

@@ -3,7 +3,7 @@ if not gitsigns_ok then
   return
 end
 
-local on_attach = require("keymap.integration.gitsigns").on_attach
+local on_attach = require("keymap.gitsigns").on_attach
 
 gitsigns.setup {
   signs                        = {
