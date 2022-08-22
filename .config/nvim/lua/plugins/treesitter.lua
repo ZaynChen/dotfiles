@@ -67,9 +67,9 @@ treesitter.setup {
     disable = {},
     prev_selection = ",",
     keymaps = {
-      ["."] = 'textsubjects-smart',
-      [";"] = 'textsubjects-container-outer',
-      ["i;"] = 'textsubjects-container-inner',
+      ["."] = "textsubjects-smart",
+      [";"] = "textsubjects-container-outer",
+      ["i;"] = "textsubjects-container-inner",
     },
   },
   -- highlight & navigating definition
@@ -102,8 +102,8 @@ treesitter.setup {
 
   matchup = {
     enable = true,
-    disable_virtual_text = {},
-    include_match_words = {},
+    disable_virtual_text = true,
+    include_match_words = true,
   },
   -- rainbow brackets
   rainbow = {

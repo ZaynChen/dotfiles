@@ -102,8 +102,30 @@ wk.register(mappings, opts)
 } ]]
 
 wk.register({
-  ["<M-k>"] = "[LSP]Toggle signature"
+  ["<CR>"] = "[Cmp]Confrim",
+  ["<C-e>"] = "[Cmp]Abort",
+  ["<C-j>"] = "[Cmp]Next",
+  ["<C-k>"] = "[Cmp]Prev",
+  ["<C-n>"] = "[Cmp]Next",
+  ["<C-p>"] = "[Cmp]Prev",
+  ["<C-y>"] = "[Cmp]Confirm",
+  ["<Down>"] = "[Cmp]Next",
+  ["<Up>"] = "[Cmp]Prev",
+  ["<Tab>"] = "[Cmp]Expand or next",
+  ["<S-Tab>"] = "[Cmp]Prev",
+  ["<M-e>"] = "[Autopairs]Fast wrap",
+  ["<M-k>"] = "[LSP]Toggle signature",
 }, { mode = "i" })
+
+wk.register({
+  ["<C-e>"] = "[Cmp]Close",
+  ["<C-j>"] = "[Cmp]Next",
+  ["<C-k>"] = "[Cmp]Prev",
+  ["<C-n>"] = "[Cmp]Next",
+  ["<C-p>"] = "[Cmp]Prev",
+  ["<Tab>"] = "[Cmp]Expand or next",
+  ["<S-Tab>"] = "[Cmp]Prev",
+}, { mode = "c" })
 
 wk.register({
   [","] = "[TS]Selection prev",
