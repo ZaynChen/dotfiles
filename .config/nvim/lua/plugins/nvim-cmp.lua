@@ -62,11 +62,8 @@ if lspkind_ok then
 end
 
 local mappings = {
-  ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item, { "i", "c" }),
-  ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item, { "i", "c" }),
-  ["<CR>"] = {
-    i = cmp.mapping.confirm({ select = false })
-  },
+  ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s", "c" }),
+  ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s", "c" }),
 }
 
 local snips_ok, snips = pcall(require, "cmp_nvim_ultisnips")
@@ -75,8 +72,8 @@ if snips_ok then
   local snips_mappings = require("cmp_nvim_ultisnips.mappings")
   mappings = vim.tbl_deep_extend("force", mappings, {
     ["<Tab>"] = cmp.mapping(function(fallback) snips_mappings.expand_or_jump_forwards(fallback) end,
-      { "i", "s", }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback) snips_mappings.jump_backwards(fallback) end, { "i", "s" }),
+      { "i", "s", "c" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback) snips_mappings.jump_backwards(fallback) end, { "i", "s", "c" }),
   })
 end
 

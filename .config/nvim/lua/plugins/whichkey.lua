@@ -102,7 +102,6 @@ wk.register(mappings, opts)
 } ]]
 
 wk.register({
-  ["<CR>"] = "[Cmp]Confrim",
   ["<C-e>"] = "[Cmp]Abort",
   ["<C-j>"] = "[Cmp]Next",
   ["<C-k>"] = "[Cmp]Prev",
