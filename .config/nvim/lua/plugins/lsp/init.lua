@@ -3,15 +3,16 @@ local diagnostic = vim.diagnostic
 
 -- local lsp_format = require("lsp-format") -- autocmd
 require("plugins.lsp.lsp_signature")
-require("plugins.lsp.mason")
+-- require("plugins.lsp.mason")
 
+local M = {}
 local lsp_status = require("lsp-status")
 lsp_status.register_progress()
 
 local lspconfig = require("lspconfig")
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
-local on_attach = function(client, bufnr)
+M.capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
+M.on_attach = function(client, bufnr)
   require("keymap.lsp").on_attach(bufnr)
 
   -- Enable completion triggered by <c-x><c-o>
@@ -38,9 +39,9 @@ local on_attach = function(client, bufnr)
   -- lsp_format.on_attach(client)
 end
 
-local extension_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/"
-local codelldb_path = extension_path .. 'adapter/codelldb'
-local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
+local extension_path = "/usr/lib/codelldb"
+local codelldb_path = extension_path .. "/adapter/codelldb"
+local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
 
 -- Enable rust-tools
 require("rust-tools").setup {
@@ -50,8 +51,8 @@ require("rust-tools").setup {
   --   }
   -- },
   server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
     standalone = true,
     settings = {
       ["rust-analyzer"] = {
@@ -80,26 +81,26 @@ require("rust-tools").setup {
 
 -- Enable clangd
 lspconfig.clangd.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
 }
 
 -- Enable cmake
 lspconfig.cmake.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
 }
 
 -- Enable pyright
 lspconfig.pyright.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
 }
 
 -- Enable sumneko_lua
 lspconfig.sumneko_lua.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -187,3 +188,5 @@ diagnostic.config {
     prefix = "",
   },
 }
+
+return M

@@ -3,7 +3,10 @@ if not null_ls_ok then
   return
 end
 
-local u = require("null-ls.utils")
+-- local u = require("null-ls.utils")
+local sources = {
+  null_ls.builtins.formatting.black
+}
 
 local defaults = {
   cmd = { "nvim" },
@@ -18,11 +21,11 @@ local defaults = {
   log_level = "warn",
   -- format string for vim.notify messages
   notify_format = "[null-ls] %s",
-  on_attach = nil,
+  on_attach = require("plugins.lsp").on_attach,
   on_init = nil,
   on_exit = nil,
-  root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"),
-  sources = nil,
+  -- root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"),
+  sources = sources,
   update_in_insert = false,
 }
 
