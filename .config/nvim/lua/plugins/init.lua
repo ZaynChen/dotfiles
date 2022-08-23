@@ -145,7 +145,7 @@ require("plugins.todo-comments")
 require("plugins.comment")
 local colorizer_ok, colorizer = pcall(require, "colorizer")
 if colorizer_ok then
-  colorizer.setup()
+  colorizer.setup {}
 end
 
 require("plugins.nvim-cmp")
