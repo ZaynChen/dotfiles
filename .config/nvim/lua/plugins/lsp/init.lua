@@ -97,6 +97,12 @@ lspconfig.pyright.setup {
   capabilities = M.capabilities,
 }
 
+-- Enable bashls
+lspconfig.bashls.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities
+}
+
 -- Enable sumneko_lua
 lspconfig.sumneko_lua.setup {
   on_attach = M.on_attach,
