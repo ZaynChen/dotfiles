@@ -1,20 +1,8 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-#
-
-# Path to your oh-my-zsh installation.
-# export ZSH="$HOME/.oh-my-zsh"
-export ZSH=$XDG_DATA_HOME/oh-my-zsh
-export HISTFILE=$XDG_STATE_HOME/zsh/history
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
-# ZSH_THEME="af-magic"
-# ZSH_THEME="simple"
-# ZSH_THEME="muse"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -24,7 +12,6 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
-# CASE_SENSITIVE="false"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -73,7 +60,6 @@ ZSH_THEME="robbyrussell"
 
 # tmux conf
 # ZSH_TMUX_AUTOSTART=true
-export ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -81,33 +67,14 @@ export ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # osx unsupported in the alacritty terminal
-plugins=(git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine zsh-autosuggestions zsh-syntax-highlighting) # zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=zh_CN.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  # export EDITOR='mvim'
-  export EDITOR='nvim'
-fi
-
 # bindkey -v
-ZVM_KEYTIMEOUT=0.05
-ZVM_ESCAPE_KEYTIMEOUT=0.04
-ZVM_INIT_MODE=sourcing
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-export SKLEARNEX_VERBOSE=INFO
+# ZVM_KEYTIMEOUT=0.05
+# ZVM_ESCAPE_KEYTIMEOUT=0.04
+# ZVM_INIT_MODE=sourcing
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -118,7 +85,6 @@ export SKLEARNEX_VERBOSE=INFO
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# alias zshconf="nvim ~/.zshrc"
 alias zshconf="nvim $ZDOTDIR/.zshrc"
 alias zshenv="nvim $ZDOTDIR/.zshenv"
 alias sourcezsh="source $ZDOTDIR/.zshrc"
@@ -154,29 +120,11 @@ alias qemusysrv64="qemu-system-riscv64"
 alias qemurv64="qemu-riscv64"
 
 alias gdb=gdb -n -x $XDG_CONFIG_HOME/gdb/init
-# export http_proxy=http://127.0.0.1:1087
-# export https_proxy=http://127.0.0.1:1087
 
-export PATH="$HOME/.bin:$PATH"
-# export PATH="/usr/local/sbin:$PATH"
-export PATH="$CARGO_HOME/bin:$PATH"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-
+# system-specific alias
 if [ "$(uname)" = "Linux" ] ; then
   alias open="xdg-open"
-
-  export NVIMRUNTIME="/usr/share/nvim/runtime"
-  [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
-
 elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
-  export PATH="/usr/local/Cellar/llvm/13.0.1_1/bin:$PATH"
-  export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
-  export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2/share/nvim/runtime"
-  export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-# export PATH="/Applications/factor:$PATH"
-# export PATH="/opt/metasploit-framework/bin:$PATH"
 fi
 
 neofetch
