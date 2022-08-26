@@ -93,8 +93,8 @@ Plug("akinsho/toggleterm.nvim")
 Plug "lewis6991/gitsigns.nvim"
 
 -- LSP
-Plug "williamboman/mason.nvim"
-Plug "williamboman/mason-lspconfig.nvim"
+-- Plug "williamboman/mason.nvim"
+-- Plug "williamboman/mason-lspconfig.nvim"
 Plug "jose-elias-alvarez/null-ls.nvim"
 Plug "neovim/nvim-lspconfig"
 Plug "nvim-lua/lsp-status.nvim"
