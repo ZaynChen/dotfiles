@@ -25,6 +25,14 @@ paru -S volumeicon --noconfirm --needed
 paru -S nm-applet --noconfirm --needed
 paru -S pcmanfm --noconfirm --needed
 paru -S fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki fcitx5-material-color --noconfirm --needed
+if [ -z "$(grep -i "fcitx" /etc/environment)" ]; then
+  echo '
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+SDL_IM_MODULE=fcitx
+GLFW_IM_MODULE=ibus' | sudo tee -a /etc/environment
+fi
 
 # Archive tool
 paru -S peazip --noconfirm --needed
@@ -39,6 +47,8 @@ paru -S ripgrep --noconfirm --needed
 paru -S tealdeer --noconfirm --needed
 # RS A replacement for autojump
 paru -S zoxide --noconfirm --needed
+# Clipboard tool
+paru -S xsel --noconfirm --needed
 
 # RS A more intuitive version of du in rust
 paru -S dust --noconfirm --needed
