@@ -52,7 +52,6 @@ export ELM_HOME="$XDG_CONFIG_HOME/elm"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
-export HISTFILE="$XDG_STATE_HOME/zsh/history"
 [[ ":$JULIA_DEPOT_PATH:" =~ ":$XDG_DATA_HOME/julia:" ]] ||
   export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia${JULIA_DEPOT_PATH:+:$JULIA_DEPOT_PATH}"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
@@ -71,7 +70,6 @@ export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 export ZSH="$XDG_DATA_HOME/oh-my-zsh"
-export ZSH_TMUX_CONFIG="$XDG_CONFIG_HOME/tmux/tmux.conf"
 
 # System-specific env vars
 if [ "$(uname)" = "Linux" ] ; then

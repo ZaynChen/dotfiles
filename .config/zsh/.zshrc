@@ -58,8 +58,9 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=$ZSH/custom
 
-# tmux conf
+# tmux plugin conf
 # ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_CONFIG="$XDG_CONFIG_HOME/tmux/tmux.conf"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -67,7 +68,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # osx unsupported in the alacritty terminal
-plugins=(git vscode rust cp npm brew tmux tmuxinator node dotenv dash ripgrep docker docker-compose docker-machine zsh-autosuggestions zsh-syntax-highlighting) # zsh-vi-mode)
+plugins=(aliases git rust cp brew tmux tmuxinator node dotenv dash ripgrep zsh-autosuggestions zsh-syntax-highlighting) # zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -76,57 +77,17 @@ source $ZSH/oh-my-zsh.sh
 # ZVM_ESCAPE_KEYTIMEOUT=0.04
 # ZVM_INIT_MODE=sourcing
 
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=2000
+SAVEHIST=1000
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias zshconf="nvim $ZDOTDIR/.zshrc"
-alias zshenv="nvim $ZDOTDIR/.zshenv"
-alias sourcezsh="source $ZDOTDIR/.zshrc"
-alias alaconf="nvim $XDG_CONFIG_HOME/alacritty/alacritty.yml"
-# alias tmuxconf="nvim $XDG_CONFIG_HOME/tmux/tmux.conf"
-
-alias ls="exa"
-alias lll="exa -la"
-alias e="nvim"
-alias n="neofetch"
-alias py="python"
-alias u="aupdate.sh"
-alias mux="tmuxinator"
-
-alias macode="tmuxinator macode"
-
-# -- riscv-gnu-toolchain alias
-alias addr2linerv64="riscv64-unknown-elf-addr2line"
-alias arrv64="riscv64-unknown-elf-ar"
-alias asrv64="riscv64-unknown-elf-as"
-alias gccrv64="riscv64-unknown-elf-gcc"
-alias gdbrv64="riscv64-unknown-elf-gdb"
-alias ldrv64="rsicv64-unknown-elf-ld"
-alias ld.bfdrv64="riscv64-unknown-elf-ld.bfd"
-alias nmrv64="riscv64-unknown-elf-nm"
-alias objcopyrv64="riscv64-unknown-elf-objcopy"
-alias objdumprv64="riscv64-unknown-elf-objdump"
-alias ranlibrv64="riscv64-unknown-elf-ranlib"
-alias readelfrv64="riscv64-unknown-elf-readelf"
-alias striprv64="riscv64-unknown-elf-strip"
-# -- qemu riscv alias
-alias qemusysrv64="qemu-system-riscv64"
-alias qemurv64="qemu-riscv64"
-
-alias gdb=gdb -n -x $XDG_CONFIG_HOME/gdb/init
-
-# system-specific alias
-if [ "$(uname)" = "Linux" ] ; then
-  alias open="xdg-open"
-elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
+if [[ -r $ZDOTDIR/.aliasrc.zsh ]] ; then
+  . $ZDOTDIR/.aliasrc.zsh
 fi
-
-neofetch
 
 eval "$(zoxide init zsh --cmd j)"
