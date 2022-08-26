@@ -59,7 +59,6 @@ ZSH_THEME="robbyrussell"
 # ZSH_CUSTOM=$ZSH/custom
 
 # tmux plugin conf
-# ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_CONFIG="$XDG_CONFIG_HOME/tmux/tmux.conf"
 
 # Which plugins would you like to load?
@@ -67,15 +66,15 @@ ZSH_TMUX_CONFIG="$XDG_CONFIG_HOME/tmux/tmux.conf"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# osx unsupported in the alacritty terminal
-plugins=(aliases git rust cp brew tmux tmuxinator node dotenv dash ripgrep zsh-autosuggestions zsh-syntax-highlighting) # zsh-vi-mode)
+plugins=()
+plugins+=(aliases cp dotenv)
+plugins+=(brew dash fd git man npm ripgrep)
+plugins+=(node python rust)
+plugins+=(tmux tmuxinator)
+plugins+=(colored-man-pages themes)
+plugins+=(zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-
-# bindkey -v
-# ZVM_KEYTIMEOUT=0.05
-# ZVM_ESCAPE_KEYTIMEOUT=0.04
-# ZVM_INIT_MODE=sourcing
 
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=2000
@@ -85,9 +84,9 @@ SAVEHIST=1000
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
 if [[ -r $ZDOTDIR/.aliasrc.zsh ]] ; then
   . $ZDOTDIR/.aliasrc.zsh
 fi
 
 eval "$(zoxide init zsh --cmd j)"
+

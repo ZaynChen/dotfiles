@@ -16,7 +16,6 @@ if [ -x "$(command -v exa)" ] ; then
 fi
 alias e="$EDITOR"
 alias nf="neofetch"
-alias py="python"
 alias u="aupdate.sh"
 
 alias gdb=gdb -n -x $XDG_CONFIG_HOME/gdb/init
