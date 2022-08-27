@@ -32,8 +32,10 @@ export XDG_RUNTIME_DIR="/run/user/$UID"
 #
 
 # Localization
-export LANG=zh_CN.UTF-8
-export LANGUAGE=zh_CN:en_US
+# add these to /etc/environment for lighdm to correctly
+# display the locale
+# export LANG=zh_CN.UTF-8
+# export LANGUAGE=zh_CN:en_US
 
 export ANDROID_HOME="$XDG_DATA_HOME/android"
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"

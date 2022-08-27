@@ -12,6 +12,12 @@ PATTERN="antergos"
 REPLACEMENT="litarvan"
 sudo sed -i "s/$PATTERN/$REPLACEMENT/g" /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo systemctl enable lightdm.service
+# Localization
+[ -f /etc/environment ] &&
+  [ -z "$(grep "LANG=" /etc/environment)" ] &&
+  echo "
+LANG=zh_CN.UTF-8
+LANGUAGE=zh_CN:en_US" | sudo tee -a /etc/environment
 
 paru -S betterlockscreen --noconfirm --needed
 betterlockscreen -u /usr/share/backgrounds/archlinux
@@ -25,16 +31,12 @@ paru -S volumeicon --noconfirm --needed
 paru -S network-manager-applet --noconfirm --needed
 paru -S pcmanfm --noconfirm --needed
 paru -S fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-zhwiki fcitx5-material-color --noconfirm --needed
-if [ -f /etc/profile.d/fcitx5.sh ]; then
-  echo "File /etc/profile.d/fcitx5.sh already exists, do nothing"
-else
-  echo "Creating file /etc/profile.d/fcitx5.sh"
+[ -f /etc/profile.d/fcitx5.sh ] ||
   echo "export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx # SDL2
 export GLFW_IM_MODULE=ibus # kitty" | sudo tee /etc/profile.d/fcitx5.sh
-fi
 
 # Archive tool
 paru -S peazip --noconfirm --needed
