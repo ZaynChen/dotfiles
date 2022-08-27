@@ -33,6 +33,7 @@
 .config/docker
 .config/ipython
 .config/jupyter
+.config/peazip
 
 .config/mimeapps.list
 .config/QtProject.conf
