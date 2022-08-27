@@ -13,11 +13,16 @@ REPLACEMENT="litarvan"
 sudo sed -i "s/$PATTERN/$REPLACEMENT/g" /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo systemctl enable lightdm.service
 # Localization
-[ -f /etc/environment ] &&
-  [ -z "$(grep "LANG=" /etc/environment)" ] &&
-  echo "
+if [ -f /etc/environment ]; then
+  [ -n "$(grep "LANG=" /etc/environment)" ] ||
+    echo "
 LANG=zh_CN.UTF-8
 LANGUAGE=zh_CN:en_US" | sudo tee -a /etc/environment
+else
+  echo "
+LANG=zh_CN.UTF-8
+LANGUAGE=zh_CN:en_US" | sudo tee /etc/environment
+fi
 
 paru -S betterlockscreen --noconfirm --needed
 betterlockscreen -u /usr/share/backgrounds/archlinux
