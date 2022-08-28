@@ -23,6 +23,9 @@ else
 LANG=zh_CN.UTF-8
 LANGUAGE=zh_CN:en_US" | sudo tee /etc/environment
 fi
+paru -S gnome-keyring --noconfirm --needed
+paru -S seahorse --noconfirm --needed
+paru -S openssh --noconfirm --needed
 
 paru -S betterlockscreen --noconfirm --needed
 betterlockscreen -u /usr/share/backgrounds/archlinux
