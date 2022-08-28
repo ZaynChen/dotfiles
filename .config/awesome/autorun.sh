@@ -12,5 +12,4 @@ run volumeicon
 run nm-applet
 run cfw
 run fcitx5
-# run light-locker
-# run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+run light-locker
