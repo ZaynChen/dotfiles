@@ -12,4 +12,4 @@ run volumeicon
 run nm-applet
 run cfw
 run fcitx5
-run light-locker
+# run light-locker
