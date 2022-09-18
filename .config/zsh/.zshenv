@@ -73,12 +73,15 @@ export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
-export ZSH="/usr/share/oh-my-zsh"
 
 # System-specific env vars
 if [ "$(uname)" = "Linux" ] ; then
+  # Archlinux
+  export ZSH="/usr/share/oh-my-zsh"
   export NVIMRUNTIME="/usr/share/nvim/runtime"
 elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
+  # Macos
+  export ZSH="$XDG_DATA_HOME/oh-my-zsh"
   export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2/share/nvim/runtime"
 fi
 
