@@ -1,7 +1,9 @@
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# sudo paru -S autojump --noconfirm --needed
-sudo paru -S zsh-completions-git --noconfirm --needed
+paru -S zsh --noconfirm --needed
+paru -S oh-my-zsh-git --noconfirm --needed
+paru -S zsh-completions --noconfirm --needed
+paru -S zsh-autosuggestions --noconfirm --needed
+paru -S zsh-syntax-highlighting --noconfirm --needed
+paru -S zsh-vi-mode --noconfirm --needed
 
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
+sudo rm -r /usr/share/oh-my-zsh/custom/plugins
+sudo ln -s /usr/share/zsh/plugins /usr/share/oh-my-zsh/custom/plugins
