@@ -79,10 +79,11 @@ if [ "$(uname)" = "Linux" ] ; then
   # Archlinux
   export ZSH="/usr/share/oh-my-zsh"
   export NVIMRUNTIME="/usr/share/nvim/runtime"
-elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
+# elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
+elif [ "$(uname)" = "Darwin" ] ; then
   # Macos
   export ZSH="$XDG_DATA_HOME/oh-my-zsh"
-  export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2/share/nvim/runtime"
+  export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2_1/share/nvim/runtime"
 fi
 
 # Compilation flags
