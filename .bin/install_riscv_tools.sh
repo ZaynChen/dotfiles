@@ -16,4 +16,4 @@ rustup component add rust-src
 paru -S qemu --noconfirm --needed
 
 # riscv-gnu-toolchain
-paru -S riscv-gnu-toolchain --noconfirm --needed
+paru -S riscv-gnu-toolchain-bin --noconfirm --needed
