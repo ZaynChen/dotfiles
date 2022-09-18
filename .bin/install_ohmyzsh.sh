@@ -1,4 +1,4 @@
-sudo paru -S oh-my-zsh-git --noconfirm --needed
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # sudo paru -S autojump --noconfirm --needed
 sudo paru -S zsh-completions-git --noconfirm --needed
 
