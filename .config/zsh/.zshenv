@@ -74,6 +74,7 @@ export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 export ZSH="$XDG_DATA_HOME/oh-my-zsh"
+export ZSH_CUSTOM="$ZSH/custom"
 
 # System-specific env vars
 if [ "$(uname)" = "Linux" ] ; then
