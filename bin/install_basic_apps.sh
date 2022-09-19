@@ -7,20 +7,23 @@ sudo systemctl enable nftables
 paru -S picom-jonaburg-git --noconfirm --needed
 
 paru -S lightdm-webkit-theme-litarvan --noconfirm --needed
-PATTERN="#greeter-session=example-gtk-gnome"
-REPLACEMENT="greeter-session=lightdm-webkit2-greeter"
-sudo sed -i "s/$PATTERN/$REPLACEMENT/g" /etc/lightdm/lightdm.conf
-PATTERN="#user-authority-in-system-dir=false"
-REPLACEMENT="user-authority-in-system-dir=true"
-sudo sed -i "s/$PATTERN/$REPLACEMENT/g" /etc/lightdm/lightdm.conf
-PATTERN="antergos"
-REPLACEMENT="litarvan"
-sudo sed -i "s/$PATTERN/$REPLACEMENT/g" /etc/lightdm/lightdm-webkit2-greeter.conf
+FIND="^#greeter-session=example-gtk-gnome"
+REPLACE="greeter-session=lightdm-webkit2-greeter"
+sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
+FIND="^#user-authority-in-system-dir=false"
+REPLACE="user-authority-in-system-dir=true"
+sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
+PATTERN="^webkit_theme"
+FIND="antergos"
+REPLACE="litarvan"
+sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/lightdm-webkit2-greeter.conf
+grep -q "NaturalScrolling" /usr/share/X11/xorg.conf.d/40-libinput.conf ||
+  sudo sed -i "/libinput pointer catchall/a\        Option \"NaturalScrolling\" \"true\"" /usr/share/X11/xorg.conf.d/40-libinput.conf
 sudo systemctl enable lightdm.service
 
 # Localization
 if [ -f /etc/environment ]; then
-  [ -n "$(grep "LANG=" /etc/environment)" ] ||
+  grep -q "LANG=" /etc/environment ||
     echo "
 LANG=zh_CN.UTF-8
 LANGUAGE=zh_CN:en_US" | sudo tee -a /etc/environment
