@@ -88,6 +88,8 @@ paru -S htop --noconfirm --needed
 paru -S neofetch --noconfirm --needed
 # RS terminal bandwidth utilization tool
 paru -S bandwhich --noconfirm --needed
+paru -S hardinfo --noconfirm --needed
+paru -S dmidecode --noconfirm --needed
 
 paru -S alacritty --noconfirm --needed
 paru -S neovim --noconfirm --needed
