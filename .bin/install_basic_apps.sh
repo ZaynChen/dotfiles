@@ -35,6 +35,7 @@ paru -S seahorse --noconfirm --needed
 paru -S openssh --noconfirm --needed
 
 paru -S betterlockscreen --noconfirm --needed
+paru -S archlinux-wallpaper --noconfirm --needed
 betterlockscreen -u /usr/share/backgrounds/archlinux
 
 paru -S awesome --noconfirm --needed
