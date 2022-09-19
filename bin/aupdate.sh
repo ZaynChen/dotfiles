@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Setup Proxy..."
-export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+export https_proxy=http://127.0.0.1:7893 http_proxy=http://127.0.0.1:7893 all_proxy=socks5://127.0.0.1:7893
 echo https_proxy=$https_proxy
 echo http_proxy=$http_proxy
 echo all_proxy=$all_proxy
