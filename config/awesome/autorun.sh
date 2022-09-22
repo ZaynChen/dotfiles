@@ -12,5 +12,5 @@ run volumeicon
 run nm-applet
 run cfw
 run fcitx5
-# run $XDG_CONFIG_HOME/polybar/launch.sh
+# run $XDG_CONFIG_HOME/polybar/launch.sh --cust &
 run light-locker
