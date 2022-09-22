@@ -20,6 +20,7 @@ sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/lightdm-webkit2-greeter.c
 grep -q "NaturalScrolling" /usr/share/X11/xorg.conf.d/40-libinput.conf ||
   sudo sed -i "/libinput pointer catchall/a\        Option \"NaturalScrolling\" \"true\"" /usr/share/X11/xorg.conf.d/40-libinput.conf
 sudo systemctl enable lightdm.service
+paru -S light-locker --noconfirm --needed
 
 # Localization
 if [ -f /etc/environment ]; then
