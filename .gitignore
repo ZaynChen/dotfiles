@@ -23,6 +23,7 @@ config/ipython
 config/jupyter
 config/Kingsoft
 config/kingsoft
+config/LarkShell
 config/libfm
 config/listen1
 config/lnav
