@@ -44,21 +44,6 @@ end
 -- }}}
 
 -- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
--- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-
-local themes = {
-  "default", -- 1
-  "gtk", --2
-  "sky", -- 3
-  "xresources", -- 4
-  "zenburn", -- 5
-  "custom", -- 6
-}
-local chose_theme = themes[j]
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chose_theme)
-beautiful.init(theme_path)
-
 terminal = "alacritty"
 browser = "firefox-developer-edition"
 -- browser = "brave"
@@ -98,6 +83,80 @@ awful.layout.layouts = {
   -- awful.layout.suit.corner.sw,
   -- awful.layout.suit.corner.se,
 }
+
+-- Create a wibox for each screen and add it
+awful.util.taglist_buttons = gears.table.join(
+  awful.button({}, mouse_left, function(t)
+    t:view_only()
+  end),
+  awful.button({ modkey }, mouse_left, function(t)
+    if client.focus then
+      client.focus:move_to_tag(t)
+    end
+  end),
+  awful.button({}, mouse_right, awful.tag.viewtoggle),
+  awful.button({ modkey }, mouse_right, function(t)
+    if client.focus then
+      client.focus:toggle_tag(t)
+    end
+  end),
+  awful.button({}, mouse_up, function(t)
+    awful.tag.viewnext(t.screen)
+  end),
+  awful.button({}, mouse_down, function(t)
+    awful.tag.viewprev(t.screen)
+  end)
+)
+
+-- awful.util.tasklist_buttons = gears.table.join(
+--   awful.button({}, 1, function(c)
+--     if c == client.focus then
+--       c.minimized = true
+--     else
+--       c:emit_signal(
+--         "request::activate",
+--         "tasklist",
+--         { raise = true }
+--       )
+--     end
+--   end),
+--   awful.button({}, 3, function()
+--     awful.menu.client_list({ theme = { width = 250 } })
+--   end),
+--   awful.button({}, 4, function()
+--     awful.client.focus.byidx(1)
+--   end),
+--   awful.button({}, 5, function()
+--     awful.client.focus.byidx(-1)
+--   end)
+-- )
+
+awful.util.set_wallpaper = function(s)
+  -- Wallpaper
+  if beautiful.wallpaper then
+    local wallpaper = beautiful.wallpaper
+    -- If wallpaper is a function, call it with the screen
+    if type(wallpaper) == "function" then
+      wallpaper = wallpaper(s)
+    end
+    gears.wallpaper.maximized(wallpaper, s, true)
+  end
+end
+
+-- Themes define colours, icons, font and wallpapers.
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+
+local themes = {
+  "default", -- 1
+  "gtk", --2
+  "sky", -- 3
+  "xresources", -- 4
+  "zenburn", -- 5
+  "custom", -- 6
+}
+local chose_theme = themes[6]
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chose_theme)
+beautiful.init(theme_path)
 -- }}}
 
 -- {{{ Menu
@@ -131,7 +190,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 -- re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", beautiful.set_wallpaper)
+screen.connect_signal("property::geometry", awful.util.set_wallpaper)
 
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal("arrange", function(s)

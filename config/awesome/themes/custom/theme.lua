@@ -464,52 +464,6 @@ local markup = lain.util.markup
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
--- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-    awful.button({}, mouse_left, function(t)
-        t:view_only()
-    end),
-    awful.button({ modkey }, mouse_left, function(t)
-        if client.focus then
-            client.focus:move_to_tag(t)
-        end
-    end),
-    awful.button({}, mouse_right, awful.tag.viewtoggle),
-    awful.button({ modkey }, mouse_right, function(t)
-        if client.focus then
-            client.focus:toggle_tag(t)
-        end
-    end),
-    awful.button({}, mouse_up, function(t)
-        awful.tag.viewnext(t.screen)
-    end),
-    awful.button({}, mouse_down, function(t)
-        awful.tag.viewprev(t.screen)
-    end)
-)
-
--- local tasklist_buttons = gears.table.join(
---   awful.button({}, 1, function(c)
---     if c == client.focus then
---       c.minimized = true
---     else
---       c:emit_signal(
---         "request::activate",
---         "tasklist",
---         { raise = true }
---       )
---     end
---   end),
---   awful.button({}, 3, function()
---     awful.menu.client_list({ theme = { width = 250 } })
---   end),
---   awful.button({}, 4, function()
---     awful.client.focus.byidx(1)
---   end),
---   awful.button({}, 5, function()
---     awful.client.focus.byidx(-1)
---   end)
--- )
 
 -- local function set_wallpaper(s)
 --     -- Wallpaper
@@ -524,7 +478,7 @@ local taglist_buttons = gears.table.join(
 -- end
 
 -- Textclock
-local clockicon = wibox.widget.imagebox(widget_clock)
+local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local clock = awful.widget.watch(
     "date +'%A %D %R'", 60,
     function(widget, stdout)
@@ -599,22 +553,9 @@ local net = lain.widget.net({
 -- end
 
 
-theme.set_wallpaper = function(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
-
-
 theme.at_screen_connect = function(s)
-    -- Wallpaper
-    theme.set_wallpaper(s)
+    -- If wallpaper is a function, call it with the screen
+    awful.util.set_wallpaper(s)
 
     local names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
     local l = awful.layout.suit
@@ -635,14 +576,14 @@ theme.at_screen_connect = function(s)
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons,
+        buttons = awful.util.taglist_buttons,
     }
 
     -- Create a tasklist widget
     -- s.mytasklist = awful.widget.tasklist {
     --   screen = s,
     --   filter = awful.widget.tasklist.filter.currenttags,
-    --   buttons = tasklist_buttons
+    --   buttons = awful.util.tasklist_buttons
     -- }
 
     -- Create the wibox
