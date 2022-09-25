@@ -446,6 +446,239 @@ theme.widget_task        = theme_dir .. "/icons/task.png"
 theme.widget_scissors    = theme_dir .. "/icons/scissors.png"
 theme.widget_weather     = theme_dir .. "/icons/dish.png"
 
+-- {{{ Wibar
+local gears = require("gears")
+local awful = require("awful")
+-- Widget and layout library
+local wibox = require("wibox")
+-- Theme handling library
+local beautiful = require("beautiful")
+
+local lain = require("lain")
+local markup = lain.util.markup
+
+-- Notification library
+-- local separators = lain.util.separators
+-- local arrow = separators.arrow_left
+
+-- Create a textclock widget
+mytextclock = wibox.widget.textclock()
+
+-- Create a wibox for each screen and add it
+local taglist_buttons = gears.table.join(
+    awful.button({}, mouse_left, function(t)
+        t:view_only()
+    end),
+    awful.button({ modkey }, mouse_left, function(t)
+        if client.focus then
+            client.focus:move_to_tag(t)
+        end
+    end),
+    awful.button({}, mouse_right, awful.tag.viewtoggle),
+    awful.button({ modkey }, mouse_right, function(t)
+        if client.focus then
+            client.focus:toggle_tag(t)
+        end
+    end),
+    awful.button({}, mouse_up, function(t)
+        awful.tag.viewnext(t.screen)
+    end),
+    awful.button({}, mouse_down, function(t)
+        awful.tag.viewprev(t.screen)
+    end)
+)
+
+-- local tasklist_buttons = gears.table.join(
+--   awful.button({}, 1, function(c)
+--     if c == client.focus then
+--       c.minimized = true
+--     else
+--       c:emit_signal(
+--         "request::activate",
+--         "tasklist",
+--         { raise = true }
+--       )
+--     end
+--   end),
+--   awful.button({}, 3, function()
+--     awful.menu.client_list({ theme = { width = 250 } })
+--   end),
+--   awful.button({}, 4, function()
+--     awful.client.focus.byidx(1)
+--   end),
+--   awful.button({}, 5, function()
+--     awful.client.focus.byidx(-1)
+--   end)
+-- )
+
+-- local function set_wallpaper(s)
+--     -- Wallpaper
+--     if beautiful.wallpaper then
+--         local wallpaper = beautiful.wallpaper
+--         -- If wallpaper is a function, call it with the screen
+--         if type(wallpaper) == "function" then
+--             wallpaper = wallpaper(s)
+--         end
+--         gears.wallpaper.maximized(wallpaper, s, true)
+--     end
+-- end
+
+-- Textclock
+local clockicon = wibox.widget.imagebox(widget_clock)
+local clock = awful.widget.watch(
+    "date +'%A %D %R'", 60,
+    function(widget, stdout)
+        widget:set_markup(markup.font(theme.font, stdout))
+    end
+)
+
+-- Calendar
+beautiful.cal = lain.widget.cal({
+    attach_to = { clock },
+    week_start = 1,
+    notification_preset = {
+        -- font = "JetBrains Mono 11",
+        font = "FiraCode Nerd Font Mono 11",
+        fg   = theme.fg_normal,
+        bg   = theme.bg_normal
+    }
+})
+
+-- MEM
+local memicon = wibox.widget.imagebox(theme.widget_mem)
+local mem = lain.widget.mem({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, mem_now.used .. "MB"))
+    end
+})
+
+-- CPU
+local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
+local cpu = lain.widget.cpu({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, cpu_now.usage .. "% "))
+    end
+})
+
+-- Coretemp (lain, average)
+local tempicon = wibox.widget.imagebox(theme.widget_temp)
+local temp = lain.widget.temp({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, coretemp_now .. "°C "))
+    end
+})
+
+--  fs
+local fsicon = wibox.widget.imagebox(theme.widget_hdd)
+local fs = lain.widget.fs({
+    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = theme.font },
+    settings = function()
+        local fsp = string.format("%3.2f%s", fs_now["/"].free, fs_now["/"].units)
+        widget:set_markup(markup.font(theme.font, fsp))
+    end
+})
+
+-- Net
+local neticon = wibox.widget.imagebox(theme.widget_net)
+local net = lain.widget.net({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, "↓" .. net_now.received .. " ↑" .. net_now.sent))
+    end
+})
+
+
+-- Checkupdates
+-- local function checkupdates()
+--   awful.spawn.easy_async("checkupdates", function(stdout)
+--     local n = 0
+--     for i in stdout:gmatch("\n") do
+--       n = n + 1
+--     end
+--     naughty.notify({ title = n .. " updates available:", text = "\n" .. stdout })
+--   end)
+-- end
+
+
+theme.set_wallpaper = function(s)
+    -- Wallpaper
+    if beautiful.wallpaper then
+        local wallpaper = beautiful.wallpaper
+        -- If wallpaper is a function, call it with the screen
+        if type(wallpaper) == "function" then
+            wallpaper = wallpaper(s)
+        end
+        gears.wallpaper.maximized(wallpaper, s, true)
+    end
+end
+
+
+theme.at_screen_connect = function(s)
+    -- Wallpaper
+    theme.set_wallpaper(s)
+
+    local names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
+    local l = awful.layout.suit
+    local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile }
+    awful.tag(names, s, layouts)
+
+    -- Create a promptbox for each screen
+    s.mypromptbox = awful.widget.prompt()
+    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
+    -- We need one layoutbox per screen.
+    s.mylayoutbox = awful.widget.layoutbox(s)
+    s.mylayoutbox:buttons(gears.table.join(
+        awful.button({}, mouse_left, function() awful.layout.inc(1) end),
+        awful.button({}, mouse_right, function() awful.layout.inc(-1) end),
+        awful.button({}, mouse_up, function() awful.layout.inc(1) end),
+        awful.button({}, mouse_down, function() awful.layout.inc(-1) end)))
+    -- Create a taglist widget
+    s.mytaglist = awful.widget.taglist {
+        screen  = s,
+        filter  = awful.widget.taglist.filter.all,
+        buttons = taglist_buttons,
+    }
+
+    -- Create a tasklist widget
+    -- s.mytasklist = awful.widget.tasklist {
+    --   screen = s,
+    --   filter = awful.widget.tasklist.filter.currenttags,
+    --   buttons = tasklist_buttons
+    -- }
+
+    -- Create the wibox
+    s.mywibox = awful.wibar({ position = "top", screen = s, bg = theme.bg_normal })
+
+    -- Add widgets to the wibox
+    s.mywibox:setup {
+        layout = wibox.layout.align.horizontal,
+        { -- Left widgets
+            layout = wibox.layout.fixed.horizontal,
+            -- mylauncher,
+            -- mytextclock,
+            wibox.container.background(wibox.container.margin(clock, 4, 8), theme.bg_normal),
+            s.mytaglist,
+            s.mypromptbox,
+        },
+        s.mytasklist, -- Middle widget
+        { -- Right widgets
+            layout = wibox.layout.fixed.horizontal,
+            -- mykeyboardlayout,
+            wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget,
+                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+            wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget,
+                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+            wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget,
+                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+            wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget,
+                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+            wibox.container.background(wibox.container.margin(wibox.widget { fsicon, fs.widget,
+                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+            wibox.widget.systray(),
+            s.mylayoutbox,
+        },
+    }
+end
+
 return theme
 
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
