@@ -87,8 +87,4 @@ o.lazyredraw = true
 -- o.undodir = vim.fn.stdpath("data") .. "/undo"
 o.undofile = true
 
--- filetype
-g.do_filetype_lua = 1
-g.did_load_filetypes = 0
-
 -- TODO visual mode select current selection
