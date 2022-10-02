@@ -46,10 +46,6 @@ o.numberwidth = 3
 -- o.columns = 100
 -- o.modelines = 0
 
-vim.cmd("colorscheme base16-onedark")
-o.background = "dark"
-o.termguicolors = true
-
 -- Search
 o.ignorecase = true
 o.smartcase = true

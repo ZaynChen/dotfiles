@@ -12,6 +12,7 @@ Plug "mattn/webapi-vim"
 -- Plug "RRethy/nvim-base16"
 -- Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
 -- Plug "navarasu/onedark.nvim"
+-- Plug "olimorris/onedarkpro.nvim"
 Plug "norcalli/nvim-colorizer.lua"
 
 -- Statusline
@@ -137,6 +138,7 @@ if devicons_ok then
   devicons.setup {}
 end
 
+require("plugins.colorscheme")
 require("plugins.lualine")
 require("plugins.nvim-tree")
 require("plugins.treesitter")
