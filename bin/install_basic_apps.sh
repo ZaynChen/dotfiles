@@ -6,17 +6,36 @@ sudo systemctl enable nftables
 
 paru -S picom-jonaburg-git --noconfirm --needed
 
-paru -S lightdm-webkit-theme-litarvan --noconfirm --needed
+paru -S lightdm --noconfirm --needed
+CURR_DIR=$(pwd)
+CLONE_DIR=$XDG_CACHE_HOME/paru/clone
+cd $CLONE_DIR
+git clone https://github.com/JezerM/sea-greeter.git --recursive
+cd sea-greeter
+meson build
+ninja -C build
+sudo ninja -C build install
+cd $CLONE_DIR
+git clone https://github.com/ZaynChen/lightdm-webkit-theme-litarvan.git -b fixtrans
+cd lightdm-webkit2-theme-litarvan
+./build.sh
+sudo rm -rf /usr/share/web-greeter/themes/litarvan
+sudo mkdir /usr/share/web-greeter/themes/litarvan
+sudo cp ./lightdm-webkit-theme-litarvan-3.2.0.tar.gz /usr/share/web-greeter/themes/litarvan/
+cd /usr/share/web-greeter/themes/litarvan/
+sudo tar -xvf lightdm-webkit-theme-litarvan-3.2.0.tar.gz
+cd $CURR_DIR
+
 FIND="^#greeter-session=example-gtk-gnome"
-REPLACE="greeter-session=lightdm-webkit2-greeter"
+REPLACE="greeter-session=sea-greeter"
 sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
 FIND="^#user-authority-in-system-dir=false"
 REPLACE="user-authority-in-system-dir=true"
 sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
-PATTERN="^webkit_theme"
-FIND="antergos"
+PATTERN="^greeter:$/,/^$"
+FIND="gruvbox"
 REPLACE="litarvan"
-sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/lightdm-webkit2-greeter.conf
+sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/web-greeter.yml
 grep -q "NaturalScrolling" /usr/share/X11/xorg.conf.d/40-libinput.conf ||
   sudo sed -i "/libinput pointer catchall/a\        Option \"NaturalScrolling\" \"true\"" /usr/share/X11/xorg.conf.d/40-libinput.conf
 sudo systemctl enable lightdm.service
