@@ -201,8 +201,8 @@ channels:
 # #   'user:password' inclusion enables HTTP Basic Auth with your proxy.
 # # 
 proxy_servers:
-  http: socks5://localhost:7890
-  https: socks5://localhost:7890
+  http: socks5://localhost:7893
+  https: socks5://localhost:7893
 
 # # remote_connect_timeout_secs (float)
 # #   The number seconds conda will wait for your client to establish a
