@@ -16,7 +16,7 @@ meson build
 ninja -C build
 sudo ninja -C build install
 cd $CLONE_DIR
-git clone https://github.com/ZaynChen/lightdm-webkit-theme-litarvan.git -b fixtrans
+git clone https://github.com/Litarvan/lightdm-webkit-theme-litarvan.git
 cd lightdm-webkit2-theme-litarvan
 ./build.sh
 sudo rm -rf /usr/share/web-greeter/themes/litarvan
