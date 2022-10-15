@@ -30,10 +30,6 @@ schemes:
     #     foreground: '#ffffff'
     #     background: '#000000'
 
-    #   bar:
-    #     foreground: '#1d1f21'
-    #     background: '#c5c8c6'
-
     # hints:
     #   start:
     #     foreground: '#1d1f21'
