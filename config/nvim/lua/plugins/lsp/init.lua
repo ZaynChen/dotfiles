@@ -11,7 +11,7 @@ lsp_status.register_progress()
 
 local lspconfig = require("lspconfig")
 
-M.capabilities = require("cmp_nvim_lsp").update_capabilities(lsp_status.capabilities)
+M.capabilities = require("cmp_nvim_lsp").default_capabilities(lsp_status.capabilities)
 M.on_attach = function(client, bufnr)
   require("keymap.lsp").on_attach(bufnr)
 
@@ -24,7 +24,7 @@ M.on_attach = function(client, bufnr)
     group = lsp_augroup,
     buffer = bufnr,
     desc = "[LSP]FormatOnSave",
-    callback = function() lsp.buf.formatting_sync(nil, 3000) end
+    callback = function() lsp.buf.format({ nil, 3000 }) end
   })
 
   -- Show diagnostic popup on cursor hover
@@ -77,6 +77,12 @@ require("rust-tools").setup {
     --   name = "rt_lldb"
     -- }
   }
+}
+
+-- Enable julials
+lspconfig.julials.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
 }
 
 -- Enable clangd

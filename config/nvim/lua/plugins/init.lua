@@ -145,6 +145,7 @@ require("plugins.treesitter")
 require("plugins.indent_blankline")
 require("plugins.todo-comments")
 require("plugins.comment")
+require("plugins.nvim-hlslens")
 local colorizer_ok, colorizer = pcall(require, "colorizer")
 if colorizer_ok then
   colorizer.setup {}
