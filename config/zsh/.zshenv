@@ -107,7 +107,7 @@ prepend_path () {
 }
 
 prepend_path "$CARGO_HOME/bin"
-prepend_path "$HOME/.local/bin"
+prepend_path "$HOME/.bin"
 
 # System-specific PATH
 if [ "$(uname)" = "Linux" ] ; then
