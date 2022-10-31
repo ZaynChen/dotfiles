@@ -8,7 +8,12 @@ if not treesitter_ok then
 end
 
 treesitter.setup {
-  ensure_installed = { "c", "lua", "python", "rust", "ruby", "yaml", "toml", "json", "markdown" },
+  ensure_installed = {
+    "c", "lua", "rust", "julia", "python", "ruby", "bash",
+    "html", "javascript",
+    "yaml", "toml", "json",
+    "markdown"
+  },
   sync_install = false,
   auto_install = true,
   ignore_install = {},
