@@ -120,7 +120,7 @@ elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
 fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# append_path "$HOME/.rvm/bin"
+append_path "$HOME/.rvm/bin"
 
 unset append_path
 unset prepend_path
