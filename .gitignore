@@ -17,6 +17,7 @@ config/font-manager
 config/git
 config/google-chrome
 config/gtk-3.0
+config/gtk-2.0
 config/htop
 config/ibus
 config/ipython

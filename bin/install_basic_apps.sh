@@ -115,6 +115,7 @@ paru -S alacritty --noconfirm --needed
 paru -S neovim --noconfirm --needed
 paru -S python-pip --noconfirm --needed
 pip install pynvim
+curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles
 paru -S tmux --noconfirm --needed
 
 paru -S firefox-developer-edition firefox-developer-edition-i18n-zh-cn --noconfirm --needed

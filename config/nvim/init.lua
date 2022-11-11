@@ -7,8 +7,11 @@ P = function(...)
   return ...
 end
 
-
-require "settings"
-require "plugins"
-require "keymap"
-require "autocmd"
+if vim.g.vscode then
+  require "vscode"
+else
+  require "settings"
+  require "plugins"
+  require "keymap"
+  require "autocmd"
+end
