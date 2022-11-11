@@ -35,13 +35,11 @@ map("<leader>te", "<cmd>Tabedit<cr>", "[Tap]Edit")
 map("<leader>tj", "<cmd>Tabnext<cr>", "[Tap]Next")
 map("<leader>tk", "<cmd>Tabprevious<cr>", "[Tap]Prev")
 map("<leader>t1", "<cmd>Tabfirst<cr>", "[Tab]First")
-map("<leader>t9", "<cmd>Tablast<cr>", "[Tab]Last")
-map("<leader>tn", "<cmd>Tabnew<cr>", "[Tap]New")
+-- map("<leader>t9", "<cmd>Tablast<cr>", "[Tab]Last") -- using <M-1>
+-- map("<leader>tn", "<cmd>Tabnew<cr>", "[Tap]New") -- using <M-9>
 map("<leader>to", "<cmd>Tabonly<cr>", "[Tap]Only")
 -- map("<leader>tm", "<cmd>Tabmove<cr>", "[Tap]Move") -- Not supported yet
 
 -- Comment
-map("gc", "<Plug>VSCodeCommentary", { mode = "x" })
-map("gc", "<Plug>VSCodeCommentary")
-map("gc", "<Plug>VSCodeCommentary", { mode = "o" })
+map("gc", "<Plug>VSCodeCommentary", { mode = { "n", "o", "x" } })
 map("gcc", "<Plug>VSCodeCommentaryLine")
