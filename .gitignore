@@ -38,4 +38,5 @@ config/wakatime
 config/wireshark
 config/zsh/.zcompdump*
 config/zsh/tmux*
+config/zsh/.zsh_sessions
 

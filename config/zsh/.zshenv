@@ -22,7 +22,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_RUNTIME_DIR="/run/user/$UID"
+if [ "$(uname)" = "Linux" ] ; then
+  export XDG_RUNTIME_DIR="/run/user/$UID"
+fi
 
 # Lighdm not supported
 # export USERXSESSION=$XDG_CACHE_HOME/X11/xsession
@@ -111,9 +113,10 @@ prepend_path "$HOME/.local/bin"
 
 # System-specific PATH
 if [ "$(uname)" = "Linux" ] ; then
-elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
+elif [ "$(uname)" = "Darwin" ] ; then
 # prepend_path "/Applications/factor"
 # prepend_path "/opt/metasploit-framework/bin"
+  append_path "/usr/local/anaconda3/bin"
   append_path "/usr/local/Cellar/llvm/13.0.1_1/bin"
   append_path "/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
   append_path "/usr/local/opt/openssl@1.1/bin"
