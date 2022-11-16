@@ -80,14 +80,12 @@ export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 export ZSH="$XDG_DATA_HOME/oh-my-zsh"
 
 # System-specific env vars
-if [ "$(uname)" = "Linux" ] ; then
+# if [ "$(uname)" = "Linux" ] ; then
   # Archlinux
-  export NVIMRUNTIME="/usr/share/nvim/runtime"
 # elif [ "$(uname)" = "Darwin" ] && [ -x "$(command -v brew)" ] ; then
-elif [ "$(uname)" = "Darwin" ] ; then
+# elif [ "$(uname)" = "Darwin" ] ; then
   # Macos
-  export NVIMRUNTIME="/usr/local/Cellar/neovim/0.7.2_1/share/nvim/runtime"
-fi
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
