@@ -1,5 +1,11 @@
 local g = vim.g
+local o = vim.o
+local opt = vim.opt
+
 g.mapleader = " "
+o.whichwrap = o.whichwrap .. ",<,>,h,l"
+opt.clipboard = { "unnamed", "unnamedplus" }
+opt.backspace = { "indent", "eol", "start" }
 
 local DEFAULT_OPTS = {
   buffer = nil,
