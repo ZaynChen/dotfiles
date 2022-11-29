@@ -46,7 +46,7 @@ if not nvimtree_ok then
   return
 end
 
-local opts = { -- BEGIN_DEFAULT_OPTS
+local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
   auto_reload_on_write = true,
   create_in_closed_folder = false,
   disable_netrw = false,
@@ -56,9 +56,6 @@ local opts = { -- BEGIN_DEFAULT_OPTS
   ignore_buffer_on_setup = false,
   open_on_setup = false,
   open_on_setup_file = false,
-  open_on_tab = false,
-  focus_empty_on_setup = false,
-  ignore_buf_on_tab_change = {},
   sort_by = "name",
   root_dirs = {},
   prefer_startup_root = false,
@@ -69,26 +66,24 @@ local opts = { -- BEGIN_DEFAULT_OPTS
   remove_keymaps = false,
   select_prompts = false,
   view = {
-    adaptive_size = true,
+    adaptive_size = false,
     centralize_selection = false,
     width = 30,
     hide_root_folder = false,
-    side = "right",
+    side = "left",
     preserve_window_proportions = false,
-    number = true,
-    relativenumber = true,
-    signcolumn = "auto",
+    number = false,
+    relativenumber = false,
+    signcolumn = "yes",
     mappings = {
       custom_only = false,
       list = {
         -- user mappings go here
-        { key = "h", action = "close_node" },
-        { key = { "<CR>", "o", "l", "<2-LeftMouse>" }, action = "edit" },
-        { key = { "<C-]>", "<2-RightMouse>" }, action = "cd" },
       },
     },
     float = {
       enable = false,
+      quit_on_focus_loss = true,
       open_win_config = {
         relative = "editor",
         border = "rounded",
@@ -105,7 +100,7 @@ local opts = { -- BEGIN_DEFAULT_OPTS
     highlight_git = false,
     full_name = false,
     highlight_opened_files = "none",
-    root_folder_modifier = ":~",
+    root_folder_label = ":~:s?$?/..?",
     indent_width = 2,
     indent_markers = {
       enable = false,
@@ -174,7 +169,12 @@ local opts = { -- BEGIN_DEFAULT_OPTS
   diagnostics = {
     enable = false,
     show_on_dirs = false,
+    show_on_open_dirs = true,
     debounce_delay = 50,
+    severity = {
+      min = vim.diagnostic.severity.HINT,
+      max = vim.diagnostic.severity.ERROR,
+    },
     icons = {
       hint = "",
       info = "",
@@ -190,11 +190,13 @@ local opts = { -- BEGIN_DEFAULT_OPTS
   filesystem_watchers = {
     enable = true,
     debounce_delay = 50,
+    ignore_dirs = {},
   },
   git = {
     enable = true,
     ignore = true,
     show_on_dirs = true,
+    show_on_open_dirs = true,
     timeout = 400,
   },
   actions = {
@@ -241,6 +243,16 @@ local opts = { -- BEGIN_DEFAULT_OPTS
     prefix = "[FILTER]: ",
     always_show_folders = true,
   },
+  tab = {
+    sync = {
+      open = false,
+      close = false,
+      ignore = {},
+    },
+  },
+  notify = {
+    threshold = vim.log.levels.INFO,
+  },
   log = {
     enable = false,
     truncate = false,
@@ -255,6 +267,6 @@ local opts = { -- BEGIN_DEFAULT_OPTS
       watcher = false,
     },
   },
-}
+} -- END_DEFAULT_OPTS
 
-nvimtree.setup(opts)
+nvimtree.setup(DEFAULT_OPTS)

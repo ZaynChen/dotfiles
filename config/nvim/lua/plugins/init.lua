@@ -75,7 +75,7 @@ Plug "romgrk/nvim-treesitter-context"
 Plug "windwp/nvim-autopairs"
 Plug "p00f/nvim-ts-rainbow"
 Plug "RRethy/nvim-treesitter-endwise"
-Plug "andymass/vim-matchup"
+-- Plug "andymass/vim-matchup"
 
 -- Comment
 -- Plug "tpope/vim-commentary"
