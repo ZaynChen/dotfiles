@@ -34,6 +34,7 @@ config/nitrogen
 config/pcmanfm
 config/peazip
 config/pulse
+config/QQ
 config/QtProject.conf
 config/wakatime
 config/wireshark
