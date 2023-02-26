@@ -28,6 +28,7 @@ config/LarkShell
 config/libfm
 config/listen1
 config/lnav
+config/microsoft-edge-dev
 config/mimeapps.list
 config/netease-cloud-music
 config/nitrogen

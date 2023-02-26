@@ -109,8 +109,8 @@ lspconfig.bashls.setup {
   capabilities = M.capabilities
 }
 
--- Enable sumneko_lua
-lspconfig.sumneko_lua.setup {
+-- Enable lua language server
+lspconfig.lua_ls.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
   settings = {
@@ -146,7 +146,7 @@ lspconfig.sumneko_lua.setup {
         -- }
       },
       completion = {
-        keywordSnippet = "Enable",
+        keywordSnippet = "Replace", -- Disable,Replace,Both
         -- callSnippet = "Replace",
       },
       diagnostics = {
@@ -156,6 +156,9 @@ lspconfig.sumneko_lua.setup {
         -- neededFileStatus = {
         --   ["codestyle-check"] = "Any",
         -- }
+      },
+      hint = {
+        enable = true,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -175,9 +178,9 @@ end
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn", text = "" },
-  { name = "DiagnosticSignHint", text = "" },
-  { name = "DiagnosticSignInfo", text = "" },
+  { name = "DiagnosticSignWarn",  text = "" },
+  { name = "DiagnosticSignHint",  text = "" },
+  { name = "DiagnosticSignInfo",  text = "" },
 }
 
 for _, sign in ipairs(signs) do
