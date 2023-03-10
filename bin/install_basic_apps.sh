@@ -3,6 +3,7 @@ sudo pacman -S paru --noconfirm --needed
 
 paru -S nftables --noconfirm --needed
 sudo systemctl enable nftables
+timedatectl set-ntp true
 
 paru -S picom-jonaburg-git --noconfirm --needed
 
