@@ -1,19 +1,21 @@
-local theme_assets = require("beautiful.theme_assets")
-local dpi = require("beautiful.xresources").apply_dpi
+local theme_assets             = require("beautiful.theme_assets")
+local xresources               = require("beautiful.xresources")
+local rnotification            = require("ruled.notification")
+local dpi                      = xresources.apply_dpi
 
--- local gfs = require("gears.filesystem")
--- local theme_dir = gfs.get_themes_dir()
+local gfs                      = require("gears.filesystem")
 
-local themes_path = string.format("%s/.config/awesome/themes/", os.getenv("HOME"))
-local theme_dir = themes_path .. "custom/"
+local themes_path              = gfs.get_configuration_dir() .. "themes/"
+local theme_dir                = themes_path .. "custom/"
 
 -- theme template
-local theme = {}
+local theme                    = {}
+
+-- theme.wallpaper                = "/usr/share/backgrounds/archlinux/awesome.png"
+theme.wallpaper                = theme_dir .. "wallpaper/purple-space-light.jpg"
 
 -- default variables
-theme.font = "FiraCode Nerd Font Mono 10"
--- theme.wallpaper = "/usr/share/backgrounds/archlinux/awesome.png"
-theme.wallpaper = theme_dir .. "wallpaper/purple-space-light.jpg"
+theme.font                     = "FiraCode Nerd Font Mono 10"
 
 -- arcchart
 -- theme.arcchart_border_color = nil
@@ -22,36 +24,36 @@ theme.wallpaper = theme_dir .. "wallpaper/purple-space-light.jpg"
 -- theme.arcchart_paddings = nil
 -- theme.arcchart_thickness = nil
 
-theme.bg_transparent = "50"
+theme.bg_transparent           = "50"
 
 -- bg
-theme.bg_normal = "#1f1f1f" .. theme.bg_transparent
-theme.bg_focus = "#535d6c" .. theme.bg_transparent
-theme.bg_urgent = "#e53935" .. theme.bg_transparent
-theme.bg_minimize = nil
-theme.bg_systray = theme.bg_normal
+theme.bg_normal                = "#1f1f1f" .. theme.bg_transparent
+theme.bg_focus                 = "#535d6c" .. theme.bg_transparent
+theme.bg_urgent                = "#e53935" .. theme.bg_transparent
+theme.bg_minimize              = nil
+theme.bg_systray               = theme.bg_normal
 
 -- fg
-theme.fg_normal = "#fefefe"
-theme.fg_focus = "#ffffff"
-theme.fg_urgent = "#ffffff"
-theme.fg_minimize = nil
+theme.fg_normal                = "#fefefe"
+theme.fg_focus                 = "#ffffff"
+theme.fg_urgent                = "#ffffff"
+theme.fg_minimize              = nil
 
 -- border
-theme.border_width = dpi(3)
-theme.border_normal = "#222222"
-theme.border_focus = "#535d6c" -- "#31004a" "#4c00a4" "#f4511e" "#8300c4"
-theme.border_marked = "#91231c"
+theme.border_width             = dpi(3)
+theme.border_normal            = "#222222"
+theme.border_focus             = "#535d6c" -- "#31004a" "#4c00a4" "#f4511e" "#8300c4"
+theme.border_marked            = "#91231c"
 
 -- taglist
-theme.taglist_fg_focus = theme.fg_focus
-theme.taglist_bg_focus = theme.bg_focus
-theme.taglist_fg_urgent = theme.fg_urgent
-theme.taglist_bg_urgent = theme.bg_urgent
-theme.taglist_bg_occupied = theme.bg_normal
-theme.taglist_fg_occupied = "#f4511e"
-theme.taglist_bg_empty = theme.bg_normal
-theme.taglist_fg_empty = "#8f8f8f"
+theme.taglist_fg_focus         = theme.fg_focus
+theme.taglist_bg_focus         = theme.bg_focus
+theme.taglist_fg_urgent        = theme.fg_urgent
+theme.taglist_bg_urgent        = theme.bg_urgent
+theme.taglist_bg_occupied      = theme.bg_normal
+theme.taglist_fg_occupied      = "#f4511e"
+theme.taglist_bg_empty         = theme.bg_normal
+theme.taglist_fg_empty         = "#8f8f8f"
 -- theme.taglist_bg_volatile = nil
 -- theme.taglist_fg_volatile = nil
 -- theme.taglist_squares_sel = nil
@@ -59,9 +61,9 @@ theme.taglist_fg_empty = "#8f8f8f"
 -- theme.taglist_squares_sel_empty = nil
 -- theme.taglist_squares_unsel_empty = nil
 -- theme.taglist_squares_resize = nil
-theme.taglist_disable_icon = false
-theme.taglist_font = theme.font
-theme.taglist_spacing = dpi(2)
+theme.taglist_disable_icon     = false
+theme.taglist_font             = theme.font
+theme.taglist_spacing          = dpi(2)
 -- theme.taglist_shape = nil
 -- theme.taglist_shape_border_width = nil
 -- theme.taglist_shape_border_color = nil
@@ -80,7 +82,7 @@ theme.taglist_spacing = dpi(2)
 
 -- calendar
 -- theme.calendar_style = nil
-theme.calendar_font = theme.font
+theme.calendar_font            = theme.font
 -- theme.calendar_spacing = nil
 -- theme.calendar_week_numbers = nil
 -- theme.calendar_start_sunday = nil
@@ -109,10 +111,10 @@ theme.calendar_font = theme.font
 -- theme.enable_spawn_cursor = nil
 
 -- fullscreen
-theme.fullscreen_hide_border = true
+theme.fullscreen_hide_border   = true
 
 -- gap
-theme.gap_single_client = true
+theme.gap_single_client        = true
 
 -- graph
 -- theme.graph_bg = nil
@@ -128,7 +130,7 @@ theme.gap_single_client = true
 -- theme.hotkeys_modifiers_fg = nil
 -- theme.hotkeys_label_bg = nil
 -- theme.hotkeys_label_fg = nil
-theme.hotkeys_font = theme.font
+theme.hotkeys_font             = theme.font
 theme.hotkeys_description_font = theme.font
 -- theme.hotkeys_group_margin = nil
 
@@ -136,22 +138,22 @@ theme.hotkeys_description_font = theme.font
 -- theme.icon_theme = nil
 
 -- layout
-theme.layout_fairh      = theme_dir .. "layouts/fairhw.png"
-theme.layout_fairv      = theme_dir .. "layouts/fairvw.png"
-theme.layout_floating   = theme_dir .. "layouts/floatingw.png"
-theme.layout_magnifier  = theme_dir .. "layouts/magnifierw.png"
-theme.layout_max        = theme_dir .. "layouts/maxw.png"
-theme.layout_fullscreen = theme_dir .. "layouts/fullscreenw.png"
-theme.layout_tilebottom = theme_dir .. "layouts/tilebottomw.png"
-theme.layout_tileleft   = theme_dir .. "layouts/tileleftw.png"
-theme.layout_tile       = theme_dir .. "layouts/tilew.png"
-theme.layout_tiletop    = theme_dir .. "layouts/tiletopw.png"
-theme.layout_spiral     = theme_dir .. "layouts/spiralw.png"
-theme.layout_dwindle    = theme_dir .. "layouts/dwindlew.png"
-theme.layout_cornernw   = theme_dir .. "layouts/cornernww.png"
-theme.layout_cornerne   = theme_dir .. "layouts/cornernew.png"
-theme.layout_cornersw   = theme_dir .. "layouts/cornersww.png"
-theme.layout_cornerse   = theme_dir .. "layouts/cornersew.png"
+theme.layout_fairh             = theme_dir .. "layouts/fairhw.png"
+theme.layout_fairv             = theme_dir .. "layouts/fairvw.png"
+theme.layout_floating          = theme_dir .. "layouts/floatingw.png"
+theme.layout_magnifier         = theme_dir .. "layouts/magnifierw.png"
+theme.layout_max               = theme_dir .. "layouts/maxw.png"
+theme.layout_fullscreen        = theme_dir .. "layouts/fullscreenw.png"
+theme.layout_tilebottom        = theme_dir .. "layouts/tilebottomw.png"
+theme.layout_tileleft          = theme_dir .. "layouts/tileleftw.png"
+theme.layout_tile              = theme_dir .. "layouts/tilew.png"
+theme.layout_tiletop           = theme_dir .. "layouts/tiletopw.png"
+theme.layout_spiral            = theme_dir .. "layouts/spiralw.png"
+theme.layout_dwindle           = theme_dir .. "layouts/dwindlew.png"
+theme.layout_cornernw          = theme_dir .. "layouts/cornernww.png"
+theme.layout_cornerne          = theme_dir .. "layouts/cornernew.png"
+theme.layout_cornersw          = theme_dir .. "layouts/cornersww.png"
+theme.layout_cornerse          = theme_dir .. "layouts/cornersew.png"
 
 -- layoutlist
 -- theme.layoutlist_fg_normal = nil
@@ -160,7 +162,7 @@ theme.layout_cornerse   = theme_dir .. "layouts/cornersew.png"
 -- theme.layoutlist_bg_selected = nil
 -- theme.layoutlist_disable_icon = nil
 -- theme.layoutlist_disable_name = nil
-theme.layoutlist_font = theme.font
+theme.layoutlist_font          = theme.font
 -- theme.layoutlist_align = nil
 theme.layoutlist_font_selected = theme.font
 -- theme.layoutlist_spacing = nil
@@ -181,9 +183,9 @@ theme.layoutlist_font_selected = theme.font
 -- theme.maximized_hide_border = nil
 
 -- menu
-theme.menu_font = theme.font
-theme.menu_height = dpi(16)
-theme.menu_width = dpi(140)
+theme.menu_font                = theme.font
+theme.menu_height              = dpi(16)
+theme.menu_width               = dpi(140)
 -- theme.menu_border_color = nil
 -- theme.menu_border_width = nil
 -- theme.menu_fg_focus = nil
@@ -202,7 +204,7 @@ theme.menu_width = dpi(140)
 -- theme.menubar_bg_normal = nil
 
 -- notification\
-theme.notification_font = theme.font
+theme.notification_font        = theme.font
 -- theme.notification_bg = nil
 -- theme.notification_fg = nil
 -- theme.notification_border_width = nil
@@ -236,7 +238,7 @@ theme.notification_font = theme.font
 -- prompt
 -- theme.prompt_fg_cursor = nil
 -- theme.prompt_bg_cursor = nil
-theme.prompt_font = theme.font
+theme.prompt_font              = theme.font
 -- theme.prompt_fg = nil
 -- theme.prompt_bg = nil
 
@@ -277,7 +279,7 @@ theme.prompt_font = theme.font
 -- theme.snapper_gap = nil
 
 -- systray
-theme.systray_icon_spacing = dpi(5)
+theme.systray_icon_spacing     = dpi(5)
 
 -- tasklist
 -- theme.tasklist_fg_normal = nil
@@ -397,14 +399,14 @@ theme.systray_icon_spacing = dpi(5)
 -- theme.tooltip_border_color = nil
 -- theme.tooltip_bg = nil
 -- theme.tooltip_fg = nil
-theme.tooltip_font = theme.font
+theme.tooltip_font             = theme.font
 -- theme.tooltip_border_width = nil
 -- theme.tooltip_opacity = nil
 -- theme.tooltip_shape = nil
 -- theme.tooltip_align = nil
 
 -- useless
-theme.useless_gap = dpi(5)
+theme.useless_gap              = dpi(5)
 
 -- wibar
 -- theme.wibar_stretch = nil
@@ -422,124 +424,109 @@ theme.useless_gap = dpi(5)
 -- theme.wibar_shape = nil
 
 -- awesome
-theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
+theme.awesome_icon             = theme_assets.awesome_icon(
+  theme.menu_height, theme.bg_focus, theme.fg_focus
 )
 
-theme.widget_ac          = theme_dir .. "/icons/ac.png"
-theme.widget_mem         = theme_dir .. "/icons/mem.png"
-theme.widget_cpu         = theme_dir .. "/icons/cpu.png"
-theme.widget_temp        = theme_dir .. "/icons/temp.png"
-theme.widget_net         = theme_dir .. "/icons/net.png"
-theme.widget_hdd         = theme_dir .. "/icons/hdd.png"
-theme.widget_music       = theme_dir .. "/icons/note.png"
-theme.widget_music_on    = theme_dir .. "/icons/note.png"
-theme.widget_music_pause = theme_dir .. "/icons/pause.png"
-theme.widget_music_stop  = theme_dir .. "/icons/stop.png"
-theme.widget_vol         = theme_dir .. "/icons/vol.png"
-theme.widget_vol_low     = theme_dir .. "/icons/vol_low.png"
-theme.widget_vol_no      = theme_dir .. "/icons/vol_no.png"
-theme.widget_vol_mute    = theme_dir .. "/icons/vol_mute.png"
-theme.widget_mail        = theme_dir .. "/icons/mail.png"
-theme.widget_mail_on     = theme_dir .. "/icons/mail_on.png"
-theme.widget_task        = theme_dir .. "/icons/task.png"
-theme.widget_scissors    = theme_dir .. "/icons/scissors.png"
-theme.widget_weather     = theme_dir .. "/icons/dish.png"
+theme.widget_ac                = theme_dir .. "/icons/ac.png"
+theme.widget_mem               = theme_dir .. "/icons/mem.png"
+theme.widget_cpu               = theme_dir .. "/icons/cpu.png"
+theme.widget_temp              = theme_dir .. "/icons/temp.png"
+theme.widget_net               = theme_dir .. "/icons/net.png"
+theme.widget_hdd               = theme_dir .. "/icons/hdd.png"
+theme.widget_music             = theme_dir .. "/icons/note.png"
+theme.widget_music_on          = theme_dir .. "/icons/note.png"
+theme.widget_music_pause       = theme_dir .. "/icons/pause.png"
+theme.widget_music_stop        = theme_dir .. "/icons/stop.png"
+theme.widget_vol               = theme_dir .. "/icons/vol.png"
+theme.widget_vol_low           = theme_dir .. "/icons/vol_low.png"
+theme.widget_vol_no            = theme_dir .. "/icons/vol_no.png"
+theme.widget_vol_mute          = theme_dir .. "/icons/vol_mute.png"
+theme.widget_mail              = theme_dir .. "/icons/mail.png"
+theme.widget_mail_on           = theme_dir .. "/icons/mail_on.png"
+theme.widget_task              = theme_dir .. "/icons/task.png"
+theme.widget_scissors          = theme_dir .. "/icons/scissors.png"
+theme.widget_weather           = theme_dir .. "/icons/dish.png"
 
 -- {{{ Wibar
-local gears = require("gears")
-local awful = require("awful")
+local awful                    = require("awful")
 -- Widget and layout library
-local wibox = require("wibox")
+local wibox                    = require("wibox")
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful                = require("beautiful")
 
-local lain = require("lain")
-local markup = lain.util.markup
+local lain                     = require("lain")
+local markup                   = lain.util.markup
 
 -- Notification library
 -- local separators = lain.util.separators
 -- local arrow = separators.arrow_left
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
-
-
--- local function set_wallpaper(s)
---     -- Wallpaper
---     if beautiful.wallpaper then
---         local wallpaper = beautiful.wallpaper
---         -- If wallpaper is a function, call it with the screen
---         if type(wallpaper) == "function" then
---             wallpaper = wallpaper(s)
---         end
---         gears.wallpaper.maximized(wallpaper, s, true)
---     end
--- end
+mytextclock                    = wibox.widget.textclock()
 
 -- Textclock
-local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local clock = awful.widget.watch(
-    "date +'%A %D %R'", 60,
-    function(widget, stdout)
-        widget:set_markup(markup.font(theme.font, stdout))
-    end
+-- local clockicon                = wibox.widget.imagebox(theme.widget_clock)
+local clock                    = awful.widget.watch(
+  "date +'%A %D %R'", 60,
+  function(widget, stdout)
+    widget:set_markup(markup.font(theme.font, stdout))
+  end
 )
 
 -- Calendar
-beautiful.cal = lain.widget.cal({
-    attach_to = { clock },
-    week_start = 1,
-    notification_preset = {
-        -- font = "JetBrains Mono 11",
-        font = "FiraCode Nerd Font Mono 11",
-        fg   = theme.fg_normal,
-        bg   = theme.bg_normal
-    }
+beautiful.cal                  = lain.widget.cal({
+  attach_to = { clock },
+  week_start = 1,
+  notification_preset = {
+    -- font = "JetBrains Mono 11",
+    font = "FiraCode Nerd Font Mono 11",
+    fg   = theme.fg_normal,
+    bg   = theme.bg_normal
+  }
 })
 
 -- MEM
-local memicon = wibox.widget.imagebox(theme.widget_mem)
-local mem = lain.widget.mem({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, mem_now.used .. "MB"))
-    end
+local memicon                  = wibox.widget.imagebox(theme.widget_mem)
+local mem                      = lain.widget.mem({
+  settings = function()
+    widget:set_markup(markup.font(theme.font, mem_now.used .. "MB"))
+  end
 })
 
 -- CPU
-local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
-local cpu = lain.widget.cpu({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, cpu_now.usage .. "% "))
-    end
+local cpuicon                  = wibox.widget.imagebox(theme.widget_cpu)
+local cpu                      = lain.widget.cpu({
+  settings = function()
+    widget:set_markup(markup.font(theme.font, cpu_now.usage .. "% "))
+  end
 })
 
 -- Coretemp (lain, average)
-local tempicon = wibox.widget.imagebox(theme.widget_temp)
-local temp = lain.widget.temp({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, coretemp_now .. "°C "))
-    end
+local tempicon                 = wibox.widget.imagebox(theme.widget_temp)
+local temp                     = lain.widget.temp({
+  settings = function()
+    widget:set_markup(markup.font(theme.font, coretemp_now .. "°C "))
+  end
 })
 
 --  fs
-local fsicon = wibox.widget.imagebox(theme.widget_hdd)
-local fs = lain.widget.fs({
-    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = theme.font },
-    settings = function()
-        local fsp = string.format("%3.2f%s", fs_now["/"].free, fs_now["/"].units)
-        widget:set_markup(markup.font(theme.font, fsp))
-    end
+local fsicon                   = wibox.widget.imagebox(theme.widget_hdd)
+local fs                       = lain.widget.fs({
+  notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = theme.font },
+  settings = function()
+    local fsp = string.format("%3.2f%s", fs_now["/"].free, fs_now["/"].units)
+    widget:set_markup(markup.font(theme.font, fsp))
+  end
 })
 
 -- Net
-local neticon = wibox.widget.imagebox(theme.widget_net)
-local net = lain.widget.net({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, "↓" .. net_now.received .. " ↑" .. net_now.sent))
-    end
+local neticon                  = wibox.widget.imagebox(theme.widget_net)
+local net                      = lain.widget.net({
+  settings = function()
+    widget:set_markup(markup.font(theme.font, "↓" .. net_now.received .. " ↑" .. net_now.sent))
+  end
 })
-
 
 -- Checkupdates
 -- local function checkupdates()
@@ -552,74 +539,106 @@ local net = lain.widget.net({
 --   end)
 -- end
 
+theme.at_screen_connect        = function(s)
+  local names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
+  local l = awful.layout.suit
+  local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile }
+  awful.tag(names, s, layouts)
 
-theme.at_screen_connect = function(s)
-    -- If wallpaper is a function, call it with the screen
-    awful.util.set_wallpaper(s)
+  -- Create a promptbox for each screen
+  s.mypromptbox = awful.widget.prompt()
 
-    local names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
-    local l = awful.layout.suit
-    local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile }
-    awful.tag(names, s, layouts)
-
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-        awful.button({}, mouse_left, function() awful.layout.inc(1) end),
-        awful.button({}, mouse_right, function() awful.layout.inc(-1) end),
-        awful.button({}, mouse_up, function() awful.layout.inc(1) end),
-        awful.button({}, mouse_down, function() awful.layout.inc(-1) end)))
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = awful.util.taglist_buttons,
+  -- Create an imagebox widget which will contain an icon indicating which layout we're using.
+  -- We need one layoutbox per screen.
+  s.mylayoutbox = awful.widget.layoutbox {
+    screen  = s,
+    buttons = {
+      awful.button({}, 1, function() awful.layout.inc(1) end),
+      awful.button({}, 3, function() awful.layout.inc(-1) end),
+      awful.button({}, 4, function() awful.layout.inc(-1) end),
+      awful.button({}, 5, function() awful.layout.inc(1) end),
     }
+  }
 
-    -- Create a tasklist widget
-    -- s.mytasklist = awful.widget.tasklist {
-    --   screen = s,
-    --   filter = awful.widget.tasklist.filter.currenttags,
-    --   buttons = awful.util.tasklist_buttons
-    -- }
-
-    -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, bg = theme.bg_normal })
-
-    -- Add widgets to the wibox
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            -- mylauncher,
-            -- mytextclock,
-            wibox.container.background(wibox.container.margin(clock, 4, 8), theme.bg_normal),
-            s.mytaglist,
-            s.mypromptbox,
-        },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            -- mykeyboardlayout,
-            wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget,
-                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget,
-                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget,
-                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget,
-                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { fsicon, fs.widget,
-                layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
-            wibox.widget.systray(),
-            s.mylayoutbox,
-        },
+  -- Create a taglist widget
+  s.mytaglist = awful.widget.taglist {
+    screen  = s,
+    filter  = awful.widget.taglist.filter.all,
+    buttons = {
+      awful.button({}, 1, function(t) t:view_only() end),
+      awful.button({ modkey }, 1, function(t)
+        if client.focus then
+          client.focus:move_to_tag(t)
+        end
+      end),
+      awful.button({}, 3, awful.tag.viewtoggle),
+      awful.button({ modkey }, 3, function(t)
+        if client.focus then
+          client.focus:toggle_tag(t)
+        end
+      end),
+      awful.button({}, 4, function(t) awful.tag.viewprev(t.screen) end),
+      awful.button({}, 5, function(t) awful.tag.viewnext(t.screen) end),
     }
+  }
+
+  --   -- Create a tasklist widget
+  --   s.mytasklist = awful.widget.tasklist {
+  --     screen  = s,
+  --     filter  = awful.widget.tasklist.filter.currenttags,
+  --     buttons = {
+  --       awful.button({}, 1, function(c)
+  --         c:activate { context = "tasklist", action = "toggle_minimization" }
+  --       end),
+  --       awful.button({}, 3, function() awful.menu.client_list { theme = { width = 250 } } end),
+  --       awful.button({}, 4, function() awful.client.focus.byidx(-1) end),
+  --       awful.button({}, 5, function() awful.client.focus.byidx(1) end),
+  --     }
+  --   }
+
+  -- Create the wibox
+  s.mywibox = awful.wibar {
+    position = "top",
+    screen   = s,
+    bg       = theme.bg_normal,
+    widget   = {
+      layout = wibox.layout.align.horizontal,
+      {
+        -- Left widgets
+        layout = wibox.layout.fixed.horizontal,
+        -- mylauncher,
+        wibox.container.background(wibox.container.margin(clock, 4, 8), theme.bg_normal),
+        s.mytaglist,
+        s.mypromptbox,
+      },
+      s.mytasklist, -- Middle widget
+      {
+        -- Right widgets
+        layout = wibox.layout.fixed.horizontal,
+        -- mykeyboardlayout,
+        wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget,
+          layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+        wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget,
+          layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+        wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget,
+          layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+        wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget,
+          layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+        wibox.container.background(wibox.container.margin(wibox.widget { fsicon, fs.widget,
+          layout = wibox.layout.align.horizontal }, 2, 2), theme.bg_normal),
+        wibox.widget.systray(),
+        s.mylayoutbox,
+      },
+    }
+  }
 end
 
-return theme
+-- Set different colors for urgent notifications.
+rnotification.connect_signal('request::rules', function()
+  rnotification.append_rule {
+    rule       = { urgency = 'critical' },
+    properties = { bg = '#ff0000', fg = '#ffffff' }
+  }
+end)
 
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
+return theme
