@@ -13,6 +13,7 @@ config/Electron
 config/elm
 config/exercism
 config/fcitx
+config/fcitx5
 config/font-manager
 config/git
 config/google-chrome
@@ -28,6 +29,7 @@ config/LarkShell
 config/libfm
 config/listen1
 config/lnav
+config/Lyx
 config/microsoft-edge-dev
 config/mimeapps.list
 config/netease-cloud-music
@@ -37,6 +39,7 @@ config/peazip
 config/pulse
 config/QQ
 config/QtProject.conf
+config/Termius
 config/wakatime
 config/wireshark
 config/zsh/.zcompdump*
