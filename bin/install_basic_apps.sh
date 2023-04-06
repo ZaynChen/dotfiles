@@ -62,7 +62,8 @@ paru -S betterlockscreen --noconfirm --needed
 paru -S archlinux-wallpaper --noconfirm --needed
 betterlockscreen -u /usr/share/backgrounds/archlinux
 
-paru -S awesome --noconfirm --needed
+# paru -S awesome --noconfirm --needed
+paru -S awesome-git --noconfirm --needed
 paru -S lain-git --noconfirm --needed
 
 paru -S xdg-utils --noconfirm --needed
@@ -121,7 +122,7 @@ paru -S tmux --noconfirm --needed
 
 paru -S firefox-developer-edition firefox-developer-edition-i18n-zh-cn --noconfirm --needed
 # Chromium-based browser, focus on privacy
-paru -S brave-bin --noconfirm --needed
+# paru -S brave-bin --noconfirm --needed
 
 paru -S clash-for-windows-chinese --noconfirm --needed
 
