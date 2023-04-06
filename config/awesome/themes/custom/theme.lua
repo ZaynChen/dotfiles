@@ -480,9 +480,10 @@ beautiful.cal                  = lain.widget.cal({
   week_start = 1,
   notification_preset = {
     -- font = "JetBrains Mono 11",
-    font = "FiraCode Nerd Font Mono 11",
-    fg   = theme.fg_normal,
-    bg   = theme.bg_normal
+    font     = theme.font,
+    fg       = theme.fg_normal,
+    bg       = theme.bg_normal,
+    position = "top_left",
   }
 })
 
