@@ -17,7 +17,7 @@ lualine.setup {
     },
     ignore_focus = {},
     always_divide_middle = true,
-    globalstatus = false,
+    globalstatus = vim.go.laststatus == 3,
     refresh = {
       statusline = 1000,
       tabline = 1000,

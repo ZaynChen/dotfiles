@@ -12,10 +12,12 @@ term.setup {
   terminal_mappings = true,
   start_in_insert = true,
   persist_size = true,
+  persist_mode = true,
   close_on_exit = true,
-  direction = "horizontal",
-  -- shading_factor =
-  -- shell = vim.o.shell,
+  -- direction = "horizontal",
+  direction = "float", -- "vertical" | "horizontal" | "tab" | "float"
+  autochdir = false,
+  auto_scroll = true,
   float_opts = {
     winblend = 0,
   },
