@@ -73,7 +73,7 @@ Plug "quangnguyen30192/cmp-nvim-ultisnips"
 -- Editing Support
 Plug "romgrk/nvim-treesitter-context"
 Plug "windwp/nvim-autopairs"
-Plug "p00f/nvim-ts-rainbow"
+Plug "HiPhish/nvim-ts-rainbow2"
 Plug "RRethy/nvim-treesitter-endwise"
 -- Plug "andymass/vim-matchup"
 
