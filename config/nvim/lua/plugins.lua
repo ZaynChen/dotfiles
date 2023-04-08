@@ -84,7 +84,8 @@ Plug "folke/todo-comments.nvim"
 -- Plug "JoosepAlviste/nvim-ts-context-commentstring"
 
 -- Formatting
-Plug "editorconfig/editorconfig-vim"
+-- neovim 0.9 add builtin EditorConfig support
+-- Plug "editorconfig/editorconfig-vim"
 -- Plug "lukas-reineke/lsp-format.nvim"
 
 -- Terminal integration
