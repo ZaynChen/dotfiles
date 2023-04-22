@@ -1,7 +1,7 @@
 sudo pacman -S pacman-contrib --noconfirm --needed
 sudo pacman -S paru --noconfirm --needed
 
-paru -S nftables --noconfirm --needed
+paru -S iptables-nft --noconfirm --needed
 sudo systemctl enable nftables
 timedatectl set-ntp true
 
