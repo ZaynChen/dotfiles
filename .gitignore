@@ -25,7 +25,7 @@ config/jupyter
 config/*ingsoft
 config/libfm
 config/lnav
-config/Lyx
+config/LyX
 config/microsoft-edge-dev
 config/mimeapps.list
 config/netease-cloud-music
