@@ -88,5 +88,9 @@ if [[ -r $ZDOTDIR/.aliasrc.zsh ]] ; then
   . $ZDOTDIR/.aliasrc.zsh
 fi
 
+if [[ -r /usr/share/nvm/init-nvm.sh ]] ; then
+  source /usr/share/nvm/init-nvm.sh
+fi
+
 eval "$(zoxide init zsh --cmd j)"
 
