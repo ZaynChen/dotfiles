@@ -5,7 +5,12 @@ end
 
 -- local u = require("null-ls.utils")
 local sources = {
-  null_ls.builtins.formatting.black
+  null_ls.builtins.formatting.black.with({
+    filetypes = { 'py' },
+  }),
+  -- null_ls.builtins.diagnostics.eslint.with({
+  -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
+  -- })
 }
 
 local defaults = {
@@ -15,7 +20,6 @@ local defaults = {
   default_timeout = 5000,
   diagnostics_format = "#{m}",
   fallback_severity = vim.diagnostic.severity.ERROR,
-
   -- @usage set logging level
   -- possible values: { "off", "error", "warn", "info", "debug", "trace" }
   log_level = "warn",

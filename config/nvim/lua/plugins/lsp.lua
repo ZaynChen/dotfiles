@@ -109,6 +109,18 @@ lspconfig.bashls.setup {
   capabilities = M.capabilities
 }
 
+lspconfig.volar.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+  -- init_options = {
+  --   typescript = {
+  --     tsdk = vim.env.XDG_DATA_HOME .. '/npm/lib/node_modules/typescript/lib'
+  --   }
+  -- },
+  -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
+  filetypes = { 'javascript', 'javascriptreact', 'vue', 'json' }
+}
+
 -- Enable lua language server
 lspconfig.lua_ls.setup {
   on_attach = M.on_attach,
