@@ -123,6 +123,8 @@ elif [ "$(uname)" = "Darwin" ] ; then
   append_path "/usr/local/opt/openssl@1.1/bin"
 fi
 
+append_path "${XDG_DATA_HOME}/npm/bin"
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 append_path "$HOME/.rvm/bin"
 
