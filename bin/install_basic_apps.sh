@@ -124,6 +124,8 @@ paru -S firefox-developer-edition firefox-developer-edition-i18n-zh-cn --noconfi
 # Chromium-based browser, focus on privacy
 # paru -S brave-bin --noconfirm --needed
 
+# nc netcat utility, for ssh ProxyJump
+paru -S openbsd-netcat --noconfirm --needed
 paru -S clash-for-windows-chinese --noconfirm --needed
 
 # RS code statistic tool
