@@ -117,18 +117,21 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 tag.connect_signal("request::default_layouts", function()
   awful.layout.append_default_layouts({
     awful.layout.suit.floating,
+    awful.layout.suit.spiral.dwindle,
+    -- awful.layout.suit.spiral,
     awful.layout.suit.tile,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
-    -- awful.layout.suit.fair,
+    awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
+    -- awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.corner.nw,
+    -- awful.layout.suit.corner.ne,
+    -- awful.layout.suit.corner.sw,
+    -- awful.layout.suit.corner.se,
   })
 end)
 -- }}}
@@ -356,8 +359,16 @@ awful.keyboard.append_global_keybindings({
     { description = "decrease the number of columns", group = "layout" }),
   -- awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
   --   { description = "select next", group = "layout" }),
-  awful.key({ modkey, shiftkey }, "space", function() awful.layout.inc(-1) end,
-    { description = "select previous", group = "layout" }),
+  -- awful.key({ modkey, shiftkey }, "space", function() awful.layout.inc(-1) end,
+  --   { description = "select previous", group = "layout" }),
+  awful.key({ modkey }, "r", function() awful.layout.set(awful.layout.suit.spiral.dwindle) end,
+    { description = "select dwidle layout", group = "layout" }),
+  awful.key({ modkey }, "t", function() awful.layout.set(awful.layout.suit.tile) end,
+    { description = "select tile layout", group = "layout" }),
+  awful.key({ modkey }, "s", function() awful.layout.set(awful.layout.suit.floating) end,
+    { description = "select floating layout", group = "layout" }),
+  awful.key({ modkey, altkey }, "m", function() awful.layout.set(awful.layout.suit.magnifier) end,
+    { description = "select magnifier layout ", group = "layout" }),
 })
 
 
@@ -454,8 +465,8 @@ client.connect_signal("request::default_keybindings", function()
       { description = "toggle fullscreen", group = "client" }),
     awful.key({ modkey }, "q", function(c) c:kill() end,
       { description = "close", group = "client" }),
-    awful.key({ modkey }, "s", awful.client.floating.toggle,
-      { description = "toggle floating", group = "client" }),
+    -- awful.key({ modkey }, "s", awful.client.floating.toggle,
+    --   { description = "toggle floating", group = "client" }),
     awful.key({ modkey }, "Return", function(c) c:swap(awful.client.getmaster()) end,
       { description = "move to master", group = "client" }),
     awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
@@ -650,6 +661,11 @@ end)
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
   c:activate { context = "mouse_enter", raise = false }
+end)
+
+-- New client spawn to secondary section
+client.connect_signal("request::manage", function(c)
+  c:to_secondary_section()
 end)
 
 -- Autostart

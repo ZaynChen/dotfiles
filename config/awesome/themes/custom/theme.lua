@@ -543,7 +543,8 @@ local net                      = lain.widget.net({
 theme.at_screen_connect        = function(s)
   local names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
   local l = awful.layout.suit
-  local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.tile }
+  local layouts = { l.spiral.dwindle, l.spiral.dwindle, l.spiral.dwindle, l.spiral.dwindle, l.spiral.dwindle,
+    l.spiral.dwindle, l.spiral.dwindle, l.spiral.dwindle, l.spiral.dwindle }
   awful.tag(names, s, layouts)
 
   -- Create a promptbox for each screen
