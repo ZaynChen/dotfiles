@@ -21,5 +21,5 @@ term.setup {
   float_opts = {
     winblend = 0,
   },
-  open_mapping = [[<M-t>]]
+  open_mapping = [[<M-m>]]
 }
