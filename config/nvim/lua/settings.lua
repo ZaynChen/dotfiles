@@ -15,7 +15,7 @@ opt.backspace = { "indent", "eol", "start" }
 o.whichwrap = o.whichwrap .. ",<,>,h,l"
 o.history = 500
 opt.fileformats = { "unix", "mac", "dos" }
-opt.clipboard = { "unnamed", "unnamedplus" }
+-- opt.clipboard = { "unnamed", "unnamedplus" }
 
 -- wo.foldmethod = "expr"
 -- wo.foldexpr = "nvim_treesitter#foldexpr()"
@@ -41,8 +41,9 @@ o.linebreak = true -- default off
 -- Sidebar
 o.number = true
 o.relativenumber = true
-o.numberwidth = 3
--- o.signcolumn = "yes:1"
+-- o.numberwidth = 3
+o.signcolumn = "yes"
+o.colorcolumn = "80"
 -- o.columns = 100
 -- o.modelines = 0
 

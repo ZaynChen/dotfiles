@@ -15,16 +15,13 @@ M.capabilities = require("cmp_nvim_lsp").default_capabilities(lsp_status.capabil
 M.on_attach = function(client, bufnr)
   require("keymap.lsp").on_attach(bufnr)
 
-  -- Enable completion triggered by <c-x><c-o>
-  -- vim.bo.omnifunc = "v:lua.lsp.omnifunc"
-
   -- FormatOnSave
   local lsp_augroup = vim.api.nvim_create_augroup("lsp_augroup" .. bufnr, { clear = true })
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = lsp_augroup,
     buffer = bufnr,
     desc = "[LSP]FormatOnSave",
-    callback = function() lsp.buf.format({ nil, 3000 }) end
+    callback = function() lsp.buf.format({ async = false }) end
   })
 
   -- Show diagnostic popup on cursor hover
@@ -34,6 +31,15 @@ M.on_attach = function(client, bufnr)
     desc = "[Diagnostic]Open float when cursor hold",
     callback = function() diagnostic.open_float(nil, { focusable = false }) end
   })
+
+  -- Enable completion triggered by <c-x><c-o>
+  if client.server_capabilities.completionProvider then
+    vim.bo[bufnr].omnifunc = "v:lua.lsp.omnifunc"
+  end
+
+  if client.server_capabilities.definitionProvider then
+    vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+  end
 
   lsp_status.on_attach(client)
   -- lsp_format.on_attach(client)

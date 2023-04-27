@@ -1,16 +1,17 @@
 local map = require("keymap.util").map
 
 local lsp = vim.lsp
+local diagnostic = vim.diagnostic
 
 local M = {}
 
 M.on_attach = function(bufnr)
   local mappings = {
-    { "gd", function() lsp.buf.definition() end, "[LSP]Definition" },
-    { "K", function() lsp.buf.hover() end, "[LSP]Hover" },
-    { "<leader>la", function() lsp.buf.code_action() end, "[LSP]Code action" },
-    { "<leader>lf", function() lsp.buf.format { async = true } end, "[LSP]Formatting" },
-    { "<leader>lr", function() lsp.buf.rename() end, "[LSP]Rename" },
+    { "K",          lsp.buf.hover,           "[LSP]Hover" },
+    { "<leader>la", lsp.buf.code_action,     "[LSP]Code action" },
+    { "<leader>R",  lsp.buf.rename,          "[LSP]Rename" },
+    { "gd",         lsp.buf.definition,      "[LSP]Definition" },
+    { "gD",         lsp.buf.type_definition, "[LSP]Definition" },
   }
   for _, mapping in ipairs(mappings) do
     local lhs, rhs, desc = mapping[1], mapping[2], mapping[3]
