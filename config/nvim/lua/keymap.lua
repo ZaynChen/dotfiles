@@ -62,8 +62,6 @@ map("<C-a>", "<Home>", "Cursor to start of line", { mode = { "i", "c" } })
 map("<C-e>", "<End>", "Cursor to end of line", { mode = { "i", "c" } })
 map("<C-b>", "<Left>", "Cursor one character left", { mode = { "i", "c" } })
 map("<C-f>", "<Right>", "Cursor one character right", { mode = { "i", "c" } })
-map("<C-h>", "<S-Left>", "Cursor one word left", { mode = { "i", "c" } })
-map("<C-l>", "<S-Right>", "Cursor one word right", { mode = { "i", "c" } })
 
 -- tmap("<C-s>", "<C-\\><C-n>")
 -- tmap("<Esc><Esc>", "<C-\\><C-n>")
