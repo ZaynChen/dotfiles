@@ -58,19 +58,12 @@ map("<M-Down>", "<cmd>resize +2<cr>", "[Window]Height Increase")
 map("<M-Left>", "<cmd>vertical resize -2<cr>", "[Window]Width decrease")
 map("<M-Right>", "<cmd>vertical resize +2<cr>", "[Window]Width Increase")
 
--- tmux doesn't support <C-h> <BS> distinguish yet.
--- alacritty: using https://github.com/alexherbo2/alacritty-extended-keys
--- map("<C-h>", "<Left>", "Cursor one character left", { mode = "i" })
--- map("<C-l>", "<Right>", "Cursor one character right", { mode = "i" })
--- map("<M-h>", "<S-Left>", "Cursor one word left", { mode = "i" })
--- map("<M-l>", "<S-Right>", "Cursor one word ricght", { mode = "i" })
-
--- map("<C-a>", "<Home>", "Cursor to start of line", { mode = "c" })
--- map("<C-e>", "<End>", {mode = "c"})
--- map("<C-h>", "<Left>", "Cursor one character left", { mode = "c" })
--- map("<C-l>", "<Right>", "Cursor one character right", { mode = "c" })
--- map("<M-h>", "<S-Left>", "Cursor one word left", { mode = "c" })
--- map("<M-l>", "<S-Right>", "Cursor one word right", { mode = "c" })
+map("<C-a>", "<Home>", "Cursor to start of line", { mode = { "i", "c" } })
+map("<C-e>", "<End>", "Cursor to end of line", { mode = { "i", "c" } })
+map("<C-b>", "<Left>", "Cursor one character left", { mode = { "i", "c" } })
+map("<C-f>", "<Right>", "Cursor one character right", { mode = { "i", "c" } })
+map("<C-h>", "<S-Left>", "Cursor one word left", { mode = { "i", "c" } })
+map("<C-l>", "<S-Right>", "Cursor one word right", { mode = { "i", "c" } })
 
 -- tmap("<C-s>", "<C-\\><C-n>")
 -- tmap("<Esc><Esc>", "<C-\\><C-n>")

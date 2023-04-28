@@ -46,7 +46,6 @@ wk.setup {
     ["<Down>"] = "↓",
     ["<Left>"] = "←",
     ["<CR>"] = "↵",
-    ["<NL>"] = "<C-J>",
   },
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -101,12 +100,18 @@ wk.register(mappings, opts)
   nowait = false, -- use `nowait` when creating keymaps
 } ]]
 wk.register({
-  ["<C-e>"] = "[Cmp]Abort",
-  ["<C-j>"] = "[Cmp]Next",
-  ["<C-k>"] = "[Cmp]Prev",
-  ["<C-n>"] = "[Cmp]Next",
-  ["<C-p>"] = "[Cmp]Prev",
-  ["<C-y>"] = "[Cmp]Confirm",
+  ["<C-D>"] = "Delete one shiftwidth of indent in the current line",
+  ["<C-E>"] = "Cursor to end of line",
+  ["<C-J>"] = "[Cmp]Next",
+  ["<C-K>"] = "[Cmp]Prev",
+  ["<C-N>"] = "[Cmp]Next",
+  ["<C-P>"] = "[Cmp]Prev",
+  ["<C-T>"] = "insert one shiftwidth of indent in the current line",
+  ["<C-U>"] = "Delete all entered chars in the current line",
+  ["<C-W>"] = "Delete word before the cursor",
+  ["<C-Y>"] = "[Cmp]Confirm",
+  ["<C-Left>"] = "Cursor one word left",
+  ["<C-Right>"] = "Cursor one word right",
   ["<Down>"] = "[Cmp]Next",
   ["<Up>"] = "[Cmp]Prev",
   ["<Tab>"] = "[Cmp]Expand or next",
@@ -116,11 +121,15 @@ wk.register({
 }, { mode = "i" })
 
 wk.register({
-  ["<C-e>"] = "[Cmp]Close",
-  ["<C-j>"] = "[Cmp]Next",
-  ["<C-k>"] = "[Cmp]Prev",
-  ["<C-n>"] = "[Cmp]Next",
-  ["<C-p>"] = "[Cmp]Prev",
+  ["<C-E>"] = "Cursor to end of line",
+  ["<C-J>"] = "[Cmp]Next",
+  ["<C-K>"] = "[Cmp]Prev",
+  ["<C-N>"] = "[Cmp]Next",
+  ["<C-P>"] = "[Cmp]Prev",
+  ["<C-U>"] = "Delete all entered chars in the current line",
+  ["<C-W>"] = "Delete word before the cursor",
+  ["<C-Y>"] = "[Cmp]Confirm",
+  ["<C-Z>"] = "[Cmp]Expand or next",
   ["<Tab>"] = "[Cmp]Expand or next",
   ["<S-Tab>"] = "[Cmp]Prev",
 }, { mode = "c" })
@@ -136,11 +145,11 @@ wk.register {
   -- Treesitter
   ["<M-]>"] = "[TS]Function next",
   ["<M-[>"] = "[TS]Function prev",
-  ["<M-l>"] = "[TS]Parameter swap next",
-  ["<M-h>"] = "[TS]Parameter swap prev",
-  ["<M-j>"] = "[TS]Definition navigation next",
-  ["<M-k>"] = "[TS]Definition navigation prev",
-  ["<M-m>"] = "[Terminal]Toggle",
+  ["<M-L>"] = "[TS]Parameter swap next",
+  ["<M-H>"] = "[TS]Parameter swap prev",
+  ["<M-J>"] = "[TS]Definition navigation next",
+  ["<M-K>"] = "[TS]Definition navigation prev",
+  ["<M-M>"] = "[Terminal]Toggle",
   g = {
     n = {
       d = "[TS]Go to definition",
