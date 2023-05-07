@@ -90,7 +90,7 @@ paru -S ranger --noconfirm --needed
 paru -S exa --noconfirm --needed
 paru -S ripgrep --noconfirm --needed
 # RS replacement for cat
-paru -S bat --noconfirm --needed
+paru -S bat bat-extras --noconfirm --needed
 paru -S man --noconfirm --needed
 # RS tldr man pages
 paru -S tealdeer --noconfirm --needed
