@@ -67,21 +67,23 @@ if not nvimtree_ok then
   return
 end
 
-local DEFAULT_OPTS = {
-  -- BEGIN_DEFAULT_OPTS
+local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
   auto_reload_on_write = true,
   disable_netrw = false,
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
-  sort_by = "name",
+  sort = {
+    sorter = "name",
+    folders_first = true,
+    files_first = false,
+  },
   root_dirs = {},
   prefer_startup_root = false,
   sync_root_with_cwd = false,
   reload_on_bufenter = false,
   respect_buf_cwd = false,
   on_attach = "default",
-  remove_keymaps = false,
   select_prompts = false,
   view = {
     centralize_selection = false,
@@ -89,17 +91,11 @@ local DEFAULT_OPTS = {
     debounce_delay = 15,
     width = 30,
     hide_root_folder = false,
-    side = "right",
+    side = "left",
     preserve_window_proportions = false,
     number = false,
     relativenumber = false,
     signcolumn = "yes",
-    mappings = {
-      custom_only = false,
-      list = {
-        -- user mappings go here
-      },
-    },
     float = {
       enable = false,
       quit_on_focus_loss = true,
@@ -134,7 +130,16 @@ local DEFAULT_OPTS = {
       },
     },
     icons = {
-      webdev_colors = true,
+      web_devicons = {
+        file = {
+          enable = true,
+          color = true,
+        },
+        folder = {
+          enable = false,
+          color = true,
+        },
+      },
       git_placement = "before",
       modified_placement = "after",
       padding = " ",
@@ -149,7 +154,7 @@ local DEFAULT_OPTS = {
       glyphs = {
         default = "",
         symlink = "",
-        bookmark = "",
+        bookmark = "󰆤",
         modified = "●",
         folder = {
           arrow_closed = "",
@@ -205,6 +210,7 @@ local DEFAULT_OPTS = {
     },
   },
   filters = {
+    git_ignored = true,
     dotfiles = false,
     git_clean = false,
     no_buffer = false,
@@ -218,9 +224,9 @@ local DEFAULT_OPTS = {
   },
   git = {
     enable = true,
-    ignore = true,
     show_on_dirs = true,
     show_on_open_dirs = true,
+    disable_for_dirs = {},
     timeout = 400,
   },
   modified = {
@@ -250,6 +256,7 @@ local DEFAULT_OPTS = {
     },
     open_file = {
       quit_on_open = false,
+      eject = true,
       resize_window = true,
       window_picker = {
         enable = true,
@@ -281,6 +288,7 @@ local DEFAULT_OPTS = {
   },
   notify = {
     threshold = vim.log.levels.INFO,
+    absolute_path = true,
   },
   ui = {
     confirm = {
@@ -288,11 +296,7 @@ local DEFAULT_OPTS = {
       trash = true,
     },
   },
-  experimental = {
-    git = {
-      async = false,
-    },
-  },
+  experimental = {},
   log = {
     enable = false,
     truncate = false,

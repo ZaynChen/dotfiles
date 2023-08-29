@@ -185,6 +185,12 @@ lspconfig.lua_ls.setup {
   }
 }
 
+-- Enable asm_lsp language server
+lspconfig.asm_lsp.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+
 local sign_define = function(opts)
   vim.fn.sign_define(opts.name, {
     texthl = opts.name,
@@ -195,9 +201,9 @@ end
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn",  text = "" },
-  { name = "DiagnosticSignHint",  text = "" },
-  { name = "DiagnosticSignInfo",  text = "" },
+  { name = "DiagnosticSignWarn", text = "" },
+  { name = "DiagnosticSignHint", text = "" },
+  { name = "DiagnosticSignInfo", text = "" },
 }
 
 for _, sign in ipairs(signs) do
