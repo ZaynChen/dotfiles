@@ -186,6 +186,7 @@ lspconfig.lua_ls.setup {
 }
 
 -- Enable asm_lsp language server
+-- FIX: root directory not found
 lspconfig.asm_lsp.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
