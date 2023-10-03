@@ -68,34 +68,33 @@ if not nvimtree_ok then
 end
 
 local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
+  on_attach = "default",
+  hijack_cursor = false,
   auto_reload_on_write = true,
   disable_netrw = false,
-  hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
-  sort = {
-    sorter = "name",
-    folders_first = true,
-    files_first = false,
-  },
   root_dirs = {},
   prefer_startup_root = false,
   sync_root_with_cwd = false,
   reload_on_bufenter = false,
   respect_buf_cwd = false,
-  on_attach = "default",
   select_prompts = false,
+  sort = {
+    sorter = "name",
+    folders_first = true,
+    files_first = false,
+  },
   view = {
     centralize_selection = false,
     cursorline = true,
     debounce_delay = 15,
-    width = 30,
-    hide_root_folder = false,
     side = "right",
     preserve_window_proportions = false,
     number = false,
     relativenumber = false,
     signcolumn = "yes",
+    width = 30,
     float = {
       enable = false,
       quit_on_focus_loss = true,
@@ -112,12 +111,17 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
   renderer = {
     add_trailing = false,
     group_empty = false,
-    highlight_git = false,
     full_name = false,
-    highlight_opened_files = "none",
-    highlight_modified = "none",
     root_folder_label = ":~:s?$?/..?",
     indent_width = 2,
+    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+    symlink_destination = true,
+    highlight_git = false,
+    highlight_diagnostics = false,
+    highlight_opened_files = "none",
+    highlight_modified = "none",
+    highlight_bookmarks = "none",
+    highlight_clipboard = "name",
     indent_markers = {
       enable = false,
       inline_arrows = true,
@@ -142,6 +146,8 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
       },
       git_placement = "before",
       modified_placement = "after",
+      diagnostics_placement = "signcolumn",
+      bookmarks_placement = "signcolumn",
       padding = " ",
       symlink_arrow = " ➛ ",
       show = {
@@ -150,6 +156,8 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
         folder_arrow = true,
         git = true,
         modified = true,
+        diagnostics = true,
+        bookmarks = true,
       },
       glyphs = {
         default = "",
@@ -177,8 +185,6 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
         },
       },
     },
-    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
-    symlink_destination = true,
   },
   hijack_directories = {
     enable = true,
@@ -192,6 +198,13 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
   system_open = {
     cmd = "",
     args = {},
+  },
+  git = {
+    enable = true,
+    show_on_dirs = true,
+    show_on_open_dirs = true,
+    disable_for_dirs = {},
+    timeout = 400,
   },
   diagnostics = {
     enable = false,
@@ -209,6 +222,11 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
       error = "",
     },
   },
+  modified = {
+    enable = false,
+    show_on_dirs = true,
+    show_on_open_dirs = true,
+  },
   filters = {
     git_ignored = true,
     dotfiles = false,
@@ -217,22 +235,14 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
     custom = {},
     exclude = {},
   },
+  live_filter = {
+    prefix = "[FILTER]: ",
+    always_show_folders = true,
+  },
   filesystem_watchers = {
     enable = true,
     debounce_delay = 50,
     ignore_dirs = {},
-  },
-  git = {
-    enable = true,
-    show_on_dirs = true,
-    show_on_open_dirs = true,
-    disable_for_dirs = {},
-    timeout = 400,
-  },
-  modified = {
-    enable = false,
-    show_on_dirs = true,
-    show_on_open_dirs = true,
   },
   actions = {
     use_system_clipboard = true,
@@ -274,10 +284,6 @@ local DEFAULT_OPTS = { -- BEGIN_DEFAULT_OPTS
   },
   trash = {
     cmd = "gio trash",
-  },
-  live_filter = {
-    prefix = "[FILTER]: ",
-    always_show_folders = true,
   },
   tab = {
     sync = {
