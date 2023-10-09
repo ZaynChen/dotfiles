@@ -47,12 +47,13 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="vim"
-else
-  # export EDITOR='mvim'
-  export EDITOR="nvim"
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR="vim"
+# else
+#   # export EDITOR='mvim'
+#   export EDITOR="nvim"
+# fi
+export EDITOR="nvim"
 export ELM_HOME="$XDG_CONFIG_HOME/elm"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
