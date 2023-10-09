@@ -73,7 +73,8 @@ Plug "quangnguyen30192/cmp-nvim-ultisnips"
 -- Editing Support
 Plug "romgrk/nvim-treesitter-context"
 Plug "windwp/nvim-autopairs"
-Plug "HiPhish/nvim-ts-rainbow2"
+-- Plug "HiPhish/nvim-ts-rainbow2"
+Plug "HiPhish/rainbow-delimiters.nvim"
 Plug "RRethy/nvim-treesitter-endwise"
 -- Plug "andymass/vim-matchup"
 
@@ -130,9 +131,6 @@ vim.call("plug#end")
 -- To use impatient,
 -- you need only to include it near the top of your init.lua or init.vim.
 require("plugins.impatient")
-
-local g = vim.g
-g.rainbow_active = 1
 
 local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
 if devicons_ok then

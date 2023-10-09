@@ -1,9 +1,8 @@
-local ibl_ok, ibl = pcall(require, "indent_blankline")
+local ibl_ok, ibl = pcall(require, "ibl")
 if not ibl_ok then
   return
 end
 
-<<<<<<< HEAD
 -- local hooks = require("ibl.hooks")
 --
 -- local highlight = {
@@ -38,13 +37,3 @@ ibl.setup {
 }
 
 -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-=======
-ibl.setup {
-  space_char_blankline = " ",
-  show_end_of_line = true,
-  show_current_context = true,
-  show_current_context_start = true,
-}
-
--- vim.cmd [[highlight IndentBlanklineContextStart guibg=#E5C07B gui=nocombine]]
->>>>>>> parent of 9a84d6a (update neovim plugin)
