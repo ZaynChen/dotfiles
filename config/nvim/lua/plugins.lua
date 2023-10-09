@@ -73,8 +73,7 @@ Plug "quangnguyen30192/cmp-nvim-ultisnips"
 -- Editing Support
 Plug "romgrk/nvim-treesitter-context"
 Plug "windwp/nvim-autopairs"
--- Plug "HiPhish/nvim-ts-rainbow2"
-Plug "HiPhish/rainbow-delimiters.nvim"
+Plug "HiPhish/nvim-ts-rainbow2"
 Plug "RRethy/nvim-treesitter-endwise"
 -- Plug "andymass/vim-matchup"
 
@@ -132,8 +131,8 @@ vim.call("plug#end")
 -- you need only to include it near the top of your init.lua or init.vim.
 require("plugins.impatient")
 
--- local g = vim.g
--- g.rainbow_active = 1
+local g = vim.g
+g.rainbow_active = 1
 
 local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
 if devicons_ok then
@@ -144,7 +143,6 @@ require("plugins.colorscheme")
 require("plugins.lualine")
 require("plugins.nvim-tree")
 require("plugins.treesitter")
-require("plugins.rainbow_delimiters")
 require("plugins.indent_blankline")
 require("plugins.todo-comments")
 require("plugins.comment")

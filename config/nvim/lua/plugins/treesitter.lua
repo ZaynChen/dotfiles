@@ -1,6 +1,7 @@
 local treesitter_ok, treesitter = pcall(require, "nvim-treesitter.configs")
+local rainbow_ok, rainbow = pcall(require, "ts-rainbow")
 
-if not treesitter_ok then
+if (not treesitter_ok) and (not rainbow_ok) then
   return
 end
 
@@ -122,5 +123,45 @@ treesitter.setup {
     disable = {},
     disable_virtual_text = true,
     include_match_words = true,
+  },
+  -- rainbow parens
+  rainbow = {
+    enable = true,
+    disable = {},
+    extended_mode = true,
+    strategy = {
+      -- Use global strategy by default
+      rainbow.strategy['global'],
+      -- Use local for HTML
+      html = rainbow.strategy['local'],
+      -- Pick the strategy for LaTeX dynamically based on the buffer size
+      latex = function()
+        -- Disabled for very large files, global strategy for large files,
+        -- local strategy otherwise
+        if vim.fn.line('$') > 10000 then
+          return nil
+        elseif vim.fn.line('$') > 1000 then
+          return rainbow.strategy['global']
+        end
+        return rainbow.strategy['local']
+      end
+    },
+    query = {
+      "rainbow-parens",
+      html = "rainbow-tags",
+      latex = "rainbow-blocks",
+    },
+    -- Highlight groups in order of display
+    hlgroups = {
+      -- The colours are intentionally not in the usual order to make
+      -- the contrast between them stronger
+      'TSRainbowRed',
+      'TSRainbowYellow',
+      'TSRainbowBlue',
+      'TSRainbowOrange',
+      'TSRainbowGreen',
+      'TSRainbowViolet',
+      'TSRainbowCyan',
+    },
   },
 }
