@@ -61,6 +61,7 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
 [[ ":$JULIA_DEPOT_PATH:" =~ ":$XDG_DATA_HOME/julia:" ]] ||
   export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia${JULIA_DEPOT_PATH:+:$JULIA_DEPOT_PATH}"
+export JULIAUP_DEPOT_PATH="$JULIA_DEPOT_PATH"
 export JULIA_PKG_SERVER="https://mirrors.sjtug.sjtu.edu.cn/julia/"
 export JULIA_SSL_NO_VERIFY_HOSTS="mirrors.sjtug.sjtu.edu.cn"
 # export JULIAUP_SERVER="https://mirrors.tuna.tsinghua.edu.cn/julia-releases"
