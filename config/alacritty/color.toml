@@ -1,0 +1,689 @@
+[colors]
+transparent_background_colors = true
+draw_bold_text_with_bright_colors = true
+indexed_colors = [
+  { color = "#d19a66", index = 16 },
+  { color = "#be5046", index = 17 },
+  { color = "#353b45", index = 18 },
+  { color = "#3e4451", index = 19 },
+  { color = "#565c64", index = 20 },
+  { color = "#b6bdca", index = 21 },
+]
+cursor = { text = "#282c34", cursor = "#abb2bf"  }
+vi_mode_cursor = { text = "CellBackground", cursor = "CellForeground" }
+line_indicator = { foreground = "None", background = "None" }
+footer_bar = { foreground = "#181818", background = "#d8d8d8" }
+selection = { text = "CellBackground", background = "CellForeground" }
+
+[colors.search]
+matches = { foreground = "#181818", background = "#ac4242" }
+focused_match = { foreground = "#181818", background = "#f4bf75" }
+
+[colors.hints]
+start = { foreground = "#181818", background = "#f4bf75" }
+end = { foreground = "#181818", background = "#ac4242" }
+
+[colors.primary]
+background = "#282c34"
+foreground = "#abb2bf"
+dim_foreground = "#828482"
+bright_foreground = "None"
+
+[colors.normal]
+black = "0x282c34"
+red = "0xe06c75"
+green = "0x98c379"
+yellow = "0xe5c07b"
+blue = "0x61afef"
+magenta = "0xc678dd"
+cyan = "0x56b6c2"
+white = "0xabb2bf"
+
+[colors.bright]
+black = "0x545862"
+red = "0xe06c75"
+green = "0x98c379"
+yellow = "0xe5c07b"
+blue = "0x61afef"
+magenta = "0xc678dd"
+cyan = "0x56b6c2"
+white = "0xc8ccd4"
+
+# [schemes.afterglow]
+# foreground = "#ebdbb2"
+# transparent_background_colors = true
+#
+# [schemes.afterglow.bright]
+# black = "#636363"
+# blue = "#7eaac7"
+# cyan = "#86d3ce"
+# green = "#909d63"
+# magenta = "#aa6292"
+# red = "#bc5653"
+# white = "#f7f7f7"
+# yellow = "#ebc17a"
+#
+# [schemes.afterglow.cursor]
+# cursor = "#d9d9d9"
+# text = "#2c2c2c"
+#
+# [schemes.afterglow.dim]
+# black = "#232323"
+# blue = "#556b79"
+# cyan = "#5c8482"
+# green = "#5e6547"
+# magenta = "#6e4962"
+# red = "#74423f"
+# white = "#828282"
+# yellow = "#8b7653"
+#
+# [schemes.afterglow.normal]
+# black = "#1c1c1c"
+# blue = "#7eaac7"
+# cyan = "#86d3ce"
+# green = "#909d63"
+# magenta = "#aa6292"
+# red = "#bc5653"
+# white = "#cacaca"
+# yellow = "#ebc17a"
+#
+# [schemes.afterglow.primary]
+# background = "#2c2c2c"
+# bright_background = "#3a3a3a"
+# bright_foreground = "#d9d9d9"
+# dim_background = "#202020"
+# dim_foreground = "#dbdbdb"
+# foreground = "#d6d6d6"
+#
+# [schemes.base16-bright-256]
+# transparent_background_colors = true
+#
+# [[schemes.base16-bright-256.indexed_colors]]
+# color = "0xfc6d24"
+# index = 16
+#
+# [[schemes.base16-bright-256.indexed_colors]]
+# color = "0xbe643c"
+# index = 17
+#
+# [[schemes.base16-bright-256.indexed_colors]]
+# color = "0x303030"
+# index = 18
+#
+# [[schemes.base16-bright-256.indexed_colors]]
+# color = "0x505050"
+# index = 19
+#
+# [[schemes.base16-bright-256.indexed_colors]]
+# color = "0xd0d0d0"
+# index = 20
+#
+# [[schemes.base16-bright-256.indexed_colors]]
+# color = "0xf5f5f5"
+# index = 21
+#
+# [schemes.base16-bright-256.bright]
+# black = "0xb0b0b0"
+# blue = "0x6fb3d2"
+# cyan = "0x76c7b7"
+# green = "0xa1c659"
+# magenta = "0xd381c3"
+# red = "0xfb0120"
+# white = "0xffffff"
+# yellow = "0xfda331"
+#
+# [schemes.base16-bright-256.cursor]
+# cursor = "0xe0e0e0"
+# text = "0x000000"
+#
+# [schemes.base16-bright-256.normal]
+# black = "0x000000"
+# blue = "0x6fb3d2"
+# cyan = "0x76c7b7"
+# green = "0xa1c659"
+# magenta = "0xd381c3"
+# red = "0xfb0120"
+# white = "0xe0e0e0"
+# yellow = "0xfda331"
+#
+# [schemes.base16-bright-256.primary]
+# background = "0x000000"
+# foreground = "0xe0e0e0"
+#
+# [schemes.base16-default-dark-256]
+# transparent_background_colors = true
+#
+# [[schemes.base16-default-dark-256.indexed_colors]]
+# color = "0xdc9656"
+# index = 16
+#
+# [[schemes.base16-default-dark-256.indexed_colors]]
+# color = "0xa16946"
+# index = 17
+#
+# [[schemes.base16-default-dark-256.indexed_colors]]
+# color = "0x282828"
+# index = 18
+#
+# [[schemes.base16-default-dark-256.indexed_colors]]
+# color = "0x383838"
+# index = 19
+#
+# [[schemes.base16-default-dark-256.indexed_colors]]
+# color = "0xb8b8b8"
+# index = 20
+#
+# [[schemes.base16-default-dark-256.indexed_colors]]
+# color = "0xe8e8e8"
+# index = 21
+#
+# [schemes.base16-default-dark-256.bright]
+# black = "0x585858"
+# blue = "0x7cafc2"
+# cyan = "0x86c1b9"
+# green = "0xa1b56c"
+# magenta = "0xba8baf"
+# red = "0xab4642"
+# white = "0xf8f8f8"
+# yellow = "0xf7ca88"
+#
+# [schemes.base16-default-dark-256.cursor]
+# cursor = "0xd8d8d8"
+# text = "0x181818"
+#
+# [schemes.base16-default-dark-256.normal]
+# black = "0x181818"
+# blue = "0x7cafc2"
+# cyan = "0x86c1b9"
+# green = "0xa1b56c"
+# magenta = "0xba8baf"
+# red = "0xab4642"
+# white = "0xd8d8d8"
+# yellow = "0xf7ca88"
+#
+# [schemes.base16-default-dark-256.primary]
+# background = "0x181818"
+# foreground = "0xd8d8d8"
+#
+# [schemes.base16-dracula-256]
+# transparent_background_colors = true
+#
+# [[schemes.base16-dracula-256.indexed_colors]]
+# color = "0xb45bcf"
+# index = 16
+#
+# [[schemes.base16-dracula-256.indexed_colors]]
+# color = "0x00f769"
+# index = 17
+#
+# [[schemes.base16-dracula-256.indexed_colors]]
+# color = "0x3a3c4e"
+# index = 18
+#
+# [[schemes.base16-dracula-256.indexed_colors]]
+# color = "0x4d4f68"
+# index = 19
+#
+# [[schemes.base16-dracula-256.indexed_colors]]
+# color = "0x62d6e8"
+# index = 20
+#
+# [[schemes.base16-dracula-256.indexed_colors]]
+# color = "0xf1f2f8"
+# index = 21
+#
+# [schemes.base16-dracula-256.bright]
+# black = "0x626483"
+# blue = "0x62d6e8"
+# cyan = "0xa1efe4"
+# green = "0xebff87"
+# magenta = "0xb45bcf"
+# red = "0xea51b2"
+# white = "0xf7f7fb"
+# yellow = "0x00f769"
+#
+# [schemes.base16-dracula-256.cursor]
+# cursor = "0xe9e9f4"
+# text = "0x282936"
+#
+# [schemes.base16-dracula-256.normal]
+# black = "0x282936"
+# blue = "0x62d6e8"
+# cyan = "0xa1efe4"
+# green = "0xebff87"
+# magenta = "0xb45bcf"
+# red = "0xea51b2"
+# white = "0xe9e9f4"
+# yellow = "0x00f769"
+#
+# [schemes.base16-dracula-256.primary]
+# background = "0x282936"
+# foreground = "0xe9e9f4"
+#
+# [schemes.base16-gruvbox-dark-hard-256]
+# transparent_background_colors = true
+#
+# [[schemes.base16-gruvbox-dark-hard-256.indexed_colors]]
+# color = "0xfe8019"
+# index = 16
+#
+# [[schemes.base16-gruvbox-dark-hard-256.indexed_colors]]
+# color = "0xd65d0e"
+# index = 17
+#
+# [[schemes.base16-gruvbox-dark-hard-256.indexed_colors]]
+# color = "0x3c3836"
+# index = 18
+#
+# [[schemes.base16-gruvbox-dark-hard-256.indexed_colors]]
+# color = "0x504945"
+# index = 19
+#
+# [[schemes.base16-gruvbox-dark-hard-256.indexed_colors]]
+# color = "0xbdae93"
+# index = 20
+#
+# [[schemes.base16-gruvbox-dark-hard-256.indexed_colors]]
+# color = "0xebdbb2"
+# index = 21
+#
+# [schemes.base16-gruvbox-dark-hard-256.bright]
+# black = "0x665c54"
+# blue = "0x83a598"
+# cyan = "0x8ec07c"
+# green = "0xb8bb26"
+# magenta = "0xd3869b"
+# red = "0xfb4934"
+# white = "0xfbf1c7"
+# yellow = "0xfabd2f"
+#
+# [schemes.base16-gruvbox-dark-hard-256.cursor]
+# cursor = "0xd5c4a1"
+# text = "0x1d2021"
+#
+# [schemes.base16-gruvbox-dark-hard-256.normal]
+# black = "0x1d2021"
+# blue = "0x83a598"
+# cyan = "0x8ec07c"
+# green = "0xb8bb26"
+# magenta = "0xd3869b"
+# red = "0xfb4934"
+# white = "0xd5c4a1"
+# yellow = "0xfabd2f"
+#
+# [schemes.base16-gruvbox-dark-hard-256.primary]
+# background = "0x1d2021"
+# foreground = "0xd5c4a1"
+#
+# [schemes.base16-material-256]
+# transparent_background_colors = true
+#
+# [[schemes.base16-material-256.indexed_colors]]
+# color = "0xf78c6c"
+# index = 16
+#
+# [[schemes.base16-material-256.indexed_colors]]
+# color = "0xff5370"
+# index = 17
+#
+# [[schemes.base16-material-256.indexed_colors]]
+# color = "0x2e3c43"
+# index = 18
+#
+# [[schemes.base16-material-256.indexed_colors]]
+# color = "0x314549"
+# index = 19
+#
+# [[schemes.base16-material-256.indexed_colors]]
+# color = "0xb2ccd6"
+# index = 20
+#
+# [[schemes.base16-material-256.indexed_colors]]
+# color = "0xeeffff"
+# index = 21
+#
+# [schemes.base16-material-256.bright]
+# black = "0x546e7a"
+# blue = "0x82aaff"
+# cyan = "0x89ddff"
+# green = "0xc3e88d"
+# magenta = "0xc792ea"
+# red = "0xf07178"
+# white = "0xffffff"
+# yellow = "0xffcb6b"
+#
+# [schemes.base16-material-256.cursor]
+# cursor = "0xeeffff"
+# text = "0x263238"
+#
+# [schemes.base16-material-256.normal]
+# black = "0x263238"
+# blue = "0x82aaff"
+# cyan = "0x89ddff"
+# green = "0xc3e88d"
+# magenta = "0xc792ea"
+# red = "0xf07178"
+# white = "0xeeffff"
+# yellow = "0xffcb6b"
+#
+# [schemes.base16-material-256.primary]
+# background = "0x263238"
+# foreground = "0xeeffff"
+#
+# [schemes.base16-onedark-256]
+# transparent_background_colors = true
+#
+# [[schemes.base16-onedark-256.indexed_colors]]
+# color = "0xd19a66"
+# index = 16
+#
+# [[schemes.base16-onedark-256.indexed_colors]]
+# color = "0xbe5046"
+# index = 17
+#
+# [[schemes.base16-onedark-256.indexed_colors]]
+# color = "0x353b45"
+# index = 18
+#
+# [[schemes.base16-onedark-256.indexed_colors]]
+# color = "0x3e4451"
+# index = 19
+#
+# [[schemes.base16-onedark-256.indexed_colors]]
+# color = "0x565c64"
+# index = 20
+#
+# [[schemes.base16-onedark-256.indexed_colors]]
+# color = "0xb6bdca"
+# index = 21
+#
+# [schemes.base16-onedark-256.bright]
+# black = "0x545862"
+# blue = "0x61afef"
+# cyan = "0x56b6c2"
+# green = "0x98c379"
+# magenta = "0xc678dd"
+# red = "0xe06c75"
+# white = "0xc8ccd4"
+# yellow = "0xe5c07b"
+#
+# [schemes.base16-onedark-256.cursor]
+# cursor = "0xabb2bf"
+# text = "0x282c34"
+#
+# [schemes.base16-onedark-256.normal]
+# black = "0x282c34"
+# blue = "0x61afef"
+# cyan = "0x56b6c2"
+# green = "0x98c379"
+# magenta = "0xc678dd"
+# red = "0xe06c75"
+# white = "0xabb2bf"
+# yellow = "0xe5c07b"
+#
+# [schemes.base16-onedark-256.primary]
+# background = "0x282c34"
+# foreground = "0xabb2bf"
+#
+# [schemes.base16-rebecca-256]
+# transparent_background_colors = true
+#
+# [[schemes.base16-rebecca-256.indexed_colors]]
+# color = "0xefe4a1"
+# index = 16
+#
+# [[schemes.base16-rebecca-256.indexed_colors]]
+# color = "0xff79c6"
+# index = 17
+#
+# [[schemes.base16-rebecca-256.indexed_colors]]
+# color = "0x663399"
+# index = 18
+#
+# [[schemes.base16-rebecca-256.indexed_colors]]
+# color = "0x383a62"
+# index = 19
+#
+# [[schemes.base16-rebecca-256.indexed_colors]]
+# color = "0xa0a0c5"
+# index = 20
+#
+# [[schemes.base16-rebecca-256.indexed_colors]]
+# color = "0xccccff"
+# index = 21
+#
+# [schemes.base16-rebecca-256.bright]
+# black = "0x666699"
+# blue = "0x2de0a7"
+# cyan = "0x8eaee0"
+# green = "0x6dfedf"
+# magenta = "0x7aa5ff"
+# red = "0xa0a0c5"
+# white = "0x53495d"
+# yellow = "0xae81ff"
+#
+# [schemes.base16-rebecca-256.cursor]
+# cursor = "0xf1eff8"
+# text = "0x292a44"
+#
+# [schemes.base16-rebecca-256.normal]
+# black = "0x292a44"
+# blue = "0x2de0a7"
+# cyan = "0x8eaee0"
+# green = "0x6dfedf"
+# magenta = "0x7aa5ff"
+# red = "0xa0a0c5"
+# white = "0xf1eff8"
+# yellow = "0xae81ff"
+#
+# [schemes.base16-rebecca-256.primary]
+# background = "0x292a44"
+# foreground = "0xf1eff8"
+#
+# [schemes.base16-tomorrow-night-eighties-256]
+# transparent_background_colors = true
+#
+# [[schemes.base16-tomorrow-night-eighties-256.indexed_colors]]
+# color = "0xf99157"
+# index = 16
+#
+# [[schemes.base16-tomorrow-night-eighties-256.indexed_colors]]
+# color = "0xa3685a"
+# index = 17
+#
+# [[schemes.base16-tomorrow-night-eighties-256.indexed_colors]]
+# color = "0x393939"
+# index = 18
+#
+# [[schemes.base16-tomorrow-night-eighties-256.indexed_colors]]
+# color = "0x515151"
+# index = 19
+#
+# [[schemes.base16-tomorrow-night-eighties-256.indexed_colors]]
+# color = "0xb4b7b4"
+# index = 20
+#
+# [[schemes.base16-tomorrow-night-eighties-256.indexed_colors]]
+# color = "0xe0e0e0"
+# index = 21
+#
+# [schemes.base16-tomorrow-night-eighties-256.bright]
+# black = "0x999999"
+# blue = "0x6699cc"
+# cyan = "0x66cccc"
+# green = "0x99cc99"
+# magenta = "0xcc99cc"
+# red = "0xf2777a"
+# white = "0xffffff"
+# yellow = "0xffcc66"
+#
+# [schemes.base16-tomorrow-night-eighties-256.cursor]
+# cursor = "0xcccccc"
+# text = "0x2d2d2d"
+#
+# [schemes.base16-tomorrow-night-eighties-256.normal]
+# black = "0x2d2d2d"
+# blue = "0x6699cc"
+# cyan = "0x66cccc"
+# green = "0x99cc99"
+# magenta = "0xcc99cc"
+# red = "0xf2777a"
+# white = "0xcccccc"
+# yellow = "0xffcc66"
+#
+# [schemes.base16-tomorrow-night-eighties-256.primary]
+# background = "0x2d2d2d"
+# foreground = "0xcccccc"
+#
+# [schemes.dracula]
+# transparent_background_colors = true
+#
+# [schemes.dracula.bright]
+# black = "#575b70"
+# blue = "#caa9fa"
+# cyan = "#9aedfe"
+# green = "#5af78e"
+# magenta = "#ff92d0"
+# red = "#ff6e67"
+# white = "#e6e6e6"
+# yellow = "#f4f99d"
+#
+# [schemes.dracula.normal]
+# black = "#000000"
+# blue = "#caa9fa"
+# cyan = "#8be9fd"
+# green = "#50fa7b"
+# magenta = "#ff79c6"
+# red = "#ff5555"
+# white = "#bfbfbf"
+# yellow = "#f1fa8c"
+#
+# [schemes.dracula.primary]
+# background = "#282a36"
+# foreground = "#f8f8f2"
+#
+# [schemes.hepburn]
+# transparent_background_colors = true
+#
+# [[schemes.hepburn.indexed_colors]]
+# color = "0xdc9656"
+# index = 16
+#
+# [[schemes.hepburn.indexed_colors]]
+# color = "0xa16946"
+# index = 17
+#
+# [[schemes.hepburn.indexed_colors]]
+# color = "0x282828"
+# index = 18
+#
+# [[schemes.hepburn.indexed_colors]]
+# color = "0x383838"
+# index = 19
+#
+# [[schemes.hepburn.indexed_colors]]
+# color = "0xb8b8b8"
+# index = 20
+#
+# [[schemes.hepburn.indexed_colors]]
+# color = "0xe8e8e8"
+# index = 21
+#
+# [schemes.hepburn.bright]
+# black = "0x928374"
+# blue = "0x83a598"
+# cyan = "0x8ec07c"
+# green = "0xb8bb26"
+# magenta = "0xd3869b"
+# red = "0xfb4934"
+# white = "0xebdbb2"
+# yellow = "0xfabd2f"
+#
+# [schemes.hepburn.cursor]
+# cursor = "CellForeground"
+# text = "CellBackground"
+#
+# [schemes.hepburn.normal]
+# black = "0x282828"
+# blue = "0x458588"
+# cyan = "0x689d6a"
+# green = "0x98971a"
+# magenta = "0xb16286"
+# red = "0xcc241d"
+# white = "0xa89984"
+# yellow = "0xd79921"
+#
+# [schemes.hepburn.primary]
+# background = "0x000000"
+# foreground = "0xfbf1c7"
+#
+# [schemes.hepburn.selection]
+# background = "0xdc3232"
+# text = "0xffffff"
+# white = "0xffffff"
+#
+# [schemes.onedark]
+# transparent_background_colors = true
+#
+# [schemes.onedark.cursor]
+# cursor = "#528bff"
+# text = "CellBackground"
+#
+# [schemes.onedark.normal]
+# black = "#5c6370"
+# blue = "#61afef"
+# cyan = "#56b6c2"
+# green = "#98c379"
+# magenta = "#c678dd"
+# red = "#e06c75"
+# white = "#828997"
+# yellow = "#e5c07b"
+#
+# [schemes.onedark.primary]
+# background = "#282c34"
+# foreground = "#abb2bf"
+#
+# [schemes.onedark.selection]
+# background = "#3e4451"
+# text = "CellForeground"
+#
+# [schemes.tomorrow-night]
+# transparent_background_colors = true
+#
+# [schemes.tomorrow-night.bright]
+# black = "#666666"
+# blue = "#7aa6da"
+# cyan = "#70c0b1"
+# green = "#b9ca4a"
+# magenta = "#c397d8"
+# red = "#d54e53"
+# white = "#eaeaea"
+# yellow = "#e7c547"
+#
+# [schemes.tomorrow-night.cursor]
+# cursor = "#ffffff"
+# text = "#1d1f21"
+#
+# [schemes.tomorrow-night.dim]
+# black = "#131415"
+# blue = "#556a7d"
+# cyan = "#5b7d78"
+# green = "#777c44"
+# magenta = "#75617b"
+# red = "#864343"
+# white = "#828482"
+# yellow = "#9e824c"
+#
+# [schemes.tomorrow-night.normal]
+# black = "#1d1f21"
+# blue = "#81a2be"
+# cyan = "#8abeb7"
+# green = "#b5bd68"
+# magenta = "#b294bb"
+# red = "#cc6666"
+# white = "#c5c8c6"
+# yellow = "#f0c674"
+#
+# [schemes.tomorrow-night.primary]
+# background = "#1d1f21"
+# foreground = "#c5c8c6"

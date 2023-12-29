@@ -45,6 +45,7 @@ export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then

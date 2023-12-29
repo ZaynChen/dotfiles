@@ -1,0 +1,92 @@
+import = ["~/.config/alacritty/color.toml", "~/.config/alacritty/key.toml"]
+
+working_directory = "None"
+live_config_reload = true
+ipc_socket = true
+
+[shell]
+args = ["-l"]
+program = "/bin/zsh"
+
+[env]
+TERM = "alacritty"
+
+[window]
+# dimensions = { column = 0, lines = 0 }
+position = "None"
+padding = { x = 0, y = 0 }
+dynamic_padding = true
+decorations = "None"
+opacity = 0.9
+blur = true # works on macos/KDE Wayland
+startup_mode = "Windowed"
+title = "Alacritty"
+dynamic_title = true
+class = { instance = "Alacritty", general = "Alacritty" } # Linux/BSD only
+# decoratins_theme_variant = "None"
+resize_increments = true
+# option_as_alt = "OnlyLeft" # macos only
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal = { family = "FiraCode Nerd Font Mono", style = "Retina" }
+bold = { family = "FiraCode Nerd Font Mono", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }
+size = 12.0
+offset = { x = 0, y = 0 }
+glyph_offset = { x = 0, y = 0 }
+builtin_box_drawing = true
+
+[bell]
+animation = "Linear"
+duration = 0
+color = "#ffffff"
+command = "None"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "Off"}
+vi_mode_style = "None"
+blink_interval = 750
+blink_timeout = 5
+unfocused_hollow = true
+thickness = 0.15
+
+[terminal]
+osc52 = "OnlyCopy"
+
+[mouse]
+hide_when_typing = true
+# bindings = [
+#   { mouse = "Right", mods = "Control", action = "Paste" },
+# ]
+
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+[[hints.enabled]]
+command = "xdg-open" # On Linux/BSD
+# command = "open" # On macOS
+# command = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "U", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+[debug]
+render_timer = false
+persistent_logging = false
+log_level = "Warn"
+renderer = "None"
+print_events = false
+highlight_damage = false
+prefer_egl = false
+

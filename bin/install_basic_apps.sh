@@ -86,8 +86,8 @@ paru -S peazip --noconfirm --needed
 paru -S fd --noconfirm --needed
 paru -S tree --noconfirm --needed
 paru -S ranger --noconfirm --needed
-# RS replacement for ls
-paru -S exa --noconfirm --needed
+# RS replacement for ls, exa
+paru -S eza --noconfirm --needed
 paru -S ripgrep --noconfirm --needed
 # RS replacement for cat
 paru -S bat bat-extras --noconfirm --needed
@@ -136,3 +136,12 @@ paru -S hyperfine --noconfirm --needed
 paru -S grex --noconfirm --needed
 # RS viewer for git diff grep colorization
 paru -S git-delta --noconfirm --needed
+
+# video editor
+paru -S kendlive --noconfirm --needed
+# image editor
+paru -S gimp --noconfirm --needed
+# virtual machine for linux, kvm
+paru -S virt-manager --noconfirm --needed
+# slideshow
+paru -S impressive --needed
