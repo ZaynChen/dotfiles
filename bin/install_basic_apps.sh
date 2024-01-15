@@ -1,13 +1,17 @@
 sudo pacman -S pacman-contrib --noconfirm --needed
 sudo pacman -S paru --noconfirm --needed
 
-paru -S iptables-nft --noconfirm --needed
+paru -S iptables-nft --needed
 sudo systemctl enable nftables
 timedatectl set-ntp true
 
-paru -S picom-jonaburg-git --noconfirm --needed
+paru -S picom-git --noconfirm --needed
 
 paru -S lightdm --noconfirm --needed
+paru -S base-devel meson ninja libyaml --noconfirm --needed
+paru -S nodejs npm typescript --noconfirm --needed
+# paru -S webkit2gtk webkit2gtk-4.1 --noconfirm --needed
+paru -S lightdm-webkit2-greeter --noconfirm --needed
 CURR_DIR=$(pwd)
 CLONE_DIR=$XDG_CACHE_HOME/paru/clone
 cd $CLONE_DIR
@@ -17,18 +21,29 @@ meson build
 ninja -C build
 sudo ninja -C build install
 cd $CLONE_DIR
-git clone https://github.com/Litarvan/lightdm-webkit-theme-litarvan.git
-cd lightdm-webkit2-theme-litarvan
+rm -rf lightdm-webkit-theme-litarvan
+git clone -b migrate2vue3 https://github.com/ZaynChen/lightdm-webkit-theme-litarvan.git
+cd lightdm-webkit-theme-litarvan
 ./build.sh
-sudo rm -rf /usr/share/web-greeter/themes/litarvan
-sudo mkdir /usr/share/web-greeter/themes/litarvan
-sudo cp ./lightdm-webkit-theme-litarvan-3.2.0.tar.gz /usr/share/web-greeter/themes/litarvan/
+VERSION=$(cat version)
+sudo rm -r /usr/share/lightdm-webkit/themes/litarvan /usr/share/web-greeter/themes/litarvan
+sudo mkdir /usr/share/lightdm-webkit/themes/litarvan /usr/share/web-greeter/themes/litarvan
+sudo cp ./lightdm-webkit-theme-litarvan-$VERSION.tar.gz /usr/share/lightdm-webkit/themes/litarvan/
+sudo cp ./lightdm-webkit-theme-litarvan-$VERSION.tar.gz /usr/share/web-greeter/themes/litarvan/
+cd /usr/share/lightdm-webkit/themes/litarvan/
+sudo tar -xvf lightdm-webkit-theme-litarvan-$VERSION.tar.gz
 cd /usr/share/web-greeter/themes/litarvan/
-sudo tar -xvf lightdm-webkit-theme-litarvan-3.2.0.tar.gz
+sudo tar -xvf lightdm-webkit-theme-litarvan-$VERSION.tar.gz
+# sudo rm -rf /usr/share/web-greeter/themes/litarvan
+# sudo mkdir /usr/share/web-greeter/themes/litarvan
+# sudo cp ./lightdm-webkit-theme-litarvan-3.2.0.tar.gz /usr/share/web-greeter/themes/litarvan/
+# cd /usr/share/web-greeter/themes/litarvan/
+# sudo tar -xvf lightdm-webkit-theme-litarvan-3.2.0.tar.gz
 cd $CURR_DIR
 
 FIND="^#greeter-session=example-gtk-gnome"
-REPLACE="greeter-session=sea-greeter"
+# REPLACE="greeter-session=sea-greeter"
+REPLACE="greeter-session=lightdm-webkit2-greeter"
 sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
 FIND="^#user-authority-in-system-dir=false"
 REPLACE="user-authority-in-system-dir=true"
@@ -37,6 +52,10 @@ PATTERN="^greeter:$/,/^$"
 FIND="gruvbox"
 REPLACE="litarvan"
 sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/web-greeter.yml
+PATTERN="\[greeter\]$/,/^$"
+FIND="antergos"
+REPLACE="litarvan"
+sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/lightdm-webkit2-greeter.conf
 grep -q "NaturalScrolling" /usr/share/X11/xorg.conf.d/40-libinput.conf ||
   sudo sed -i "/libinput pointer catchall/a\        Option \"NaturalScrolling\" \"true\"" /usr/share/X11/xorg.conf.d/40-libinput.conf
 sudo systemctl enable lightdm.service
@@ -54,6 +73,13 @@ LANG=zh_CN.UTF-8
 LANGUAGE=zh_CN:en_US" | sudo tee /etc/environment
 fi
 
+# using accountsserice to set the language of lightdm-webkit2-greeter
+# in order to deal with language ambigious, e.g. lightdm.language = "中文"
+# when the actual language is "zh_CN" or "zh_TW"
+paru -S accountsservice --noconfirm --needed
+sudo grep -q "Language" /var/lib/AccountsService/users/$USER ||
+  echo "Language=zh_CN.UTF-8" | sudo tee -a /var/lib/AccountsService/users/$USER
+
 paru -S gnome-keyring --noconfirm --needed
 paru -S seahorse --noconfirm --needed
 paru -S openssh --noconfirm --needed
@@ -62,9 +88,12 @@ paru -S betterlockscreen --noconfirm --needed
 paru -S archlinux-wallpaper --noconfirm --needed
 betterlockscreen -u /usr/share/backgrounds/archlinux
 
+# awesomewm will use packages installed by luarocks
+paru -S luarocks --noconfirm --needed
+sudo luarocks install lain
+# paru -S lain-git --noconfirm --needed
 # paru -S awesome --noconfirm --needed
 paru -S awesome-git --noconfirm --needed
-paru -S lain-git --noconfirm --needed
 
 paru -S xdg-utils --noconfirm --needed
 paru -S alsa-utils --noconfirm --needed
@@ -116,7 +145,7 @@ paru -S dmidecode --noconfirm --needed
 paru -S alacritty --noconfirm --needed
 paru -S neovim --noconfirm --needed
 paru -S python-pip --noconfirm --needed
-pip install pynvim
+paru -S python-pynvim --noconfirm --needed
 curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles
 paru -S tmux --noconfirm --needed
 
@@ -138,10 +167,11 @@ paru -S grex --noconfirm --needed
 paru -S git-delta --noconfirm --needed
 
 # video editor
-paru -S kendlive --noconfirm --needed
+paru -S kdenlive --noconfirm --needed
 # image editor
 paru -S gimp --noconfirm --needed
 # virtual machine for linux, kvm
 paru -S virt-manager --noconfirm --needed
 # slideshow
 paru -S impressive --needed
+

@@ -19,8 +19,8 @@ if [ -z "$(grep -i "archlinuxcn" /etc/pacman.conf)" ]; then
 Server = https://repo.archlinuxcn.org/$arch' | sudo tee -a /etc/pacman.conf
 fi
 
-sudo pacman -S archlinuxcn-keyring --noconfirm --needed
-sudo pacman -Sy
+sudo pacman-key --lsign-key "farseerfc@archlinux.org"
+sudo pacman -Sy archlinuxcn-keyring --noconfirm --needed
 
 # Setup mirrors
 sudo pacman -S reflector --noconfirm --needed

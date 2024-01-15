@@ -1,1 +1,1 @@
-sudo pacman -S texlive-most texlive-langchinese perl-clone biber --noconfirm --needed
+sudo pacman -S texlive texlive-langchinese perl-clone biber --noconfirm --needed

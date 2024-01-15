@@ -7,7 +7,7 @@ run() {
   fi
 }
 
-run picom --experimental-backends
+run picom
 run volumeicon
 run nm-applet
 run cfw

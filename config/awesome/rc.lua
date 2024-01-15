@@ -47,6 +47,9 @@ end)
 --   end
 -- end
 
+local ok, lain = pcall(require, "lain")
+assert(ok, "lain")
+
 local themes = {
   "default",    -- 1
   "gtk",        --2
@@ -56,12 +59,11 @@ local themes = {
   "custom",     -- 6
 }
 local chose_theme = themes[6]
--- local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chose_theme)
--- beautiful.init(theme_path)
+-- local theme_path = string.format("/home/zaynchen/.config/awesome/themes/%s/theme.lua", chose_theme)
 local theme_path = gears.filesystem.get_configuration_dir() .. "themes/" .. chose_theme .. "/" .. "theme.lua"
-beautiful.init(theme_path)
+assert(beautiful.init(theme_path), "beautiful init failed, theme_path: " .. theme_path)
+-- assert(beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua"), "beautiful init failed")
 
--- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -165,6 +167,7 @@ end)
 -- mytextclock = wibox.widget.textclock()
 
 screen.connect_signal("request::desktop_decoration", beautiful.at_screen_connect)
+
 -- screen.connect_signal("request::desktop_decoration", function(s)
 --   -- Each screen has its own tag table.
 --   awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
