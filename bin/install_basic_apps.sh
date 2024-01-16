@@ -62,7 +62,7 @@ sudo systemctl enable lightdm.service
 paru -S light-locker --noconfirm --needed
 
 # Localization
-if [ -f /etc/environment ]; then
+if [ -e /etc/environment ]; then
   grep -q "LANG=" /etc/environment ||
     echo "
 LANG=zh_CN.UTF-8
@@ -77,8 +77,10 @@ fi
 # in order to deal with language ambigious, e.g. lightdm.language = "中文"
 # when the actual language is "zh_CN" or "zh_TW"
 paru -S accountsservice --noconfirm --needed
-sudo grep -q "Language" /var/lib/AccountsService/users/$USER ||
-  echo "Language=zh_CN.UTF-8" | sudo tee -a /var/lib/AccountsService/users/$USER
+if sudo test -e /var/lib/AccountsService/users/$USER; then
+  sudo grep -q "Language" /var/lib/AccountsService/users/$USER ||
+    echo "Language=zh_CN.UTF-8" | sudo tee -a /var/lib/AccountsService/users/$USER
+fi
 
 paru -S gnome-keyring --noconfirm --needed
 paru -S seahorse --noconfirm --needed
