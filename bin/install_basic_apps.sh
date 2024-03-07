@@ -82,6 +82,9 @@ if sudo test -e /var/lib/AccountsService/users/$USER; then
     echo "Language=zh_CN.UTF-8" | sudo tee -a /var/lib/AccountsService/users/$USER
 fi
 
+# audio middleware pulseaudio replacement
+paru -S pipewire lib32-pipewire --noconfirm --needed
+paru -S pipewire-audio pipewire-alsa pipewire-pulse --noconfirm --needed
 paru -S gnome-keyring --noconfirm --needed
 paru -S seahorse --noconfirm --needed
 paru -S openssh --noconfirm --needed

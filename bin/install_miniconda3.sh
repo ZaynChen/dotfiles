@@ -4,4 +4,4 @@ paru -S miniconda3 --noconfirm --needed
 #   echo "[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh" >> ~/.config/zsh/.zshrc
 # fi
 
-ln -s /opt/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+sudo ln -s /opt/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh

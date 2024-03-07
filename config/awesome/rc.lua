@@ -47,9 +47,6 @@ end)
 --   end
 -- end
 
-local ok, lain = pcall(require, "lain")
-assert(ok, "lain")
-
 local themes = {
   "default",    -- 1
   "gtk",        --2
@@ -565,12 +562,12 @@ ruled.client.connect_signal("request::rules", function()
   }
 
   ruled.client.append_rule {
-    rule_any   = { class = { "wps", "et", "wpp", "pdf" } },
+    rule_any   = { class = { "wps", "et", "wpp", "pdf", "Termius" } },
     properties = { screen = 1, tag = "4" }
   }
 
   ruled.client.append_rule {
-    rule_any   = { class = { "QQ" } },
+    rule_any   = { class = { "QQ", "Slack" } },
     properties = { screen = 1, tag = "5" }
   }
 
@@ -585,13 +582,13 @@ ruled.client.connect_signal("request::rules", function()
   }
 
   ruled.client.append_rule {
-    rule_any   = { class = { "Steam" } },
+    rule_any   = { class = { "steam" } },
     properties = { screen = 1, tag = "8" }
   }
 
   ruled.client.append_rule {
     rule       = { class = "dota2" },
-    properties = { screen = 1, tag = "9", fullscreen = true }
+    properties = { screen = 1, tag = "9", fullscreen = true, border_width = 0 }
   }
 end)
 -- }}}

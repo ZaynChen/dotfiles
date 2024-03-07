@@ -66,9 +66,11 @@ Plug "hrsh7th/cmp-nvim-lua"
 -- Plug "rcarriga/cmp-dap"
 
 -- Snippets
-Plug "SirVer/ultisnips"
+Plug "L3MON4D3/LuaSnip"
+Plug "saadparwaiz1/cmp_luasnip"
 Plug "honza/vim-snippets"
-Plug "quangnguyen30192/cmp-nvim-ultisnips"
+-- Plug "SirVer/ultisnips"
+-- Plug "quangnguyen30192/cmp-nvim-ultisnips"
 
 -- Editing Support
 Plug "romgrk/nvim-treesitter-context"
