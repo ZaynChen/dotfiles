@@ -95,3 +95,20 @@ local nvimtree_ok, _ = pcall(require, "nvim-tree")
 if nvimtree_ok then
   map("<leader>n", "<cmd>NvimTreeToggle<cr>", "[NvimTree]Toggle")
 end
+
+local ts_repeat_move_ok, ts_repeat_move = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
+if ts_repeat_move_ok then
+  opts = { mode = { "n", "x", "o" } }
+  map(";", ts_repeat_move.repeat_last_move, "repeat last move", opts)
+  map(",", ts_repeat_move.repeat_last_move_opposite, "repeat last move in opposite direction",
+    opts)
+  map("f", ts_repeat_move.builtin_f, nil, opts)
+  map("F", ts_repeat_move.builtin_F, nil, opts)
+  map("t", ts_repeat_move.builtin_t, nil, opts)
+  map("T", ts_repeat_move.builtin_T, nil, opts)
+end
+
+local tsc_ok, tsc = pcall(require, "treesitter-context")
+if tsc_ok then
+  map("[c", function() tsc.go_to_context(vim.v.count1) end)
+end

@@ -9,7 +9,7 @@ M.on_attach = function(bufnr)
   local mappings = {
     { "K",          lsp.buf.hover,           "[LSP]Hover" },
     { "<leader>la", lsp.buf.code_action,     "[LSP]Code action" },
-    { "<leader>R",  lsp.buf.rename,          "[LSP]Rename" },
+    { "<leader>r",  lsp.buf.rename,          "[LSP]Rename" },
     { "gd",         lsp.buf.definition,      "[LSP]Definition" },
     { "gD",         lsp.buf.type_definition, "[LSP]Definition" },
   }

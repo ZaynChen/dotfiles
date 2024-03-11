@@ -5,8 +5,8 @@ end
 
 local opts = {
   map_bs = true,
-  map_c_h = false,
-  map_c_w = false,
+  map_c_h = true,
+  map_c_w = true,
   map_cr = true,
   disable_filetype = { 'TelescopePrompt', 'spectre_panel' },
   disable_in_macro = false,
@@ -19,7 +19,7 @@ local opts = {
   enable_afterquote = true,
   enable_check_bracket_line = true,
   enable_bracket_in_quote = true,
-  enable_abbr = false,
+  enable_abbr = true,
   ts_config = {
     -- lua = { 'string', 'source' },
     -- javascript = { 'string', 'template_string' },
@@ -27,10 +27,13 @@ local opts = {
   fast_wrap = {
     map = '<M-e>',
     chars = { '{', '[', '(', '"', "'" },
-    pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
+    pattern = [=[[%'%"%>%]%)%}%,]]=],
     end_key = '$',
+    before_key = 'h',
+    after_key = 'l',
+    cursor_pos_before = true,
     keys = 'qwertyuiopzxcvbnmasdfghjkl',
-    check_comma = true,
+    manual_position = true,
     highlight = 'Search',
     highlight_grey = 'Comment'
   },

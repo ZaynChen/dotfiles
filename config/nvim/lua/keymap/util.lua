@@ -1,6 +1,6 @@
 local M = {}
---[[ 
-    Parameters:  
+--[[
+    Parameters:
         {mode}  string|table Same mode short names as
                 |nvim_set_keymap()|. Can also be list of modes to
                 create mapping on multiple modes.
@@ -28,10 +28,11 @@ local M = {}
                 • callback: When called from Lua, takes a Lua
                   function to call when the mapping is executed.
                 Values are Booleans. Unknown key is an error.
-    See also:  
+    See also:
         |nvim_set_keymap()|
 --]]
 local DEFAULT_OPTS = {
+  mode = "n",
   buffer = nil,
   nowait = nil,
   silent = true,
@@ -45,11 +46,8 @@ local DEFAULT_OPTS = {
 M.map = function(lhs, rhs, desc, opts)
   opts = vim.tbl_extend("force", DEFAULT_OPTS, opts or {})
   opts.desc = desc
-  local mode = opts["mode"]
-  opts["mode"] = nil
-  if not mode then
-    mode = "n"
-  end
+  mode = opts.mode
+  opts.mode = nil
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 

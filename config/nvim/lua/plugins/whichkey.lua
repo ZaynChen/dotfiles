@@ -50,7 +50,7 @@ wk.setup {
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "➜", -- symbol used between a key and it's label
-    group = "+",      -- symbol prepended to a group
+    group = "+", -- symbol prepended to a group
   },
   popup_mappings = {
     scroll_down = '<c-d>', -- binding to scroll down inside the popup
@@ -84,7 +84,7 @@ wk.setup {
 }
 
 for _, mode in ipairs { "n", "i", "c", "v" } do
-  vim.keymap.set(mode, "<C-_>", "<cmd>WhichKey '' " .. mode .. "<cr>", { silent = true })
+  vim.keymap.set(mode, "<C-/>", "<cmd>WhichKey '' " .. mode .. "<cr>", { silent = true })
 end
 
 --[[
@@ -134,29 +134,16 @@ wk.register({
   ["<S-Tab>"] = "[Cmp]Prev",
 }, { mode = "c" })
 
-wk.register({
-  [","] = "[TS]Selection prev",
-  ["."] = "[TS]Selection smart",
-  [";"] = "[TS]Selection container outer",
-  ["i;"] = "[TS]Selection container inner",
-}, { mode = "o" })
-
 wk.register {
   -- Treesitter
   ["<M-]>"] = "[TS]Function next",
   ["<M-[>"] = "[TS]Function prev",
-  ["<M-L>"] = "[TS]Parameter swap next",
-  ["<M-H>"] = "[TS]Parameter swap prev",
-  ["<M-J>"] = "[TS]Definition navigation next",
-  ["<M-K>"] = "[TS]Definition navigation prev",
-  ["<M-M>"] = "[Terminal]Toggle",
-  g = {
-    n = {
-      d = "[TS]Go to definition",
-      D = "[TS]List definitions",
-    },
-    O = "[TS]List definitions toc",
-  },
+  ["<M-l>"] = "[TS]Parameter swap next",
+  ["<M-h>"] = "[TS]Parameter swap prev",
+  ["<M-j>"] = "[TS]Definition navigation next",
+  ["<M-k>"] = "[TS]Definition navigation prev",
+  ["<M-r>"] = "[TS]Rename",
+  ["<M-m>"] = "[Terminal]Toggle",
   Z = {
     Z = "Write if buffer changed and close window",
     Q = "Close window without writing",
@@ -171,7 +158,6 @@ wk.register({
   },
   h = { name = "help" },
   l = { name = "lsp" },
-  r = "[TS]Rename(smart)",
   y = { name = "Yank (copy) to system clipboard" }
   -- t = { name = "tab" },
 }, { prefix = "<leader>" })

@@ -73,12 +73,12 @@ Plug "honza/vim-snippets"
 -- Plug "quangnguyen30192/cmp-nvim-ultisnips"
 
 -- Editing Support
+Plug "HiPhish/rainbow-delimiters.nvim"
 Plug "romgrk/nvim-treesitter-context"
 Plug "windwp/nvim-autopairs"
--- Plug "HiPhish/nvim-ts-rainbow2"
-Plug "HiPhish/rainbow-delimiters.nvim"
 Plug "RRethy/nvim-treesitter-endwise"
--- Plug "andymass/vim-matchup"
+-- Plug "theHamsta/nvim-treesitter-pairs" -- only normal mode
+Plug "andymass/vim-matchup"
 
 -- Comment
 -- Plug "tpope/vim-commentary"

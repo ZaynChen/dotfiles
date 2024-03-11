@@ -34,13 +34,13 @@ api.nvim_create_autocmd({ "InsertLeave", "BufCreate", "BufEnter", "BufLeave" }, 
   callback = function() vim.cmd([[ :silent !fcitx5-remote -c ]]) end
 })
 
-local ultisnips_ok, ultisnips = pcall(require, "cmp_nvim_ultisnips")
-if ultisnips_ok then
-  local reload_snippets = api.nvim_create_augroup("reload_snippets", opts)
-  api.nvim_create_autocmd("BufWritePost", {
-    group = reload_snippets,
-    pattern = { "*.snippets" },
-    desc = "Reload Snippets",
-    callback = function() ultisnips.reload_snippets() end,
-  })
-end
+-- local ultisnips_ok, ultisnips = pcall(require, "cmp_nvim_ultisnips")
+-- if ultisnips_ok then
+--   local reload_snippets = api.nvim_create_augroup("reload_snippets", opts)
+--   api.nvim_create_autocmd("BufWritePost", {
+--     group = reload_snippets,
+--     pattern = { "*.snippets" },
+--     desc = "Reload Snippets",
+--     callback = function() ultisnips.reload_snippets() end,
+--   })
+-- end
