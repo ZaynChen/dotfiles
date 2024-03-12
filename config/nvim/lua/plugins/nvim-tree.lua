@@ -64,6 +64,7 @@
 
 local nvimtree_ok, nvimtree = pcall(require, "nvim-tree")
 if not nvimtree_ok then
+  vim.api.nvim_err_writeln("Failed to load nvim-tree")
   return
 end
 

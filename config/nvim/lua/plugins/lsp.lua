@@ -1,46 +1,16 @@
 local lsp = vim.lsp
-local diagnostic = vim.diagnostic
 
 -- local lsp_format = require("lsp-format") -- autocmd
 require("plugins.lsp.lsp_signature")
 -- require("plugins.lsp.mason")
 
-local M = {}
 local lsp_status = require("lsp-status")
 lsp_status.register_progress()
 
-local lspconfig = require("lspconfig")
+local M = {}
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(lsp_status.capabilities)
 M.on_attach = function(client, bufnr)
-  require("keymap.lsp").on_attach(bufnr)
-
-  -- FormatOnSave
-  local lsp_augroup = vim.api.nvim_create_augroup("lsp_augroup" .. bufnr, { clear = true })
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = lsp_augroup,
-    buffer = bufnr,
-    desc = "[LSP]FormatOnSave",
-    callback = function() lsp.buf.format({ async = false }) end
-  })
-
-  -- Show diagnostic popup on cursor hover
-  vim.api.nvim_create_autocmd("CursorHold", {
-    group = lsp_augroup,
-    buffer = bufnr,
-    desc = "[Diagnostic]Open float when cursor hold",
-    callback = function() diagnostic.open_float(nil, { focusable = false }) end
-  })
-
-  -- Enable completion triggered by <c-x><c-o>
-  if client.server_capabilities.completionProvider then
-    vim.bo[bufnr].omnifunc = "v:lua.lsp.omnifunc"
-  end
-
-  if client.server_capabilities.definitionProvider then
-    vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-  end
-
   lsp_status.on_attach(client)
   -- lsp_format.on_attach(client)
 end
@@ -48,6 +18,8 @@ end
 local extension_path = "/usr/lib/codelldb"
 local codelldb_path = extension_path .. "/adapter/codelldb"
 local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
+
+local lspconfig = require("lspconfig")
 
 -- Enable rust-tools
 require("rust-tools").setup {
@@ -93,6 +65,10 @@ lspconfig.julials.setup {
 
 -- Enable clangd
 lspconfig.clangd.setup {
+  handlers = lsp_status.extensions.clangd.setup(),
+  init_options = {
+    clangdFileStatus = true,
+  },
   on_attach = M.on_attach,
   capabilities = M.capabilities,
 }
@@ -192,6 +168,52 @@ lspconfig.asm_lsp.setup {
   capabilities = M.capabilities,
 }
 
+local map = require("keymap.util").map
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(ev)
+    local buf = ev.buf
+
+    vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+    vim.bo[buf].tagfunc = "v:lua.vim.lsp.tagfunc"
+
+    -- FormatOnSave
+    local grp = vim.api.nvim_create_augroup("UserLspConfig", { clear = false })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = grp,
+      buffer = buf,
+      desc = "[LSP]FormatOnSave",
+      callback = function()
+        lsp.buf.format({ async = false })
+      end
+    })
+
+    -- Show diagnostic popup on cursor hover
+    vim.api.nvim_create_autocmd("CursorHold", {
+      group = grp,
+      buffer = buf,
+      desc = "[Diagnostic]Open float when cursor hold",
+      callback = function()
+        vim.diagnostic.open_float(nil, { focusable = false })
+      end
+    })
+
+    local mappings = {
+      { "K",          lsp.buf.hover,           "[LSP]Hover" },
+      { "<leader>la", lsp.buf.code_action,     "[LSP]Code action" },
+      { "<leader>r",  lsp.buf.rename,          "[LSP]Rename" },
+      { "gd",         lsp.buf.definition,      "[LSP]Definition" },
+      { "gD",         lsp.buf.type_definition, "[LSP]Type Definition" },
+    }
+    for _, mapping in ipairs(mappings) do
+      local lhs, rhs, desc = mapping[1], mapping[2], mapping[3]
+      map(lhs, rhs, desc, { buffer = buf })
+    end
+  end
+})
+--
+-- diagnostic config
+--
 local sign_define = function(opts)
   vim.fn.sign_define(opts.name, {
     texthl = opts.name,
@@ -209,10 +231,9 @@ local signs = {
 
 for _, sign in ipairs(signs) do
   sign_define(sign)
-  -- vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
-diagnostic.config {
+vim.diagnostic.config {
   virtual_text = false,
   signs = true,
   update_in_insert = true,

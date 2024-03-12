@@ -1,6 +1,7 @@
 -- Setup nvim-cmp
 local cmp_ok, cmp = pcall(require, "cmp")
 if not cmp_ok then
+  vim.api.nvim_err_writeln("Failed to load cmp")
   return
 end
 
@@ -64,8 +65,8 @@ if lspkind_ok then
 end
 
 local mappings = {
-  ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s", "c" }),
-  ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s", "c" }),
+  -- ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s", "c" }),
+  -- ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s", "c" }),
 }
 local expand = function(_) error("snippet engine is not configured.") end
 local snips_ok, snips = pcall(require, "luasnip")
@@ -94,7 +95,7 @@ if snips_ok then
       else
         fallback()
       end
-    end, { "i", "s", "c" }),
+    end, { "i", "c" }),
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -104,7 +105,7 @@ if snips_ok then
       else
         fallback()
       end
-    end, { "i", "s", "c" }),
+    end, { "i", "c" }),
   })
 end
 

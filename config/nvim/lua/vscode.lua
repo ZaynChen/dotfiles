@@ -8,6 +8,7 @@ opt.clipboard = { "unnamed", "unnamedplus" }
 opt.backspace = { "indent", "eol", "start" }
 
 local DEFAULT_OPTS = {
+  mode = "n",
   buffer = nil,
   nowait = nil,
   silent = true,
@@ -21,11 +22,8 @@ local DEFAULT_OPTS = {
 function map(lhs, rhs, desc, opts)
   opts = vim.tbl_extend("force", DEFAULT_OPTS, opts or {})
   opts.desc = desc
-  local mode = opts["mode"]
-  opts["mode"] = nil
-  if not mode then
-    mode = "n"
-  end
+  mode = opts.mode
+  opts.mode = nil
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 

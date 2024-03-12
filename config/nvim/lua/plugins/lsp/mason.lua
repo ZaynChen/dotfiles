@@ -1,8 +1,9 @@
-local path = require("mason-core.path")
 local status_ok, mason = pcall(require, "mason")
 if not status_ok then
+  vim.api.nvim_err_writeln("Failed to load mason")
   return
 end
+local path = require("mason-core.path")
 
 local mason_config = {
   ui = {

@@ -1,5 +1,6 @@
 local term_ok, term = pcall(require, "toggleterm")
 if not term_ok then
+  vim.api.nvim_err_writeln("Faield to load toggleterm")
   return
 end
 

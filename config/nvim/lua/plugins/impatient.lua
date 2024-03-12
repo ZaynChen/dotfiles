@@ -10,5 +10,6 @@ _G.__luacache_config = {
 }
 
 if not pcall(require, "impatient") then
-  print "Failed to load impatient."
+  -- print "Failed to load impatient."
+  vim.api.nvim_err_writeln("Failed to load impatient")
 end

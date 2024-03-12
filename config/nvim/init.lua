@@ -7,11 +7,20 @@ P = function(...)
   return ...
 end
 
+local configfiles = {}
 if vim.g.vscode then
-  require "vscode"
+  configfiles = vim.tbl_extend("force", configfiles, { "vscode" })
 else
-  require "settings"
-  require "plugins"
-  require "keymap"
-  require "autocmd"
+  configfiles = vim.tbl_extend("force", configfiles, {
+    "settings",
+    "plugins",
+    "keymap",
+    "autocmd",
+  })
+end
+
+for _, file in ipairs(configfiles) do
+  if not pcall(require, file) then
+    vim.api.nvim_err_writeln("Failed to load " .. file)
+  end
 end

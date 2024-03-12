@@ -1,5 +1,6 @@
 local ibl_ok, ibl = pcall(require, "ibl")
 if not ibl_ok then
+  vim.api.nvim_err_writeln("Failed to load ibl")
   return
 end
 

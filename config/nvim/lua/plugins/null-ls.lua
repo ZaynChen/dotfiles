@@ -1,5 +1,6 @@
 local null_ls_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_ok then
+  vim.api.nvim_err_writeln("Failed to load null-ls")
   return
 end
 

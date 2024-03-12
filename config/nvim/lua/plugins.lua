@@ -130,43 +130,54 @@ Plug("lervag/vimtex", { ["for"] = "tex" })
 
 vim.call("plug#end")
 
--- To use impatient,
--- you need only to include it near the top of your init.lua or init.vim.
-require("plugins.impatient")
+local plugins = {
+  -- To use impatient,
+  -- you need only to include it near the top of your init.lua or init.vim.
+  "plugins.impatient",
+  --
+  "plugins.colorscheme",
+  "plugins.nvim-tree",
+  "plugins.treesitter",
+  "plugins.rainbow-delimiters",
+  "plugins.indent_blankline",
+  "plugins.todo-comments",
+  "plugins.comment",
+  "plugins.nvim-hlslens",
+  --
+  "plugins.nvim-cmp",
+  "plugins.nvim-autopairs",
+  "plugins.treesitter-context",
+  --
+  "plugins.lsp",
+  "plugins.null-ls",
+  --
+  "plugins.gitsigns",
+  "plugins.crates",
+  "plugins.vimtex",
+  --
+  "plugins.telescope",
+  "plugins.trouble",
+  -- "plugins/navigator",
+  "plugins.toggleterm",
+  "plugins.whichkey",
+}
+
+for _, plugin in ipairs(plugins) do
+  if not pcall(require, plugin) then
+    vim.api.nvim_err_writeln("Failed to load " .. plugin)
+  end
+end
 
 local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
 if devicons_ok then
   devicons.setup {}
+else
+  vim.api.nvim_err_writeln("Failed to load nvim-web-devicons")
 end
 
-require("plugins.colorscheme")
-require("plugins.lualine")
-require("plugins.nvim-tree")
-require("plugins.treesitter")
-require("plugins.rainbow-delimiters")
-require("plugins.indent_blankline")
-require("plugins.todo-comments")
-require("plugins.comment")
-require("plugins.nvim-hlslens")
 local colorizer_ok, colorizer = pcall(require, "colorizer")
 if colorizer_ok then
   colorizer.setup {}
+else
+  vim.api.nvim_err_writeln("Failed to load colorizer")
 end
-
-require("plugins.nvim-cmp")
-require("plugins.nvim-autopairs")
-require("plugins.treesitter-context")
-
-require("plugins.lsp")
-require("plugins.null-ls")
-
-require("plugins.gitsigns")
-require("plugins.crates")
-require("plugins.vimtex")
-
-require("plugins.telescope")
-require("plugins.trouble")
--- require("plugins/navigator")
-require("plugins.toggleterm")
-
-require("plugins.whichkey")

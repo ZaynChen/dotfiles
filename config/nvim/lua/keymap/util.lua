@@ -31,6 +31,16 @@ local M = {}
     See also:
         |nvim_set_keymap()|
 --]]
+-- mode
+-- {
+--    "n", Normal
+--    "i", Insert
+--    "c", Cmd
+--    "v", Visual, Select
+--    "x", Visual
+--    "s", Select
+--    "o", Operator-pending
+-- }
 local DEFAULT_OPTS = {
   mode = "n",
   buffer = nil,

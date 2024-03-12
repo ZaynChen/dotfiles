@@ -1,5 +1,6 @@
 local crates_ok, crates = pcall(require, "crates")
 if not crates_ok then
+  vim.api.nvim_err_writeln("Failed to load crates")
   return
 end
 

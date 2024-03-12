@@ -1,5 +1,6 @@
 local telescope_ok, telescope = pcall(require, "telescope")
 if not telescope_ok then
+  vim.api.nvim_err_writeln("Failed to load telescope")
   return
 end
 
@@ -50,10 +51,10 @@ local config = {
   },
   extensions = {
     fzf = {
-      fuzzy = true, -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
     },
 
   }

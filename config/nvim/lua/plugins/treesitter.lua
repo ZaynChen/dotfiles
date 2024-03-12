@@ -1,6 +1,7 @@
 local treesitter_ok, treesitter = pcall(require, "nvim-treesitter.configs")
 
 if not treesitter_ok then
+  vim.api.nvim_err_writeln("Failed to load treesitter")
   return
 end
 

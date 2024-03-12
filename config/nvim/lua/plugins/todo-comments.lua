@@ -1,10 +1,11 @@
 local todo_ok, todo = pcall(require, "todo-comments")
 if not todo_ok then
+  vim.api.nvim_err_writeln("Failed to load todo-comments")
   return
 end
 
 todo.setup {
-  signs = true, -- show icons in the signs column
+  signs = true,      -- show icons in the signs column
   sign_priority = 8, -- sign priority
   -- keywords recognized as todo comments
   keywords = {
@@ -26,15 +27,15 @@ todo.setup {
   -- * keyword: highlights of the keyword
   -- * after: highlights after the keyword (todo text)
   highlight = {
-    before = "", -- "fg" or "bg" or empty
-    keyword = "wide", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
-    after = "fg", -- "fg" or "bg" or empty
+    before = "",                     -- "fg" or "bg" or empty
+    keyword = "wide",                -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
+    after = "fg",                    -- "fg" or "bg" or empty
     -- pattern can be a string, or a table of regexes that will be checked
     pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
     -- pattern = { [[.*<(KEYWORDS)\s*:]], [[.*\@(KEYWORDS)\s*]] }, -- pattern used for highlightng (vim regex)
-    comments_only = true, -- this applies the pattern only inside comments using `commentstring` option
-    max_line_len = 400, -- ignore lines longer than this
-    exclude = {}, -- list of file types to exclude highlighting
+    comments_only = true,            -- this applies the pattern only inside comments using `commentstring` option
+    max_line_len = 400,              -- ignore lines longer than this
+    exclude = {},                    -- list of file types to exclude highlighting
   },
   -- list of named colors where we try to extract the guifg from the
   -- list of hilight groups or use the hex color if hl not found as a fallback

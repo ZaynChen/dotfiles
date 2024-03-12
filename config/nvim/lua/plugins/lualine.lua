@@ -1,6 +1,6 @@
 local lualine_ok, lualine = pcall(require, "lualine")
 if not lualine_ok then
-  return
+  warn("lualine plugin does not exists")
 end
 
 lualine.setup {

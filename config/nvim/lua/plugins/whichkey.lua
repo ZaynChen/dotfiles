@@ -1,5 +1,6 @@
 local wk_ok, wk = pcall(require, "which-key")
 if not wk_ok then
+  vim.api.nvim_err_writeln("Failed to load whichkey")
   return
 end
 
@@ -36,12 +37,17 @@ wk.setup {
   },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
+    ["<C-Up>"] = "<C-↑>",
+    ["<C-Right>"] = "<C-→>",
+    ["<C-Down>"] = "<C-↓>",
+    ["<C-Left>"] = "<C-←>",
+    ["<C-CR>"] = "<C-↵>",
     ["<M-Up>"] = "<M-↑>",
     ["<M-Right>"] = "<M-→>",
     ["<M-Down>"] = "<M-↓>",
     ["<M-Left>"] = "<M-←>",
     ["<M-CR>"] = "<M-↵>",
-    ["<Up>"] = "<↑>",
+    ["<Up>"] = "↑",
     ["<Right>"] = "→",
     ["<Down>"] = "↓",
     ["<Left>"] = "←",
@@ -100,18 +106,21 @@ wk.register(mappings, opts)
   nowait = false, -- use `nowait` when creating keymaps
 } ]]
 wk.register({
-  ["<C-D>"] = "Delete one shiftwidth of indent in the current line",
-  ["<C-E>"] = "Cursor to end of line",
-  ["<C-J>"] = "[Cmp]Next",
-  ["<C-K>"] = "[Cmp]Prev",
+  ["<C-D>"] = "delete one shiftwidth of indent in the current line",
+  ["<C-E>"] = "[Cmp]Abort",
+  ["<C-F>"] = "not used",
+  ["<C-H>"] = "same as <BS>",
+  ["<C-J>"] = "same as <CR>",
+  ["<C-K>"] = "enter digraph",
   ["<C-N>"] = "[Cmp]Next",
+  ["<C-O>"] = "execute a single command and return to insert mode",
   ["<C-P>"] = "[Cmp]Prev",
+  ["<C-Q>"] = "same as <C-V>, unless used for terminal control flow",
+  ["<C-S>"] = "not used or used for terminal control flow",
   ["<C-T>"] = "insert one shiftwidth of indent in the current line",
-  ["<C-U>"] = "Delete all entered chars in the current line",
-  ["<C-W>"] = "Delete word before the cursor",
-  ["<C-Y>"] = "[Cmp]Confirm",
-  ["<C-Left>"] = "Cursor one word left",
-  ["<C-Right>"] = "Cursor one word right",
+  ["<C-U>"] = "delete all entered chars in the current line",
+  ["<C-W>"] = "delete word before the cursor",
+  ["<C-Y>"] = "[Cmp]Comfirm",
   ["<Down>"] = "[Cmp]Next",
   ["<Up>"] = "[Cmp]Prev",
   ["<Tab>"] = "[Cmp]Expand or next",
@@ -121,13 +130,15 @@ wk.register({
 }, { mode = "i" })
 
 wk.register({
-  ["<C-E>"] = "Cursor to end of line",
-  ["<C-J>"] = "[Cmp]Next",
-  ["<C-K>"] = "[Cmp]Prev",
+  ["<C-B>"] = "cursor to begin of command-line",
+  ["<C-D>"] = "list completions that match the pattern in front fo the cursor",
+  ["<C-E>"] = "[Cmp]Abort & cursor to end of command-line",
+  ["<C-J>"] = "same as <CR>",
+  ["<C-K>"] = "enter digraph",
   ["<C-N>"] = "[Cmp]Next",
   ["<C-P>"] = "[Cmp]Prev",
-  ["<C-U>"] = "Delete all entered chars in the current line",
-  ["<C-W>"] = "Delete word before the cursor",
+  ["<C-U>"] = "delete all entered chars in the current command-line",
+  ["<C-W>"] = "delete word in front of the cursor",
   ["<C-Y>"] = "[Cmp]Confirm",
   ["<C-Z>"] = "[Cmp]Expand or next",
   ["<Tab>"] = "[Cmp]Expand or next",
