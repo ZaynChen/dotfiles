@@ -6,7 +6,7 @@ M.on_attach = function(bufnr)
   local map = function(l, r, desc, opts)
     opts = opts or {}
     opts.buffer = bufnr
-    require("keymap.util").map(l, r, desc, opts)
+    require("v1.keymap.util").map(l, r, desc, opts)
   end
 
   -- Navigation

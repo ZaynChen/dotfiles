@@ -1,4 +1,4 @@
-local map = require("keymap.util").map
+local map = require("v1.keymap.util").map
 
 map("0", "virtcol('.') == indent('.')+1 ? '0': '_'", "Start of line (smart)", { expr = true })
 map("J", "mzJ`z", "Join lines")

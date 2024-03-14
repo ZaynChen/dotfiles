@@ -1,4 +1,10 @@
-local opts = {
+local comment_ok, comment = pcall(require, "Comment")
+if not comment_ok then
+  vim.api.nvim_err_writeln("Failed to load comment")
+  return
+end
+
+comment.setup {
   ---Add a space b/w comment and the line
   ---@type boolean|fun():boolean
   padding = true,
@@ -67,9 +73,4 @@ local opts = {
   ---Post-hook, called after commenting is done
   ---@type fun(ctx: CommentCtx)
   post_hook = nil,
-}
-
-return {
-  "numToStr/Comment.nvim",
-  opts = opts,
 }

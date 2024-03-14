@@ -1,82 +1,133 @@
-local telescope_ok, telescope = pcall(require, "telescope")
-if not telescope_ok then
-  vim.api.nvim_err_writeln("Failed to load telescope")
-  return
+local Util = require("util")
+
+function telescope(builtin, opts)
+  return function()
+    require("telescope.builtin")[builtin](opts)
+  end
 end
 
-local config = {
-  defaults = {
-    mappings = {
-      i = {
-        ["<ESC>"] = "close",
-        ["<C-n>"] = "cycle_history_next",
-        ["<C-p>"] = "cycle_history_prev",
+return {
+  "nvim-telescope/telescope.nvim",
+  cmd = "Telescope",
+  version = false,
+  dependencies = {
+    { "nvim-lua/plenary.nvim", lazy = true },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      enabled = vim.fn.executable("make") == 1,
+      config = function()
+        Util.on_load("telescope.nvim", function()
+          require("telescope").load_extension("fzf")
+        end)
+      end
+    },
+  },
+  keys = {
+    { "<leader>/",  telescope("live_grep"),   desc = "[TScope]live_grep" },
+    { "<leader>f",  telescope("find_files"),  desc = "[TScope]find_files" },
+    { "<leader> ",  telescope("find_files"),  desc = "[TScope]find_files" },
+    { "<leader>b",  telescope("buffers"),     desc = "[TScope]buffers" },
 
-        ["<C-j>"] = "move_selection_next",
-        ["<C-k>"] = "move_selection_previous",
+    { "<leader>ha", telescope("autocomands"), desc = "[TScope]autocommands" },
+    { "<leader>hc", telescope("comands"),     desc = "[TScope]commands" },
+    { "<leader>hh", telescope("help_tags"),   desc = "[TScope]help_tags" },
+    { "<leader>hk", telescope("keymaps"),     desc = "[TScope]keymaps" },
+    { "<leader>hm", telescope("man_pages"),   desc = "[TScope]man_pages" },
+    { "<leader>ho", telescope("vim_options"), desc = "[TScope]options" },
+    { "<leader>hC", telescope("colorscheme"), desc = "[TScope]colorscheme" },
+  },
+  opts = function()
+    local actions = require("telescope.actions")
+    local action_layout = require("telescope.actions.layout")
 
-        ["<C-f>"] = "preview_scrolling_down",
-        ["<C-b>"] = "preview_scrolling_up",
+    local open_with_trouble = function(...)
+      return require("trouble.providers.telescope").open_with_trouble(...)
+    end
+    local open_selected_with_trouble = function(...)
+      return require("trouble.providers.telescope").open_selected_with_trouble(...)
+    end
 
-        ["<C-l>"] = "smart_send_to_qflist",
+    local find_files_no_ignore = function()
+      local action_state = require("telescope.actions.state")
+      local line = action_state.get_current_line()
+      telescope("find_files", { no_ignore = true, default_text = line })()
+    end
+    local find_files_with_hidden = function()
+      local action_state = require("telescope.actions.state")
+      local line = action_state.get_current_line()
+      telescope("find_files", { hidden = true, default_text = line })()
+    end
 
-        -- ["<C-u>"] = "preview_scrolling_up",
-        ["<C-u>"] = { "<C-u>", type = "command" },
-        ["<C-a>"] = { "<Home>", type = "command" },
-        ["<C-e>"] = { "<End>", type = "command" },
-        -- ["<C-w>"] = { "<c-s-w>", type = "command" },
+    return {
+      defaults = {
+        mappings = {
+          i = {
+            ["<C-t>"] = open_with_trouble,
+            ["<M-t>"] = open_selected_with_trouble,
+            ["<C-h>"] = find_files_with_hidden,
+            ["<C-g>"] = find_files_no_ignore,
 
-        -- ["<C-h>"] = "which_key",
+            ["<C-n>"] = actions.cycle_history_next,
+            ["<C-p>"] = actions.cycle_history_prev,
+
+            ["<C-j>"] = actions.move_selection_next,
+            ["<C-k>"] = actions.move_selection_previous,
+
+            ["<M-u>"] = actions.preview_scrolling_up,
+            ["<M-d>"] = actions.preview_scrolling_down,
+            ["<M-h>"] = actions.preview_scrolling_left,
+            ["<M-l>"] = actions.preview_scrolling_right,
+
+            ["<M-p>"] = action_layout.toggle_preview,
+            ["<C-q>"] = actions.smart_send_to_qflist,
+            ["<C-y>"] = actions.complete_tag,
+
+            ["<C-w>"] = { "<C-s-w>", type = "command" },
+            ["<C-b>"] = { "<Home>", type = "command" },
+            ["<C-e>"] = { "<End>", type = "command" },
+
+            ["<C-/>"] = actions.which_key,
+            ["<ESC>"] = actions.close,
+
+
+            ["<C-d>"] = false,
+            ["<C-f>"] = false,
+            ["<C-l>"] = false,
+            ["<C-u>"] = false,
+            ["<C-v>"] = false,
+            ["<C-x>"] = false,
+            ["<M-k>"] = false,
+          },
+        }
       },
-    }
-  },
-  pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
-    find_files = {
-      theme = "dropdown",
-      previewer = false,
-    },
-    buffers = {
-      theme = "dropdown",
-      previewer = false,
-    },
-    live_grep = {
-      theme = "dropdown",
-    },
-    help_tags = {
-      theme = "dropdown",
-    }
-  },
-  extensions = {
-    fzf = {
-      fuzzy = true,                   -- false will only do exact matching
-      override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true,    -- override the file sorter
-      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-    },
-
-  }
-}
-
-local trouble_ok, trouble = pcall(require, "trouble.providers.telescope")
-if trouble_ok then
-  config = vim.tbl_deep_extend("force", config, {
-    defaults = {
-      mappings = {
-        i = {
-          ["<C-t>"] = trouble.open_with_trouble
+      pickers = {
+        -- Default configuration for builtin pickers goes here:
+        -- Now the picker_config_key will be applied every time you call this
+        -- builtin picker
+        find_files = {
+          theme = "dropdown",
+          previewer = false,
+        },
+        buffers = {
+          theme = "dropdown",
+          previewer = false,
+        },
+        live_grep = {
+          theme = "dropdown",
+        },
+        help_tags = {
+          theme = "dropdown",
+        }
+      },
+      extensions = {
+        fzf = {
+          fuzzy = true,                   -- false will only do exact matching
+          override_generic_sorter = true, -- override the generic sorter
+          override_file_sorter = true,    -- override the file sorter
+          case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
         },
       }
-    },
-  })
-end
-
-telescope.setup(config)
-
-telescope.load_extension("fzf")
--- telescope.load_extension("ui-select")
--- telescope.load_extension("dap")
--- telescope.load_extension("vim_bookmarks")
---
+    }
+  end,
+}

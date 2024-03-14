@@ -1,4 +1,4 @@
-local map = require("keymap.util").map
+local map = require("v1.keymap.util").map
 
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
