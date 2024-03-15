@@ -114,6 +114,7 @@ export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx # SDL2
 export GLFW_IM_MODULE=ibus # kitty" | sudo tee /etc/profile.d/fcitx5.sh
 
+paru -S wget --noconfirm --needed
 # Archive tool
 paru -S peazip --noconfirm --needed
 # RS replacement for find
