@@ -1,5 +1,6 @@
 return {
   "windwp/nvim-autopairs",
+  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   opts = {
     map_bs = true,
     map_c_h = true,

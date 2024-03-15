@@ -28,7 +28,7 @@ map("<C-H>", "<cmd>bprevious<cr>", "[Buffer]Prev")
 map("<C-L>", "<cmd>bnext<cr>", "[Buffer]Next")
 map("[b", "<cmd>bprevious<cr>", "[Buffer]Prev")
 map("]b", "<cmd>bnext<cr>", "[Buffer]Next")
--- map("<leader>bd", "<cmd>bdelete<cr>", "[Buffer]Delete from list")
+map("<leader>bd", "<cmd>bdelete<cr>", "[Buffer]Delete from list")
 
 -- map("<leader>tc", "<cmd>tabclose<cr>", "[Tab]Close")
 -- map("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>', "[Tap]Edit", { silent = false })

@@ -37,7 +37,7 @@ require("lazy").setup("plugins", {
   root = joinpath(vim.fn.stdpath("data"), "lazy"), -- directory where plugins will be installed
   defaults = {
     lazy = false,                                  -- should plugins be lazy-loaded?
-    version = nil,
+    version = false,
     -- default `cond` you can use to globally disable a lot of plugins
     -- when running inside vscode for example
     cond = function()

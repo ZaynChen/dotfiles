@@ -50,8 +50,8 @@ return {
     },
     "nvim-lua/lsp-status.nvim",
     "hrsh7th/cmp-nvim-lsp",
-    { "simrat39/rust-tools.nvim",     ft = "rust" },
-    { "JuliaEditorSupport/julia-vim", ft = "julia" },
+    "JuliaEditorSupport/julia-vim",
+    "simrat39/rust-tools.nvim",
     "ray-x/lsp_signature.nvim",
   },
   config = function()
@@ -203,11 +203,15 @@ return {
         })
 
         local mappings = {
-          { "K",          lsp.buf.hover,       "[LSP]Hover" },
-          { "<leader>la", lsp.buf.code_action, "[LSP]Code action" },
-          { "<leader>lr", lsp.buf.rename,      "[LSP]Rename" },
-          { "gd",         lsp.buf.definition,  "[LSP]Definition" },
-          { "gD",         lsp.buf.declaration, "[LSP]Declaration" },
+          { "K",          lsp.buf.hover,           "[LSP]Hover" },
+          { "<leader>la", lsp.buf.code_action,     "[LSP]Code action" },
+          { "<leader>lr", lsp.buf.rename,          "[LSP]Rename" },
+          { "gd",         lsp.buf.definition,      "[LSP]Definition" },
+          { "gD",         lsp.buf.declaration,     "[LSP]Declaration" },
+          { "gI",         lsp.buf.implementation,  "[LSP]Implementation" },
+          { "gK",         lsp.buf.signature_help,  "[LSP]Signature" },
+          { "gr",         lsp.buf.references,      "[LSP]References" },
+          { "gy",         lsp.buf.type_definition, "[LSP]Type Definition" },
         }
         for _, mapping in ipairs(mappings) do
           local lhs, rhs, desc = mapping[1], mapping[2], mapping[3]
