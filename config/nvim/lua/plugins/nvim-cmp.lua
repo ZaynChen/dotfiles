@@ -22,6 +22,7 @@ return {
     "hrsh7th/cmp-omni",
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-nvim-lua",
+    "kdheepak/cmp-latex-symbols",
     "f3fora/cmp-spell",
     -- "ray-x/cmp-treesitter" -- to much content
     -- "jsfaint/gen_tags.vim"
@@ -204,9 +205,10 @@ return {
     -- (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = 'buffer' }
-      }
+      sources = cmp.config.sources({
+        { name = 'buffer' },
+        { name = 'latex_symbols' },
+      })
     })
 
     -- Use cmdline & path source for ':'.
@@ -216,6 +218,8 @@ return {
         { name = 'path' }
       }, {
         { name = 'cmdline' }
+      }, {
+        { name = 'latex_symbols' },
       })
     })
   end

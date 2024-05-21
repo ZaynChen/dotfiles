@@ -75,7 +75,9 @@ o.wildmode = "list:longest"
 o.wildignore = ".hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.o"
 
 -- Completion
-opt.completeopt = { "menuone", "noselect", "noinsert" }
+-- 'completeopt' option supports "popup" flag
+-- to show extra information in a floating window. -- neovim-0.10
+opt.completeopt = { "menuone", "noselect", "noinsert", "popup" }
 opt.shortmess = opt.shortmess + { c = true }
 
 o.mouse = "a"

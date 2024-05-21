@@ -32,7 +32,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- local Util = require("util")
-require("config").setup()
+-- require("config.options")
+vim.g.maplocalleader = " "
+vim.g.mapleader = " "
 require("lazy").setup("plugins", {
   root = joinpath(vim.fn.stdpath("data"), "lazy"), -- directory where plugins will be installed
   defaults = {
@@ -197,8 +199,10 @@ require("lazy").setup("plugins", {
   profiling = {
     -- Enables extra stats on the debug tab related to the loader cache.
     -- Additionally gathers stats about all package.loaders
-    loader = false,
+    loader = true,
     -- Track each new require in the Lazy profiling tab
-    require = false,
+    require = true,
   },
 })
+
+require("config").setup()

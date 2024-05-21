@@ -4,7 +4,8 @@ local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
 
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  version = false,
+  event = { "BufReadPost", "BufNewFile", },
   dependencies = {
     {
       "williamboman/mason.nvim",
@@ -193,6 +194,8 @@ return {
         })
 
         -- Show diagnostic popup on cursor hover
+        -- <C-W>d (and <C-W><C-D>) map to vim.diagnostic.open_float()
+        -- CTRL-W_d-default
         vim.api.nvim_create_autocmd("CursorHold", {
           group = grp,
           buffer = buf,
@@ -202,6 +205,10 @@ return {
           end
         })
 
+        -- vim.lsp.start() sets the following default keymaps
+        -- (assuming server support):
+        -- K in Normal mode maps to vim.lsp.buf.hover(),
+        -- unless 'keywordprg' was customized before calling vim.lsp.start().
         local mappings = {
           { "K",          lsp.buf.hover,           "[LSP]Hover" },
           { "<leader>la", lsp.buf.code_action,     "[LSP]Code action" },
@@ -222,28 +229,38 @@ return {
     --
     -- diagnostic config
     --
-    local sign_define = function(opts)
-      vim.fn.sign_define(opts.name, {
-        texthl = opts.name,
-        text = opts.text,
-        numhl = ""
-      })
-    end
+    -- local sign_define = function(opts)
+    --   vim.fn.sign_define(opts.name, {
+    --     texthl = opts.name,
+    --     text = opts.text,
+    --     numhl = ""
+    --   })
+    -- end
 
-    local signs = {
-      { name = "DiagnosticSignError", text = "" },
-      { name = "DiagnosticSignWarn", text = "" },
-      { name = "DiagnosticSignHint", text = "" },
-      { name = "DiagnosticSignInfo", text = "" },
-    }
+    -- local signs = {
+    --   { name = "DiagnosticSignError", text = "" },
+    --   { name = "DiagnosticSignWarn", text = "" },
+    --   { name = "DiagnosticSignHint", text = "" },
+    --   { name = "DiagnosticSignInfo", text = "" },
+    -- }
 
-    for _, sign in ipairs(signs) do
-      sign_define(sign)
-    end
+    -- for _, sign in ipairs(signs) do
+    --   sign_define(sign)
+    -- end
 
+    -- Configuring diagnostic-signs using :sign-define or sign_define().
+    -- Use the "signs" key of vim.diagnostic.config() instead. # neovim-0.10
     vim.diagnostic.config {
       virtual_text = false,
-      signs = true,
+      -- signs = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.HINT] = "",
+          [vim.diagnostic.severity.INFO] = "",
+        },
+      },
       update_in_insert = true,
       underline = true,
       severity_sort = true,

@@ -7,7 +7,7 @@ map("N", "Nzzzv", "Search previous")
 map("J", ":m '>+1<CR>gv=gv", "Move lines down", { mode = "x" })
 map("K", ":m '<-2<CR>gv=gv", "Move lines up", { mode = "x" })
 
--- map("<leader><cr>", "<cmd>noh<cr>", "No highlight")
+map("<leader><cr>", "<cmd>noh<cr>", "Clear highlight")
 map("<ESC>", "<cmd>noh<cr><ESC>", "Escape and clear hlsearch")
 
 map("<leader>w", "<cmd>w<cr>", "Write to a file")
@@ -49,8 +49,11 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
-map("[d", diagnostic_goto(false), "[Diagnostic]Prev")
-map("]d", diagnostic_goto(true), "[Diagnostic]Next")
+-- "]d" and "[d" in Normal mode map to vim.diagnostic.goto_next()
+-- and vim.diagnostic.goto_prev(), respectively. ]d-default [d-default
+-- neovim-0.10
+-- map("[d", diagnostic_goto(false), "[Diagnostic]Prev")
+-- map("]d", diagnostic_goto(true), "[Diagnostic]Next")
 map("[e", diagnostic_goto(false, "ERROR"), "[Error]Prev")
 map("]e", diagnostic_goto(true, "ERROR"), "[Error]Next")
 map("[w", diagnostic_goto(false, "WARN"), "[WARN]Prev")

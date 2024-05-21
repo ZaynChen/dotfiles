@@ -1,5 +1,5 @@
 return {
-  { "mattn/webapi-vim",            lazy = true },
+  -- { "mattn/webapi-vim",            lazy = true },
   { "norcalli/nvim-colorizer.lua", event = "BufReadPost" },
   { "andymass/vim-matchup",        event = "BufReadPost" },
   { "kevinhwang91/nvim-hlslens",   event = "BufReadPost", opts = {} },

@@ -62,15 +62,19 @@ sudo systemctl enable lightdm.service
 paru -S light-locker --noconfirm --needed
 
 # Localization
+# lightdm-webkit2-greeter
+# black screen issue, https://gitlab.archlinux.org/archlinux/packaging/packages/webkit2gtk/-/issues/1
 if [ -e /etc/environment ]; then
   grep -q "LANG=" /etc/environment ||
     echo "
 LANG=zh_CN.UTF-8
-LANGUAGE=zh_CN:en_US" | sudo tee -a /etc/environment
+LANGUAGE=zh_CN:en_US
+WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee -a /etc/environment
 else
   echo "
 LANG=zh_CN.UTF-8
-LANGUAGE=zh_CN:en_US" | sudo tee /etc/environment
+LANGUAGE=zh_CN:en_US
+WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee /etc/environment
 fi
 
 # using accountsserice to set the language of lightdm-webkit2-greeter

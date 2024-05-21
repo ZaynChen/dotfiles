@@ -25,8 +25,11 @@ function M.setup()
 
   Util.track("colorscheme")
 
+  -- 'termguicolors' is enabled by default
+  -- when Nvim is able to determine that
+  -- the host terminal emulator supports 24-bit color.  neovim-0.10
+  -- vim.o.termguicolors = true
   vim.o.background = "dark"
-  vim.o.termguicolors = true
   vim.cmd.colorscheme("base16-onedark")
 
   Util.track()

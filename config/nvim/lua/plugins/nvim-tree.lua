@@ -255,9 +255,9 @@ local opts = { -- BEGIN_DEFAULT_OPTS
 --   map("<leader>n", "<cmd>NvimTreeToggle<cr>", "[NvimTree]Toggle")
 -- end
 return {
-  "kyazdani42/nvim-tree.lua",
+  "nvim-tree/nvim-tree.lua",
   dependencies = {
-    { "kyazdani42/nvim-web-devicons", lazy = true },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
   },
   opts = opts,
   keys = {
