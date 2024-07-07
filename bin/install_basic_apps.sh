@@ -61,30 +61,38 @@ grep -q "NaturalScrolling" /usr/share/X11/xorg.conf.d/40-libinput.conf ||
 sudo systemctl enable lightdm.service
 paru -S light-locker --noconfirm --needed
 
-# Localization
-# lightdm-webkit2-greeter
 # black screen issue, https://gitlab.archlinux.org/archlinux/packaging/packages/webkit2gtk/-/issues/1
 if [ -e /etc/environment ]; then
-  grep -q "LANG=" /etc/environment ||
-    echo "
-LANG=zh_CN.UTF-8
-LANGUAGE=zh_CN:en_US
-WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee -a /etc/environment
+  grep -q "WEBKIT_DISABLE_DMABUF_RENDERER" ||
+    echo "WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee -a /etc/environment
 else
-  echo "
-LANG=zh_CN.UTF-8
-LANGUAGE=zh_CN:en_US
-WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee /etc/environment
+  echo "WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee /etc/environment
 fi
 
+# if [ -e /etc/environment ]; then
+#   grep -q "LANG=" /etc/environment ||
+#     echo "
+# LANG=zh_CN.UTF-8
+# LANGUAGE=zh_CN:en_US
+# WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee -a /etc/environment
+# else
+#   echo "
+# LANG=zh_CN.UTF-8
+# LANGUAGE=zh_CN:en_US
+# WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee /etc/environment
+# fi
+
+# Localization
 # using accountsserice to set the language of lightdm-webkit2-greeter
 # in order to deal with language ambigious, e.g. lightdm.language = "中文"
 # when the actual language is "zh_CN" or "zh_TW"
 paru -S accountsservice --noconfirm --needed
-if sudo test -e /var/lib/AccountsService/users/$USER; then
-  sudo grep -q "Language" /var/lib/AccountsService/users/$USER ||
-    echo "Language=zh_CN.UTF-8" | sudo tee -a /var/lib/AccountsService/users/$USER
-fi
+# using D-Bus to set Localization of user's session, need relogin
+busctl call org.freedesktop.Accounts /org/freedesktop/Accounts/User$UID org.freedesktop.Accounts.User SetLanguage s zh_CN.UTF-8
+# if sudo test -e /var/lib/AccountsService/users/$USER; then
+#   sudo grep -q "Language" /var/lib/AccountsService/users/$USER ||
+#     echo "Language=zh_CN.UTF-8" | sudo tee -a /var/lib/AccountsService/users/$USER
+# fi
 
 # audio middleware pulseaudio replacement
 paru -S pipewire lib32-pipewire --noconfirm --needed
