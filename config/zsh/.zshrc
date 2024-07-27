@@ -68,7 +68,7 @@ ZSH_TMUX_CONFIG="$XDG_CONFIG_HOME/tmux/tmux.conf"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=()
 plugins+=(aliases cp dotenv)
-plugins+=(brew dash fd git man npm ripgrep)
+plugins+=(brew dash git man npm)
 plugins+=(node python rust)
 plugins+=(tmux tmuxinator)
 plugins+=(colored-man-pages themes)
