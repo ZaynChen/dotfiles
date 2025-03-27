@@ -2,6 +2,29 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
+    presets = "modern", -- "classic" | "modern" | "helix"
+    delay = function(ctx)
+      return ctx.plugin and 0 or 200
+    end,
+    filter = function(mapping)
+      -- return mapping.desc and mapping.desc ~= ""
+      return true
+    end,
+    spec = {},
+    notify = true,
+    modes = {
+      n = true,
+      i = true,
+      x = true,
+      s = true,
+      o = true,
+      t = true,
+      c = true,
+      defer = {
+        ["<C-V>"] = true,
+        V = true,
+      }
+    },
     plugins = {
       marks = true,       -- shows a list of your marks on ' and `
       registers = true,   -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -21,66 +44,101 @@ return {
         g = true,            -- bindings for prefixed with g
       },
     },
-    -- add operators that will trigger motion and text object completion
-    -- to enable all native operators, set the preset / operators plugin above
-    operators = {
-      ["<leader>y"] = "Yank (copy) to system clipboard",
-      ["<leader>d"] = "Delete avoid register",
-      -- gb = "Comment toggle blockwise",
-      -- gc = "Comment toggle linewise",
-    },
-    key_labels = {
-      -- override the label used to display some keys. It doesn't effect WK in any other way.
-      ["<C-Up>"] = "<C-↑>",
-      ["<C-Right>"] = "<C-→>",
-      ["<C-Down>"] = "<C-↓>",
-      ["<C-Left>"] = "<C-←>",
-      ["<C-CR>"] = "<C-↵>",
-      ["<M-Up>"] = "<M-↑>",
-      ["<M-Right>"] = "<M-→>",
-      ["<M-Down>"] = "<M-↓>",
-      ["<M-Left>"] = "<M-←>",
-      ["<M-CR>"] = "<M-↵>",
-      ["<Up>"] = "↑",
-      ["<Right>"] = "→",
-      ["<Down>"] = "↓",
-      ["<Left>"] = "←",
-      ["<CR>"] = "↵",
-    },
-    icons = {
-      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-      separator = "➜", -- symbol used between a key and it's label
-      group = "+", -- symbol prepended to a group
-    },
-    popup_mappings = {
-      scroll_down = '<c-d>', -- binding to scroll down inside the popup
-      scroll_up = '<c-u>',   -- binding to scroll up inside the popup
-    },
-    window = {
-      border = "none",          -- none, single, double, shadow
-      position = "bottom",      -- bottom, top
-      margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]
-      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0
+    win = {
+      no_overlap = true,
+      -- width = 1,
+      -- height = { min = 4, max = 25 },
+      -- col = 0,
+      -- row = math.huge,
+      -- border = "none",
+      padding = { 1, 2 },
+      title = true,
+      title_pos = "center",
+      zindex = 1000,
+      bo = {},
+      wo = {
+        -- winblend = 10,
+      },
     },
     layout = {
-      height = { min = 4, max = 25 },                                             -- min and max height of the columns
-      width = { min = 20, max = 50 },                                             -- min and max width of the columns
-      spacing = 3,                                                                -- spacing between columns
-      align = "left",                                                             -- align columns left, center or right
+      width = { min = 20 }, -- min and max width of the columns
+      spacing = 3,          -- spacing between columns
+      align = "left",       -- align columns left, center or right
     },
-    ignore_missing = false,                                                       -- enable this to hide mappings for which you didn't specify a label
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-    show_help = true,                                                             -- show help message on the command line when the popup is visible
-    triggers = "auto",                                                            -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
-    triggers_blacklist = {
-      -- list of mode / prefixes that should never be hooked by WhichKey
-      -- this is mostly relevant for key maps that start with a native binding
-      -- most people should not need to change this
-      i = { "j", "k" },
-      v = { "j", "k" },
+    keys = {
+      scroll_down = "<c-d>",
+      scroll_up = "<c-u>",
     },
+    sort = { "local", "order", "group", "alphanum", "mod" },
+    expand = 0, -- expand gruops when <= n mappings
+    replace = {
+      key = {
+        function(key)
+          return require("which-key.view").format(key)
+        end,
+        -- { "<Space>", "SPC" },
+      },
+      desc = {
+        { "<Plug>%((.*)%)", "%1" },
+        { "^%+",            "" },
+        { "<[cC]md>",       "" },
+        { "<[cC][rR]>",     "" },
+        { "<[sS]ilent>",    "" },
+        { "^lua%s+",        "" },
+        { "^call%s+",       "" },
+        { "^:%s*",          "" },
+      },
+    },
+    icons = {
+      breadcrumb = "»",
+      separator = "➜",
+      group = "+",
+      ellipsis = "…",
+      rules = {},
+      colors = true,
+      -- used by key format
+      keys = {
+        Up = " ",
+        Down = " ",
+        Left = " ",
+        Right = " ",
+        C = "󰘴 ",
+        M = "󰘵 ",
+        S = "󰘶 ",
+        CR = "󰌑 ",
+        Esc = "󱊷 ",
+        ScrollWheelDown = "󱕐 ",
+        ScrollWheelUp = "󱕑 ",
+        NL = "󰌑 ",
+        BS = "⌫",
+        Space = "󱁐 ",
+        Tab = "󰌒 ",
+        F1 = "󱊫",
+        F2 = "󱊬",
+        F3 = "󱊭",
+        F4 = "󱊮",
+        F5 = "󱊯",
+        F6 = "󱊰",
+        F7 = "󱊱",
+        F8 = "󱊲",
+        F9 = "󱊳",
+        F10 = "󱊴",
+        F11 = "󱊵",
+        F12 = "󱊶",
+      }
+    },
+    show_help = true,
+    show_keys = true,
+    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
+    triggers = true,
+    disable = {
+      ft = {},
+      bt = {},
+      trigger = function(ctx)
+        return false
+      end,
+    },
+    debug = false,
   },
   config = function()
     local wk = require("which-key")
@@ -89,75 +147,78 @@ return {
       { trigger = "z=", mode = "n" }
     }
 
-    wk.register({
-      ["<C-D>"] = "delete one shiftwidth of indent in the current line",
-      ["<C-E>"] = "[Cmp]Abort",
-      ["<C-F>"] = "not used",
-      ["<C-H>"] = "same as <BS>",
-      ["<C-J>"] = "same as <CR>",
-      ["<C-K>"] = "enter digraph",
-      ["<C-N>"] = "[Cmp]Next",
-      ["<C-O>"] = "execute a single command and return to insert mode",
-      ["<C-P>"] = "[Cmp]Prev",
-      ["<C-Q>"] = "same as <C-V>, unless used for terminal control flow",
-      ["<C-S>"] = "not used or used for terminal control flow",
-      ["<C-T>"] = "insert one shiftwidth of indent in the current line",
-      ["<C-U>"] = "delete all entered chars in the current line",
-      ["<C-W>"] = "delete word before the cursor",
-      ["<C-Y>"] = "[Cmp]Comfirm",
-      ["<Down>"] = "[Cmp]Next",
-      ["<Up>"] = "[Cmp]Prev",
-      ["<Tab>"] = "[Cmp]Expand or next",
-      ["<S-Tab>"] = "[Cmp]Prev",
-      ["<M-e>"] = "[Autopairs]Fast wrap",
-      ["<M-k>"] = "[LSP]Toggle signature",
-    }, { mode = "i" })
-
-    wk.register({
-      ["<C-B>"] = "cursor to begin of command-line",
-      ["<C-D>"] = "list completions that match the pattern in front fo the cursor",
-      ["<C-E>"] = "[Cmp]Abort & cursor to end of command-line",
-      ["<C-J>"] = "same as <CR>",
-      ["<C-K>"] = "enter digraph",
-      ["<C-N>"] = "[Cmp]Next",
-      ["<C-P>"] = "[Cmp]Prev",
-      ["<C-U>"] = "delete all entered chars in the current command-line",
-      ["<C-W>"] = "delete word in front of the cursor",
-      ["<C-Y>"] = "[Cmp]Confirm",
-      ["<C-Z>"] = "[Cmp]Expand or next",
-      ["<Tab>"] = "[Cmp]Expand or next",
-      ["<S-Tab>"] = "[Cmp]Prev",
-    }, { mode = "c" })
-
-    wk.register {
-      -- Treesitter
-      ["<M-]>"] = "[TS]Function next",
-      ["<M-[>"] = "[TS]Function prev",
-      ["<M-l>"] = "[TS]Parameter swap next",
-      ["<M-h>"] = "[TS]Parameter swap prev",
-      ["<M-j>"] = "[TS]Definition navigation next",
-      ["<M-k>"] = "[TS]Definition navigation prev",
-      ["<M-r>"] = "[TS]Rename",
-      ["<M-m>"] = "[Terminal]Toggle",
-      Z = {
-        Z = "Write if buffer changed and close window",
-        Q = "Close window without writing",
+    wk.add({
+      {
+        mode = { "i" },
+        { "<C-D>",   desc = "delete one shiftwidth of indent in the current line" },
+        { "<C-E>",   desc = "[Cmp]Abort" },
+        { "<C-F>",   desc = "not used" },
+        { "<C-H>",   desc = "same as <BS>" },
+        { "<C-J>",   desc = "same as <CR>" },
+        { "<C-K>",   desc = "enter digraph" },
+        { "<C-N>",   desc = "[Cmp]Next" },
+        { "<C-O>",   desc = "execute a single command and return to insert mode" },
+        { "<C-P>",   desc = "[Cmp]Prev" },
+        { "<C-Q>",   desc = "same as <C-V>, unless used for terminal control flow" },
+        { "<C-S>",   desc = "not used or used for terminal control flow" },
+        { "<C-T>",   desc = "insert one shiftwidth of indent in the current line" },
+        { "<C-U>",   desc = "delete all entered chars in the current line" },
+        { "<C-W>",   desc = "delete word before the cursor" },
+        { "<C-Y>",   desc = "[Cmp]Comfirm" },
+        { "<Down>",  desc = "[Cmp]Next" },
+        { "<M-e>",   desc = "[Autopairs]Fast wrap" },
+        { "<M-k>",   desc = "[LSP]Toggle signature" },
+        { "<S-Tab>", desc = "[Cmp]Prev" },
+        { "<Tab>",   desc = "[Cmp]Expand or next" },
+        { "<Up>",    desc = "[Cmp]Prev" },
       },
-    }
-
-    wk.register({
-      b = { name = "buffer" },
-      g = {
-        name = "gitsigns",
-        -- t = "toggle",
+      {
+        mode = { "c" },
+        { "<C-B>",   desc = "cursor to begin of command-line" },
+        { "<C-D>",   desc = "list completions that match the pattern in front fo the cursor" },
+        { "<C-E>",   desc = "[Cmp]Abort & cursor to end of command-line" },
+        { "<C-J>",   desc = "same as <CR>" },
+        { "<C-K>",   desc = "enter digraph" },
+        { "<C-N>",   desc = "[Cmp]Next" },
+        { "<C-P>",   desc = "[Cmp]Prev" },
+        { "<C-U>",   desc = "delete all entered chars in the current command-line" },
+        { "<C-W>",   desc = "delete word in front of the cursor" },
+        { "<C-Y>",   desc = "[Cmp]Confirm" },
+        { "<C-Z>",   desc = "[Cmp]Expand or next" },
+        { "<S-Tab>", desc = "[Cmp]Prev" },
+        { "<Tab>",   desc = "[Cmp]Expand or next" },
       },
-      h = { name = "help" },
-      l = { name = "lsp" },
-      -- t = { name = "tab" },
-    }, { prefix = "<leader>" })
+      {
+        { "<M-[>",     desc = "[TS]Function prev" },
+        { "<M-]>",     desc = "[TS]Function next" },
+        { "<M-h>",     desc = "[TS]Parameter swap prev" },
+        { "<M-j>",     desc = "[TS]Definition navigation next" },
+        { "<M-k>",     desc = "[TS]Definition navigation prev" },
+        { "<M-l>",     desc = "[TS]Parameter swap next" },
+        { "<M-m>",     desc = "[Terminal]Toggle" },
+        { "<M-r>",     desc = "[TS]Rename" },
+        { "ZQ",        desc = "Close window without writing" },
+        { "ZZ",        desc = "Write if buffer changed and close window" },
+        { "<leader>b", group = "buffer" },
+        { "<leader>g", group = "gitsigns" },
+        { "<leader>h", group = "help" },
+        { "<leader>l", group = "lsp" },
+        { "gr",        group = "lsp" }
+      },
+    })
 
-    for _, mode in ipairs { "n", "i", "c", "v" } do
-      vim.keymap.set(mode, "<C-/>", "<cmd>WhichKey '' " .. mode .. "<cr>", { silent = true })
-    end
+    -- for _, mode in ipairs { "n", "i", "c", "v" } do
+    --   vim.keymap.set(mode, "<C-/>", "<cmd>WhichKey '' " .. mode .. "<cr>", { silent = true })
+    -- end
   end,
+  keys = {
+    {
+      "<C-/>",
+      function()
+        require("which-key").show()
+      end,
+      mode = { "n", "i", "c", "v" },
+      desc = "Buffer Local Keymaps(which-key)"
+    }
+  }
 }

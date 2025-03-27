@@ -45,5 +45,5 @@ map("<leader>to", "<cmd>Tabonly<cr>", "[Tap]Only")
 -- map("<leader>tm", "<cmd>Tabmove<cr>", "[Tap]Move") -- Not supported yet
 
 -- Comment
-map("gc", "<Plug>VSCodeCommentary", { mode = { "n", "o", "x" } })
-map("gcc", "<Plug>VSCodeCommentaryLine")
+map("gc", "<Plug>VSCodeCommentary", "gc", { mode = { "n", "o", "x" } })
+map("gcc", "<Plug>VSCodeCommentaryLine", "gcc")

@@ -205,20 +205,10 @@ return {
           end
         })
 
-        -- vim.lsp.start() sets the following default keymaps
-        -- (assuming server support):
-        -- K in Normal mode maps to vim.lsp.buf.hover(),
-        -- unless 'keywordprg' was customized before calling vim.lsp.start().
         local mappings = {
-          { "K",          lsp.buf.hover,           "[LSP]Hover" },
-          { "<leader>la", lsp.buf.code_action,     "[LSP]Code action" },
-          { "<leader>lr", lsp.buf.rename,          "[LSP]Rename" },
-          { "gd",         lsp.buf.definition,      "[LSP]Definition" },
-          { "gD",         lsp.buf.declaration,     "[LSP]Declaration" },
-          { "gI",         lsp.buf.implementation,  "[LSP]Implementation" },
-          { "gK",         lsp.buf.signature_help,  "[LSP]Signature" },
-          { "gr",         lsp.buf.references,      "[LSP]References" },
-          { "gy",         lsp.buf.type_definition, "[LSP]Type Definition" },
+          { "gd", lsp.buf.definition,     "[LSP]Definition" },
+          { "gD", lsp.buf.declaration,    "[LSP]Declaration" },
+          { "gK", lsp.buf.signature_help, "[LSP]Signature" },
         }
         for _, mapping in ipairs(mappings) do
           local lhs, rhs, desc = mapping[1], mapping[2], mapping[3]
@@ -226,30 +216,8 @@ return {
         end
       end
     })
-    --
+
     -- diagnostic config
-    --
-    -- local sign_define = function(opts)
-    --   vim.fn.sign_define(opts.name, {
-    --     texthl = opts.name,
-    --     text = opts.text,
-    --     numhl = ""
-    --   })
-    -- end
-
-    -- local signs = {
-    --   { name = "DiagnosticSignError", text = "" },
-    --   { name = "DiagnosticSignWarn", text = "" },
-    --   { name = "DiagnosticSignHint", text = "" },
-    --   { name = "DiagnosticSignInfo", text = "" },
-    -- }
-
-    -- for _, sign in ipairs(signs) do
-    --   sign_define(sign)
-    -- end
-
-    -- Configuring diagnostic-signs using :sign-define or sign_define().
-    -- Use the "signs" key of vim.diagnostic.config() instead. # neovim-0.10
     vim.diagnostic.config {
       virtual_text = false,
       -- signs = true,
