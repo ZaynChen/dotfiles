@@ -29,11 +29,26 @@ return {
         },
         ignore_focus = {},
         always_divide_middle = true,
-        globalstatus = vim.go.laststatus == 3,
+        always_show_tabline = true,
+        -- globalstatus = vim.go.laststatus == 3,
+        globalstatus = false,
         refresh = {
           statusline = 1000,
           tabline = 1000,
           winbar = 1000,
+          refresh_time = 16, -- ~60fps
+          events = {
+            'WinEnter',
+            'BufEnter',
+            'BufWritePost',
+            'SessionLoadPost',
+            'FileChangedShellPost',
+            'VimResized',
+            'Filetype',
+            'CursorMoved',
+            'CursorMovedI',
+            'ModeChanged',
+          },
         }
       },
       sections = {
@@ -46,7 +61,7 @@ return {
             cond = require("lazy.status").has_updates,
             color = { fg = "#ff9e64" },
           },
-          "encoding", "fileformat", "filetype"
+          "lsp_status", "encoding", "fileformat", "filetype"
         },
         lualine_y = { "progress" },
         lualine_z = { "location" }

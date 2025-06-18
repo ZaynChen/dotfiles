@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
   desc = "Highlight Yank",
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end
 })
 

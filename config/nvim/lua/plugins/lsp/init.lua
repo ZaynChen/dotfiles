@@ -1,14 +1,41 @@
-local extension_path = "/usr/lib/codelldb"
-local codelldb_path = extension_path .. "/adapter/codelldb"
-local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
+-- local extension_path = "/usr/lib/codelldb"
+-- local codelldb_path = extension_path .. "/adapter/codelldb"
+-- local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
 
 return {
-  "neovim/nvim-lspconfig",
-  version = false,
+  "mason-org/mason-lspconfig.nvim",
   event = { "BufReadPost", "BufNewFile", },
+  opts = {
+    -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
+    -- This setting has no relation with the `automatic_installation` setting.
+    ensure_installed = {
+      "lua_ls", "clangd", "cmake", "pyright", "bashls",
+      "vue_ls", "asm_lsp", "rust_analyzer", "julials",
+    },
+
+    -- Whether installed servers should automatically be enabled via `:h vim.lsp.enable()`.
+    --
+    -- To exclude certain servers from being automatically enabled:
+    -- ```lua
+    --   automatic_enable = {
+    --     exclude = { "rust_analyzer", "ts_ls" }
+    --   }
+    -- ```
+    --
+    -- To only enable certain servers to be automatically enabled:
+    -- ```lua
+    --   automatic_enable = {
+    --     "lua_ls",
+    --     "vimls"
+    --   }
+    --   FIX: do not work
+    -- ```
+    ---@type boolean | string[] | { exclude: string[] }
+    automatic_enable = true,
+  },
   dependencies = {
     {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       opts = {
         -- The directory in which to install packages.
         -- install_root_dir = path.concat { vim.fn.stdpath "data", "mason" },
@@ -25,221 +52,150 @@ return {
       },
     },
     {
-      "williamboman/mason-lspconfig.nvim",
-      opts = {
-        -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
-        -- This setting has no relation with the `automatic_installation` setting.
-        ensure_installed = {
-          "lua_ls", "clangd", "cmake", "pyright", "bashls",
-          "volar", "asm_lsp", "rust_analyzer", "julials",
-        },
-
-        -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
-        -- This setting has no relation with the `ensure_installed` setting.
-        -- Can either be:
-        --   - false: Servers are not automatically installed.
-        --   - true: All servers set up via lspconfig are automatically installed.
-        --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
-        --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-        ---@type boolean
-        automatic_installation = true,
-
-        -- See `:h mason-lspconfig.setup_handlers()`
-        ---@type table<string, fun(server_name: string)>?
-        handlers = nil,
+      "neovim/nvim-lspconfig",
+      dependencies = {
+        "hrsh7th/cmp-nvim-lsp",
       },
-    },
-    "nvim-lua/lsp-status.nvim",
-    "hrsh7th/cmp-nvim-lsp",
-    "JuliaEditorSupport/julia-vim",
-    "simrat39/rust-tools.nvim",
-    "ray-x/lsp_signature.nvim",
-  },
-  config = function()
-    local lsp = vim.lsp
-    local lsp_status = require("lsp-status")
-    local lspconfig = require("lspconfig")
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    local mason_lspconfig = require("mason-lspconfig")
-    -- local lsp_format = require("lsp-format") -- autocmd
-    -- require("plugins.lsp.mason")
+      config = function()
+        local lsp = vim.lsp
 
-    lsp_status.register_progress()
+        lsp.config("*", {
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        })
 
-    local capabilities = lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend("force", capabilities, lsp_status.capabilities)
-    capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+        local map = require("util").map
 
-    local on_attach = function(client)
-      lsp_status.on_attach(client)
-      -- lsp_format.on_attach(client)
-    end
+        vim.api.nvim_create_autocmd("LspAttach", {
+          group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+          callback = function(ev)
+            local buf = ev.buf
 
-    local server_opts = {
-      {
-        capabilities,
-        on_attach,
-      },
-      julials = true,
-      clangd = {
-        handlers = lsp_status.extensions.clangd.setup(),
-        init_options = {
-          clangdFileStatus = true,
-        },
-      },
-      cmake = true,
-      pyright = true,
-      bashls = true,
-      volar = {
-        init_options = {
-          typescript = {
-            tsdk = vim.env.XDG_DATA_HOME .. '/npm/lib/node_modules/typescript/lib'
-          }
-        },
-        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
-      },
-      lua_ls = {
-        settings = {
-          Lua = {
-            runtime = {
-              version = 'Lua 5.4',
-              path = {
-                "?.lua",
-                "?/init.lua",
-                vim.fn.expand("~/.luarocks/share/lua/5.4/?.lua"),
-                vim.fn.expand("~/.luarocks/share/lua/5.4/?/init.lua"),
-                -- "/usr/share/lua/5.4/?.lua",
-                -- "/usr/share/lua/5.4/?/init.lua"
-              }
-            },
-            workspace = {
-              library = {
-                vim.fn.expand("~/.luarocks/share/lua/5.4"),
-                -- "/usr/share/lua/5.4",
-              }
-              -- library = vim.tbl_extend("keep",
-              --   vim.api.nvim_get_runtime_file("", true), {
-              --   -- vim.fn.expand(vim.env.NVIMRUNTIME .. "/lua"),
-              --   vim.fn.expand("~/.luarocks/share/lua/5.4"),
-              --   -- "/usr/share/lua/5.4",
-              -- })
-            },
-            format = {
-              enable = true,
-              -- defaultConfig = {
-              --   indent_style = "space",
-              --   indent_size = "2",
-              -- }
-            },
-            completion = {
-              keywordSnippet = "Replace", -- Disable,Replace,Both
-              -- callSnippet = "Replace",
-            },
-            diagnostics = {
-              enable = true,
-              globals = { "vim", "hs", "it", "describe", "before_each", "after_each" },
-              disable = { "lowercase-global" },
-              -- neededFileStatus = {
-              --   ["codestyle-check"] = "Any",
-              -- }
-            },
-            hint = {
-              enable = true,
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-              enable = false,
+            vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+            vim.bo[buf].tagfunc = "v:lua.vim.lsp.tagfunc"
+
+            -- FormatOnSave
+            local grp = vim.api.nvim_create_augroup("UserLspConfig", { clear = false })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = grp,
+              buffer = buf,
+              desc = "[LSP]FormatOnSave",
+              callback = function()
+                lsp.buf.format({ async = false })
+              end
+            })
+
+            -- Show diagnostic popup on cursor hover
+            -- <C-W>d (and <C-W><C-D>) map to vim.diagnostic.open_float()
+            -- CTRL-W_d-default
+            vim.api.nvim_create_autocmd("CursorHold", {
+              group = grp,
+              buffer = buf,
+              desc = "[Diagnostic]Open float when cursor hold",
+              callback = function()
+                vim.diagnostic.open_float(nil, { focusable = false })
+              end
+            })
+
+            local mappings = {
+              { "K",  lsp.buf.hover,          "[LSP]Hover" },
+              { "gd", lsp.buf.definition,     "[LSP]Definition" },
+              { "gD", lsp.buf.declaration,    "[LSP]Declaration" },
+              { "gK", lsp.buf.signature_help, "[LSP]Signature" },
             }
+            for _, mapping in ipairs(mappings) do
+              local lhs, rhs, desc = mapping[1], mapping[2], mapping[3]
+              map(lhs, rhs, desc, { buffer = buf })
+            end
+          end
+        })
+
+        -- diagnostic config
+        vim.diagnostic.config {
+          virtual_text = false,
+          -- signs = true,
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = "",
+              [vim.diagnostic.severity.WARN] = "",
+              [vim.diagnostic.severity.HINT] = "",
+              [vim.diagnostic.severity.INFO] = "",
+            },
+          },
+          update_in_insert = true,
+          underline = true,
+          severity_sort = true,
+          float = {
+            focusable = false,
+            style = "minimal",
+            border = "rounded",
+            source = "always",
+            header = "",
+            prefix = "",
           },
         }
-      },
-      asm_lsp = true
-    }
+      end,
+    },
+    "JuliaEditorSupport/julia-vim",
+    "simrat39/rust-tools.nvim",
+    {
+      "ray-x/lsp_signature.nvim",
+      event = { "VeryLazy" },
+      opts = {
+        debug = false,                                              -- set to true to enable debug logging
+        log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
+        -- default is  ~/.cache/nvim/lsp_signature.log
+        verbose = false,                                            -- show debug line number
 
-    mason_lspconfig.setup_handlers {
-      function(server)
-        local opts = server_opts[server]
-        if not opts then
-          return
-        end
+        bind = true,                                                -- This is mandatory, otherwise border config won't get registered.
+        -- If you want to hook lspsaga or other signature handler, pls set to false
+        doc_lines = 10,                                             -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+        -- set to 0 if you DO NOT want any API comments be shown
+        -- This setting only take effect in insert mode, it does not affect signature help in normal
+        -- mode, 10 by default
 
-        if type(opts) ~= "table" then
-          opts = {}
-        end
+        floating_window = true,                -- show hint in a floating window, set to false for virtual text only mode
 
-        opts = vim.tbl_deep_extend("force", server_opts[1], opts)
-        lspconfig[server].setup(opts)
-      end
-    }
+        floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
+        -- will set to true when fully tested, set to false will use whichever side has more space
+        -- this setting will be helpful if you do not want the PUM and floating win overlap
 
-    local map = require("util").map
+        floating_window_off_x = 1, -- adjust float windows x position.
+        floating_window_off_y = 0, -- adjust float windows y position.
 
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      callback = function(ev)
-        local buf = ev.buf
 
-        vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-        vim.bo[buf].tagfunc = "v:lua.vim.lsp.tagfunc"
-
-        -- FormatOnSave
-        local grp = vim.api.nvim_create_augroup("UserLspConfig", { clear = false })
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          group = grp,
-          buffer = buf,
-          desc = "[LSP]FormatOnSave",
-          callback = function()
-            lsp.buf.format({ async = false })
-          end
-        })
-
-        -- Show diagnostic popup on cursor hover
-        -- <C-W>d (and <C-W><C-D>) map to vim.diagnostic.open_float()
-        -- CTRL-W_d-default
-        vim.api.nvim_create_autocmd("CursorHold", {
-          group = grp,
-          buffer = buf,
-          desc = "[Diagnostic]Open float when cursor hold",
-          callback = function()
-            vim.diagnostic.open_float(nil, { focusable = false })
-          end
-        })
-
-        local mappings = {
-          { "gd", lsp.buf.definition,     "[LSP]Definition" },
-          { "gD", lsp.buf.declaration,    "[LSP]Declaration" },
-          { "gK", lsp.buf.signature_help, "[LSP]Signature" },
-        }
-        for _, mapping in ipairs(mappings) do
-          local lhs, rhs, desc = mapping[1], mapping[2], mapping[3]
-          map(lhs, rhs, desc, { buffer = buf })
-        end
-      end
-    })
-
-    -- diagnostic config
-    vim.diagnostic.config {
-      virtual_text = false,
-      -- signs = true,
-      signs = {
-        text = {
-          [vim.diagnostic.severity.ERROR] = "",
-          [vim.diagnostic.severity.WARN] = "",
-          [vim.diagnostic.severity.HINT] = "",
-          [vim.diagnostic.severity.INFO] = "",
+        fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
+        hint_enable = false, -- virtual hint enable
+        hint_prefix = "🐼 ", -- Panda for parameter
+        hint_scheme = "String",
+        hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
+        max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+        -- to view the hiding contents
+        max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+        handler_opts = {
+          border = "rounded" -- double, rounded, single, shadow, none
         },
-      },
-      update_in_insert = true,
-      underline = true,
-      severity_sort = true,
-      float = {
-        focusable = false,
-        style = "minimal",
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
+
+        always_trigger = false,   -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+
+        auto_close_after = nil,   -- autoclose signature float win after x sec, disabled if nil.
+        extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+        zindex = 200,             -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
+
+        padding = '',             -- character to pad on left and right of signature can be ' ', or '|'  etc
+
+        transparency = nil,       -- disabled by default, allow floating win transparent value 1~100
+        shadow_blend = 36,        -- if you using shadow as border use this set the opacity
+        shadow_guibg = 'Black',   -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+        timer_interval = 200,     -- default timer check interval set to lower value if you want to reduce latency
+        toggle_key = "<M-k>"      -- toggle signature on and off in insert mode
       },
     }
-  end,
+  },
+  config = function()
+    -- enable all servers
+    vim.lsp.enable({
+      "lua_ls", "clangd", "cmake", "pyright", "bashls",
+      "vue_ls", "asm_lsp", "rust_analyzer", "julials",
+    })
+  end
 }
