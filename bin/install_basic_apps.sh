@@ -173,7 +173,8 @@ paru -S firefox-developer-edition firefox-developer-edition-i18n-zh-cn --noconfi
 
 # nc netcat utility, for ssh ProxyJump
 paru -S openbsd-netcat --noconfirm --needed
-paru -S clash-for-windows-chinese --noconfirm --needed
+# paru -S clash-for-windows-chinese --noconfirm --needed
+paru -S mihomo-party --noconfirm --needed
 
 # RS code statistic tool
 paru -S tokei --noconfirm --needed

@@ -577,7 +577,7 @@ ruled.client.connect_signal("request::rules", function()
   }
 
   ruled.client.append_rule {
-    rule_any   = { class = { "Clash for Windows" } },
+    rule_any   = { class = { "Clash for Windows", "Mihomo Party" } },
     properties = { screen = 1, tag = "7" }
   }
 

@@ -5,6 +5,7 @@ config/BraveSoftware
 config/cef_user_data
 config/citra*
 config/clash*
+config/mihomo-party
 config/Code*
 config/dconf
 config/docker
