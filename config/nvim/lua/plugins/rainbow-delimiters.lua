@@ -2,26 +2,28 @@ return {
   "HiPhish/rainbow-delimiters.nvim",
   event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   config = function()
-    local rb = require("rainbow-delimiters")
     vim.g.rainbow_delimiters = {
       strategy = {
-        [''] = rb.strategy['global'],
-        vim = rb.strategy['local'],
+        [''] = "rainbow-delimiters.strategy.global",
+        vim = "rainbow-delimiters.strategy.local",
       },
       query = {
-        [''] = 'rainbow-delimiters',
+        [''] = "rainbow-delimiters",
+        lua = "rainbow-blocks",
         latex = "rainbow-blocks",
-        query = 'rainbow-blocks',
-        -- lua = 'rainbow-blocks',
+      },
+      priority = {
+        [''] = 110,
+        lua = 210
       },
       highlight = {
-        'RainbowDelimiterRed',
-        'RainbowDelimiterYellow',
-        'RainbowDelimiterBlue',
-        'RainbowDelimiterOrange',
-        'RainbowDelimiterGreen',
-        'RainbowDelimiterViolet',
-        'RainbowDelimiterCyan',
+        "RainbowDelimiterRed",
+        "RainbowDelimiterYellow",
+        "RainbowDelimiterBlue",
+        "RainbowDelimiterOrange",
+        "RainbowDelimiterGreen",
+        "RainbowDelimiterViolet",
+        "RainbowDelimiterCyan",
       },
       blacklist = {},
     }
