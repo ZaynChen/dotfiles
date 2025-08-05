@@ -11,6 +11,7 @@ return {
     ensure_installed = {
       "lua_ls", "clangd", "cmake", "pyright", "bashls",
       "vue_ls", "asm_lsp", "rust_analyzer", "julials",
+      "hyprls", "jsonls", "cssls",
     },
 
     -- Whether installed servers should automatically be enabled via `:h vim.lsp.enable()`.
@@ -63,56 +64,45 @@ return {
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
 
-        local map = require("util").map
-
         vim.api.nvim_create_autocmd("LspAttach", {
           group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-          callback = function(ev)
-            local buf = ev.buf
+          callback = function(args)
+            local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-            vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-            vim.bo[buf].tagfunc = "v:lua.vim.lsp.tagfunc"
+            local grp = vim.api.nvim_create_augroup("UserLspConfig", { clear = false })
 
             -- FormatOnSave
-            local grp = vim.api.nvim_create_augroup("UserLspConfig", { clear = false })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = grp,
-              buffer = buf,
-              desc = "[LSP]FormatOnSave",
-              callback = function()
-                lsp.buf.format({ async = false })
-              end
-            })
+            if not client:supports_method("textDocument/willSaveWaitUntil")
+                and client:supports_method("textDocument/formatting") then
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                group = grp,
+                buffer = args.buf,
+                desc = "[LSP]FormatOnSave",
+                callback = function()
+                  lsp.buf.format({ bufnr = args.buf, id = client.id })
+                end
+              })
+            end
 
             -- Show diagnostic popup on cursor hover
             -- <C-W>d (and <C-W><C-D>) map to vim.diagnostic.open_float()
             -- CTRL-W_d-default
             vim.api.nvim_create_autocmd("CursorHold", {
               group = grp,
-              buffer = buf,
+              buffer = args.buf,
               desc = "[Diagnostic]Open float when cursor hold",
               callback = function()
-                vim.diagnostic.open_float(nil, { focusable = false })
+                -- vim.diagnostic.open_float(nil, { bufnr = args.buf, focusable = false })
+                vim.diagnostic.open_float(nil, { bufnr = args.buf, focusable = false })
               end
             })
-
-            local mappings = {
-              { "K",  lsp.buf.hover,          "[LSP]Hover" },
-              { "gd", lsp.buf.definition,     "[LSP]Definition" },
-              { "gD", lsp.buf.declaration,    "[LSP]Declaration" },
-              { "gK", lsp.buf.signature_help, "[LSP]Signature" },
-            }
-            for _, mapping in ipairs(mappings) do
-              local lhs, rhs, desc = mapping[1], mapping[2], mapping[3]
-              map(lhs, rhs, desc, { buffer = buf })
-            end
           end
         })
 
         -- diagnostic config
         vim.diagnostic.config {
-          virtual_text = false,
-          -- signs = true,
+          update_in_insert = true,
+          severity_sort = true,
           signs = {
             text = {
               [vim.diagnostic.severity.ERROR] = "",
@@ -121,16 +111,13 @@ return {
               [vim.diagnostic.severity.INFO] = "",
             },
           },
-          update_in_insert = true,
-          underline = true,
-          severity_sort = true,
           float = {
-            focusable = false,
             style = "minimal",
             border = "rounded",
             source = "always",
             header = "",
             prefix = "",
+            focusable = false,
           },
         }
       end,
@@ -197,6 +184,7 @@ return {
     vim.lsp.enable({
       "lua_ls", "clangd", "cmake", "pyright", "bashls",
       "vue_ls", "asm_lsp", "rust_analyzer", "julials",
+      "hyprls", "jsonls", "cssls",
     })
   end
 }
