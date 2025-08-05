@@ -4,17 +4,6 @@ return {
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     "onsails/lspkind.nvim",
-    {
-      "L3MON4D3/LuaSnip",
-      build = (function()
-        if vim.fn.has "win32" == 1 or vim.fn.executable("make") == 0 then
-          return
-        end
-        return "make install_jsregexp"
-      end)(),
-    },
-    "saadparwaiz1/cmp_luasnip",
-    "honza/vim-snippets",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
@@ -24,10 +13,36 @@ return {
     "hrsh7th/cmp-nvim-lua",
     "kdheepak/cmp-latex-symbols",
     "f3fora/cmp-spell",
+    "honza/vim-snippets",
+    "saadparwaiz1/cmp_luasnip",
     -- "ray-x/cmp-treesitter" -- to much content
     -- "jsfaint/gen_tags.vim"
     -- "c0r73x/neotags.lua"
     -- "rcarriga/cmp-dap"
+    {
+      "L3MON4D3/LuaSnip",
+      build = (function()
+        if vim.fn.has "win32" == 1 or vim.fn.executable("make") == 0 then
+          return
+        end
+        return "make install_jsregexp"
+      end)(),
+    },
+    {
+      "zbirenbaum/copilot-cmp",
+      config = function()
+        require("copilot_cmp").setup()
+      end
+    },
+    {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      opts = {
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      },
+    }
   },
   config = function()
     format = require("lspkind").cmp_format {
@@ -66,6 +81,7 @@ return {
         nvim_lsp = "[LSP]",
         cmp_nvim_lsp_signature_help = "[Signature]",
         -- ultisnips = "[Snips]",
+        Copilot = "[Copilot]",
         luasnip = "[Snips]",
         nvim_lua = "[Lua]",
         latex_symbols = "[Tex]",
@@ -74,7 +90,7 @@ return {
         cmdline = "[Cmd]",
         spell = "[Spell]",
         calc = "[Calc]",
-        crates = "[Crates]"
+        crates = "[Crates]",
       },
 
       -- The function below will be called before any actual modifications from lspkind
@@ -89,9 +105,10 @@ return {
     require("luasnip.loaders.from_snipmate").lazy_load()
 
     local has_words_before = function()
+      if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
       unpack = unpack or table.unpack
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
     end
 
     cmp.setup {
@@ -154,14 +171,15 @@ return {
       sorting = {
         priority_weight = 2,
         comparators = {
+          require("copilot_cmp.comparators").prioritize,
           cmp.config.compare.offset,
+          -- cmp.config.compare.scopes,
           cmp.config.compare.exact,
-          -- compare.scopes,
           cmp.config.compare.score,
           cmp.config.compare.recently_used,
           cmp.config.compare.locality,
           cmp.config.compare.kind,
-          -- compare.sort_text,
+          cmp.config.compare.sort_text,
           cmp.config.compare.length,
           cmp.config.compare.order,
         },
@@ -177,6 +195,7 @@ return {
       }, {
         { name = "calc" },
         { name = "luasnip" },
+        { name = "copilot" },
         -- { name = "ultisnips" },
       }, {
         { name = "buffer" },

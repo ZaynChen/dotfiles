@@ -123,7 +123,8 @@ return {
       end,
     },
     "JuliaEditorSupport/julia-vim",
-    "github/copilot.vim",
+    -- "github/copilot.vim",
+    -- "zbirenbaum/copilot.lua",
     "simrat39/rust-tools.nvim",
     {
       "ray-x/lsp_signature.nvim",
