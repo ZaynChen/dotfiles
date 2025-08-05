@@ -111,6 +111,8 @@ sudo luarocks install lain
 # paru -S lain-git --noconfirm --needed
 # paru -S awesome --noconfirm --needed
 paru -S awesome-git --noconfirm --needed
+paru -S hyprland-git hyprpaper waybar --noconfirm --needed
+paru -S sherlock-launcher-git --noconfirm --needed
 
 paru -S xdg-utils --noconfirm --needed
 paru -S alsa-utils --noconfirm --needed
