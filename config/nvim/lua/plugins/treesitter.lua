@@ -51,13 +51,13 @@ return {
     require("nvim-treesitter.configs").setup {
       sync_install = false,
       ensure_installed = {
-        "bash", "c", "cmake", "csv", "cuda", "dockerfile",
+        "bash", "c", "cmake", "css", "csv", "cuda", "dockerfile",
         "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore",
-        "html", "javascript", "json", "json5", "julia", "latex", "llvm",
-        "lua", "luadoc", "luap", "make", "markdown", "markdown_inline", "nasm",
-        "passwd", "python", "query", "ruby", "rust", "sql", "ssh_config",
-        "tmux", "todotxt", "toml", "typescript", "vim", "vimdoc", "vue",
-        "xml", "yaml", "zathurarc",
+        "html", "hyprlang", "javascript", "json", "json5", "julia", "latex",
+        "llvm", "lua", "luadoc", "luap", "make", "markdown", "markdown_inline",
+        "nasm", "passwd", "python", "query", "ruby", "rust", "scss", "sql",
+        "ssh_config", "tmux", "todotxt", "toml", "typescript", "vim", "vimdoc",
+        "vue", "xml", "yaml", "zathurarc"
       },
       auto_install = true,
       ignore_install = {},
