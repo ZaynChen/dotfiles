@@ -12,19 +12,16 @@ return {
     end,
     spec = {},
     notify = true,
-    modes = {
-      n = true,
-      i = true,
-      x = true,
-      s = true,
-      o = true,
-      t = true,
-      c = true,
-      defer = {
-        ["<C-V>"] = true,
-        V = true,
-      }
+    triggers = {
+      { "<auto>", mode = "nixso" },
     },
+    defer = function(ctx)
+      -- list_contains doesn't exist in neovim < v0.10
+      if vim.list_contains({ "d", "y" }, ctx.operator) then
+        return true
+      end
+      return vim.list_contains({ "<C-V>", "V" }, ctx.mode)
+    end,
     plugins = {
       marks = true,       -- shows a list of your marks on ' and `
       registers = true,   -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -63,7 +60,6 @@ return {
     layout = {
       width = { min = 20 }, -- min and max width of the columns
       spacing = 3,          -- spacing between columns
-      align = "left",       -- align columns left, center or right
     },
     keys = {
       scroll_down = "<c-d>",
@@ -96,6 +92,7 @@ return {
       ellipsis = "…",
       rules = {},
       colors = true,
+      mappings = true,
       -- used by key format
       keys = {
         Up = " ",
@@ -127,17 +124,13 @@ return {
         F12 = "󱊶",
       }
     },
-    show_help = true,
-    show_keys = true,
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
-    triggers = true,
     disable = {
       ft = {},
       bt = {},
-      trigger = function(ctx)
-        return false
-      end,
     },
+    show_help = true,
+    show_keys = true,
+    -- hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
     debug = false,
   },
   config = function()
@@ -206,16 +199,12 @@ return {
         { "gr",        group = "lsp" }
       },
     })
-
-    -- for _, mode in ipairs { "n", "i", "c", "v" } do
-    --   vim.keymap.set(mode, "<C-/>", "<cmd>WhichKey '' " .. mode .. "<cr>", { silent = true })
-    -- end
   end,
   keys = {
     {
       "<C-/>",
       function()
-        require("which-key").show()
+        require("which-key").show({ global = false })
       end,
       mode = { "n", "i", "c", "v" },
       desc = "Buffer Local Keymaps(which-key)"
