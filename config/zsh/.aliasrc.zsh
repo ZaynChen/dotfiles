@@ -8,11 +8,11 @@ alias zshalias="$EDITOR $ZDOTDIR/.aliasrc.zsh"
 alias zlogin="$EDITOR $ZDOTDIR/.zlogin"
 alias alaconf="$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.yml"
 
-if [ -x "$(command -v exa)" ] ; then
-  alias l="exa -lah"
-  alias la="exa -laah"
-  alias ll="exa -lh"
-  alias ls="exa"
+if [ -x "$(command -v eza)" ] ; then
+  alias l="eza -lah"
+  alias la="eza -laah"
+  alias ll="eza -lh"
+  alias ls="eza"
 fi
 alias e="$EDITOR"
 alias nf="neofetch"
