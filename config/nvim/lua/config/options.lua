@@ -16,7 +16,7 @@ opt.backspace = { "indent", "eol", "start" }
 o.whichwrap = o.whichwrap .. ",<,>,h,l"
 o.history = 500
 opt.fileformats = { "unix", "mac", "dos" }
--- opt.clipboard = { "unnamed", "unnamedplus" }
+opt.clipboard = { "unnamed", "unnamedplus" }
 
 -- wo.foldmethod = "expr"
 -- wo.foldexpr = "nvim_treesitter#foldexpr()"

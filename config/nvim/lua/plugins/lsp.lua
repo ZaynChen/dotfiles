@@ -11,7 +11,7 @@ return {
     ensure_installed = {
       "lua_ls", "clangd", "cmake", "pyright", "bashls",
       "vue_ls", "asm_lsp", "rust_analyzer", "julials",
-      "hyprls", "jsonls", "cssls",
+      "hyprls", "jsonls", "cssls", "yamlls"
     },
 
     -- Whether installed servers should automatically be enabled via `:h vim.lsp.enable()`.
@@ -123,8 +123,6 @@ return {
       end,
     },
     "JuliaEditorSupport/julia-vim",
-    -- "github/copilot.vim",
-    -- "zbirenbaum/copilot.lua",
     "simrat39/rust-tools.nvim",
     {
       "ray-x/lsp_signature.nvim",
@@ -185,7 +183,7 @@ return {
     vim.lsp.enable({
       "lua_ls", "clangd", "cmake", "pyright", "bashls",
       "vue_ls", "asm_lsp", "rust_analyzer", "julials",
-      "hyprls", "jsonls", "cssls",
+      "hyprls", "jsonls", "cssls", "yamlls"
     })
   end
 }
