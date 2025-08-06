@@ -147,6 +147,7 @@ paru -S tealdeer --noconfirm --needed
 paru -S zoxide --noconfirm --needed
 # Clipboard tool
 paru -S xsel --noconfirm --needed
+paru -S wl-clipboard --noconfirm --needed
 paru -S xdg-ninja glow --noconfirm --needed
 
 # RS A more intuitive version of du in rust
