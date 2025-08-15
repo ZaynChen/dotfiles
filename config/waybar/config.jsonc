@@ -21,10 +21,10 @@
   "modules-right": [
     "tray",
     "idle_inhibitor",
-    // "wireplumber",
+    "wireplumber",
     // "backlight",
     // "power-profiles-daemon",
-    "pulseaudio",
+    // "pulseaudio",
     "network",
     "cpu",
     "memory",
@@ -81,8 +81,8 @@
   "clock": {
     "interval": 1,
     "timezone": "Asia/Shanghai",
-    "format": "<big>{:%Y-%m-%d %H:%M}</big>",
-    "format-alt": "<big>{:%Y-%m-%d %H:%M:%S}</big>",
+    "format": "<big>{:%F %R %a}</big>",
+    "format-alt": "<big>{:%F %T}</big>",
     "tooltip": true,
     // "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "tooltip-format": "<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
@@ -181,12 +181,16 @@
     },
     "on-click": "pavucontrol"
   },
-  // "wireplumber": {
-  //   "format": "{volume}% {icon}",
-  //   "format-muted": "",
-  //   "on-click": "helvum",
-  //   "format-icons": ["", "", ""]
-  // },
+  "wireplumber": {
+    "format": "{volume}% {icon}",
+    "format-muted": "",
+    "on-click": "helvum",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     "interval": 60,
