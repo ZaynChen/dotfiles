@@ -9,7 +9,7 @@ return {
     -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
     -- This setting has no relation with the `automatic_installation` setting.
     ensure_installed = {
-      "lua_ls", "clangd", "cmake", "pyright", "bashls",
+      "lua_ls", "clangd", "cmake", "pyright", "ruff", "bashls",
       "vue_ls", "asm_lsp", "rust_analyzer", "julials",
       "hyprls", "jsonls", "cssls", "yamlls"
     },
@@ -181,7 +181,7 @@ return {
   config = function()
     -- enable all servers
     vim.lsp.enable({
-      "lua_ls", "clangd", "cmake", "pyright", "bashls",
+      "lua_ls", "clangd", "cmake", "pyright", "ruff", "bashls",
       "vue_ls", "asm_lsp", "rust_analyzer", "julials",
       "hyprls", "jsonls", "cssls", "yamlls"
     })
