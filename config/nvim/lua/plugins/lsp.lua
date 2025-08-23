@@ -9,9 +9,9 @@ return {
     -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
     -- This setting has no relation with the `automatic_installation` setting.
     ensure_installed = {
-      "lua_ls", "clangd", "cmake", "pyright", "ruff", "bashls",
-      "vue_ls", "asm_lsp", "rust_analyzer", "julials",
-      "hyprls", "jsonls", "cssls", "yamlls"
+      "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
+      "jsonls", "julials", "lua_ls", "pyright",
+      "ruff", "rust_analyzer", "vue_ls", "yamlls", "taplo"
     },
 
     -- Whether installed servers should automatically be enabled via `:h vim.lsp.enable()`.
@@ -92,8 +92,7 @@ return {
               buffer = args.buf,
               desc = "[Diagnostic]Open float when cursor hold",
               callback = function()
-                -- vim.diagnostic.open_float(nil, { bufnr = args.buf, focusable = false })
-                vim.diagnostic.open_float(nil, { bufnr = args.buf, focusable = false })
+                vim.diagnostic.open_float({ bufnr = args.buf })
               end
             })
           end
@@ -118,6 +117,11 @@ return {
             header = "",
             prefix = "",
             focusable = false,
+            close_events = {
+              "BufWinLeave",
+              "CursorMoved", "CursorMovedI",
+              "InsertCharPre"
+            }
           },
         }
       end,
@@ -181,9 +185,9 @@ return {
   config = function()
     -- enable all servers
     vim.lsp.enable({
-      "lua_ls", "clangd", "cmake", "pyright", "ruff", "bashls",
-      "vue_ls", "asm_lsp", "rust_analyzer", "julials",
-      "hyprls", "jsonls", "cssls", "yamlls"
+      "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
+      "jsonls", "julials", "lua_ls", "pyright",
+      "ruff", "rust_analyzer", "vue_ls", "yamlls", "taplo"
     })
   end
 }
