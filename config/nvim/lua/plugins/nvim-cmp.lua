@@ -21,12 +21,7 @@ return {
     -- "rcarriga/cmp-dap"
     {
       "L3MON4D3/LuaSnip",
-      build = (function()
-        if vim.fn.has "win32" == 1 or vim.fn.executable("make") == 0 then
-          return
-        end
-        return "make install_jsregexp"
-      end)(),
+      build = "make install_jsregexp",
     },
     {
       "zbirenbaum/copilot-cmp",
@@ -230,7 +225,7 @@ return {
       view = {
         entries = {
           name = "custom",
-          selection_order = "near_cursor",
+          selection_order = "top_down", -- top_down|near_cursor
           follow_cursor = false,
         },
         docs = { auto_open = true },

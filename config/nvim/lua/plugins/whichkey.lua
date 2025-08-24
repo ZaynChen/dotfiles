@@ -160,7 +160,7 @@ return {
         { "<C-Y>",   desc = "[Cmp]Comfirm" },
         { "<Down>",  desc = "[Cmp]Next" },
         { "<M-e>",   desc = "[Autopairs]Fast wrap" },
-        { "<M-k>",   desc = "[LSP]Toggle signature" },
+        { "<M-m>",   desc = "[LSP]Toggle signature" },
         { "<S-Tab>", desc = "[Cmp]Prev" },
         { "<Tab>",   desc = "[Cmp]Expand or next" },
         { "<Up>",    desc = "[Cmp]Prev" },
