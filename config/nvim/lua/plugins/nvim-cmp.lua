@@ -39,13 +39,14 @@ return {
       cmd = "Copilot",
       event = "InsertEnter",
       opts = {
-        suggestion = { enabled = false },
         panel = { enabled = false },
+        suggestion = { enabled = false },
+        disable_limit_reached_message = true,
       },
     }
   },
   config = function()
-    format = require("lspkind").cmp_format {
+    local format = require("lspkind").cmp_format {
       mode = "symbol_text",
       preset = "default",
       -- symbol_map = {
@@ -116,6 +117,7 @@ return {
         debounce = 60,
         throttle = 30,
         fetching_timeout = 500,
+        filtering_context_budget = 3,
         confirm_resolve_timeout = 80,
         async_budget = 1,
         max_view_entries = 200,
@@ -146,6 +148,20 @@ return {
             fallback()
           end
         end, { "i", "c" }),
+        ["C-j"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end, { "i", "c" }),
+        ["C-k"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end, { "i", "c" }),
       }),
       snippet = {
         expand = function(args) snips.lsp_expand(args.body) end,
@@ -167,6 +183,7 @@ return {
         disallow_partial_fuzzy_matching = true,
         disallow_partial_matching = false,
         disallow_prefix_unmatching = false,
+        disallow_symbol_nonprefix_matching = true,
       },
       sorting = {
         priority_weight = 2,
@@ -211,7 +228,11 @@ return {
       event = {},
       experimental = { ghost_text = true },
       view = {
-        entries = { name = "custom", selection_order = "near_cursor" },
+        entries = {
+          name = "custom",
+          selection_order = "near_cursor",
+          follow_cursor = false,
+        },
         docs = { auto_open = true },
       },
       window = {
