@@ -148,14 +148,14 @@ return {
             fallback()
           end
         end, { "i", "c" }),
-        ["C-j"] = cmp.mapping(function(fallback)
+        ["<C-j>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
           else
             fallback()
           end
         end, { "i", "c" }),
-        ["C-k"] = cmp.mapping(function(fallback)
+        ["<C-k>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
           else
