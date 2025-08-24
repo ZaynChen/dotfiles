@@ -25,3 +25,6 @@ sudo pacman -Sy archlinuxcn-keyring --noconfirm --needed
 # Setup mirrors
 sudo pacman -S reflector --noconfirm --needed
 sudo reflector --sort rate --threads 100 -c China --save /etc/pacman.d/mirrorlist
+
+# enable paccache timer to discard unused packages weekly
+systemctl enable paccache.timer
