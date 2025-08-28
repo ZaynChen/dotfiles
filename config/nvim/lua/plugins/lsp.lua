@@ -1,6 +1,18 @@
 -- local extension_path = "/usr/lib/codelldb"
 -- local codelldb_path = extension_path .. "/adapter/codelldb"
 -- local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
+local orig_open_floating_preview = vim.lsp.util.open_floating_preview;
+function vim.lsp.util.open_floating_preview(contents, syntax, opts)
+  opts = opts or {}
+  -- floating windows will be closed when
+  -- 1. leave current buffer (go to definition)
+  -- 2. cursor moved (page up or page down also moves cursor)
+  opts.close_events = {
+    "BufWinLeave",
+    "CursorMoved", "CursorMovedI",
+  }
+  return orig_open_floating_preview(contents, syntax, opts)
+end
 
 return {
   "mason-org/mason-lspconfig.nvim",
