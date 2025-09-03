@@ -22,7 +22,7 @@ return {
     -- This setting has no relation with the `automatic_installation` setting.
     ensure_installed = {
       "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
-      "jsonls", "julials", "lua_ls", "pyright",
+      "jsonls", "julials", "lua_ls", "mesonlsp", "pyright",
       "ruff", "rust_analyzer", "vue_ls", "yamlls", "taplo"
     },
 
@@ -227,7 +227,7 @@ return {
     -- enable all servers
     vim.lsp.enable({
       "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
-      "jsonls", "julials", "lua_ls", "pyright",
+      "jsonls", "julials", "lua_ls", "mesonlsp", "pyright",
       "ruff", "rust_analyzer", "vue_ls", "yamlls", "taplo"
     })
   end
