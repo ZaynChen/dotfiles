@@ -6,6 +6,12 @@ function telescope(builtin, opts)
   end
 end
 
+function zoxide()
+  return function()
+    require("telescope").extensions.zoxide.list()
+  end
+end
+
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
@@ -22,11 +28,19 @@ return {
         end)
       end
     },
+    {
+      "jvgrootveld/telescope-zoxide",
+      config = function()
+        Util.on_load("telescope.nvim", function()
+          require("telescope").load_extension("zoxide")
+        end)
+      end
+    }
   },
   keys = {
     { "<leader>/",  telescope("live_grep"),    desc = "[TScope]live_grep" },
     { "<leader>f",  telescope("find_files"),   desc = "[TScope]find_files" },
-    -- { "<leader> ",  telescope("find_files"),  desc = "[TScope]find_files" },
+    { "<leader>j",  zoxide(),                  desc = "[TScope]zoxide" },
     { "<leader>bb", telescope("buffers"),      desc = "[TScope]buffers" },
 
     { "<leader>ha", telescope("autocommands"), desc = "[TScope]autocommands" },
@@ -38,6 +52,8 @@ return {
     { "<leader>hC", telescope("colorscheme"),  desc = "[TScope]colorscheme" },
   },
   opts = function()
+    local builtin = require("telescope.builtin")
+    local z_utils = require("telescope._extensions.zoxide.utils")
     local actions = require("telescope.actions")
     local action_layout = require("telescope.actions.layout")
 
@@ -127,6 +143,30 @@ return {
           override_file_sorter = true,    -- override the file sorter
           case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
         },
+        zoxide = {
+          prompt_title = "[ Zoxide List ]",
+          list_command = "zoxide query -ls",
+          mappings = {
+            default = {
+              action = function(selection)
+                vim.cmd.cd(selection.path)
+              end,
+              after_action = function(selection)
+                vim.notify("Directory changed to " .. selection.path)
+              end,
+            },
+            ["<C-s>"] = { action = z_utils.create_basic_command("split") },
+            ["<C-v>"] = { action = z_utils.create_basic_command("vsplit") },
+            ["<C-e>"] = { action = z_utils.create_basic_command("edit") },
+            ["<C-f>"] = {
+              keepinsert = true,
+              action = function(selection)
+                builtin.find_files({ cwd = selection.path })
+              end,
+            },
+            ["C-t"] = { action = function(selection) vim.cmd.tcd(selection.path) end }
+          }
+        }
       }
     }
   end,
