@@ -72,7 +72,7 @@ plugins+=(brew dash git man npm)
 plugins+=(node python rust)
 plugins+=(tmux tmuxinator)
 plugins+=(colored-man-pages themes)
-plugins+=(zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins+=(zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode autoupdate)
 
 source $ZSH/oh-my-zsh.sh
 
