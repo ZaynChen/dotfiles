@@ -23,7 +23,7 @@ return {
     ensure_installed = {
       "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
       "jsonls", "julials", "lua_ls", "mesonlsp", "pyright",
-      "ruff", "rust_analyzer", "vue_ls", "yamlls", "taplo"
+      "ruff", "vue_ls", "yamlls", "taplo",
     },
 
     -- Whether installed servers should automatically be enabled via `:h vim.lsp.enable()`.
@@ -67,14 +67,53 @@ return {
     {
       "neovim/nvim-lspconfig",
       dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
+        -- "hrsh7th/cmp-nvim-lsp",
+        {
+          'mrcjkb/rustaceanvim',
+          version = '^6', -- Recommended
+          init = function()
+            -- Configure rustaceanvim here
+            vim.g.rustaceanvim = {
+              server = {
+                default_settings = {
+                  ["rust-analyzer"] = {
+                    -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                  }
+                }
+              }
+            }
+          end,
+          lazy = false, -- This plugin is already lazy
+        },
+        {
+          "chrisgrieser/nvim-lsp-endhints",
+          event = "LspAttach",
+          opts = {
+            icons = {
+              type = "󰜁 ",
+              parameter = "󰏪 ",
+              offspec = " ", -- hint kind not defined in official LSP spec
+              unknown = " ", -- hint kind is nil
+            },
+            label = {
+              truncateAtChars = 20,
+              padding = 1,
+              marginLeft = 0,
+              sameKindSeparator = ", ",
+            },
+            extmark = {
+              priority = 50,
+            },
+            autoEnableHints = true,
+          }, -- required, even if empty
+        },
       },
       config = function()
         local lsp = vim.lsp
 
-        lsp.config("*", {
-          capabilities = require("cmp_nvim_lsp").default_capabilities(),
-        })
+        -- lsp.config("*", {
+        --   capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        -- })
 
         vim.api.nvim_create_autocmd("LspAttach", {
           group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -139,7 +178,6 @@ return {
       end,
     },
     "JuliaEditorSupport/julia-vim",
-    "simrat39/rust-tools.nvim",
     {
       "ray-x/lsp_signature.nvim",
       event = { "VeryLazy" },
@@ -228,7 +266,7 @@ return {
     vim.lsp.enable({
       "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
       "jsonls", "julials", "lua_ls", "mesonlsp", "pyright",
-      "ruff", "rust_analyzer", "vue_ls", "yamlls", "taplo"
+      "ruff", "vue_ls", "yamlls", "taplo"
     })
   end
 }

@@ -3,6 +3,7 @@ P = function(...)
   for i = 1, args.n do
     args[i] = vim.inspect(args[i])
   end
+  local unpack = unpack or table.unpack
   print(unpack(args))
   return ...
 end

@@ -46,6 +46,7 @@ return {
     { "<leader>ha", telescope("autocommands"), desc = "[TScope]autocommands" },
     { "<leader>hc", telescope("commands"),     desc = "[TScope]commands" },
     { "<leader>hh", telescope("help_tags"),    desc = "[TScope]help_tags" },
+    { "<leader>hH", telescope("highlights"),   desc = "[TScope]highlights" },
     { "<leader>hk", telescope("keymaps"),      desc = "[TScope]keymaps" },
     { "<leader>hm", telescope("man_pages"),    desc = "[TScope]man_pages" },
     { "<leader>ho", telescope("vim_options"),  desc = "[TScope]options" },
