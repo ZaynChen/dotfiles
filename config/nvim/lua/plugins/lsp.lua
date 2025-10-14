@@ -69,8 +69,8 @@ return {
       dependencies = {
         -- "hrsh7th/cmp-nvim-lsp",
         {
-          'mrcjkb/rustaceanvim',
-          version = '^6', -- Recommended
+          "mrcjkb/rustaceanvim",
+          version = "^6", -- Recommended
           init = function()
             -- Configure rustaceanvim here
             vim.g.rustaceanvim = {
