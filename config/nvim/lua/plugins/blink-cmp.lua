@@ -186,7 +186,7 @@ return {
     },
     fuzzy = {
       implementation = "prefer_rust_with_warning",
-      max_typos = 0,
+      -- max_typos = 0, -- 0 for fzf
       sorts = {
         "exact",
         "score",
