@@ -2,7 +2,7 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
-    presets = "modern", -- "classic" | "modern" | "helix"
+    preset = "helix", -- "classic" | "modern" | "helix"
     delay = function(ctx)
       return ctx.plugin and 0 or 200
     end,
@@ -133,8 +133,9 @@ return {
     -- hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
     debug = false,
   },
-  config = function()
+  config = function(_, opts)
     local wk = require("which-key")
+    wk.setup(opts)
 
     require("which-key.plugins.spelling").actions = {
       { trigger = "z=", mode = "n" }
