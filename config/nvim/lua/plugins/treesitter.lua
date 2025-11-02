@@ -31,8 +31,9 @@ return {
         separator = '-',
         zindex = 20, -- The Z-index of the context window
       },
-      config = function()
+      config = function(_, opts)
         local tsc = require("treesitter-context")
+        tsc.setup(opts)
         map("[a", function() tsc.go_to_context(vim.v.count1) end, "[TS]Go to context")
       end
     },
