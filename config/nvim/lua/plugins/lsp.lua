@@ -17,35 +17,6 @@ end
 return {
   "mason-org/mason-lspconfig.nvim",
   event = { "BufReadPost", "BufNewFile", },
-  opts = {
-    -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
-    -- This setting has no relation with the `automatic_installation` setting.
-    ensure_installed = {
-      "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
-      "jsonls", "julials", "lua_ls", "mesonlsp", "pyright",
-      "ruff", "vue_ls", "yamlls", "taplo",
-    },
-
-    -- Whether installed servers should automatically be enabled via `:h vim.lsp.enable()`.
-    --
-    -- To exclude certain servers from being automatically enabled:
-    -- ```lua
-    --   automatic_enable = {
-    --     exclude = { "rust_analyzer", "ts_ls" }
-    --   }
-    -- ```
-    --
-    -- To only enable certain servers to be automatically enabled:
-    -- ```lua
-    --   automatic_enable = {
-    --     "lua_ls",
-    --     "vimls"
-    --   }
-    --   FIX: do not work
-    -- ```
-    ---@type boolean | string[] | { exclude: string[] }
-    automatic_enable = true,
-  },
   dependencies = {
     {
       "mason-org/mason.nvim",
@@ -261,12 +232,22 @@ return {
       },
     }
   },
-  config = function()
+  opts = {
+    ensure_installed = {
+      "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
+      "jsonls", "julials", "lua_ls", "mesonlsp", "pyright",
+      "ruff", "vue_ls", "yamlls", "taplo",
+    },
+
+    automatic_enable = true,
+  },
+  config = function(_, opts)
+    require("mason-lspconfig").setup(opts)
     -- enable all servers
     vim.lsp.enable({
       "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
       "jsonls", "julials", "lua_ls", "mesonlsp", "pyright",
       "ruff", "vue_ls", "yamlls", "taplo"
     })
-  end
+  end,
 }
