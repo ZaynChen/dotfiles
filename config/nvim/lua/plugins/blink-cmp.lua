@@ -162,7 +162,8 @@ return {
       default = { "lsp", "path", "buffer", "snippets", "copilot" },
       providers = {
         lsp = {
-          name = "[LSP]"
+          name = "[LSP]",
+          fallbacks = {}
         },
         path = {
           name = "[Path]"
