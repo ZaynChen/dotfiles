@@ -241,13 +241,4 @@ return {
 
     automatic_enable = true,
   },
-  config = function(_, opts)
-    require("mason-lspconfig").setup(opts)
-    -- enable all servers
-    vim.lsp.enable({
-      "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
-      "jsonls", "julials", "lua_ls", "mesonlsp", "pyright",
-      "ruff", "vue_ls", "yamlls", "taplo"
-    })
-  end,
 }
