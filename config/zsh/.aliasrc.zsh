@@ -6,7 +6,7 @@ alias zshenv="$EDITOR $ZDOTDIR/.zshenv"
 alias zshconf="$EDITOR $ZDOTDIR/.zshrc"
 alias zshalias="$EDITOR $ZDOTDIR/.aliasrc.zsh"
 alias zlogin="$EDITOR $ZDOTDIR/.zlogin"
-alias alaconf="$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.yml"
+alias alaconf="$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.toml"
 
 if [ -x "$(command -v eza)" ] ; then
   alias l="eza -lah"
