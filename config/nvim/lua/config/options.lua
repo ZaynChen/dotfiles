@@ -1,5 +1,5 @@
 local o = vim.o
-local wo = vim.wo
+-- local wo = vim.wo
 local opt = vim.opt
 local g = vim.g
 local env = vim.env
@@ -8,6 +8,10 @@ g.mapleader = " "
 g.maplocalleader = " "
 
 env.LANG = "en_US.UTF-8"
+
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Basic settings
 o.encoding = "utf-8"

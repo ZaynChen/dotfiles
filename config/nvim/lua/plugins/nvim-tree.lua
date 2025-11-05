@@ -1,6 +1,6 @@
 local opts = { -- BEGIN_DEFAULT_OPTS
   on_attach = "default",
-  hijack_cursor = false,
+  hijack_cursor = true,
   auto_reload_on_write = true,
   disable_netrw = false,
   hijack_netrw = true,
@@ -19,11 +19,12 @@ local opts = { -- BEGIN_DEFAULT_OPTS
   view = {
     centralize_selection = false,
     cursorline = true,
+    cursorlineopt = "both",
     debounce_delay = 15,
     side = "right",
     preserve_window_proportions = false,
-    number = false,
-    relativenumber = false,
+    number = true,
+    relativenumber = true,
     signcolumn = "yes",
     width = 30,
     float = {
@@ -42,16 +43,27 @@ local opts = { -- BEGIN_DEFAULT_OPTS
   renderer = {
     add_trailing = false,
     group_empty = false,
-    full_name = false,
+    full_name = true,
     root_folder_label = ":~:s?$?/..?",
     indent_width = 2,
     special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+    hidden_display = "all",
     symlink_destination = true,
-    highlight_git = false,
-    highlight_diagnostics = false,
-    highlight_opened_files = "none",
-    highlight_modified = "none",
-    highlight_bookmarks = "none",
+    decorators = {
+      "Git",
+      "Open",
+      "Hidden",
+      "Modified",
+      "Bookmark",
+      "Diagnostics",
+      "Copied",
+      "Cut",
+    },
+    highlight_git = true,
+    highlight_diagnostics = true,
+    highlight_opened_files = "all",
+    highlight_modified = "all",
+    highlight_bookmarks = "all",
     highlight_clipboard = "name",
     indent_markers = {
       enable = false,
@@ -77,9 +89,13 @@ local opts = { -- BEGIN_DEFAULT_OPTS
       },
       git_placement = "before",
       modified_placement = "after",
+      hidden_placement = "after",
       diagnostics_placement = "signcolumn",
       bookmarks_placement = "signcolumn",
-      padding = " ",
+      padding = {
+        icon = " ",
+        folder_arrow = " ",
+      },
       symlink_arrow = " ➛ ",
       show = {
         file = true,
@@ -87,6 +103,7 @@ local opts = { -- BEGIN_DEFAULT_OPTS
         folder_arrow = true,
         git = true,
         modified = true,
+        hidden = true,
         diagnostics = true,
         bookmarks = true,
       },
@@ -95,6 +112,7 @@ local opts = { -- BEGIN_DEFAULT_OPTS
         symlink = "",
         bookmark = "󰆤",
         modified = "●",
+        hidden = "󰜌",
         folder = {
           arrow_closed = "",
           arrow_open = "",
@@ -122,13 +140,12 @@ local opts = { -- BEGIN_DEFAULT_OPTS
     auto_open = true,
   },
   update_focused_file = {
-    enable = false,
-    update_root = false,
-    ignore_list = {},
-  },
-  system_open = {
-    cmd = "",
-    args = {},
+    enable = true,
+    update_root = {
+      enable = false,
+      ignore_list = {},
+    },
+    exclude = false,
   },
   git = {
     enable = true,
@@ -136,10 +153,11 @@ local opts = { -- BEGIN_DEFAULT_OPTS
     show_on_open_dirs = true,
     disable_for_dirs = {},
     timeout = 400,
+    cygwin_support = false,
   },
   diagnostics = {
-    enable = false,
-    show_on_dirs = false,
+    enable = true,
+    show_on_dirs = true,
     show_on_open_dirs = true,
     debounce_delay = 50,
     severity = {
@@ -154,15 +172,17 @@ local opts = { -- BEGIN_DEFAULT_OPTS
     },
   },
   modified = {
-    enable = false,
+    enable = true,
     show_on_dirs = true,
     show_on_open_dirs = true,
   },
   filters = {
+    enable = true,
     git_ignored = true,
     dotfiles = false,
     git_clean = false,
     no_buffer = false,
+    no_bookmark = false,
     custom = {},
     exclude = {},
   },
@@ -173,7 +193,12 @@ local opts = { -- BEGIN_DEFAULT_OPTS
   filesystem_watchers = {
     enable = true,
     debounce_delay = 50,
-    ignore_dirs = {},
+    ignore_dirs = {
+      "/.ccls-cache",
+      "/build",
+      "/node_modules",
+      "/target",
+    },
   },
   actions = {
     use_system_clipboard = true,
@@ -184,7 +209,7 @@ local opts = { -- BEGIN_DEFAULT_OPTS
     },
     expand_all = {
       max_folder_discovery = 300,
-      exclude = {},
+      exclude = { ".git", "target", "build" },
     },
     file_popup = {
       open_win_config = {
@@ -199,6 +224,7 @@ local opts = { -- BEGIN_DEFAULT_OPTS
       quit_on_open = false,
       eject = true,
       resize_window = true,
+      relative_path = true,
       window_picker = {
         enable = true,
         picker = "default",
@@ -227,10 +253,14 @@ local opts = { -- BEGIN_DEFAULT_OPTS
     threshold = vim.log.levels.INFO,
     absolute_path = true,
   },
+  help = {
+    sort_by = "key",
+  },
   ui = {
     confirm = {
       remove = true,
       trash = true,
+      default_yes = false,
     },
   },
   experimental = {},
@@ -250,10 +280,6 @@ local opts = { -- BEGIN_DEFAULT_OPTS
   },
 }
 
--- local nvimtree_ok, _ = pcall(require, "nvim-tree")
--- if nvimtree_ok then
---   map("<leader>n", "<cmd>NvimTreeToggle<cr>", "[NvimTree]Toggle")
--- end
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = {
