@@ -10,7 +10,7 @@ map("K", ":m '<-2<CR>gv=gv", "Move lines up", { mode = "x" })
 map("<leader><cr>", "<cmd>noh<cr>", "Clear highlight")
 map("<ESC>", "<cmd>noh<cr><ESC>", "Escape and clear highlight")
 
-map("<leader>w", "<cmd>w<cr>", "Write to a file")
+map("<leader>w", "<cmd>update<cr>", "Write when the buffer has been modified")
 map("<leader>q", "<cmd>q<cr>", "Quit current window (when one window quit Vim)")
 map("<leader>e", [[:e <C-R>=expand("%:p:h")."/"<cr>]], "Edit a file", { silent = false })
 map("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Subtitude", { silent = false })
@@ -29,7 +29,6 @@ map("<C-D>", "<C-D>zz", "Scroll lines down with cursor centered")
 map("<C-U>", "<C-U>zz", "Scroll lines up with cursor centered")
 map("<C-I>", "<C-I>zz", "Go to N newer entry in jump list with cursor centered")
 map("<C-O>", "<C-O>zz", "Go to N older entry in jump list with cursor centered")
-
 
 -- map("<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<cr>")
 

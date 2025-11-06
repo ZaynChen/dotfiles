@@ -5,10 +5,10 @@ return {
     {
       "<C-/>",
       function()
-        require("which-key").show({ global = false })
+        require("which-key").show({ global = true })
       end,
       mode = { "n", "i", "v", "c" },
-      desc = "Buffer Local Keymaps(which-key)"
+      desc = "Global Keymaps(which-key)"
     }
   },
   opts = {
