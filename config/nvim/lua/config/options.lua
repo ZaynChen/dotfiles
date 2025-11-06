@@ -1,5 +1,4 @@
 local o = vim.o
--- local wo = vim.wo
 local opt = vim.opt
 local g = vim.g
 local env = vim.env
@@ -22,8 +21,6 @@ o.history = 500
 opt.fileformats = { "unix", "mac", "dos" }
 opt.clipboard = { "unnamed", "unnamedplus" }
 
--- wo.foldmethod = "expr"
--- wo.foldexpr = "nvim_treesitter#foldexpr()"
 o.grepprg = "rg --smart-case --vimgrep $*"
 o.grepformat = "%f:%l:%c:%m"
 

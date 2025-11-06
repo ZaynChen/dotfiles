@@ -2,6 +2,26 @@ local function augroup(name)
   return vim.api.nvim_create_augroup(name, { clear = true })
 end
 
+local filetypes = {
+  "bash", "c", "cmake", "css", "csv", "cuda", "dockerfile",
+  "gitconfig", "gitrebase", "gitattributes", "gitcommit", "gitignore",
+  "html", "hyprlang", "javascript", "json", "json5", "julia", "latex",
+  "llvm", "lua", "make", "markdown", "nasm", "passwd", "python", "query",
+  "ruby", "rust", "scss", "sql", "sshconfig", "tmux", "toml", "typescript",
+  "vim", "vue", "xml", "yaml", "zathurarc"
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("treesitter"),
+  desc = "Enable treesitter highlighting for target filetype",
+  pattern = filetypes,
+  callback = function()
+    -- vim.wo.foldmethod = "expr"
+    -- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.treesitter.start()
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   group = augroup("checktime"),
   desc = "Reload buffer",

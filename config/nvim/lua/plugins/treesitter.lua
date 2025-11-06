@@ -5,7 +5,20 @@ return {
   lazy = false,
   branch = "main",
   build = ":TSUpdate",
-  cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+  config = function(_, _opts)
+    local ts = require("nvim-treesitter")
+    ts.setup(_opts)
+    -- (This is a no-op if the parsers are already installed.)
+    ts.install {
+      "bash", "c", "cmake", "css", "csv", "cuda", "dockerfile",
+      "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore",
+      "html", "hyprlang", "javascript", "json", "json5", "julia", "latex",
+      "llvm", "lua", "luadoc", "luap", "make", "markdown", "markdown_inline",
+      "nasm", "passwd", "python", "query", "ruby", "rust", "scss", "sql",
+      "ssh_config", "tmux", "todotxt", "toml", "typescript",
+      "vim", "vimdoc", "vue", "xml", "yaml", "zathurarc"
+    }
+  end,
   dependencies = {
     -- "nvim-treesitter/nvim-treesitter-refactor",
     -- "RRethy/nvim-treesitter-textsubjects",
