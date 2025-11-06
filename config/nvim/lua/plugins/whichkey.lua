@@ -1,19 +1,28 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  keys = {
+    {
+      "<C-/>",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      mode = { "n", "i", "v", "c" },
+      desc = "Buffer Local Keymaps(which-key)"
+    }
+  },
   opts = {
     preset = "helix", -- "classic" | "modern" | "helix"
     delay = function(ctx)
       return ctx.plugin and 0 or 200
     end,
-    filter = function(mapping)
+    filter = function(_)
       -- return mapping.desc and mapping.desc ~= ""
       return true
     end,
-    spec = {},
     notify = true,
     triggers = {
-      { "<auto>", mode = "nixso" },
+      { "<auto>", mode = "nixsotc" },
     },
     defer = function(ctx)
       -- list_contains doesn't exist in neovim < v0.10
@@ -23,22 +32,20 @@ return {
       return vim.list_contains({ "<C-V>", "V" }, ctx.mode)
     end,
     plugins = {
-      marks = true,       -- shows a list of your marks on ' and `
-      registers = true,   -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+      marks = true,
+      registers = true,
       spelling = {
-        enabled = true,   -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-        suggestions = 20, -- how many suggestions should be shown in the list?
+        enabled = true,
+        suggestions = 20,
       },
-      -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-      -- No actual key bindings are created
       presets = {
-        operators = true,    -- adds help for operators like d, y, ... and registers them for motion / text object completion
-        motions = true,      -- adds help for motions
-        text_objects = true, -- help for text objects triggered after entering an operator
-        windows = true,      -- default bindings on <c-w>
-        nav = true,          -- misc bindings to work with windows
-        z = true,            -- bindings for folds, spelling and others prefixed with z
-        g = true,            -- bindings for prefixed with g
+        operators = true,
+        motions = true,
+        text_objects = true,
+        windows = true,
+        nav = true,
+        z = true,
+        g = true,
       },
     },
     win = {
@@ -62,8 +69,10 @@ return {
       spacing = 3,          -- spacing between columns
     },
     keys = {
-      scroll_down = "<c-d>",
-      scroll_up = "<c-u>",
+      -- <c-d> => <c-d>zz, <c-u> => <c-u>zz,
+      -- can not bind this two mapping to scrolling which-key
+      scroll_down = "<c-n>",
+      scroll_up = "<c-p>",
     },
     sort = { "local", "order", "group", "alphanum", "mod" },
     expand = 0, -- expand gruops when <= n mappings
@@ -124,32 +133,22 @@ return {
         F12 = "󱊶",
       }
     },
+    show_help = true,
+    show_keys = true,
     disable = {
       ft = {},
       bt = {},
     },
-    show_help = true,
-    show_keys = true,
-    -- hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
     debug = false,
-  },
-  config = function(_, opts)
-    local wk = require("which-key")
-    wk.setup(opts)
-
-    require("which-key.plugins.spelling").actions = {
-      { trigger = "z=", mode = "n" }
-    }
-
-    wk.add({
+    spec = {
       {
         mode = { "i" },
         { "<C-D>",   desc = "delete one shiftwidth of indent in the current line" },
         { "<C-E>",   desc = "[Cmp]Abort" },
         { "<C-F>",   desc = "not used" },
         { "<C-H>",   desc = "same as <BS>" },
-        { "<C-J>",   desc = "same as <CR>" },
-        { "<C-K>",   desc = "enter digraph" },
+        { "<C-J>",   desc = "[Cmp]Next" },
+        { "<C-K>",   desc = "[Cmp]Prev" },
         { "<C-N>",   desc = "[Cmp]Next" },
         { "<C-O>",   desc = "execute a single command and return to insert mode" },
         { "<C-P>",   desc = "[Cmp]Prev" },
@@ -171,8 +170,8 @@ return {
         { "<C-B>",   desc = "cursor to begin of command-line" },
         { "<C-D>",   desc = "list completions that match the pattern in front fo the cursor" },
         { "<C-E>",   desc = "[Cmp]Abort & cursor to end of command-line" },
-        { "<C-J>",   desc = "same as <CR>" },
-        { "<C-K>",   desc = "enter digraph" },
+        { "<C-J>",   desc = "[Cmp]Next" },
+        { "<C-K>",   desc = "[Cmp]Prev" },
         { "<C-N>",   desc = "[Cmp]Next" },
         { "<C-P>",   desc = "[Cmp]Prev" },
         { "<C-U>",   desc = "delete all entered chars in the current command-line" },
@@ -183,32 +182,16 @@ return {
         { "<Tab>",   desc = "[Cmp]Expand or next" },
       },
       {
-        { "<M-[>",     desc = "[TS]Function prev" },
-        { "<M-]>",     desc = "[TS]Function next" },
-        { "<M-h>",     desc = "[TS]Parameter swap prev" },
-        { "<M-j>",     desc = "[TS]Definition navigation next" },
-        { "<M-k>",     desc = "[TS]Definition navigation prev" },
-        { "<M-l>",     desc = "[TS]Parameter swap next" },
-        { "<M-m>",     desc = "[Terminal]Toggle" },
-        { "<M-r>",     desc = "[TS]Rename" },
+        -- { "<M-m>",     desc = "[Terminal]Toggle" },
+        { "r<CR>",     desc = "Split lines" },
         { "ZQ",        desc = "Close window without writing" },
         { "ZZ",        desc = "Write if buffer changed and close window" },
         { "<leader>b", group = "buffer" },
         { "<leader>g", group = "gitsigns" },
         { "<leader>h", group = "help" },
-        { "<leader>l", group = "lsp" },
+        { "<leader>l", group = "trouble" },
         { "gr",        group = "lsp" }
       },
-    })
-  end,
-  keys = {
-    {
-      "<C-/>",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      mode = { "n", "i", "c", "v" },
-      desc = "Buffer Local Keymaps(which-key)"
-    }
-  }
+    },
+  },
 }
