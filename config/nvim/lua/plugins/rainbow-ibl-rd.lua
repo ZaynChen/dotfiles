@@ -1,21 +1,28 @@
 local highlight = {
-  "RainbowRed",
-  "RainbowYellow",
-  "RainbowBlue",
-  "RainbowOrange",
-  "RainbowGreen",
-  "RainbowViolet",
-  "RainbowCyan",
+  "RainbowDelimiterRed",
+  "RainbowDelimiterYellow",
+  "RainbowDelimiterBlue",
+  "RainbowDelimiterOrange",
+  "RainbowDelimiterGreen",
+  "RainbowDelimiterViolet",
+  "RainbowDelimiterCyan",
 }
 
 function define_hlgroups()
-  vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-  vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-  vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-  vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-  vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-  vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-  vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+  -- base16-onedark
+  local colors = {
+    RainbowDelimiterRed = { fg = "#E06C75", ctermfg = "Red" },
+    RainbowDelimiterYellow = { fg = "#E5C07B", ctermfg = "Yellow" },
+    RainbowDelimiterBlue = { fg = "#61AFEF", ctermfg = "Blue" },
+    RainbowDelimiterOrange = { fg = "#D19A66", ctermfg = "White" },
+    RainbowDelimiterGreen = { fg = "#98C379", ctermfg = "Green" },
+    RainbowDelimiterViolet = { fg = "#C678DD", ctermfg = "Magenta" },
+    RainbowDelimiterCyan = { fg = "#56B6C2", ctermfg = "Cyan" },
+  }
+
+  for name, val in pairs(colors) do
+    vim.api.nvim_set_hl(0, name, val)
+  end
 end
 
 define_hlgroups()
@@ -63,7 +70,7 @@ return {
         },
         priority = {
           [''] = 110,
-          lua = 210
+          lua = 210,
         },
         highlight = highlight,
         blacklist = {},
