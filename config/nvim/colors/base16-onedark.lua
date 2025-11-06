@@ -57,7 +57,7 @@ local highlights = {
   CursorLineSign                   = { link = "SignColumn" },
   QuickFixLine                     = { bg = 02 },
 
-  NormalFloat                      = { bg = 01 },
+  NormalFloat                      = { bg = 02, ctermbg = 00 },
   FloatBorder                      = { link = "NormalFloat" },
   FloatTitle                       = { link = "Title" },
   FloatFooter                      = { link = "FloatTitle" },
