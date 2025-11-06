@@ -2,98 +2,45 @@ local map = require("util").map
 
 return {
   "nvim-treesitter/nvim-treesitter",
-  version = false,
+  lazy = false,
+  branch = "main",
   build = ":TSUpdate",
-  event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
-  init = function(plugin)
-    require("lazy.core.loader").add_to_rtp(plugin)
-    require("nvim-treesitter.query_predicates")
-  end,
   cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
   dependencies = {
-    "nvim-treesitter/nvim-treesitter-refactor",
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    "RRethy/nvim-treesitter-textsubjects",
+    -- "nvim-treesitter/nvim-treesitter-refactor",
+    -- "RRethy/nvim-treesitter-textsubjects",
     "RRethy/nvim-treesitter-endwise",
     {
-      "romgrk/nvim-treesitter-context",
+      "nvim-treesitter/nvim-treesitter-context",
       event = { "BufReadPost", "BufNewFile", "BufWritePre" },
       opts = {
         enable = true,
-        max_lines = 0,            -- How many lines the window should span. Values <= 0 mean no limit.
-        min_window_height = 0,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+        multiwindow = false,
+        max_lines = 0,
+        min_window_height = 0,
         line_numbers = true,
-        multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-        trim_scope = 'outer',     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        mode = 'cursor',          -- Line used to calculate context. Choices: 'cursor', 'topline'
-        -- Separator between context and content. Should be a single character string, like '-'.
-        -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-        separator = '-',
-        zindex = 20, -- The Z-index of the context window
+        multiline_threshold = 20,
+        trim_scope = "outer",
+        mode = "cursor",
+        separator = "-",
+        zindex = 20,
+        on_attach = nil
       },
-      config = function(_, opts)
+      config = function(_, _opts)
         local tsc = require("treesitter-context")
-        tsc.setup(opts)
+        tsc.setup(_opts)
         map("[a", function() tsc.go_to_context(vim.v.count1) end, "[TS]Go to context")
       end
     },
-  },
-  config = function()
-    local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-    opts = { mode = { "n", "x", "o" } }
-    map(";", ts_repeat_move.repeat_last_move, "repeat last move", opts)
-    map(",", ts_repeat_move.repeat_last_move_opposite, "repeat last move in opposite direction",
-      opts)
-    map("f", ts_repeat_move.builtin_f, nil, opts)
-    map("F", ts_repeat_move.builtin_F, nil, opts)
-    map("t", ts_repeat_move.builtin_t, nil, opts)
-    map("T", ts_repeat_move.builtin_T, nil, opts)
-
-    require("nvim-treesitter.configs").setup {
-      sync_install = false,
-      ensure_installed = {
-        "bash", "c", "cmake", "css", "csv", "cuda", "dockerfile",
-        "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore",
-        "html", "hyprlang", "javascript", "json", "json5", "julia", "latex",
-        "llvm", "lua", "luadoc", "luap", "make", "markdown", "markdown_inline",
-        "nasm", "passwd", "python", "query", "ruby", "rust", "scss", "sql",
-        "ssh_config", "tmux", "todotxt", "toml", "typescript", "vim", "vimdoc",
-        "vue", "xml", "yaml", "zathurarc"
-      },
-      auto_install = true,
-      ignore_install = {},
-      parser_install_dir = nil,
-      -- builtin modules
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-      incremental_selection = {
-        -- too strict
-        enable = false,
-        keymaps = {
-          init_selection = "gnn", -- set to `false` to disable one of the mappings
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
-        },
-      },
-      indent = { -- NOTE: experimental feature
-        enable = true,
-      },
-      -- external modules
-      textobjects = {
+    {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      branch = "main",
+      opts = {
         select = {
           enable = true,
           disable = {},
           lookahead = true,
           lookbehind = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-          },
           selection_modes = {
             ["@parameter.outer"] = 'v',
             ["@function.outer"] = 'V',
@@ -102,97 +49,121 @@ return {
           include_surrounding_whitespace = true,
         },
         move = {
-          enable = true,
-          disable = {},
           set_jumps = true,
-          goto_next_start = {
-            ["]m"] = "@function.outer",
-            ["]c"] = "@class.outer",
-          },
-          goto_next_end = {
-            ["]M"] = "@function.outer",
-            ["]C"] = "@class.outer",
-          },
-          goto_previous_start = {
-            ["[m"] = "@function.outer",
-            ["[c"] = "@class.outer",
-          },
-          goto_previous_end = {
-            ["[M"] = "@function.outer",
-            ["[C"] = "@class.outer",
-          },
-        },
-        swap = {
-          enable = true,
-          disable = {},
-          swap_next = {
-            ["<M-l>"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["<M-h>"] = "@parameter.inner",
-          },
-        },
-        lsp_interop = {
-          -- can peek the function body, not only signature
-          enable = true,
-          border = "rounded",
-          floating_preview_opts = {},
-          disable = {},
-          peek_definition_code = {
-            ["<M-f>"] = "@function.outer",
-            ["<M-c>"] = "@class.outer",
-          }
-        }
-      },
-      -- smart selection
-      textsubjects = {
-        enable = true,
-        disable = {},
-        prev_selection = "<C-CR>",
-        keymaps = {
-          ["<CR>"] = { "textsubjects-smart", desc = "textsubjects smart selection" },
-          ["<M-CR>"] = { "textsubjects-container-outer", desc = "Select outside containers (classes, functions, etc.)" },
-          ["i<M-CR>"] = { 'textsubjects-container-inner', desc = "Select inside containers (classes, functions, etc.)" },
         },
       },
-      -- highlight & navigating definition
-      refactor = {
-        highlight_definitions = {
-          enable = true,
-          clear_on_cursor_move = true,
-        },
-        highlight_current_scope = {
-          enable = true,
-        },
-        smart_rename = {
-          enable = true,
-          keymaps = {
-            smart_rename = "<M-r>",
-          },
-        },
-        navigation = {
-          enable = true,
-          keymaps = {
-            -- goto_definition_lsp_fallback = false,
-            goto_definition = false,
-            list_definitions = false,
-            list_definitions_toc = false,
-            goto_next_usage = "<M-j>",
-            goto_previous_usage = "<M-k>",
-          }
-        }
-      },
-      -- smart add `end`
-      endwise = {
-        enable = true,
-      },
-      -- alternative: nvim-treesitter-pairs
-      matchup = {
-        enable = true,
-        disable = {},
-        disable_virtual_text = false,
-        include_match_words = true,
-      },
-    }
-  end
+      config = function(_, _opts)
+        require("nvim-treesitter-textobjects").setup(_opts)
+
+        -- keymaps
+        -- You can use the capture groups defined in `textobjects.scm`
+        function select_keymaps()
+          local select = require("nvim-treesitter-textobjects.select")
+
+          map("af", function()
+            select.select_textobject("@function.outer", "textobjects")
+          end, "[TS]select around function @function.outer", { mode = { "x", "o" } })
+          map("if", function()
+            select.select_textobject("@function.inner", "textobjects")
+          end, "[TS]select inside function @function.inner", { mode = { "x", "o" } })
+          map("ac", function()
+            select.select_textobject("@class.outer", "textobjects")
+          end, "[TS]select around class @class.outer", { mode = { "x", "o" } })
+          map("ic", function()
+            select.select_textobject("@class.inner", "textobjects")
+          end, "[TS]select inside class @class.inner", { mode = { "x", "o" } })
+          -- You can also use captures from other query groups like `locals.scm`
+          -- vim.keymap.set({ "x", "o" }, "as", function()
+          --   select_textobject("@local.scope", "locals")
+          -- end)
+        end
+
+        function swap_keymaps()
+          local swap = require("nvim-treesitter-textobjects.swap")
+          map("<M-l>", function()
+            swap.swap_next("@parameter.inner")
+          end, "[TS]Parameter swap with next")
+          map("<M-h>", function()
+            swap.swap_previous("@parameter.inner")
+          end, "[TS]parameter swap with previous")
+        end
+
+        function move_keymaps()
+          local move = require("nvim-treesitter-textobjects.move")
+          -- keymaps
+          map("]m", function()
+            move.goto_next_start("@function.outer", "textobjects")
+          end, "[TS]Next method start", { mode = { "n", "x", "o" } })
+          map("]M", function()
+            move.goto_next_end("@function.outer", "textobjects")
+          end, "[TS]Next method end", { mode = { "n", "x", "o" } })
+          map("[m", function()
+            move.goto_previous_start("@function.outer", "textobjects")
+          end, "[TS]Previous method start", { mode = { "n", "x", "o" } })
+          map("[M", function()
+            move.goto_previous_end("@function.outer", "textobjects")
+          end, "[TS]Previous method end", { mode = { "n", "x", "o" } })
+
+          map("]n", function()
+            move.goto_next_start("@class.outer", "textobjects")
+          end, "[TS]Next class start", { mode = { "n", "x", "o" } })
+          map("]N", function()
+            move.goto_next_end("@class.outer", "textobjects")
+          end, "[TS]Next class end", { mode = { "n", "x", "o" } })
+          map("[n", function()
+            move.goto_previous_start("@class.outer", "textobjects")
+          end, "[TS]Previous class start", { mode = { "n", "x", "o" } })
+          map("[N", function()
+            move.goto_previous_end("@class.outer", "textobjects")
+          end, "[TS]Previous class end", { mode = { "n", "x", "o" } })
+
+          -- You can also pass a list to group multiple queries.
+          -- map("]o", function()
+          --   move.goto_next_start({ "@loop.inner", "@loop.outer" }, "textobjects")
+          -- end, "[TS]Next loop start", { mode = { "n", "x", "o" } })
+          -- map("[o", function()
+          --   move.goto_previous_start({ "@loop.inner", "@loop.outer" }, "textobjects")
+          -- end, "[TS]Previous loop start", { mode = { "n", "x", "o" } })
+
+          -- Go to either the start or the end, whichever is closer.
+          -- Use if you want more granular movements
+          -- "]d", "[d" conficts with got to diagnostic
+          -- map("]d", function()
+          --   move.goto_next("@conditional.outer", "textobjects")
+          -- end, { mode = { "n", "x", "o" } })
+          -- map("[d", function()
+          --   move.goto_previous("@conditional.outer", "textobjects")
+          -- end, { mode = { "n", "x", "o" } })
+
+          -- You can also use captures from other query groups like `locals.scm` or `folds.scm`
+          -- map("]s", function()
+          --   move.goto_next_start("@local.scope", "locals")
+          -- end, { mode = { "n", "x", "o" } })
+          -- map("]z", function()
+          --   move.goto_next_start("@fold", "folds")
+          -- end, { mode = { "n", "x", "o" } })
+        end
+
+        function repeat_move_keymaps()
+          local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
+          local opts = { mode = { "n", "x", "o" } }
+          map(";", ts_repeat_move.repeat_last_move,
+            "[TS]repeat last move", opts)
+          map(",", ts_repeat_move.repeat_last_move_opposite,
+            "[TS]repeat last move in opposite direction", opts)
+
+          opts.expr = true
+          map("f", ts_repeat_move.builtin_f_expr, nil, opts)
+          map("F", ts_repeat_move.builtin_F_expr, nil, opts)
+          map("t", ts_repeat_move.builtin_t_expr, nil, opts)
+          map("T", ts_repeat_move.builtin_T_expr, nil, opts)
+        end
+
+        select_keymaps()
+        swap_keymaps()
+        move_keymaps()
+        repeat_move_keymaps()
+      end
+    },
+  },
 }
