@@ -12,7 +12,6 @@ if vim.g.vscode then
   if not pcall(require, "vsc") then
     vim.api.nvim_err_writeln("Failed to load vscode")
   end
-  return
+else
+  require("config.lazy")
 end
-
-require("config.lazy")

@@ -1,12 +1,11 @@
-local LazyUtil = require("lazy.core.util")
-
 local M = {}
+
+local LazyUtil = nil
 
 setmetatable(M, {
   __index = function(t, k)
-    if LazyUtil[k] then
-      return LazyUtil[k]
-    end
+    LazyUtil = LazyUtil or require("lazy.core.util")
+    if LazyUtil[k] then return LazyUtil[k] end
     t[k] = require("util." .. k) -- load here to prevent loops)
     return t[k]
   end
@@ -66,7 +65,7 @@ local DEFAULT_OPTS = {
   callback = nil,
 }
 
-M.map = function(lhs, rhs, desc, opts)
+function M.map(lhs, rhs, desc, opts)
   opts = vim.tbl_extend("force", DEFAULT_OPTS, opts or {})
   opts.desc = desc
   mode = opts.mode
@@ -89,12 +88,12 @@ local sep = (function()
   end
 end)()
 
-M.joinpath = function(...)
+function M.joinpath(...)
   local args = { n = select("#", ...), ... }
   return table.concat(args, sep)
 end
 
-M.on_load = function(name, fn)
+function M.on_load(name, fn)
   local config = require("lazy.core.config")
   if config.plugins[name] and config.plugins[name]._.loadded then
     fn(name)
