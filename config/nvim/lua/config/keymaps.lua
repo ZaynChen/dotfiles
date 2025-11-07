@@ -4,8 +4,14 @@ map("0", [[virtcol(".") == indent(".")+1 ? "0": "_"]], "Start of line(smart)", {
 map("J", "mzJ`z", "Join lines")
 map("n", "nzzzv", "Search next")
 map("N", "Nzzzv", "Search previous")
-map("J", ":m '>+1<CR>gv=gv", "Move lines down", { mode = "x" })
-map("K", ":m '<-2<CR>gv=gv", "Move lines up", { mode = "x" })
+
+-- Move Lines
+map("<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", "Move Down")
+map("<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", "Move Up")
+map("<A-j>", "<esc><cmd>m .+1<cr>==gi", "Move Down", { mode = "i" })
+map("<A-k>", "<esc><cmd>m .-2<cr>==gi", "Move Up", { mode = "i" })
+map("<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", "Move Down", { mode = "v" })
+map("<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", "Move Up", { mode = "v" })
 
 map("<leader><cr>", "<cmd>noh<cr>", "Clear highlight")
 map("<ESC>", "<cmd>noh<cr><ESC>", "Escape and clear highlight")
@@ -14,6 +20,11 @@ map("<leader>w", "<cmd>update<cr>", "Write when the buffer has been modified")
 map("<leader>q", "<cmd>q<cr>", "Quit current window (when one window quit Vim)")
 map("<leader>e", [[:e <C-R>=expand("%:p:h")."/"<cr>]], "Edit a file", { silent = false })
 map("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Subtitude", { silent = false })
+
+-- Add undo break-points
+map(",", ",<c-g>u", nil, { mode = "i" })
+map(".", ".<c-g>u", nil, { mode = "i" })
+map(";", ";<c-g>u", nil, { mode = "i" })
 
 map("<leader>cd", ':cd <C-R>=expand("%:p:h")<cr>', "Change directory",
   { silent = false })
