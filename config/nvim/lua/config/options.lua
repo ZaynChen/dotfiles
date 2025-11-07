@@ -1,4 +1,3 @@
-local o = vim.o
 local opt = vim.opt
 local g = vim.g
 local env = vim.env
@@ -9,83 +8,75 @@ g.maplocalleader = " "
 env.LANG = "en_US.UTF-8"
 
 -- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 
 -- Basic settings
-o.encoding = "utf-8"
-opt.fileencodings = { "ucs-bom", "utf-8", "gbk", "default", "latin1" }
-opt.backspace = { "indent", "eol", "start" }
-o.whichwrap = o.whichwrap .. ",<,>,h,l"
-o.history = 500
-opt.fileformats = { "unix", "mac", "dos" }
-opt.clipboard = { "unnamed", "unnamedplus" }
+opt.fileencodings:append("gbk")
+opt.whichwrap:append { ["<"] = true, [">"] = true, h = true, l = true }
+opt.fileformats:append("mac")
+opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
 
-o.grepprg = "rg --smart-case --vimgrep $*"
-o.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --smart-case --vimgrep $*"
+opt.grepformat = "%f:%l:%c:%m"
 
-o.timeoutlen = 500
-o.updatetime = 300
+opt.timeoutlen = 300
+opt.updatetime = 200
 
 -- Display
-o.showmatch = true
-o.matchtime = 2
-o.scrolloff = 7
-o.laststatus = 3
-o.cmdheight = 1
--- o.showtabline = 2
-o.tabline = "%M %t"
-o.cursorline = true
-o.wrap = true
-o.linebreak = true -- default off
--- o.textwidth = 500
+opt.termguicolors = true
+opt.showmatch = true
+opt.matchtime = 2
+opt.scrolloff = 7
+opt.laststatus = 3
+
+opt.cursorline = true
+opt.linebreak = true -- default off not used when 'wrap' is off
+opt.pumblend = 10    -- popup-menu blend
+-- opt.pumheight = 10 -- maximu number of entries in a popup menu
+
+opt.splitkeep = "screen"
 
 -- Sidebar
-o.number = true
-o.relativenumber = true
--- o.numberwidth = 3
-o.signcolumn = "yes"
-o.colorcolumn = "80"
--- o.columns = 100
--- o.modelines = 0
+opt.number = true
+opt.relativenumber = true
+opt.signcolumn = "yes"
+opt.colorcolumn:append("80")
 
 -- Search
-o.ignorecase = true
-o.smartcase = true
-o.hlsearch = true
-o.incsearch = true
+opt.ignorecase = true
+opt.smartcase = true
 
--- White characters
-o.smartindent = true
-o.tabstop = 2
-o.shiftwidth = 2
-o.expandtab = true
+-- Nontext characters
+-- opt.conceallevel = 2
+opt.smartindent = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
 opt.list = true
 opt.listchars = { tab = "⋅⋅", nbsp = "¬", extends = "»", precedes = "«", trail = "•", eol = "↴" }
 
--- Window
--- o.splitbelow = true
--- o.splitright = true
+-- Fold
+opt.foldlevel = 99
+opt.foldmethod = "indent"
+opt.foldtext = ""
 
--- Backup files
-o.writebackup = false
-o.swapfile = false
+-- Formatting
+opt.formatoptions = "tcqjroln" -- tcqj
 
--- Commands mode
-o.wildmode = "list:longest"
-o.wildignore = ".hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.o"
+-- Completion mode
+opt.wildmode = "list:longest"
+opt.wildignore = { ".hg", ".svn", "*~", "*.png", "*.jpg", "*.gif", "*.min.js", "*.o" }
 
--- Completion
--- 'completeopt' option supports "popup" flag
--- to show extra information in a floating window. -- neovim-0.10
-opt.completeopt = { "menuone", "noselect", "noinsert", "popup" }
-opt.shortmess = opt.shortmess + { c = true }
+-- Insert mode completion
+opt.completeopt = { "menu", "menuone", "noselect", "longest", "preview" }
+opt.shortmess:append { c = true }
 
-o.mouse = "a"
+opt.virtualedit = "block"
+opt.confirm = true
 
-o.lazyredraw = true
--- o.undodir = HOME .. "/.config/nvim/temp_dirs/undodir"
--- o.undodir = vim.fn.stdpath("data") .. "/undo"
-o.undofile = true
+opt.mouse = "a"
+
+opt.undofile = true
 
 -- TODO visual mode select current selection
