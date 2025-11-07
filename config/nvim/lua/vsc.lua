@@ -4,8 +4,8 @@ local opt = vim.opt
 
 g.mapleader = " "
 o.whichwrap = o.whichwrap .. ",<,>,h,l"
-opt.clipboard = { "unnamed", "unnamedplus" }
-opt.backspace = { "indent", "eol", "start" }
+opt.clipboard = "unnamedplus"
+opt.timeoutlen = 1000
 
 local DEFAULT_OPTS = {
   mode = "n",
@@ -30,7 +30,7 @@ end
 map("0", "virtcol('.') == indent('.')+1 ? '0': '^'", "Start of line (smart)", { expr = true })
 
 map("<leader>e", "<cmd>Edit<cr>", "Edit a file")
-map("<leader>w", "<cmd>Write<cr>", "Write to a file")
+map("<leader>w", "<cmd>Update<cr>", "Write to a file when buffer is modified")
 map("<leader>q", "<cmd>Quit<cr>", "workbench.action.closeActiveEditor")
 
 -- Tab
