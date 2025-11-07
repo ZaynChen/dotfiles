@@ -1,20 +1,14 @@
 local kind_hl = function(ctx)
-  local hl = "Special"
-
   if vim.list_contains({ "path" }, ctx.source_id) then
     local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
-    -- "~/Repo/learn/rust/lightdm-webkit6-greeter"
-    if dev_icon then
-      hl = dev_hl
-    end
+    return dev_icon and dev_hl or "Special"
   end
 
-  return hl
+  return "Special"
 end
 
 return {
-  'saghen/blink.cmp',
-  version = '1.*',
+  "saghen/blink.cmp",
   dependencies = {
     "rafamadriz/friendly-snippets",
     "fang2hou/blink-copilot",
@@ -31,15 +25,23 @@ return {
   },
   opts = {
     keymap = {
-      preset = "default",
+      preset = "none",
+      ["<C-E>"] = { "hide", "fallback" },
+      ["<C-Y>"] = { "select_and_accept", "fallback" },
 
-      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
       ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
 
-      ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
-      ["<C-j>"] = { "select_next", "fallback_to_mappings" },
+      ["<C-B>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-F>"] = { "scroll_documentation_down", "fallback" },
 
-      ["<M-k>"] = { "show_signature", "hide_signature", "fallback" }
+      ["<Up>"] = { "select_prev", "fallback" },
+      ["<Down>"] = { "select_next", "fallback" },
+      ["<C-K>"] = { "select_prev", "fallback_to_mappings" },
+      ["<C-J>"] = { "select_next", "fallback_to_mappings" },
+
+      -- ["<C-SPACE>"] = { "show", "show_documentation", "hide_documentation" },
+      -- ["<M-m>"] = { "show_signature", "hide_signature", "fallback" },
     },
     appearance = {
       kind_icons = {
@@ -75,7 +77,33 @@ return {
         TypeParameter = "",
       },
     },
-    -- signature = { enabled = false },
+    signature = {
+      -- alternative "ray-x/lsp_signature.nvim"
+      enabled = false,
+      trigger = {
+        enabled = true,
+        show_on_keyword = true,
+        blocked_trigger_characters = {},
+        blocked_retrigger_characters = {},
+        show_on_trigger_character = true,
+        show_on_insert = true,
+        show_on_insert_on_trigger_character = true,
+        show_on_accept = true,
+        show_on_accept_on_trigger_character = true,
+      },
+      window = {
+        min_width = 1,
+        max_width = 100,
+        max_height = 12,
+        border = "rounded",
+        winblend = 0,
+        winhighlight = "BlinkCmpSignatureHelpActiveParameter:Search",
+        scrollbar = false,
+        direction_priority = { "n", "s" },
+        treesitter_highlighting = true,
+        show_documentation = true,
+      },
+    },
     completion = {
       documentation = { auto_show = true },
       ghost_text = {
@@ -89,7 +117,7 @@ return {
       },
       menu = {
         border = "rounded",
-        winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+        -- winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
         draw = {
           padding = { 0, 1 }, -- padding only on right side
           treesitter = { "lsp" },
@@ -103,7 +131,7 @@ return {
                 }
 
                 if ctx.label_detail then
-                  table.insert(highlights, { #label, #label + #ctx.label_detail, group = 'BlinkCmpLabelDetail' })
+                  table.insert(highlights, { #label, #label + #ctx.label_detail, group = "BlinkCmpLabelDetail" })
                 end
 
                 if ctx.deprecated then
