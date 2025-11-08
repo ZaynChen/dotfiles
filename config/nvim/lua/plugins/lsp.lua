@@ -210,7 +210,7 @@ return {
         extra_trigger_chars = {},
         -- toggle signature on and off in insert mode
         -- set this key also helps if you want see signature in newline
-        toggle_key = "<C-M>",
+        toggle_key = "<M-m>",
         -- toggle key will enable|disable floating_window flag
         toggle_key_flip_floatwin_setting = false,
         -- cycle to next signature, e.g. '<M-n>' function overloading
