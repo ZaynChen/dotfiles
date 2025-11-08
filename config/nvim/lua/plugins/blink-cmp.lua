@@ -9,6 +9,7 @@ end
 
 return {
   "saghen/blink.cmp",
+  build = "cargo build --release",
   dependencies = {
     "rafamadriz/friendly-snippets",
     "fang2hou/blink-copilot",
