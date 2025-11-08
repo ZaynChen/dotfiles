@@ -75,7 +75,6 @@ return {
       defaults = {
         mappings = {
           i = {
-            ["<C-t>"] = open_with_trouble,
             ["<M-t>"] = open_with_trouble,
             ["<C-h>"] = find_files_with_hidden,
             ["<C-g>"] = find_files_no_ignore,
@@ -101,7 +100,6 @@ return {
 
             ["<C-/>"] = actions.which_key,
             ["<ESC>"] = actions.close,
-
 
             ["<C-d>"] = false,
             ["<C-f>"] = false,

@@ -71,8 +71,8 @@ return {
     keys = {
       -- <c-d> => <c-d>zz, <c-u> => <c-u>zz,
       -- can not bind this two mapping to scrolling which-key
-      scroll_down = "<c-n>",
-      scroll_up = "<c-p>",
+      scroll_down = "<M-d>",
+      scroll_up = "<M-u>",
     },
     sort = { "local", "order", "group", "alphanum", "mod" },
     expand = 0, -- expand gruops when <= n mappings
@@ -159,7 +159,7 @@ return {
         { "<C-W>",   desc = "delete word before the cursor" },
         { "<C-Y>",   desc = "[Cmp]Comfirm" },
         { "<Down>",  desc = "[Cmp]Next" },
-        { "<A-e>",   desc = "[Autopairs]Fast wrap" },
+        { "<M-e>",   desc = "[Autopairs]Fast wrap" },
         { "<S-Tab>", desc = "[Cmp]Prev" },
         { "<Tab>",   desc = "[Cmp]Expand or next" },
         { "<Up>",    desc = "[Cmp]Prev" },

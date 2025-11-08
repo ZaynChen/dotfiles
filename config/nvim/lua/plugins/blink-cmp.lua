@@ -40,9 +40,11 @@ return {
       ["<Down>"] = { "select_next", "fallback" },
       ["<C-K>"] = { "select_prev", "fallback_to_mappings" },
       ["<C-J>"] = { "select_next", "fallback_to_mappings" },
+      ["<C-P>"] = { "select_prev", "fallback_to_mappings" },
+      ["<C-N>"] = { "select_next", "fallback_to_mappings" },
 
-      -- ["<C-SPACE>"] = { "show", "show_documentation", "hide_documentation" },
-      -- ["<M-m>"] = { "show_signature", "hide_signature", "fallback" },
+      ["<A-space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-M>"] = { "show_signature", "hide_signature", "fallback" },
     },
     appearance = {
       kind_icons = {
