@@ -10,40 +10,17 @@ paru -S picom-git --noconfirm --needed
 paru -S lightdm --noconfirm --needed
 paru -S base-devel meson ninja libyaml --noconfirm --needed
 paru -S nodejs npm typescript --noconfirm --needed
-# paru -S webkit2gtk webkit2gtk-4.1 --noconfirm --needed
-paru -S lightdm-webkit2-greeter --noconfirm --needed
+paru -S webkitgtk-6.0 --noconfirm --needed
 CURR_DIR=$(pwd)
 CLONE_DIR=$XDG_CACHE_HOME/paru/clone
 cd $CLONE_DIR
-git clone https://github.com/JezerM/sea-greeter.git --recursive
-cd sea-greeter
-meson build
-ninja -C build
-sudo ninja -C build install
-cd $CLONE_DIR
-rm -rf lightdm-webkit-theme-litarvan
-git clone -b migrate2vue3 https://github.com/ZaynChen/lightdm-webkit-theme-litarvan.git
-cd lightdm-webkit-theme-litarvan
-./build.sh
-VERSION=$(cat version)
-sudo rm -r /usr/share/lightdm-webkit/themes/litarvan /usr/share/web-greeter/themes/litarvan
-sudo mkdir /usr/share/lightdm-webkit/themes/litarvan /usr/share/web-greeter/themes/litarvan
-sudo cp ./lightdm-webkit-theme-litarvan-$VERSION.tar.gz /usr/share/lightdm-webkit/themes/litarvan/
-sudo cp ./lightdm-webkit-theme-litarvan-$VERSION.tar.gz /usr/share/web-greeter/themes/litarvan/
-cd /usr/share/lightdm-webkit/themes/litarvan/
-sudo tar -xvf lightdm-webkit-theme-litarvan-$VERSION.tar.gz
-cd /usr/share/web-greeter/themes/litarvan/
-sudo tar -xvf lightdm-webkit-theme-litarvan-$VERSION.tar.gz
-# sudo rm -rf /usr/share/web-greeter/themes/litarvan
-# sudo mkdir /usr/share/web-greeter/themes/litarvan
-# sudo cp ./lightdm-webkit-theme-litarvan-3.2.0.tar.gz /usr/share/web-greeter/themes/litarvan/
-# cd /usr/share/web-greeter/themes/litarvan/
-# sudo tar -xvf lightdm-webkit-theme-litarvan-3.2.0.tar.gz
+git clone https://github.com/ZaynChen/lightdm-webkit-greeter.git --recursive
+cd lightdm-webkit-greeter
+./install.sh
 cd $CURR_DIR
 
 FIND="^#greeter-session=example-gtk-gnome"
-# REPLACE="greeter-session=sea-greeter"
-REPLACE="greeter-session=lightdm-webkit2-greeter"
+REPLACE="greeter-session=lightdm-webkit-greeter"
 sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
 FIND="^#user-authority-in-system-dir=false"
 REPLACE="user-authority-in-system-dir=true"
@@ -52,10 +29,6 @@ PATTERN="^greeter:$/,/^$"
 FIND="gruvbox"
 REPLACE="litarvan"
 sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/web-greeter.yml
-PATTERN="\[greeter\]$/,/^$"
-FIND="antergos"
-REPLACE="litarvan"
-sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/lightdm-webkit2-greeter.conf
 grep -q "NaturalScrolling" /usr/share/X11/xorg.conf.d/40-libinput.conf ||
   sudo sed -i "/libinput pointer catchall/a\        Option \"NaturalScrolling\" \"true\"" /usr/share/X11/xorg.conf.d/40-libinput.conf
 sudo systemctl enable lightdm.service
