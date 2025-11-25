@@ -65,6 +65,22 @@ return {
           end,
         },
         {
+          "stevearc/conform.nvim",
+          event = { "BufWritePre" },
+          cmd = { "ConformInfo" },
+          opts = {
+            formatters_by_ft = {
+              python = { "ruff" },
+              javascript = { "prettierd", "prettier", stop_after_first = true },
+            },
+            default_format_opts = { lsp_format = "fallback" },
+            format_on_save = { timeout_ms = 500 }
+          },
+          init = function()
+            vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+          end,
+        },
+        {
           "chrisgrieser/nvim-lsp-endhints",
           event = "LspAttach",
           opts = {
@@ -88,8 +104,6 @@ return {
         },
       },
       config = function()
-        local lsp = vim.lsp
-
         -- lsp.config("*", {
         --   capabilities = require("cmp_nvim_lsp").default_capabilities(),
         -- })
@@ -97,28 +111,11 @@ return {
         vim.api.nvim_create_autocmd("LspAttach", {
           group = vim.api.nvim_create_augroup("UserLspConfig", {}),
           callback = function(args)
-            local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-
-            local grp = vim.api.nvim_create_augroup("UserLspConfig", { clear = false })
-
-            -- FormatOnSave
-            if not client:supports_method("textDocument/willSaveWaitUntil")
-                and client:supports_method("textDocument/formatting") then
-              vim.api.nvim_create_autocmd("BufWritePre", {
-                group = grp,
-                buffer = args.buf,
-                desc = "[LSP]FormatOnSave",
-                callback = function()
-                  lsp.buf.format({ bufnr = args.buf, id = client.id })
-                end
-              })
-            end
-
             -- Show diagnostic popup on cursor hover
             -- <C-W>d (and <C-W><C-D>) map to vim.diagnostic.open_float()
             -- CTRL-W_d-default
             vim.api.nvim_create_autocmd("CursorHold", {
-              group = grp,
+              group = vim.api.nvim_create_augroup("UserLspConfig", { clear = false }),
               buffer = args.buf,
               desc = "[Diagnostic]Open float when cursor hold",
               callback = function()
