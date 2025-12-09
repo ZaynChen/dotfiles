@@ -26,7 +26,11 @@ local opts = { -- BEGIN_DEFAULT_OPTS
     number = true,
     relativenumber = true,
     signcolumn = "yes",
-    width = 30,
+    width = {
+      max = 30,
+      padding = 0,
+      lines_excluded = {}
+    },
     float = {
       enable = false,
       quit_on_focus_loss = true,
