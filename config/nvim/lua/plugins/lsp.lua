@@ -19,9 +19,9 @@ return {
   event = { "BufReadPost", "BufNewFile" },
   opts = {
     ensure_installed = {
-      "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls",
-      "jsonls", "julials", "lua_ls", "mesonlsp", "pyright",
-      "ruff", "vue_ls", "yamlls", "taplo",
+      "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls", "html",
+      "jsonls", "julials", "lua_ls", "mesonlsp", "pyright", "ruff",
+      "taplo", "ts_ls", "vue_ls", "yamlls",
     },
 
     automatic_enable = true,
