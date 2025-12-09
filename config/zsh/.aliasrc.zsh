@@ -9,10 +9,10 @@ alias zlogin="$EDITOR $ZDOTDIR/.zlogin"
 alias alaconf="$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.toml"
 
 if [ -x "$(command -v eza)" ] ; then
-  alias l="eza -lah"
-  alias la="eza -laah"
-  alias ll="eza -lh"
-  alias ls="eza"
+  alias l="eza -lah --group-directories-first"
+  alias la="eza -laah --group-directories-first"
+  alias ll="eza -lh --group-directories-first"
+  alias ls="eza --group-directories-first"
 fi
 alias e="$EDITOR"
 alias nf="neofetch"
