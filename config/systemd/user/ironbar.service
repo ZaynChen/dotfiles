@@ -1,0 +1,18 @@
+[Unit]
+Description=Customisable wlroots/sway bar written in rust
+Documentation=https://github.com/JakeStanger/ironbar/wiki
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=exec
+# Repurpose XDG Autostart filtering
+ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "Hyprland" ""
+ExecStart=/usr/bin/ironbar
+ExecReload=kill -SIGUSR2 $MAINPID
+Restart=on-failure
+slice=app-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target
