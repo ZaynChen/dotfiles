@@ -1,0 +1,236 @@
+:root {
+  --black: #000000;
+  --dark1: #1C1C1C;
+  --dark2: #2B2B2B;
+  --gray: #64727D;
+  --gray1: #535D6C;
+  --gray2: #8F8F8F;
+  --light1: #D1D1D1;
+  --light: #FEFEFE;
+  --white: #FFFFFF;
+  --red: #E53935;
+  --yellow: #F1C40F;
+  --blue: #2980B9;
+  --orange: #F0932B;
+  --green: #2ECC71;
+  --violet: #9B59B6;
+  --cyan: #56B6C2;
+  --brown: #964B00;
+
+  --blur1: 0.2;
+  --blur2: 0.3;
+  --blur3: 0.5;
+  --blur4: 0.7;
+  --blur5: 0.8;
+
+  --bg-normal: alpha(var(--dark2), var(--blur3));
+  --bg-visible: alpha(var(--black), var(--blur1));
+  --bg-urgent: alpha(var(--red), var(--blur3));
+  --bg-popover: alpha(var(--dark2), var(--blur5));
+
+  --fg-normal: var(--light);
+  --fg-visible: #F4511E;
+  --fg-urgent: var(--white);
+  --fg-inactive: var(--gray2);
+
+  --fg-border: var(--white);
+  --bar-bg-border: alpha(var(--gray), var(--blur3));
+
+  --volume-bg: var(--yellow);
+  --volume-bg-hover: #A37800;
+
+  --tray-menu-bg: var(--bg-popover);
+}
+
+* {
+  font-family: FiraCode Nerd Font Mono, Source Han Sans CN, FreeSans;
+  font-size: 14px;
+  line-height: 0;
+}
+
+.text-button {
+  border: unset;
+  border-radius: unset;
+  padding: 0 10px;
+
+  color: unset;
+  background-color: unset;
+  background-image: unset;
+}
+
+.background {
+  color: var(--fg-normal);
+  background-color: var(--bg-normal);
+}
+
+.background>* {
+  background-color: inherit;
+}
+
+popover.background {
+  background: var(--bg-popover);
+}
+
+#bar {
+  box-shadow: inset 0 -3px var(--bar-bg-border);
+
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+
+/* .power-menu {} */
+
+.power-menu #power-btn {
+  background-color: alpha(var(--dark2), var(--blur3));
+}
+
+.power-menu #power-btn:hover {
+  background-color: alpha(var(--dark1), var(--blur3));
+}
+
+.popup-power-menu {
+  padding: 1em;
+}
+
+.popup-power-menu #header {
+  font-size: 1.4em;
+  border-bottom: 1px solid var(--fg-border);
+  padding-bottom: 0.4em;
+  margin-bottom: 0.8em;
+}
+
+.popup-power-menu .power-btn {
+  background-color: alpha(var(--dark2), var(--blur3));
+  border: 1px solid var(--fg-border);
+  padding: 0.6em 1em;
+}
+
+.popup-power-menu .power-btn:hover {
+  background-color: alpha(var(--dark1), var(--blur3));
+}
+
+.clock {
+  background-color: var(--gray);
+}
+
+.clock .calendar.view {
+  color: inherit;
+  background-color: inherit;
+}
+
+.clock .calendar.view .image-button {
+  color: var(--light1);
+}
+
+/* .workspaces {} */
+
+/* .workspaces .item {} */
+
+/* .workspaces .item.focused {} */
+
+.workspaces .item.visible {
+  color: var(--fg-visible);
+  text-shadow: 0 1px var(--fg-visible);
+  box-shadow: inset 0 -3px var(--fg-visible);
+  background-color: var(--bg-visible);
+}
+
+.workspaces .item.urgent {
+  color: var(--fg-urgent);
+  background-color: var(--bg-urgent);
+}
+
+.workspaces .item.inactive {
+  color: var(--fg-inactive);
+}
+
+.workspaces .item:hover {
+  background-color: alpha(var(--black), var(--blur1));
+}
+
+/*
+.workspaces .item .icon {}
+
+.workspaces .item .text-icon {}
+
+.workspaces .item .image {}
+*/
+
+#start>*:first-child .workspaces {
+  margin-left: 0;
+}
+
+#start>*:last-child .workspaces {
+  margin-right: 0;
+}
+
+.music {
+  border: unset;
+  border-radius: unset;
+
+  color: unset;
+  background-image: unset;
+}
+
+#networks .item {
+  color: inherit;
+  background-color: inherit;
+}
+
+.tray {
+  background-color: var(--blue);
+}
+
+.tray .item {
+  border: unset;
+  border-radius: unset;
+  box-shadow: unset;
+
+  padding: 0 10px;
+  background-image: unset;
+}
+
+.tray .background.menu {
+  background-color: var(--tray-menu-bg);
+}
+
+.clipboard {
+  margin-left: 10px;
+  background-color: var(--bg-popover);
+}
+
+.volume {
+  margin-left: 10px;
+  color: var(--black);
+  background-color: var(--volume-bg);
+}
+
+.volume:hover {
+  background-color: var(--volume-bg-hover);
+}
+
+#sysinfo {
+  margin-left: 10px;
+}
+
+.sysinfo .item {
+  padding: 0 10px;
+}
+
+.sysinfo .item:nth-child(1) {
+  color: var(--black);
+  background-color: var(--green);
+}
+
+.sysinfo .item:nth-child(2) {
+  color: var(--black);
+  background-color: var(--orange);
+}
+
+.sysinfo .item:nth-child(3) {
+  background-color: var(--violet);
+}
+
+.sysinfo .item:nth-child(4) {
+  background-color: var(--brown);
+}

@@ -1,0 +1,121 @@
+# yaml-language-server: $schema=schema.json
+ironvar_defaults: {}
+monitors: null
+icon_theme: null
+icon_overrides: {}
+# name: bar-<n>
+position: top
+anchor_to_edges: true
+height: 32
+margin:
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+# layer: top
+layer: background
+# exclusive_zone: true
+popup_gap: 5
+popup_autohide: false
+# start_hidden: false
+autohide: null
+start:
+  - type: custom
+    class: power-menu
+    bar:
+      - type: button
+        name: power-btn
+        label: 
+        on_click: popup:toggle
+    popup:
+      - type: box
+        orientation: vertical
+        widgets:
+          - type: label
+            name: header
+            label: Power menu
+          - type: box
+            widgets:
+              - type: button
+                class: power-btn
+                label: <span font-size='40pt'></span>
+                on_click: "!shutdown now"
+              - type: button
+                class: power-btn
+                label: <span font-size='40pt'></span>
+                on_click: "!reboot"
+    tooltip: "Up: {{30000:uptime -p | cut -d ' ' -f2-}}"
+  - type: "clock"
+    format: "%Y-%m-%d %H:%M %a"
+  - type: workspaces
+    icon_size: 16
+    all_monitors: false
+    sort: label
+    name_map:
+      "1": ""
+      "2": ""
+      "3": ""
+      "4": ""
+      "5": ""
+      "6": "6"
+      "7": "󰖂"
+      "8": ""
+      "9": "9"
+    favorites:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+      - "6"
+      - "7"
+      - "8"
+      - "9"
+  - type: music
+    player_type: mpris
+    format: "{title}"
+    truncate:
+      mode: end
+      max_length: 30
+center:
+  - type: focused
+    show_icons: true
+    show_title: true
+    icon_size: 16
+    truncate:
+      mode: end
+      max_length: 30
+end:
+  - type: sys_info
+    name: networks
+    interval:
+      networks: 3
+    format:
+      - 󰓢 {net_up#kb}/{net_down#kb}
+  - type: tray
+    icon_size: 16
+  - type: clipboard
+    max_items: 3
+    truncate:
+      mode: end
+      length: 50
+  - type: volume
+    format: "{icon} {percentage}%"
+    max_volume: 100
+    icons:
+      volume_high: 󰕾
+      volume_medium: 󰖀
+      volume_low: 󰕿
+      muted: 󰝟
+  - type: sys_info
+    name: sysinfo
+    interval:
+      cpu: 1
+      temps: 5
+      memory: 30
+      disks: 300
+    format:
+      - " {cpu_percent: <2}%"
+      -  {temp_c}°C
+      -  {memory_percent}%
+      - "󰋊 {disk_percent@/: <3.1}%"
