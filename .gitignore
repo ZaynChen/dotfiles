@@ -1,7 +1,6 @@
 .DS_Store
 
 config/autostart
-config/BraveSoftware
 config/cef_user_data
 config/citra*
 config/clash*
