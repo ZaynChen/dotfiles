@@ -28,6 +28,8 @@ mod_key_ascii = ["⇧", "⇧", "⌘", "⌘", "⎇", "✦", "✦", "⌘"]
 
 [behavior]
 use_xdg_data_dir_icons = false
+global_prefix = "uwsm-app --"
+global_flags = ""
 animate = true
 
 [binds]
