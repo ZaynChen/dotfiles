@@ -1,4 +1,6 @@
-registry=https://mirrors.huaweicloud.com/repository/npm/
+; registry=https://mirrors.huaweicloud.com/repository/npm/
+registry=https://npmreg.proxy.ustclug.org/
+; registry=https://registry.npmjs.org/
 prefix=${XDG_DATA_HOME}/npm
 cache=${XDG_CACHE_HOME}/npm
 init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
