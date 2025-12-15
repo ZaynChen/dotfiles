@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 sudo pacman -S pacman-contrib --noconfirm --needed
 sudo pacman -S paru --noconfirm --needed
 
@@ -5,67 +7,59 @@ paru -S iptables-nft --needed
 sudo systemctl enable nftables
 timedatectl set-ntp true
 
-paru -S picom-git --noconfirm --needed
-
-paru -S lightdm --noconfirm --needed
 paru -S base-devel meson ninja libyaml --noconfirm --needed
 paru -S nodejs npm typescript --noconfirm --needed
 paru -S webkitgtk-6.0 --noconfirm --needed
-CURR_DIR=$(pwd)
-CLONE_DIR=$XDG_CACHE_HOME/paru/clone
-cd $CLONE_DIR
-git clone https://github.com/ZaynChen/lightdm-webkit-greeter.git --recursive
-cd lightdm-webkit-greeter
-./install.sh
-cd $CURR_DIR
 
-FIND="^#greeter-session=example-gtk-gnome"
-REPLACE="greeter-session=lightdm-webkit-greeter"
-sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
-FIND="^#user-authority-in-system-dir=false"
-REPLACE="user-authority-in-system-dir=true"
-sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
-PATTERN="^greeter:$/,/^$"
-FIND="gruvbox"
-REPLACE="litarvan"
-sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/web-greeter.yml
-grep -q "NaturalScrolling" /usr/share/X11/xorg.conf.d/40-libinput.conf ||
-  sudo sed -i "/libinput pointer catchall/a\        Option \"NaturalScrolling\" \"true\"" /usr/share/X11/xorg.conf.d/40-libinput.conf
-sudo systemctl enable lightdm.service
-paru -S light-locker --noconfirm --needed
+install_lightdm() {
+  # a compositor for X11
+  paru -S picom-git --noconfirm --needed
+  paru -S lightdm --noconfirm --needed
 
-# black screen issue, https://gitlab.archlinux.org/archlinux/packaging/packages/webkit2gtk/-/issues/1
-if [ -e /etc/environment ]; then
-  grep -q "WEBKIT_DISABLE_DMABUF_RENDERER" ||
-    echo "WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee -a /etc/environment
-else
-  echo "WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee /etc/environment
-fi
+  CURR_DIR=$(pwd)
+  CLONE_DIR=$XDG_CACHE_HOME/paru/clone
+  cd $CLONE_DIR
+  git clone https://github.com/ZaynChen/lightdm-webkit-greeter.git --recursive
+  cd lightdm-webkit-greeter
+  ./install.sh
+  cd $CURR_DIR
 
-# if [ -e /etc/environment ]; then
-#   grep -q "LANG=" /etc/environment ||
-#     echo "
-# LANG=zh_CN.UTF-8
-# LANGUAGE=zh_CN:en_US
-# WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee -a /etc/environment
-# else
-#   echo "
-# LANG=zh_CN.UTF-8
-# LANGUAGE=zh_CN:en_US
-# WEBKIT_DISABLE_DMABUF_RENDERER=1" | sudo tee /etc/environment
-# fi
+  FIND="^#greeter-session=example-gtk-gnome"
+  REPLACE="greeter-session=lightdm-webkit-greeter"
+  sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
+  FIND="^#user-authority-in-system-dir=false"
+  REPLACE="user-authority-in-system-dir=true"
+  sudo sed -i "s/$FIND/$REPLACE/" /etc/lightdm/lightdm.conf
+  PATTERN="^greeter:$/,/^$"
+  FIND="gruvbox"
+  REPLACE="litarvan"
+  sudo sed -i "/$PATTERN/s/$FIND/$REPLACE/" /etc/lightdm/web-greeter.yml
+  grep -q "NaturalScrolling" /usr/share/X11/xorg.conf.d/40-libinput.conf ||
+    sudo sed -i "/libinput pointer catchall/a\        Option \"NaturalScrolling\" \"true\"" /usr/share/X11/xorg.conf.d/40-libinput.conf
+  systemctl enable lightdm.service
+  paru -S light-locker --noconfirm --needed
+}
 
-# Localization
-# using accountsserice to set the language of lightdm-webkit2-greeter
-# in order to deal with language ambigious, e.g. lightdm.language = "中文"
-# when the actual language is "zh_CN" or "zh_TW"
+# TODO: not yet
+install_greetd() {
+  paru -S greetd --noconfirm --needed
+  systemctl enable greetd
+
+  CURR_DIR=$(pwd)
+  CLONE_DIR=$XDG_CACHE_HOME/paru/clone
+  cd $CLONE_DIR
+  git clone https://github.com/ZaynChen/webkit-greeter.git --recursive
+  cd webkit-greeter
+  ./install.sh
+  cd $CURR_DIR
+}
+
+install_lightdm
+# install_greetd
+
 paru -S accountsservice --noconfirm --needed
 # using D-Bus to set Localization of user's session, need relogin
 busctl call org.freedesktop.Accounts /org/freedesktop/Accounts/User$UID org.freedesktop.Accounts.User SetLanguage s zh_CN.UTF-8
-# if sudo test -e /var/lib/AccountsService/users/$USER; then
-#   sudo grep -q "Language" /var/lib/AccountsService/users/$USER ||
-#     echo "Language=zh_CN.UTF-8" | sudo tee -a /var/lib/AccountsService/users/$USER
-# fi
 
 # audio middleware pulseaudio replacement
 paru -S pipewire lib32-pipewire --noconfirm --needed
@@ -78,18 +72,18 @@ paru -S betterlockscreen --noconfirm --needed
 paru -S archlinux-wallpaper --noconfirm --needed
 betterlockscreen -u /usr/share/backgrounds/archlinux
 
-# awesomewm will use packages installed by luarocks
 paru -S luarocks --noconfirm --needed
-sudo luarocks install lain
-# paru -S lain-git --noconfirm --needed
-# paru -S awesome --noconfirm --needed
-paru -S awesome-git --noconfirm --needed
-paru -S hyprland-git hyprpaper waybar --noconfirm --needed
+# awesomewm will use packages installed by luarocks
+# sudo luarocks install lain # lain needed by awesomewm
+# paru -S awesome-git --noconfirm --needed
+paru -S hyprland hyprpaper --noconfirm --needed
+paru -S ironbar-git --noconfirm --needed
 paru -S sherlock-launcher-git --noconfirm --needed
 
 paru -S xdg-utils --noconfirm --needed
 paru -S alsa-utils --noconfirm --needed
-paru -S volumeicon --noconfirm --needed
+# statusbar support volumeicon related feature
+# paru -S volumeicon --noconfirm --needed
 paru -S network-manager-applet --noconfirm --needed
 systemctl enable NetworkManager
 paru -S pcmanfm --noconfirm --needed
@@ -133,7 +127,7 @@ paru -S htop --noconfirm --needed
 paru -S neofetch --noconfirm --needed
 # RS terminal bandwidth utilization tool
 paru -S bandwhich --noconfirm --needed
-paru -S hardinfo --noconfirm --needed
+paru -S hardinfo2 --noconfirm --needed
 paru -S dmidecode --noconfirm --needed
 
 paru -S alacritty --noconfirm --needed
@@ -144,12 +138,9 @@ curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles
 paru -S tmux --noconfirm --needed
 
 paru -S firefox-developer-edition firefox-developer-edition-i18n-zh-cn --noconfirm --needed
-# Chromium-based browser, focus on privacy
-# paru -S brave-bin --noconfirm --needed
 
 # nc netcat utility, for ssh ProxyJump
 paru -S openbsd-netcat --noconfirm --needed
-# paru -S clash-for-windows-chinese --noconfirm --needed
 paru -S mihomo-party --noconfirm --needed
 
 # RS code statistic tool
