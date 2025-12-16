@@ -95,10 +95,10 @@ end:
   - type: tray
     icon_size: 16
   - type: clipboard
-    max_items: 3
+    max_items: 5
     truncate:
       mode: end
-      length: 50
+      length: 30
   - type: volume
     format: "{icon} {percentage}%"
     max_volume: 100
