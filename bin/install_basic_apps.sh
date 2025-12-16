@@ -124,7 +124,7 @@ paru -S procs --noconfirm --needed
 # RS graphical process/system monitor for the terminal, inspired by htop
 paru -S bottom --noconfirm --needed
 paru -S htop --noconfirm --needed
-paru -S neofetch --noconfirm --needed
+paru -S fastfetch --noconfirm --needed
 # RS terminal bandwidth utilization tool
 paru -S bandwhich --noconfirm --needed
 paru -S hardinfo2 --noconfirm --needed

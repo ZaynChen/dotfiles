@@ -15,7 +15,8 @@ if [ -x "$(command -v eza)" ] ; then
   alias ls="eza --group-directories-first"
 fi
 alias e="$EDITOR"
-alias nf="neofetch"
+alias nf="fastfetch"
+alias ff="fastfetch"
 alias u="aupdate.sh"
 
 alias gdb=gdb -n -x $XDG_CONFIG_HOME/gdb/init
