@@ -82,6 +82,7 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export RANDFILE="$XDG_STATE_HOME/openssl/rnd"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export rvm_path="$XDG_DATA_HOME/rvm"
 export SQLITE_HISTORY="$XDG_CACHE_HOME/sqlite_history"
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
@@ -109,7 +110,7 @@ export SKLEARNEX_VERBOSE="INFO"
 
 # PATH
 append_path () {
-  # https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_02
+  # https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html#tag_19_06_02
   [[ ":$PATH:" =~ ":$1:" ]] || PATH="${PATH:+$PATH:}$1"
 }
 
@@ -134,7 +135,7 @@ fi
 append_path "${XDG_DATA_HOME}/npm/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-append_path "$HOME/.rvm/bin"
+append_path "$rvm_path/bin"
 
 unset append_path
 unset prepend_path

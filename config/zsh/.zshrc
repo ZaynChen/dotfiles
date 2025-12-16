@@ -94,3 +94,4 @@ fi
 
 eval "$(zoxide init zsh --cmd j)"
 
+[[ -s "$rvm_path/scripts/rvm" ]] && source "$rvm_path/scripts/rvm" # Load RVM into a shell session *as a function*
