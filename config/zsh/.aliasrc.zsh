@@ -21,7 +21,6 @@ alias ff="fastfetch"
 alias u="aupdate.sh"
 
 alias gdb=gdb -n -x $XDG_CONFIG_HOME/gdb/init
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 # -- riscv-gnu-toolchain alias
 alias addr2linerv64="riscv64-unknown-elf-addr2line"
