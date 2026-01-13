@@ -78,7 +78,7 @@ paru -S luarocks --noconfirm --needed
 # paru -S awesome-git --noconfirm --needed
 paru -S hyprland hyprpaper --noconfirm --needed
 paru -S ironbar-git --noconfirm --needed
-paru -S sherlock-launcher-git --noconfirm --needed
+paru -S sherlock-launcher-bin --noconfirm --needed
 
 paru -S xdg-utils --noconfirm --needed
 paru -S alsa-utils --noconfirm --needed

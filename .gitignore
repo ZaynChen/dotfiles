@@ -47,3 +47,4 @@ config/zsh/.zsh_sessions
 
 config/mimeapps.list
 config/user-dirs*
+config/QtProject.conf
