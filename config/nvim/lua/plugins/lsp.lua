@@ -20,7 +20,7 @@ return {
   opts = {
     ensure_installed = {
       "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls", "html",
-      "jsonls", "julials", "lua_ls", "mesonlsp", "pyright", "ruff",
+      "jsonls", "lua_ls", "mesonlsp", "pyright", "ruff",
       "taplo", "ts_ls", "vue_ls", "yamlls",
     },
 
@@ -104,9 +104,7 @@ return {
         },
       },
       config = function()
-        -- lsp.config("*", {
-        --   capabilities = require("cmp_nvim_lsp").default_capabilities(),
-        -- })
+        vim.lsp.enable("julials")
 
         vim.api.nvim_create_autocmd("LspAttach", {
           group = vim.api.nvim_create_augroup("UserLspConfig", {}),
