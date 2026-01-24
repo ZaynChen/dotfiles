@@ -291,6 +291,6 @@ return {
   },
   opts = opts,
   keys = {
-    { "<leader>n", "<cmd>NvimTreeToggle<cr>", desc = "[NvimTree]Toggle" }
+    { "<C-S-E>", "<cmd>NvimTreeToggle<cr>", desc = "[NvimTree]Toggle" }
   }
 }
