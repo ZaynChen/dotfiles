@@ -5,40 +5,67 @@
 // from the command palette.
 [
   {
-    "context": "Editor && vim_mode == normal",
+    "context": "vim_mode == normal",
     "bindings": {
       "space w": "workspace::Save",
-      "space k": "zed::OpenKeymap",
       "space f": "file_finder::Toggle",
-      "space /": "workspace::NewSearch"
-    }
+      "space /": "pane::DeploySearch",
+    },
   },
   {
-    "context": "Editor && vim_mode == insert",
+    "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
-      "ctrl-v": "editor::Paste"
-    }
-  },
-  {
-    "context": "Editor && !menu",
-    "bindings": {
-      "ctrl-c": "editor::Copy",
-      "ctrl-x": "editor::Cut",
-      "ctrl-a": "editor::SelectAll"
-    }
-  },
-  {
-    "context": "(vim_mode == insert && (showing_code_actions || showing_completions))",
-    "bindings": {
-      "ctrl-j": ["workspace::SendKeystrokes", "down"],
-      "ctrl-k": ["workspace::SendKeystrokes", "up"]
-    }
+      "ctrl-k": "editor::ContextMenuPrevious",
+      "ctrl-j": "editor::ContextMenuNext",
+    },
   },
   {
     "context": "Picker > Editor",
     "bindings": {
-      "ctrl-j": ["workspace::SendKeystrokes", "down"],
-      "ctrl-k": ["workspace::SendKeystrokes", "up"]
-    }
-  }
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-j": "menu::SelectNext",
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-w": null,
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "ctrl-shift-e": "workspace::CloseActiveDock",
+    },
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "ctrl-shift-g": "git_panel::Close",
+    },
+  },
+  {
+    "context": "AgentPanel",
+    "bindings": {
+      "ctrl-?": "workspace::CloseActiveDock",
+    },
+  },
+  {
+    "context": "OutlinePanel",
+    "bindings": {
+      "ctrl-shift-b": "workspace::CloseActiveDock",
+    },
+  },
+  {
+    "context": "CollabPanel",
+    "bindings": {
+      "ctrl-shift-c": "workspace::CloseActiveDock",
+    },
+  },
+  {
+    "context": "DebugPanel",
+    "bindings": {
+      "ctrl-shift-d": "workspace::CloseActiveDock",
+    },
+  },
 ]
