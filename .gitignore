@@ -29,7 +29,7 @@ config/lnav
 config/LyX
 config/microsoft-edge*
 config/mihomo-party
-config/netease-cloud-music
+config/netease-cloud-music*
 config/nitrogen
 config/pcmanfm
 config/peazip

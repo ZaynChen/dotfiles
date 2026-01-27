@@ -5,4 +5,5 @@ paru -S termius --noconfirm --needed
 paru -S lyx --noconfirm --needed
 paru -S steam --noconfirm --needed
 steam-runtime --reset
+paru -S netease-cloud-music-web-player --noconfirm --needed
 
