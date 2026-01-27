@@ -136,13 +136,16 @@ slider {
 
 /* .workspaces .item {} */
 
-/* .workspaces .item.focused {} */
-
-.workspaces .item.visible {
+.workspaces .item.focused {
   color: var(--fg-visible);
   text-shadow: 0 1px var(--fg-visible);
   box-shadow: inset 0 -3px var(--fg-visible);
   background-color: var(--bg-visible);
+}
+
+.workspaces .item.visible {
+  color: var(--fg-visible);
+  text-shadow: 0 1px var(--fg-visible);
 }
 
 .workspaces .item.urgent {
