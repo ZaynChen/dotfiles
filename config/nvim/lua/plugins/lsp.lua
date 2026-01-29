@@ -21,7 +21,7 @@ return {
     ensure_installed = {
       "asm_lsp", "bashls", "clangd", "cmake", "cssls", "hyprls", "html",
       "jsonls", "lua_ls", "mesonlsp", "pyright", "ruff",
-      "taplo", "ts_ls", "vue_ls", "yamlls",
+      "tombi", "ts_ls", "vue_ls", "yamlls",
     },
 
     automatic_enable = true,
