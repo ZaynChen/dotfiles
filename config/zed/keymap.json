@@ -13,6 +13,12 @@
     },
   },
   {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "ctrl-v": "editor::Paste",
+    },
+  },
+  {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
       "ctrl-k": "editor::ContextMenuPrevious",
