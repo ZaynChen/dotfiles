@@ -40,7 +40,6 @@ install_lightdm() {
   paru -S light-locker --noconfirm --needed
 }
 
-# TODO: not yet
 install_greetd() {
   paru -S greetd --noconfirm --needed
   systemctl enable greetd
@@ -54,12 +53,12 @@ install_greetd() {
   cd $CURR_DIR
 }
 
-install_lightdm
-# install_greetd
-
 paru -S accountsservice --noconfirm --needed
 # using D-Bus to set Localization of user's session, need relogin
 busctl call org.freedesktop.Accounts /org/freedesktop/Accounts/User$UID org.freedesktop.Accounts.User SetLanguage s zh_CN.UTF-8
+
+# install_lightdm
+install_greetd
 
 # audio middleware pulseaudio replacement
 paru -S pipewire lib32-pipewire --noconfirm --needed
