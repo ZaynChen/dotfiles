@@ -10,6 +10,17 @@
       "space w": "workspace::Save",
       "space f": "file_finder::Toggle",
       "space /": "pane::DeploySearch",
+      "space m p": "markdown::OpenPreview",
+      "space m P": "markdown::OpenPreviewToTheSide",
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
     },
   },
   {
@@ -21,6 +32,9 @@
   {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrevious",
+      "ctrl-y": "editor::ConfirmCompletion",
       "ctrl-k": "editor::ContextMenuPrevious",
       "ctrl-j": "editor::ContextMenuNext",
     },
@@ -28,6 +42,8 @@
   {
     "context": "Picker > Editor",
     "bindings": {
+      "tab": "menu::SelectNext",
+      "shift-tab": "menu::SelectPrevious",
       "ctrl-k": "menu::SelectPrevious",
       "ctrl-j": "menu::SelectNext",
     },
