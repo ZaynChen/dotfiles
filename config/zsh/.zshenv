@@ -46,6 +46,7 @@ export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export DENO_INSTALL_ROOT="$HOME/.local/bin"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"
 # Preferred editor for local and remote sessions
