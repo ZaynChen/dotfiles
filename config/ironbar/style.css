@@ -205,8 +205,7 @@ slider {
 }
 
 .popup-music .volume .icon {
-  /* fix icon offset */
-  margin-right: 3px;
+  margin-left: 6px;
 }
 
 #networks .item {
@@ -248,13 +247,16 @@ slider {
   border-top: 1px solid var(--fg-border);
 }
 
-.volume {
+#volume {
+  border: 0;
+  border-radius: 0;
   margin-left: 10px;
   color: var(--black);
+  background-image: unset;
   background-color: var(--volume-bg);
 }
 
-.volume:hover {
+#volume:hover {
   background-color: var(--volume-bg-hover);
 }
 
@@ -262,7 +264,7 @@ slider {
   border-right: 1px solid var(--fg-border);
 }
 
-#sysinfo {
+.sysinfo {
   margin-left: 10px;
 }
 
