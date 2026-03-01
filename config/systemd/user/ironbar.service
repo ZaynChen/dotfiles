@@ -12,7 +12,7 @@ ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "Hyprland" ""
 ExecStart=/usr/bin/ironbar
 ExecReload=kill -SIGUSR2 $MAINPID
 Restart=on-failure
-slice=app-graphical.slice
+Slice=app-graphical.slice
 
 [Install]
 WantedBy=graphical-session.target
