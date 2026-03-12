@@ -6,6 +6,7 @@ paru -S lyx --noconfirm --needed
 paru -S steam --noconfirm --needed
 steam-runtime --reset
 paru -S netease-cloud-music-web-player --noconfirm --needed
+paru -S docker-desktop --noconfirm --needed
 
 # # video editor
 # paru -S kdenlive --noconfirm --needed
@@ -15,4 +16,3 @@ paru -S netease-cloud-music-web-player --noconfirm --needed
 # paru -S virt-manager --noconfirm --needed
 # # slideshow
 # paru -S impressive --needed
-
