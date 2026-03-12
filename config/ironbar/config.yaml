@@ -1,0 +1,121 @@
+# yaml-language-server: $schema=schema.json
+ironvar_defaults: {}
+monitors: null
+icon_theme: null
+icon_overrides: {}
+# name: bar-<n>
+position: top
+anchor_to_edges: true
+height: 32
+margin:
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+# layer: top
+layer: background
+# exclusive_zone: true
+popup_gap: 5
+popup_autohide: false
+# start_hidden: false
+autohide: null
+start:
+  - type: "clock"
+    format: "%Y-%m-%d %H:%M %a"
+  - type: workspaces
+    icon_size: 16
+    all_monitors: false
+    sort: label
+    name_map:
+      "1": ""
+      "2": ""
+      "3": ""
+      "4": "4"
+      "5": ""
+      "6": "6"
+      "7": "7"
+      "8": "8"
+      "9": ""
+      "special:vpn": "󰖂"
+      "special:media": ""
+    hidden:
+      - "10"
+      - "special:vpn"
+      - "special:media"
+      - "special:terminal"
+  - type: workspaces
+    icon_size: 16
+    all_monitors: true
+    sort: label
+    name_map:
+      "10": "󰊖"
+    hidden:
+      - "1"
+      - "2"
+      - "3"
+      - "5"
+      - "4"
+      - "6"
+      - "7"
+      - "8"
+      - "9"
+      - "special:vpn"
+      - "special:media"
+      - "special:terminal"
+  - type: music
+    player_type: mpris
+    format: "{title}"
+    marquee:
+      enable: true
+      max_length: 30
+    marquee_popup_title:
+      enable: true
+      max_length: 30
+    marquee_popup_album:
+      enable: true
+      max_length: 30
+center:
+  - type: focused
+    show_icons: true
+    show_title: true
+    icon_size: 16
+    truncate:
+      mode: end
+      max_length: 30
+end:
+  - type: sys_info
+    name: networks
+    interval:
+      networks: 3
+    format:
+      - 󰓢 {net_up#kb}/{net_down#kb}
+  - type: tray
+    icon_size: 16
+  - type: clipboard
+    max_items: 5
+    truncate:
+      mode: end
+      length: 30
+  - type: volume
+    name: volume
+    format: "{icon} {percentage}%"
+    max_volume: 100
+    icons:
+      volume_high: 󰕾
+      volume_medium: 󰖀
+      volume_low: 󰕿
+      muted: 󰝟
+    marquee:
+      enable: true
+      max_length: 30
+  - type: sys_info
+    interval:
+      cpu: 1
+      temps: 5
+      memory: 30
+      disks: 300
+    format:
+      - " {cpu_percent: <2}%"
+      -  {temp_c}°C
+      -  {memory_percent}%
+      - "󰋊 {disk_percent@/: <3.1}%"

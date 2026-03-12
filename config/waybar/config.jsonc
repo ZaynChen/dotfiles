@@ -1,0 +1,281 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "bottom", // Waybar at top/bottom layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  "height": 30, // Waybar height (to be removed for auto height)
+  // "width": 1280, // Waybar width
+  "spacing": 4, // Gaps between modules (4px)
+  // Choose the order of the modules
+  "reload_style_on_change": true, // Reload style on change
+  "modules-left": [
+    // "custom/power",
+    "clock",
+    "hyprland/workspaces",
+    "mpris"
+    // "hyprland/mode",
+    // "hyprland/scratchpad",
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "tray",
+    "idle_inhibitor",
+    "wireplumber",
+    // "backlight",
+    // "power-profiles-daemon",
+    // "pulseaudio",
+    "network",
+    "cpu",
+    "memory",
+    "temperature"
+  ],
+  // Modules configuration
+  "hyprland/workspaces": {
+    "disable-scroll": false,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    // "format": "{name}: {icon}",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "6",
+      "7": "󰖂",
+      "8": "",
+      "9": "9",
+      "urgent": "",
+      "focused": "",
+      "default": ""
+      // "4": "",
+    },
+    "persistent-only": true,
+    "persistent-workspaces": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "6",
+      "7": "󰖂",
+      "8": "",
+      "9": "9"
+    }
+  },
+  "hyprland/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "hyprland/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": [
+      "",
+      ""
+    ],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
+  },
+  "clock": {
+    "interval": 1,
+    "timezone": "Asia/Shanghai",
+    "format": "<big>{:%F %R %a}</big>",
+    "format-alt": "<big>{:%F %T}</big>",
+    "tooltip": true,
+    // "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+    "format-disconnected": "Disconnected ",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+    "unknown-tag": "N/A",
+    "interval": 5,
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\"></span> ",
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      "on": "1 "
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  },
+  "mpris": {
+    "interval": 1,
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "player-icons": {
+      "default": "▶",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "⏸"
+    },
+    "dynamic-order": [
+      "artist",
+      "title",
+      // "album",
+      "position",
+      "length"
+    ],
+    "title-len": 20
+    // "ignored-players": ["firefox"
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "wireplumber": {
+    "format": "{volume}% {icon}",
+    "format-muted": "",
+    "on-click": "helvum",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "interval": 60,
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 10,
+    "format": "{}% "
+  },
+  "temperature": {
+    "interval": 10,
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C {icon}",
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  }
+  // "power-profiles-daemon": {
+  //   "format": "{icon}",
+  //   "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+  //   "tooltip": true,
+  //   "format-icons": {
+  //     "default": "",
+  //     "performance": "",
+  //     "balanced": "",
+  //     "power-saver": ""
+  //   }
+  // },
+  // "custom/power": {
+  //   "format" : "⏻ ",
+  //   "tooltip": false,
+  //   "menu": "on-click",
+  //   // "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+  //   "menu-actions": {
+  //     "shutdown": "shutdown",
+  //     "reboot": "reboot",
+  //     "suspend": "systemctl suspend",
+  //     "hibernate": "systemctl hibernate"
+  //   }
+  // },
+  // "keyboard-state": {
+  //   "numlock": true,
+  //   "capslock": true,
+  //   "format": "{name} {icon}",
+  //   "format-icons": {
+  //     "locked": "",
+  //     "unlocked": ""
+  //   }
+  // },
+  // "backlight": {
+  //   // "device": "acpi_video1",
+  //   "format": "{percent}% {icon}",
+  //   "format-icons": ["", "", "", "", "", "", "", "", ""]
+  // },
+  // "battery": {
+  //   "states": {
+  //     // "good": 95,
+  //     "warning": 30,
+  //     "critical": 15
+  //   },
+  //   "format": "{capacity}% {icon}",
+  //   "format-full": "{capacity}% {icon}",
+  //   "format-charging": "{capacity}% ",
+  //   "format-plugged": "{capacity}% ",
+  //   "format-alt": "{time} {icon}",
+  //   // "format-good": "", // An empty format will hide the module
+  //   // "format-full": "",
+  //   "format-icons": ["", "", "", "", ""]
+  // },
+  // "battery#bat2": {
+  //   "bat": "BAT2"
+  // },
+}

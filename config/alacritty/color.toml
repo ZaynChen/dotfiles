@@ -1,0 +1,50 @@
+[colors]
+transparent_background_colors = true
+draw_bold_text_with_bright_colors = true
+indexed_colors = [
+  { color = "#d19a66", index = 16 },
+  { color = "#be5046", index = 17 },
+  { color = "#353b45", index = 18 },
+  { color = "#3e4451", index = 19 },
+  { color = "#565c64", index = 20 },
+  { color = "#b6bdca", index = 21 },
+]
+cursor = { text = "#282c34", cursor = "#abb2bf" }
+vi_mode_cursor = { text = "#282c34", cursor = "#abb2bf" }
+line_indicator = { foreground = "None", background = "None" }
+footer_bar = { foreground = "#282c34", background = "#abb2bf" }
+selection = { text = "#282c34", background = "#abb2bf" }
+
+[colors.search]
+matches = { foreground = "#282c34", background = "#e06c75" }
+focused_match = { foreground = "#282c34", background = "#e5c07b" }
+
+[colors.hints]
+start = { foreground = "#282c34", background = "#e5c07b" }
+end = { foreground = "#282c34", background = "#e06c75" }
+
+[colors.primary]
+foreground = "#abb2bf"
+background = "#282c34"
+dim_foreground = "#828482"
+bright_foreground = "None"
+
+[colors.normal]
+black = "#282c34"
+red = "#e06c75"
+green = "#98c379"
+yellow = "#e5c07b"
+blue = "#61afef"
+magenta = "#c678dd"
+cyan = "#56b6c2"
+white = "#abb2bf"
+
+[colors.bright]
+black = "#545862"
+red = "#e06c75"
+green = "#98c379"
+yellow = "#e5c07b"
+blue = "#61afef"
+magenta = "#c678dd"
+cyan = "#56b6c2"
+white = "#c8ccd4"
