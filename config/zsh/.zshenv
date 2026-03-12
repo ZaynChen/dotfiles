@@ -7,7 +7,7 @@
 # /etc/zsh or /etc depends on the system used (e.g. arch /etc/zsh & macos /etc)
 # Details see https://wiki.archlinux.org/title/Zsh#Startup/Shutdown_files
 # - /etc/zsh/zshenv or /etc/zshenv
-# - $ZDOTDIR/.zshenv 
+# - $ZDOTDIR/.zshenv
 # - /etc/zsh/zprofile or /etc/zprofile
 # - $ZDOTDIR/.zprofile
 # - /etc/zsh/zshrc or /etc/zshrc
@@ -25,19 +25,6 @@ export XDG_STATE_HOME="$HOME/.local/state"
 if [ "$(uname)" = "Linux" ] ; then
   export XDG_RUNTIME_DIR="/run/user/$UID"
 fi
-
-# Lighdm not supported
-# export USERXSESSION=$XDG_CACHE_HOME/X11/xsession
-# export USERXSESSIONRC=$XDG_CACHE_HOME/X11/xsessionrc
-# export ALTUSERXSESSION=$XDG_CACHE_HOME/X11/Xsession
-# export ERRFILE=$XDG_CACHE_HOME/X11/xsession-errors
-#
-
-# Localization
-# add these to /etc/environment for lighdm to correctly
-# display the locale
-# export LANG=zh_CN.UTF-8
-# export LANGUAGE=zh_CN:en_US
 
 export ANDROID_HOME="$XDG_DATA_HOME/android"
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
@@ -77,6 +64,7 @@ export NVM_DIR="$XDG_DATA_HOME/nvm"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export GOPATH="$XDG_DATA_HOME/go"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export PSQL_HISTORY="$XDG_DATA_HOME/psql_history"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export RANDFILE="$XDG_STATE_HOME/openssl/rnd"
@@ -90,6 +78,7 @@ export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export W3M_DIR="$XDG_DATA_HOME/w3m"
 export ZSH="$XDG_DATA_HOME/oh-my-zsh"
 
 # System-specific env vars
@@ -102,7 +91,6 @@ export ZSH="$XDG_DATA_HOME/oh-my-zsh"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-export SKLEARNEX_VERBOSE="INFO"
 
 # Proxy
 # export http_proxy=http://127.0.0.1:1087
