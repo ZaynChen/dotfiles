@@ -17,7 +17,7 @@ config/font-manager
 config/gdb
 config/GIMP
 config/gh
-config/git*
+config/[g|G]it*
 config/glow
 config/go
 config/google-chrome*
@@ -43,6 +43,7 @@ config/pulse
 config/QQ
 config/servo
 config/Slack
+config/subversion
 config/systemd/*/*.wants
 config/Termius
 config/volumeicon
