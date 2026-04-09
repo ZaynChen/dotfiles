@@ -22,6 +22,8 @@ fi
 sudo pacman-key --lsign-key "farseerfc@archlinux.org"
 sudo pacman -Sy archlinuxcn-keyring --noconfirm --needed
 
+sudo pacman -S pacman-contrib --noconfirm --needed
+
 # Setup mirrors
 sudo pacman -S reflector --noconfirm --needed
 sudo reflector --sort rate --threads 100 -c China --save /etc/pacman.d/mirrorlist

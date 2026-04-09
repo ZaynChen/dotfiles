@@ -37,6 +37,8 @@ config/microsoft-edge*
 config/mihomo-party
 config/netease-cloud-music*
 config/nitrogen
+config/octopi
+config/obs*
 config/pcmanfm
 config/peazip
 config/pulse
@@ -46,6 +48,7 @@ config/Slack
 config/subversion
 config/systemd/*/*.wants
 config/Termius
+config/vmpk*
 config/volumeicon
 config/wakatime
 config/wireshark
