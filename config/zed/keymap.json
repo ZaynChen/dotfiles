@@ -14,6 +14,18 @@
       "space m P": "markdown::OpenPreviewToTheSide",
       "] h": "editor::GoToHunk",
       "[ h": "editor::GoToPreviousHunk",
+      "] e": [
+        "editor::GoToDiagnostic",
+        {
+          "severity": "error",
+        },
+      ],
+      "[ e": [
+        "editor::GoToPreviousDiagnostic",
+        {
+          "severity": "error",
+        },
+      ],
     },
   },
   {

@@ -83,6 +83,7 @@
     "dock": "right",
   },
   "git_panel": {
+    "tree_view": true,
     "dock": "right",
   },
   "agent": {
@@ -216,7 +217,10 @@
   },
   "languages": {
     "Python": {
-      "language_servers": ["ty", "!basedpyright", "..."],
+      "language_servers": ["ty", "!basedpyright", "!pyright", "!pylsp", "..."],
+      "tab_size": 4,
+    },
+    "Rust": {
       "tab_size": 4,
     },
   },
