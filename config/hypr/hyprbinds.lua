@@ -54,7 +54,7 @@ hl.bind(keybind({ mainMod, "T" }), dsp.layout("togglesplit")) -- dwindle only
 
 hl.bind(keybind({ mainMod, "F" }), window.fullscreen({ action = "toggle", mode = "fullscreen" }))
 hl.bind(keybind({ mainMod, "M" }), window.fullscreen({ action = "toggle", mode = "maximized" }))
-hl.bind(keybind({ mainMod, "Q" }), window.kill())
+hl.bind(keybind({ mainMod, "Q" }), window.close())
 
 hl.bind(keybind({ mainMod, "ALT", "Q" }), dsp.exec_cmd(exit))
 hl.bind(keybind({ mainMod, "ALT", "R" }), dsp.exec_cmd(reload))
@@ -97,7 +97,7 @@ hl.bind(keybind({ mainMod, "SHIFT", bracket_l }), window.swap({ prev = true }))
 for i = 1, 10 do
   local key = i % 10 -- 10 maps to key 0
   hl.bind(keybind({ mainMod, key }), dsp.focus({ workspace = i }))
-  hl.bind(keybind({ mainMod, "SHIFT", key }), window.move({ workspace = i }))
+  hl.bind(keybind({ mainMod, "SHIFT", key }), window.move({ workspace = i, follow = false }))
 end
 
 -- move current workspace to previous/next monitor with mainMod + ,/.
