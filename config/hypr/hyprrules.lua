@@ -35,13 +35,17 @@ hl.window_rule({
   workspace = "special:media silent",
 })
 hl.window_rule({
+  match = { class = "Termius" },
+  workspace = "special:terminal silent",
+})
+hl.window_rule({
   name = "browser",
   match = { class = "firefox-developer-edition" },
   monitor = 0,
   workspace = "1 silent",
 })
 hl.window_rule({
-  match = { class = "wps|et|wpp|pdf|Termius" },
+  match = { class = "wps|et|wpp|pdf" },
   monitor = 0,
   workspace = "4 silent",
 })
