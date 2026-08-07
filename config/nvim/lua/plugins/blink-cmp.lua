@@ -9,8 +9,8 @@ end
 
 return {
   "saghen/blink.cmp",
-  build = "cargo build --release",
   dependencies = {
+    "saghen/blink.lib",
     "rafamadriz/friendly-snippets",
     "fang2hou/blink-copilot",
     {
@@ -24,6 +24,11 @@ return {
       },
     },
   },
+  build = function()
+    -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
+    -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+    require('blink.cmp').build():pwait()
+  end,
   opts = {
     keymap = {
       preset = "none",
@@ -122,7 +127,8 @@ return {
         border = "rounded",
         -- winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
         draw = {
-          padding = { 0, 1 }, -- padding only on right side
+          -- padding = { 0, 1 }, -- padding only on right side
+          padding = 1,
           treesitter = { "lsp" },
           components = {
             label = {
@@ -217,7 +223,7 @@ return {
       },
     },
     fuzzy = {
-      implementation = "prefer_rust_with_warning",
+      implementation = "rust",
       -- max_typos = 0, -- 0 for fzf
       sorts = {
         "exact",
@@ -228,7 +234,6 @@ return {
     cmdline = {
       enabled = true,
       keymap = { preset = "inherit" },
-      sources = { "buffer", "cmdline" },
 
       completion = {
         list = {

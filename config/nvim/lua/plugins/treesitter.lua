@@ -14,8 +14,8 @@ return {
       "html", "hyprlang", "javascript", "json", "json5", "julia", "latex",
       "llvm", "lua", "luadoc", "luap", "make", "markdown", "markdown_inline",
       "nasm", "passwd", "python", "query", "ruby", "rust", "scss", "sql",
-      "ssh_config", "tmux", "todotxt", "toml", "typescript",
-      "vim", "vimdoc", "vue", "xml", "yaml", "zathurarc"
+      "ssh_config", "todotxt", "toml", "typescript", "vim", "vimdoc", "vue",
+      "xml", "yaml"
     }
   end,
   dependencies = {
