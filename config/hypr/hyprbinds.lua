@@ -1,8 +1,6 @@
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
-
-local hl         = hl
 local dsp        = hl.dsp
 local window     = dsp.window
 local workspace  = dsp.workspace
@@ -21,7 +19,7 @@ local fileManager = cmd_prefix .. "pcmanfm"
 local menu        = cmd_prefix .. "sherlock"
 local exit        = "loginctl terminate-user \"\""
 -- local exit        = "loginctl terminate-session \"$XDG_SESSION_ID\""
-local reload      = "ironbar reload & hyprctl reload"
+local reload      = "ironbar reload"
 
 ---------------------
 ---- KEYBINDINGS ----

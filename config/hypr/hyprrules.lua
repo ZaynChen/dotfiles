@@ -24,8 +24,6 @@
 -- })
 
 -- Example window rules that are useful
-local hl = hl
-
 hl.window_rule({
   match = { class = "mihomo-party" },
   workspace = "special:vpn silent",

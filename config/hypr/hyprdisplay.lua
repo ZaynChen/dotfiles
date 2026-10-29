@@ -1,8 +1,6 @@
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
-local hl = hl
-
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
   general = {
@@ -38,7 +36,7 @@ hl.config({
       enabled      = true,
       range        = 4,
       render_power = 3,
-      color        = 0xee1a1a1a,
+      color        = "rgba(ee1a1a1a)",
     },
 
     blur             = {
@@ -76,6 +74,12 @@ hl.config({
     -- 2 - unfullscreen/unmaximize
     on_focus_under_fullscreen = 1
   },
+  ----------------
+  ---- LAYERS ----
+  ----------------
+  layers = {
+    allow_new_top_layers_over_existing_fullscreen = true, -- Set to false to make newly mapped top layers render below existing covering fullscreen window
+  },
   ---------------
   ---- INPUT ----
   ---------------
@@ -98,7 +102,7 @@ hl.config({
   },
 })
 
--- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
+-- Default curves and animations, see https://wiki.hypr.land/configuring/core/animations/
 hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { { 0.65, 0.05 }, { 0.36, 1 } } })
 hl.curve("linear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
@@ -106,7 +110,7 @@ hl.curve("almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1 }
 hl.curve("quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } })
 
 -- Default springs
-hl.curve("easy", { type = "spring", mass = 1, stiffness = 238.1191, dampening = 24.21279333 })
+hl.curve("easy", { type = "spring", mass = 1, stiffness = 238.1191, damping = 24.21279333 })
 
 hl.animation({ leaf = "global", enabled = true, speed = 10, bezier = "default" })
 hl.animation({ leaf = "border", enabled = true, speed = 5.39, bezier = "easeOutQuint" })
