@@ -8,7 +8,7 @@ local highlight = {
   "RainbowDelimiterCyan",
 }
 
-function define_hlgroups()
+local function define_hlgroups()
   -- base16-onedark
   local colors = {
     RainbowDelimiterRed = { fg = "#E06C75", ctermfg = "Red" },

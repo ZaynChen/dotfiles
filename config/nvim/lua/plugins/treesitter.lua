@@ -80,7 +80,7 @@ return {
 
         -- keymaps
         -- You can use the capture groups defined in `textobjects.scm`
-        function select_keymaps()
+        local function select_keymaps()
           local select = require("nvim-treesitter-textobjects.select")
 
           map("af", function()
@@ -101,7 +101,7 @@ return {
           -- end)
         end
 
-        function swap_keymaps()
+        local function swap_keymaps()
           local swap = require("nvim-treesitter-textobjects.swap")
           map("<M-l>", function()
             swap.swap_next("@parameter.inner")
@@ -111,7 +111,7 @@ return {
           end, "[TS]parameter swap with previous")
         end
 
-        function move_keymaps()
+        local function move_keymaps()
           local move = require("nvim-treesitter-textobjects.move")
           -- keymaps
           map("]m", function()
@@ -167,7 +167,7 @@ return {
           -- end, { mode = { "n", "x", "o" } })
         end
 
-        function repeat_move_keymaps()
+        local function repeat_move_keymaps()
           local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
           local opts = { mode = { "n", "x", "o" } }
           map(";", ts_repeat_move.repeat_last_move,

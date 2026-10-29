@@ -1,12 +1,12 @@
 local Util = require("util")
 
-function telescope(builtin, opts)
+local function telescope(builtin, opts)
   return function()
     require("telescope.builtin")[builtin](opts)
   end
 end
 
-function zoxide()
+local function zoxide()
   return function()
     require("telescope").extensions.zoxide.list()
   end

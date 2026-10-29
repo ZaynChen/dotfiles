@@ -1,4 +1,4 @@
-function trouble(mode)
+local function trouble(mode)
   return function()
     require("trouble").toggle(mode)
   end
@@ -232,6 +232,3 @@ return {
     { "<leader>lx", trouble("lsp"),         desc = "[Trouble]lsp" },
   }
 }
---
-
--- -- map("<leader>x", function() trouble.open() end, "[Trouble]Toggle previous")
