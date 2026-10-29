@@ -2,27 +2,21 @@ return {
   settings = {
     Lua = {
       runtime = {
-        version = 'Lua 5.4',
+        version = "Lua 5.5",
         path = {
           "?.lua",
           "?/init.lua",
-          vim.fn.expand("~/.luarocks/share/lua/5.4/?.lua"),
-          vim.fn.expand("~/.luarocks/share/lua/5.4/?/init.lua"),
-          -- "/usr/share/lua/5.4/?.lua",
-          -- "/usr/share/lua/5.4/?/init.lua"
+          vim.fn.expand("~/.local/share/luarocks/lua/5.5/?.lua"),
+          vim.fn.expand("~/.local/share/luarocks/lua/5.5/?/init.lua"),
+          "/usr/share/lua/5.5/?.lua",
+          "/usr/share/lua/5.5/?/init.lua"
         }
       },
       workspace = {
         library = {
-          vim.fn.expand("~/.luarocks/share/lua/5.4"),
-          -- "/usr/share/lua/5.4",
+          vim.fn.expand("~/.local/share/luarocks/lua/5.5"),
+          "/usr/share/lua/5.5",
         }
-        -- library = vim.tbl_extend("keep",
-        --   vim.api.nvim_get_runtime_file("", true), {
-        --   -- vim.fn.expand(vim.env.NVIMRUNTIME .. "/lua"),
-        --   vim.fn.expand("~/.luarocks/share/lua/5.4"),
-        --   -- "/usr/share/lua/5.4",
-        -- })
       },
       format = {
         enable = true,
