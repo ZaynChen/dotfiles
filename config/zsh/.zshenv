@@ -67,6 +67,7 @@ export GOPATH="$XDG_DATA_HOME/go"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export PSQL_HISTORY="$XDG_DATA_HOME/psql_history"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export PYTHON_HISTORY="$XDG_STATE_HOME"/python_history
 export RANDFILE="$XDG_STATE_HOME/openssl/rnd"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
