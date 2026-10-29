@@ -3,6 +3,7 @@
   "runtime.version": "LuaJIT",
   "format.enable": true,
   "workspace": {
+    "ignoreDir": ["config/awesome"],
     "library": ["/usr/share/hypr/stubs", "/usr/share/nvim/runtime"]
   }
 }
