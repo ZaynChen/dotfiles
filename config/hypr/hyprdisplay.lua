@@ -1,44 +1,36 @@
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
--- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
+
+-- Refer to https://wiki.hypr.land/configuring/core/config-options/
 hl.config({
   general = {
     gaps_in          = 4,
     gaps_out         = 8,
-
     border_size      = 2,
-
     col              = {
       active_border   = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
       inactive_border = "rgba(595959aa)",
     },
-
     -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
     resize_on_border = false,
-
-    -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
+    -- Please see https://wiki.hypr.land/configuring/extra/tearing/ before you turn this on
     allow_tearing    = false,
-
     layout           = "dwindle",
-    locale           = "zh_CN.UTF-8"
+    locale           = "zh_CN"
   },
-
   decoration = {
     rounding         = 8,
     rounding_power   = 2,
-
     -- Change transparency of focused and unfocused windows
     active_opacity   = 1.0,
     inactive_opacity = 1.0,
-
     shadow           = {
       enabled      = true,
       range        = 4,
       render_power = 3,
       color        = "rgba(ee1a1a1a)",
     },
-
     blur             = {
       enabled  = true,
       size     = 3,
@@ -46,59 +38,8 @@ hl.config({
       vibrancy = 0.1696,
     },
   },
-
   animations = {
     enabled = true,
-  },
-  -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
-  dwindle = {
-    force_split = 2,
-    preserve_split = true, -- You probably want this
-  },
-  -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
-  master = {
-    new_status = "master",
-  },
-  -- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
-  scrolling = {
-    fullscreen_on_one_column = true,
-  },
-  ----------------
-  ----  MISC  ----
-  ----------------
-  misc = {
-    force_default_wallpaper   = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-    disable_hyprland_logo     = false, -- If true disables the random hyprland logo / anime girl background. :(
-    -- 0 - ignore focus request (keep focus on fullscreen window),
-    -- 1 - takes over,
-    -- 2 - unfullscreen/unmaximize
-    on_focus_under_fullscreen = 1
-  },
-  ----------------
-  ---- LAYERS ----
-  ----------------
-  layers = {
-    allow_new_top_layers_over_existing_fullscreen = true, -- Set to false to make newly mapped top layers render below existing covering fullscreen window
-  },
-  ---------------
-  ---- INPUT ----
-  ---------------
-  input = {
-    kb_layout      = "us",
-    kb_variant     = "",
-    kb_model       = "",
-    kb_options     = "",
-    kb_rules       = "",
-
-    follow_mouse   = 1,
-
-    sensitivity    = 0, -- -1.0 - 1.0, 0 means no modification.
-
-    natural_scroll = true,
-
-    touchpad       = {
-      natural_scroll = false,
-    },
   },
 })
 
@@ -129,6 +70,61 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 1.94, bezier = "almo
 hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
+
+hl.config({
+  -- See https://wiki.hypr.land/configuring/layouts/dwindle-layout/ for more
+  dwindle = {
+    force_split = 2,
+    preserve_split = true, -- You probably want this
+  },
+  -- See https://wiki.hypr.land/configuring/layouts/master-layout/ for more
+  master = {
+    new_status = "master",
+  },
+  -- See https://wiki.hypr.land/configuring/layouts/scrolling-layout/ for more
+  scrolling = {
+    fullscreen_on_one_column = true,
+  },
+})
+
+hl.config({
+  ----------------
+  ----  MISC  ----
+  ----------------
+  misc = {
+    force_default_wallpaper   = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+    disable_hyprland_logo     = false, -- If true disables the random hyprland logo / anime girl background. :(
+    -- 0 - ignore focus request (keep focus on fullscreen window),
+    -- 1 - takes over,
+    -- 2 - unfullscreen/unmaximize
+    on_focus_under_fullscreen = 1
+  },
+  ----------------
+  ---- LAYERS ----
+  ----------------
+  -- Set to false to make newly mapped top layers render below existing covering fullscreen window
+  layers = { allow_new_top_layers_over_existing_fullscreen = true },
+  ---------------
+  ---- INPUT ----
+  ---------------
+  input = {
+    kb_layout      = "us",
+    kb_variant     = "",
+    kb_model       = "",
+    kb_options     = "",
+    kb_rules       = "",
+
+    follow_mouse   = 1,
+
+    sensitivity    = 0, -- -1.0 - 1.0, 0 means no modification.
+
+    natural_scroll = true,
+
+    touchpad       = {
+      natural_scroll = false,
+    },
+  },
+})
 
 -- hl.gesture({
 --   fingers = 3,
