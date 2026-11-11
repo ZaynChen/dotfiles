@@ -108,7 +108,7 @@
     "git_gutter": "tracked_files",
     "inline_blame": { "show_commit_summary": true },
   },
-  "edit_predictions": { "provider": "copilot", "mode": "eager" },
+  "edit_predictions": { "provider": "zed", "mode": "eager" },
   "terminal": {
     "shell": "system",
     "dock": "bottom",
@@ -182,6 +182,10 @@
     "Python": { "language_servers": ["ty", "ruff"], "tab_size": 4 },
     "Rust": { "tab_size": 4 },
     "Julia": { "tab_size": 4 },
+    "Fish": {
+      "tab_size": 4,
+      "formatter": { "external": { "command": "fish_indent" } },
+    },
     // "JavaScript": { "language_servers": ["deno"] },
     // "TypeScript": { "language_servers": ["deno"] },
     // "TSX": { "language_servers": ["deno"] },
