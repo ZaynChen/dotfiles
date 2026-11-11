@@ -1,7 +1,7 @@
 #:tombi schema.strict = false
 
 [terminal]
-shell = { program = "/bin/zsh", args = ["-l"] }
+shell = { program = "/bin/fish", args = ["-l"] }
 osc52 = "OnlyCopy"
 
 [env]

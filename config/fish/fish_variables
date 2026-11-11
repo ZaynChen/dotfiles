@@ -1,0 +1,4 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR fish_greeting:\x1d
+SETUVAR fish_user_paths:/home/zaynchen/\x2ebin\x1e/home/zaynchen/\x2elocal/share/cargo/bin\x1e/home/zaynchen/\x2elocal/share/npm/bin\x1e/home/zaynchen/\x2elocal/share/rvm/bin
