@@ -22,7 +22,7 @@ set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x GEM_SPEC_CACHE $XDG_CACHE_HOME/gem
 set -x GRADLE_USER_HOME $XDG_DATA_HOME/gradle
 set -x IPYTHONDIR $XDG_CONFIG_HOME/ipython
-contains $XDG_DATA_HOME/julia $JULIAUP_DEPOT_PATH ||
+contains $XDG_DATA_HOME/julia (string split : $JULIAUP_DEPOT_PATH) ||
     set -xp --path JULIA_DEPOT_PATH $XDG_DATA_HOME/julia
 set -x JULIAUP_DEPOT_PATH $JULIA_DEPOT_PATH
 set -x JULIA_PKG_SERVER https://mirrors.nju.edu.cn/julia
