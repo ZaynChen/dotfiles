@@ -1,2 +1,3 @@
-paru -S iwd --noconfirm --needed
-paru -S blueman --noconfirm --needed
+#!/usr/bin/env bash
+
+paru -S --needed - < ./pkgs/wireless.txt

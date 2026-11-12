@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # rust envrioment setup
 paru -Syyu rustup --confirm --needed
 

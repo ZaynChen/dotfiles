@@ -1,0 +1,8 @@
+cachyos-keyring
+cachyos-mirrorlist
+cachyos-v3-mirrorlist
+cachyos-v4-mirrorlist
+cachyos-kernel-manager
+cachyos-settings
+linux-cachyos
+linux-cachyos-nvidia-open

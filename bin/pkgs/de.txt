@@ -1,0 +1,8 @@
+greetd
+hyprland
+hyprpaper
+hyprpicker
+hyprpolkitagent
+hyprshot
+ironbar
+xdg-desktop-portal-hyprland

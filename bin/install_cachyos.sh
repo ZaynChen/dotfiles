@@ -4,7 +4,7 @@ curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz
 tar xvf cachyos-repo.tar.xz && cd cachyos-repo
 sudo ./cachyos-repo.sh
 
-pacman -S linux-cachyos cachyos-kernel-manager cachyos-settings --needed
+paru -S --needed - < ./pkgs/cachyos.txt
 
 # disable zswap
 FIND="^GRUB_CMDLINE_LINUX_DEFAULT=\".*\"$"

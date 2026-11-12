@@ -1,0 +1,7 @@
+libtiff5
+wps-office-all-dicts-win-languages
+wps-office-cn
+wps-office-fonts
+wps-office-mime-cn
+wps-office-mui-zh-cn
+ttf-wps-fonts

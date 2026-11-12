@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 paru -S git zsh --noconfirm --needed
 if [ -e /etc/zsh/zshenv ]; then
   grep -q "ZDOTDIR" /etc/zsh/zshenv ||
