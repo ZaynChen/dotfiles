@@ -5,34 +5,34 @@
 // from the command palette.
 [
   {
-    "context": "vim_mode == normal",
-    "bindings": {
-      "space w": "workspace::Save",
-      "space f": "file_finder::Toggle",
-      "space /": "pane::DeploySearch",
-      "space m p": "markdown::OpenPreview",
-      "space m P": "markdown::OpenPreviewToTheSide",
-      "] h": "editor::GoToHunk",
-      "[ h": "editor::GoToPreviousHunk",
-      "] e": [
-        "editor::GoToDiagnostic",
-        {
-          "severity": "error",
-        },
-      ],
-      "[ e": [
-        "editor::GoToPreviousDiagnostic",
-        {
-          "severity": "error",
-        },
-      ],
-    },
-  },
-  {
     "context": "Editor",
     "bindings": {
       "alt-j": "editor::MoveLineDown",
       "alt-k": "editor::MoveLineUp",
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-w": null,
+      "ctrl-k h": "pane::SplitLeft",
+      "ctrl-k j": "pane::SplitDown",
+      "ctrl-k k": "pane::SplitUp",
+      "ctrl-k l": "pane::SplitRight",
+    },
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "0": ["editor::MoveToBeginningOfLine", { "stop_at_indent": true }],
+      "space w": "workspace::Save",
+      "space q": "pane::CloseActiveItem",
+      "space f": "file_finder::Toggle",
+      "space /": "text_finder::Toggle",
+      "space m p": "markdown::OpenPreview",
+      "space m P": "markdown::OpenPreviewToTheSide",
+      "] e": ["editor::GoToDiagnostic", { "severity": "error" }],
+      "[ e": ["editor::GoToPreviousDiagnostic", { "severity": "error" }],
     },
   },
   {
@@ -42,13 +42,18 @@
     },
   },
   {
+    "context": "Editor && show_completions",
+    "bindings": {
+      "ctrl-y": "editor::ConfirmCompletion",
+    },
+  },
+  {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
       "tab": "editor::ContextMenuNext",
       "shift-tab": "editor::ContextMenuPrevious",
-      "ctrl-y": "editor::ConfirmCompletion",
-      "ctrl-k": "editor::ContextMenuPrevious",
       "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
     },
   },
   {
@@ -56,50 +61,44 @@
     "bindings": {
       "tab": "menu::SelectNext",
       "shift-tab": "menu::SelectPrevious",
-      "ctrl-k": "menu::SelectPrevious",
       "ctrl-j": "menu::SelectNext",
-    },
-  },
-  {
-    "context": "Pane",
-    "bindings": {
-      "ctrl-w": null,
+      "ctrl-k": "menu::SelectPrevious",
     },
   },
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
-      "ctrl-shift-e": "workspace::CloseActiveDock",
+      "ctrl-shift-e": "project_panel::Toggle",
     },
   },
   {
     "context": "GitPanel",
     "bindings": {
-      "ctrl-shift-g": "git_panel::Close",
+      "ctrl-shift-g": "git_panel::Toggle",
     },
   },
   {
     "context": "AgentPanel",
     "bindings": {
-      "ctrl-?": "workspace::CloseActiveDock",
+      "ctrl-?": "agent::Toggle",
     },
   },
   {
     "context": "OutlinePanel",
     "bindings": {
-      "ctrl-shift-b": "workspace::CloseActiveDock",
+      "ctrl-shift-b": "outline_panel::Toggle",
     },
   },
   {
     "context": "CollabPanel",
     "bindings": {
-      "ctrl-shift-c": "workspace::CloseActiveDock",
+      "ctrl-shift-c": "collab_panel::Toggle",
     },
   },
   {
     "context": "DebugPanel",
     "bindings": {
-      "ctrl-shift-d": "workspace::CloseActiveDock",
+      "ctrl-shift-d": "debug_panel::Toggle",
     },
   },
 ]
