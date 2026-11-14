@@ -53,9 +53,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
   desc = "Highlight Yank",
-  callback = function()
-    vim.hl.on_yank()
-  end
+  callback = function() vim.hl.on_yank() end
 })
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {

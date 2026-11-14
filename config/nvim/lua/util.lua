@@ -74,9 +74,7 @@ function M.map(lhs, rhs, desc, opts)
 end
 
 local sep = (function()
-  ---@diagnostic disable-next-line: undefined-global
   if jit then
-    ---@diagnostic disable-next-line: undefined-global
     local os = string.lower(jit.os)
     if os == "linux" or os == "osx" or os == "bsd" then
       return "/"
@@ -89,8 +87,7 @@ local sep = (function()
 end)()
 
 function M.joinpath(...)
-  local args = { n = select("#", ...), ... }
-  return table.concat(args, sep)
+  return table.concat({ n = select("#", ...), ... }, sep)
 end
 
 function M.on_load(name, fn)

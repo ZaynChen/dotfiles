@@ -40,21 +40,3 @@ map("<C-D>", "<C-D>zz", "Scroll lines down with cursor centered")
 map("<C-U>", "<C-U>zz", "Scroll lines up with cursor centered")
 map("<C-I>", "<C-I>zz", "Go to N newer entry in jump list with cursor centered")
 map("<C-O>", "<C-O>zz", "Go to N older entry in jump list with cursor centered")
-
--- map("<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<cr>")
-
--- map("[q", "<cmd>lprev<cr>zz", "[Quickfix]Previous")
--- map("]q", "<cmd>lnext<cr>zz", "[Quickfix]Next")
---
--- map("<leader>tc", "<cmd>tabclose<cr>", "[Tab]Close")
--- map("<leader>te", ':tabedit <C-R>=expand("%:p:h")."/"<cr>', "[Tap]Edit", { silent = false })
--- map("<leader>tj", "<cmd>tabnext<cr>", "[Tap]Next")
--- map("<leader>tk", "<cmd>tabprevious<cr>", "[Tap]Prev")
--- map("<leader>tm", "<cmd>tabmove<cr>", "[Tap]Move")
--- map("<leader>tn", "<cmd>tabnew<cr>", "[Tap]New")
--- map("<leader>to", "<cmd>tabonly<cr>", "[Tap]Only")
-
--- map("<C-Up>", "<cmd>resize -2<cr>", "[Window]Height Descrease")
--- map("<C-Down>", "<cmd>resize +2<cr>", "[Window]Height Increase")
--- map("<C-Left>", "<cmd>vertical resize -2<cr>", "[Window]Width decrease")
--- map("<C-Right>", "<cmd>vertical resize +2<cr>", "[Window]Width Increase")

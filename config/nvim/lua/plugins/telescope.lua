@@ -1,15 +1,11 @@
 local Util = require("util")
 
 local function telescope(builtin, opts)
-  return function()
-    require("telescope.builtin")[builtin](opts)
-  end
+  return function() require("telescope.builtin")[builtin](opts) end
 end
 
 local function zoxide()
-  return function()
-    require("telescope").extensions.zoxide.list()
-  end
+  return function() require("telescope").extensions.zoxide.list() end
 end
 
 return {
@@ -23,17 +19,13 @@ return {
       build = "make",
       enabled = vim.fn.executable("make") == 1,
       config = function()
-        Util.on_load("telescope.nvim", function()
-          require("telescope").load_extension("fzf")
-        end)
+        Util.on_load("telescope.nvim", function() require("telescope").load_extension("fzf") end)
       end
     },
     {
       "jvgrootveld/telescope-zoxide",
       config = function()
-        Util.on_load("telescope.nvim", function()
-          require("telescope").load_extension("zoxide")
-        end)
+        Util.on_load("telescope.nvim", function() require("telescope").load_extension("zoxide") end)
       end
     }
   },
@@ -142,21 +134,15 @@ return {
           list_command = "zoxide query -ls",
           mappings = {
             default = {
-              action = function(selection)
-                vim.cmd.cd(selection.path)
-              end,
-              after_action = function(selection)
-                vim.notify("Directory changed to " .. selection.path)
-              end,
+              action = function(selection) vim.cmd.cd(selection.path) end,
+              after_action = function(selection) vim.notify("Directory changed to " .. selection.path) end,
             },
             ["<C-s>"] = { action = z_utils.create_basic_command("split") },
             ["<C-v>"] = { action = z_utils.create_basic_command("vsplit") },
             ["<C-e>"] = { action = z_utils.create_basic_command("edit") },
             ["<C-f>"] = {
               keepinsert = true,
-              action = function(selection)
-                builtin.find_files({ cwd = selection.path })
-              end,
+              action = function(selection) builtin.find_files({ cwd = selection.path }) end,
             },
             ["C-t"] = { action = function(selection) vim.cmd.tcd(selection.path) end }
           }

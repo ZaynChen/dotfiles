@@ -51,64 +51,19 @@ return {
       ["<M-space>"] = { "show", "show_documentation", "hide_documentation" },
       ["<M-m>"] = { "show_signature", "hide_signature", "fallback" },
     },
-    appearance = {
-      kind_icons = {
-        Text = "󰉿",
-        Method = "󰆧",
-        Function = "󰊕",
-        Constructor = "",
-
-        Field = "󰜢",
-        Variable = "󰀫",
-        Property = "󰜢",
-
-        Class = "󰠱",
-        Interface = "",
-        Struct = "󰙅",
-        Module = "",
-
-        Unit = "󰑭",
-        Value = "󰎠",
-        Enum = "",
-        EnumMember = "",
-
-        Keyword = "󰌋",
-        Constant = "󰏿",
-
-        Snippet = "",
-        Color = "󰏘",
-        File = "󰈙",
-        Reference = "󰈇",
-        Folder = "󰉋",
-        Event = "",
-        Operator = "󰆕",
-        TypeParameter = "",
-      },
-    },
     signature = {
       -- alternative "ray-x/lsp_signature.nvim"
       enabled = false,
       trigger = {
         enabled = true,
         show_on_keyword = true,
-        blocked_trigger_characters = {},
-        blocked_retrigger_characters = {},
-        show_on_trigger_character = true,
         show_on_insert = true,
-        show_on_insert_on_trigger_character = true,
         show_on_accept = true,
-        show_on_accept_on_trigger_character = true,
       },
       window = {
-        min_width = 1,
-        max_width = 100,
-        max_height = 12,
         border = "rounded",
-        winblend = 0,
         winhighlight = "BlinkCmpSignatureHelpActiveParameter:Search",
         scrollbar = false,
-        direction_priority = { "n", "s" },
-        treesitter_highlighting = true,
         show_documentation = true,
       },
     },
@@ -127,8 +82,6 @@ return {
         border = "rounded",
         -- winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
         draw = {
-          -- padding = { 0, 1 }, -- padding only on right side
-          padding = 1,
           treesitter = { "lsp" },
           components = {
             label = {

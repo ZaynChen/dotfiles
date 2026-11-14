@@ -45,13 +45,9 @@ return {
       -- create the highlight groups in the highlight setup hook, so they are reset
       -- every time the colorscheme changes
       hooks.register(hooks.type.HIGHLIGHT_SETUP, define_hlgroups)
-      ibl.setup {
-        scope = { highlight = highlight }
-      }
+      ibl.setup { scope = { highlight = highlight } }
 
-      hooks.register(
-        hooks.type.SCOPE_HIGHLIGHT,
-        hooks.builtin.scope_highlight_from_extmark)
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     end
   },
   {
